@@ -1,8 +1,7 @@
-import os
 from reportlab.lib.pagesizes import A4
-from reportlab.lib.units import inch
+from reportlab.lib.units import cm
 from reportlab.lib.styles import ParagraphStyle
-from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_JUSTIFY
+from reportlab.lib.enums import TA_LEFT, TA_CENTER
 from reportlab.lib import colors
 from reportlab.platypus import (
     SimpleDocTemplate, Paragraph, Spacer, HRFlowable
@@ -11,253 +10,248 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase.pdfmetrics import registerFontFamily
 
-pdfmetrics.registerFont(TTFont('Carlito', '/usr/share/fonts/truetype/english/Carlito-Regular.ttf'))
-pdfmetrics.registerFont(TTFont('Carlito-Bold', '/usr/share/fonts/truetype/english/Carlito-Bold.ttf'))
-pdfmetrics.registerFont(TTFont('LiberationSerif', '/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf'))
-pdfmetrics.registerFont(TTFont('LiberationSerif-Bold', '/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf'))
-registerFontFamily('LiberationSerif', normal='LiberationSerif', bold='LiberationSerif-Bold')
-registerFontFamily('Carlito', normal='Carlito', bold='Carlito-Bold')
+# ── Font Registration ──
+pdfmetrics.registerFont(TTFont('Tinos', '/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf'))
+pdfmetrics.registerFont(TTFont('Tinos-Bold', '/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf'))
+pdfmetrics.registerFont(TTFont('Tinos-Italic', '/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf'))
+registerFontFamily('Tinos', normal='Tinos', bold='Tinos-Bold', italic='Tinos-Italic')
 
-ACCENT = colors.HexColor('#1b7896')
-TEXT_PRIMARY = colors.HexColor('#1f1e1c')
-TEXT_MUTED = colors.HexColor('#8f8a83')
-BORDER = colors.HexColor('#d4d0c2')
+# ── Color Palette ──
+ACCENT = colors.HexColor('#1f7692')
+TEXT_PRIMARY = colors.HexColor('#212324')
+TEXT_MUTED = colors.HexColor('#7c8488')
+BG_PAGE = colors.HexColor('#f1f3f3')
 
-name_style = ParagraphStyle(name='Name', fontName='Carlito-Bold', fontSize=26, leading=32, textColor=TEXT_PRIMARY, alignment=TA_LEFT, spaceAfter=2)
-headline_style = ParagraphStyle(name='Headline', fontName='Carlito', fontSize=12, leading=16, textColor=ACCENT, alignment=TA_LEFT, spaceAfter=4)
-contact_style = ParagraphStyle(name='Contact', fontName='Carlito', fontSize=9.5, leading=14, textColor=TEXT_MUTED, alignment=TA_LEFT, spaceAfter=1)
-section_title_style = ParagraphStyle(name='SectionTitle', fontName='Carlito-Bold', fontSize=12, leading=16, textColor=TEXT_PRIMARY, alignment=TA_LEFT, spaceBefore=14, spaceAfter=6)
-body_style = ParagraphStyle(name='Body', fontName='LiberationSerif', fontSize=10, leading=15, textColor=TEXT_PRIMARY, alignment=TA_LEFT, spaceAfter=4)
-bullet_style = ParagraphStyle(name='Bullet', fontName='LiberationSerif', fontSize=10, leading=15, textColor=TEXT_PRIMARY, alignment=TA_LEFT, spaceAfter=2, leftIndent=18, bulletIndent=6)
-project_title_style = ParagraphStyle(name='ProjectTitle', fontName='Carlito-Bold', fontSize=10.5, leading=15, textColor=TEXT_PRIMARY, alignment=TA_LEFT, spaceAfter=1)
-project_meta_style = ParagraphStyle(name='ProjectMeta', fontName='Carlito', fontSize=9, leading=13, textColor=TEXT_MUTED, alignment=TA_LEFT, spaceAfter=2)
-tag_style = ParagraphStyle(name='Tag', fontName='Carlito', fontSize=8.5, leading=12, textColor=ACCENT, alignment=TA_LEFT)
-small_style = ParagraphStyle(name='Small', fontName='LiberationSerif', fontSize=9, leading=13, textColor=TEXT_MUTED, alignment=TA_LEFT, spaceAfter=2)
+# ── Styles ──
+name_style = ParagraphStyle(
+    'Name', fontName='Tinos', fontSize=26,
+    leading=30, alignment=TA_CENTER, spaceAfter=2,
+    textColor=TEXT_PRIMARY
+)
+subtitle_style = ParagraphStyle(
+    'Subtitle', fontName='Tinos', fontSize=11,
+    leading=14, alignment=TA_CENTER, spaceAfter=2,
+    textColor=ACCENT
+)
+contact_style = ParagraphStyle(
+    'Contact', fontName='Tinos', fontSize=9.5,
+    leading=13, alignment=TA_CENTER, textColor=TEXT_MUTED,
+    spaceAfter=10
+)
+section_title_style = ParagraphStyle(
+    'SectionTitle', fontName='Tinos', fontSize=12,
+    leading=15, spaceBefore=10, spaceAfter=3,
+    textColor=ACCENT
+)
+body_style = ParagraphStyle(
+    'Body', fontName='Tinos', fontSize=10,
+    leading=13.5, spaceAfter=2
+)
+bullet_style = ParagraphStyle(
+    'Bullet', fontName='Tinos', fontSize=9.5,
+    leading=13, leftIndent=14, bulletIndent=0,
+    spaceBefore=1, spaceAfter=1.5
+)
+meta_style = ParagraphStyle(
+    'Meta', fontName='Tinos', fontSize=9.5,
+    leading=12.5, textColor=TEXT_MUTED, spaceAfter=3
+)
+project_title_style = ParagraphStyle(
+    'ProjectTitle', fontName='Tinos', fontSize=10.5,
+    leading=13.5, spaceAfter=1
+)
 
-def bullet(text):
-    return Paragraph('<bullet>&bull;</bullet> ' + text, bullet_style)
-
-def section(title):
+# ── Helpers ──
+def section_header(title):
     return [
-        Paragraph(title, section_title_style),
-        HRFlowable(width="100%", thickness=0.6, color=BORDER, spaceAfter=6),
+        Paragraph(f'<b>{title}</b>', section_title_style),
+        HRFlowable(width='100%', thickness=0.7, color=ACCENT,
+                   spaceBefore=0, spaceAfter=5),
     ]
 
-def project(name, meta, tags="", bullets_list=None):
-    elems = []
-    elems.append(Paragraph(name, project_title_style))
-    elems.append(Paragraph(meta, project_meta_style))
-    if tags:
-        elems.append(Paragraph(tags, tag_style))
-    if bullets_list:
-        for b in bullets_list:
-            elems.append(bullet(b))
-    elems.append(Spacer(1, 4))
-    return elems
+def project_entry(name, desc, bullets):
+    elements = [
+        Paragraph(f'<b>{name}</b>  --  {desc}', project_title_style),
+    ]
+    for b in bullets:
+        elements.append(Paragraph(f'\xe2\x80\xa2 {b}', bullet_style))
+    elements.append(Spacer(1, 3))
+    return elements
 
-output = '/home/z/my-project/download/euxaristia_CV.pdf'
+# ── Build Document ──
+output_path = '/home/z/my-project/download/CV_Mateo_Pineda.pdf'
 doc = SimpleDocTemplate(
-    output, pagesize=A4,
-    leftMargin=0.75*inch, rightMargin=0.75*inch,
-    topMargin=0.6*inch, bottomMargin=0.6*inch,
-    title='euxaristia - Curriculum Vitae', author='euxaristia', creator='Z.ai',
-    subject='Agentic Engineer & Open Source Contributor'
+    output_path, pagesize=A4,
+    leftMargin=1.5*cm, rightMargin=1.5*cm,
+    topMargin=1.4*cm, bottomMargin=1.4*cm,
+    title='CV - Mateo Pineda',
+    author='Mateo Pineda', creator='Z.ai'
 )
+
 story = []
 
-# ━━ Header ━━
-story.append(Paragraph('<b>euxaristia</b>', name_style))
-story.append(Paragraph('Agentic Engineer &amp; Open Source Contributor', headline_style))
+# Header
+story.append(Paragraph('<b>Mateo Pineda</b>', name_style))
+story.append(Paragraph('Agentic Engineer', subtitle_style))
 story.append(Paragraph(
-    'github.com/euxaristia &nbsp;&bull;&nbsp; euxaristia.github.io &nbsp;&bull;&nbsp; Open to opportunities',
-    contact_style))
+    'github.com/euxaristia  |  euxaristia.github.io',
+    contact_style
+))
+
+# Summary
+story.extend(section_header('PROFILE'))
+story.append(Paragraph(
+    'Agentic engineer who leverages AI tools to ship real, non-trivial contributions to production codebases. '
+    'Contributor to open-source projects maintained by Google, Qwen (Alibaba), and others, with accepted PRs '
+    'spanning CLI tooling, security fixes, and core runtime behavior. Builds personal systems projects -- '
+    'including a C compiler, a POSIX-compatible shell, and a Make alternative -- using AI-assisted development '
+    'to move fast and iterate on complex domains.',
+    body_style
+))
+
+# Open Source Contributions
+story.extend(section_header('OPEN SOURCE CONTRIBUTIONS (MERGED)'))
+story.append(Paragraph(
+    'All contributions below are merged into upstream repositories. '
+    'Trivial changes (typo fixes, documentation-only updates, and link corrections) are excluded.',
+    meta_style
+))
+story.append(Spacer(1, 3))
+
+story.extend(project_entry(
+    'google-gemini/gemini-cli',
+    'Google\'s official CLI for Gemini models',
+    [
+        '<b>Text sanitization data loss fix (PR #22624)</b> -- Resolved a bug where C1 control characters caused '
+        'silent data loss during text sanitization, corrupting CLI output. Labeled area/core, help wanted.',
+
+        '<b>Detached mode child process fix (PR #22620)</b> -- Disabled detached mode in Bun runtime to prevent '
+        'child processes from receiving immediate SIGHUP on spawn. Labeled area/core, area/platform, help wanted.',
+
+        '<b>AbortError log suppression (PR #22621)</b> -- Suppressed unhandled AbortError logs that appeared '
+        'during normal request cancellation. Labeled area/core, help wanted.',
+    ]
+))
+
+story.extend(project_entry(
+    'QwenLM/qwen-code',
+    'Qwen Code Agent (Alibaba)',
+    [
+        '<b>Loop detection and stagnation checks (PR #3236)</b> -- Implemented enhanced agent loop detection '
+        'with read-file, action-stagnation, and repetitive-thought checks, injecting stop directives to break '
+        'infinite retry cycles.',
+
+        '<b>Tool validation retry loop fix (PR #3178)</b> -- Prevented the model from entering infinite retry '
+        'loops when a tool call repeatedly failed schema validation with the same error.',
+
+        '<b>Shell output overflow fix (PR #2857)</b> -- Constrained shell output width to prevent wide table '
+        'output from overflowing the TUI bordered box container.',
+
+        '<b>Input lag fix from quote-based drag detection (PR #2837)</b> -- Removed quote-based drag-and-drop '
+        'detection that caused significant input lag when typing single or double quote characters.',
+    ]
+))
+
+story.extend(project_entry(
+    'Gitlawb/openclaude',
+    'Open-source Claude implementation',
+    [
+        '<b>SSRF bypass fix in custom search provider (PR #610)</b> -- Closed multiple SSRF bypass vectors in '
+        'the custom provider hostname guard that allowed requests to resolve to private/reserved IPs through '
+        'literal-address forms.',
+
+        '<b>Abort listener memory leak fix (PR #611)</b> -- Fixed a memory leak where fetchWithRetry attached '
+        'a fresh abort listener to the AbortSignal on every retry attempt without ever removing them.',
+    ]
+))
+
+story.extend(project_entry(
+    'clockworklabs/SpacetimeDB',
+    'Distributed relational database',
+    [
+        '<b>Version uninstall validation fix (PR #4774)</b> -- Prevented the CLI from showing a confirmation '
+        'prompt for uninstalling versions that were not actually installed, which previously resulted in a cryptic '
+        'OS-level error.',
+    ]
+))
+
+story.extend(project_entry(
+    'posva/catimg',
+    'Popular terminal image renderer (C, ~2.7k stars)',
+    [
+        '<b>stb_image upgrade and MJPEG/YUYV decoding fix (PR #78)</b> -- Upgraded stb_image to v2.30 and '
+        'improved MJPEG (AVI1) and raw YUYV decoding support.',
+    ]
+))
+
+# Personal Projects
+story.extend(section_header('PERSONAL PROJECTS'))
+story.extend(project_entry(
+    'meowsh',
+    'POSIX-compatible shell implementation (Rust)',
+    [
+        'Implemented function-local variable scoping with snapshot/restore semantics.',
+        'Built zsh compatibility layer enabling .zshrc parsing and oh-my-zsh skeleton execution.',
+        'Added indexed arrays, variable substitution references (${var/old/new}), and compsys stubs.',
+    ]
+))
+
+story.extend(project_entry(
+    'pcc',
+    'C compiler (TypeScript, porting to C)',
+    [
+        'Implemented a complete recursive descent C parser in C (~450 lines replacing 633 lines of TypeScript).',
+        'Ported the lexer to C with full operator tokenization and test coverage.',
+        'Fixed preprocessor to recursively process directives in included files.',
+        'Achieved 67/67 tests passing across parser and semantic analyzer.',
+    ]
+))
+
+story.extend(project_entry(
+    'mkultra',
+    'POSIX Make alternative (Pony)',
+    [
+        'Rewrote from Rust to Pony with stdlib-only dependencies and parallel job execution (-j N).',
+        'Implemented POSIX recipe prefixes (-, +, -), expansion (${VAR}, substitution refs), and command-line macro overrides.',
+    ]
+))
+
+story.extend(project_entry(
+    'VoxelPopuli',
+    'Voxel engine with OpenGL (Rust)',
+    [
+        'Fixed cloud transparency rendering over water when viewed from above (depth mask compositing).',
+    ]
+))
+
+story.extend(project_entry(
+    'colt',
+    'Terminal text editor (Rust)',
+    [
+        'Fixed SHIFT+G normal-mode command to correctly navigate to bottom of file (vim behavior).',
+    ]
+))
+
+# Skills
+story.extend(section_header('APPROACH'))
+story.append(Paragraph(
+    'All projects and contributions are AI-assisted. I use large language models as force multipliers -- '
+    'not to replace understanding, but to accelerate iteration on complex systems. This means I can contribute '
+    'meaningfully across languages and domains I would not reach working alone: C compilers, POSIX shell '
+    'semantics, runtime process management, and security-sensitive networking code.',
+    body_style
+))
+
 story.append(Spacer(1, 6))
 
-# ━━ Summary ━━
-story.extend(section('Professional Summary'))
+# Footer line
+story.append(HRFlowable(width='100%', thickness=0.4, color=TEXT_MUTED,
+                         spaceBefore=4, spaceAfter=4))
 story.append(Paragraph(
-    'Agentic engineer who leverages AI coding assistants and agentic workflows to design, build, and ship '
-    'software across diverse domains. Active open-source contributor since 2017 with 17 merged pull requests '
-    'to projects including Google Gemini CLI, posva/catimg, QwenLM/qwen-code, clockworklabs/SpacetimeDB, '
-    'and swiftlang/swift-org-website. Author of 14 original projects spanning systems programming, game engines, '
-    'compilers, and developer tooling, produced through iterative AI-assisted development. Strengths include '
-    'prompt engineering, agent workflow design, code review, debugging complex codebases, and driving contributions '
-    'to unfamiliar codebases by combining domain understanding with AI pair programming.', body_style))
-story.append(Spacer(1, 4))
-
-# ━━ Skills ━━
-story.extend(section('Technical Skills'))
-story.append(Paragraph(
-    '<b>Agentic Development:</b> AI pair programming, prompt engineering, multi-step agent workflows, '
-    'iterative build-test-debug cycles with AI, context window management, cross-codebase comprehension, '
-    'AI-assisted code review and debugging', body_style))
-story.append(Paragraph(
-    '<b>Languages Worked In (AI-assisted):</b> Rust, Pony, TypeScript, Go, C, Assembly (x86_64), Zig, '
-    'Shell, Swift, Java, C++, JavaScript', body_style))
-story.append(Paragraph(
-    '<b>Domains:</b> CLI tools, game engines, compiler toolchains, terminal emulators, kernel internals, '
-    'build systems, WebAssembly, OpenGL, AI coding agents', body_style))
-story.append(Paragraph(
-    '<b>Platforms &amp; Tools:</b> Git, GitHub, GitHub Actions, Bun runtime, Linux, GCC/Clang, SDL3, '
-    'Rayon, STB image libraries, Docker', body_style))
-story.append(Spacer(1, 2))
-
-# ━━ Open Source Contributions ━━
-story.extend(section('Open Source Contributions'))
-
-story.extend(project(
-    'google-gemini/gemini-cli',
-    'Google | TypeScript | 3 merged PRs',
-    'google-gemini/gemini-cli',
-    [
-        'Fixed text sanitization data loss caused by C1 control characters in CLI output rendering',
-        'Resolved Bun detached mode SIGHUP issue causing process termination on signal delivery',
-        'Suppressed unhandled AbortError log noise during command cancellation workflows',
-    ]
-))
-
-story.extend(project(
-    'posva/catimg',
-    'posva | C | Contributor rank #3 | 4 commits | 2 merged PRs',
-    'posva/catimg',
-    [
-        'Upgraded stb_image from v2.28 to v2.30, enabling MJPEG and YUYV color-space decoding support',
-        'Refreshed man page documentation to reflect current CLI behavior and flag options',
-    ]
-))
-
-story.extend(project(
-    'QwenLM/qwen-code',
-    'Alibaba Qwen Team | TypeScript | 5 merged PRs',
-    'QwenLM/qwen-code',
-    [
-        'Enhanced AI agent loop detection with stagnation detection and validation-retry mechanisms',
-        'Fixed shell output box overflow causing terminal buffer corruption on long outputs',
-        'Resolved CLI build failures by migrating from Node to tsx execution, and fixed input lag',
-    ]
-))
-
-story.extend(project(
-    'Gitlawb/openclaude',
-    'Claude Code fork | TypeScript | 3 merged PRs',
-    'Gitlawb/openclaude',
-    [
-        'Fixed SSRF bypass vulnerabilities in hostname guard validation logic',
-        'Resolved web-search AbortController listener memory leaks causing resource exhaustion',
-        'Added display of the selected AI model in startup output for better user visibility',
-    ]
-))
-
-story.extend(project(
-    'clockworklabs/SpacetimeDB',
-    'Clockwork Labs | Rust | 1 merged PR',
-    'clockworklabs/SpacetimeDB',
-    [
-        'Added version existence check before confirming module uninstall in the CLI (#4774)',
-    ]
-))
-
-story.extend(project(
-    'swiftlang/swift-org-website',
-    'Apple Swift | JavaScript | 1 merged PR',
-    'swiftlang/swift-org-website',
-    [
-        'Fixed double-quoting of curl commands to enable shell substitution in Linux installation instructions (#1228)',
-    ]
-))
-
-story.extend(project(
-    'Other Merged Contributions',
-    'posva/catimg, FedoraQt/MediaWriter, FyroxEngine/rg3d.rs',
-    '',
-    [
-        'FedoraQt/MediaWriter: Fixed grammar in privacy documentation (#138)',
-        'FyroxEngine/rg3d.rs: Fixed typos in download page template (#47)',
-    ]
-))
-
-# ━━ Personal Projects ━━
-story.extend(section('Selected Personal Projects'))
-
-story.extend(project(
-    'colt',
-    'Pony | Vi-style text editor',
-    '',
-    [
-        'Vi modal editor implementation in Pony with insert, normal, command, and visual modes',
-        'Features: regex substitution, mouse click/drag selection, clipboard integration, dynamic status bar',
-        'Actively developed with 4 open feature PRs',
-    ]
-))
-
-story.extend(project(
-    'meowsh',
-    'Rust | POSIX-compliant shell',
-    '',
-    [
-        'Shell implementation targeting zsh compatibility with indexed arrays, function scoping, and job control',
-        'Designed for correctness against POSIX specification test suites',
-    ]
-))
-
-story.extend(project(
-    'VoxelPopuli',
-    'Rust + OpenGL | Voxel sandbox engine',
-    '',
-    [
-        'Minecraft-inspired voxel engine with chunk generation, cloud transparency, and rayon parallelization',
-    ]
-))
-
-story.extend(project(
-    'pcc',
-    'TypeScript | C compiler (Pickle C Compiler)',
-    '',
-    [
-        'Full C lexer, parser, and CLI compiler with gcc-compatible flag parsing',
-    ]
-))
-
-story.extend(project(
-    'Coatl',
-    'Rust | Systems language compiler',
-    '',
-    [
-        'Compiler targeting x86_64 and AArch64 Linux backends with code generation and ELF output',
-    ]
-))
-
-story.extend(project(
-    'Farmiga',
-    'x86_64 Assembly | UNIX SysV hobby kernel',
-    '',
-    [
-        'Hobby OS kernel in Assembly inspired by UNIX System V with interrupt handling and system calls',
-    ]
-))
-
-story.extend(project(
-    'Other Projects',
-    'gitee-cli (Go), mkultra (Pony), adapt (Rust), cu-chulainn (Pony), Nimbus (Swift), ZigDoom (Zig), fireterm (Pony)',
-    '',
-    [
-        'gitee-cli: Full-featured Gitee CLI modeled after GitHub CLI (gh)',
-        'mkultra: Minimal Unix-philosophy build tool with parallel jobs and POSIX glob expansion',
-        'adapt: Paru-like APT wrapper with shell completion; ZigDoom: Doom engine port in Zig',
-    ]
-))
-
-# ━━ Education ━━
-story.extend(section('Education'))
-story.append(Paragraph(
-    '<b>Self-Directed Study</b> | Agentic Engineering, Systems Programming, Software Architecture',
-    body_style))
-story.append(Paragraph(
-    'Extensive self-directed learning in agentic development workflows, systems programming concepts, '
-    'and software architecture. Developed expertise in working with AI coding assistants to produce '
-    'meaningful contributions across unfamiliar codebases and languages, from Assembly kernels to TypeScript AI tools.',
-    small_style
+    'github.com/euxaristia',
+    ParagraphStyle('Footer', fontName='Tinos', fontSize=8.5,
+                   leading=11, alignment=TA_CENTER, textColor=TEXT_MUTED)
 ))
 
 doc.build(story)
-print(f"CV generated: {output} ({os.path.getsize(output):,} bytes)")
+print(f'CV saved to {output_path}')
