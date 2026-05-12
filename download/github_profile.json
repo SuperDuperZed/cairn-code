@@ -1,0 +1,4495 @@
+{
+  "profile": {
+    "login": "euxaristia",
+    "name": "euxaristia",
+    "bio": null,
+    "location": null,
+    "company": null,
+    "blog": "euxaristia.github.io",
+    "twitter_username": null,
+    "public_repos": 60,
+    "followers": 51,
+    "following": 325,
+    "hireable": true,
+    "created_at": "2017-02-07T21:03:06Z",
+    "avatar_url": "https://avatars.githubusercontent.com/u/25621994?v=4",
+    "html_url": "https://github.com/euxaristia"
+  },
+  "repos": [
+    {
+      "name": "PureDarwin",
+      "full_name": "euxaristia/PureDarwin",
+      "description": "Darwin is the Open Source core of macOS, and PureDarwin is a community project to extend Darwin into a complete, usable operating system.",
+      "language": null,
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/PureDarwin",
+      "homepage": "https://github.com/PureDarwin/PureDarwin/wiki",
+      "created_at": "2026-05-09T04:29:58Z",
+      "updated_at": "2026-05-09T04:29:58Z",
+      "fork": true,
+      "license": "NOASSERTION",
+      "open_issues_count": 0
+    },
+    {
+      "name": "adapt",
+      "full_name": "euxaristia/adapt",
+      "description": "A paru-like wrapper for apt",
+      "language": "Rust",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/adapt",
+      "homepage": null,
+      "created_at": "2026-05-07T04:11:45Z",
+      "updated_at": "2026-05-12T22:02:09Z",
+      "fork": false,
+      "license": null,
+      "open_issues_count": 2
+    },
+    {
+      "name": "opencode",
+      "full_name": "euxaristia/opencode",
+      "description": "The open source coding agent.",
+      "language": null,
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/opencode",
+      "homepage": "https://opencode.ai",
+      "created_at": "2026-04-29T22:43:18Z",
+      "updated_at": "2026-04-29T22:43:18Z",
+      "fork": true,
+      "license": "MIT",
+      "open_issues_count": 0
+    },
+    {
+      "name": "Inquistor",
+      "full_name": "euxaristia/Inquistor",
+      "description": "Senior Incident Response Engineer Agent",
+      "language": null,
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/Inquistor",
+      "homepage": "",
+      "created_at": "2026-04-22T02:39:53Z",
+      "updated_at": "2026-04-22T02:43:33Z",
+      "fork": false,
+      "license": null,
+      "open_issues_count": 0
+    },
+    {
+      "name": "tree-sitter",
+      "full_name": "euxaristia/tree-sitter",
+      "description": "An incremental parsing system for programming tools",
+      "language": null,
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/tree-sitter",
+      "homepage": "https://tree-sitter.github.io",
+      "created_at": "2026-04-14T05:22:22Z",
+      "updated_at": "2026-04-14T05:22:22Z",
+      "fork": true,
+      "license": "MIT",
+      "open_issues_count": 1
+    },
+    {
+      "name": "claw-code",
+      "full_name": "euxaristia/claw-code",
+      "description": "The repo is finally unlocked. enjoy the party! The fastest repo in history to surpass 100K stars ⭐. Join Discord: https://discord.gg/5TUQKqFWd Built in Rust using oh-my-codex.",
+      "language": null,
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/claw-code",
+      "homepage": "",
+      "created_at": "2026-04-13T19:51:06Z",
+      "updated_at": "2026-04-13T19:51:06Z",
+      "fork": true,
+      "license": null,
+      "open_issues_count": 0
+    },
+    {
+      "name": "agency-agents",
+      "full_name": "euxaristia/agency-agents",
+      "description": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.",
+      "language": null,
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/agency-agents",
+      "homepage": "",
+      "created_at": "2026-04-13T03:29:03Z",
+      "updated_at": "2026-04-13T03:29:03Z",
+      "fork": true,
+      "license": "MIT",
+      "open_issues_count": 0
+    },
+    {
+      "name": "openclaude",
+      "full_name": "euxaristia/openclaude",
+      "description": "Open Claude Is Open-source coding-agent CLI for OpenAI, Gemini, DeepSeek, Ollama, Codex, GitHub Models, and 200+ models via OpenAI-compatible APIs.",
+      "language": "TypeScript",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/openclaude",
+      "homepage": "",
+      "created_at": "2026-04-10T13:31:37Z",
+      "updated_at": "2026-04-13T02:24:36Z",
+      "fork": true,
+      "license": "NOASSERTION",
+      "open_issues_count": 1
+    },
+    {
+      "name": "glow",
+      "full_name": "euxaristia/glow",
+      "description": "Render markdown on the CLI, with pizzazz! 💅🏻",
+      "language": null,
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/glow",
+      "homepage": "",
+      "created_at": "2026-04-10T12:52:19Z",
+      "updated_at": "2026-04-10T12:52:19Z",
+      "fork": true,
+      "license": "MIT",
+      "open_issues_count": 0
+    },
+    {
+      "name": "mkultra",
+      "full_name": "euxaristia/mkultra",
+      "description": "A minimal, Unix-philosophy-compliant build tool in Pony",
+      "language": "Pony",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/mkultra",
+      "homepage": "",
+      "created_at": "2026-04-10T08:59:25Z",
+      "updated_at": "2026-04-28T06:29:54Z",
+      "fork": false,
+      "license": "Unlicense",
+      "open_issues_count": 0
+    },
+    {
+      "name": "zvi",
+      "full_name": "euxaristia/zvi",
+      "description": null,
+      "language": "Zig",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/zvi",
+      "homepage": null,
+      "created_at": "2026-04-07T09:47:30Z",
+      "updated_at": "2026-04-07T10:36:51Z",
+      "fork": false,
+      "license": null,
+      "open_issues_count": 0
+    },
+    {
+      "name": "Paidagogos",
+      "full_name": "euxaristia/Paidagogos",
+      "description": "A Roman Catholic theological assistant in the Augustinian-Jesuit tradition via Aquinas, fluent in Biblical Hebrew, Aramaic, Koine Greek, and Latin",
+      "language": null,
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/Paidagogos",
+      "homepage": "https://poe.com/Paidagogos",
+      "created_at": "2026-04-07T02:52:45Z",
+      "updated_at": "2026-04-19T04:41:37Z",
+      "fork": false,
+      "license": null,
+      "open_issues_count": 0
+    },
+    {
+      "name": "colt",
+      "full_name": "euxaristia/colt",
+      "description": "A vi text editor written in Pony",
+      "language": "Pony",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/colt",
+      "homepage": "",
+      "created_at": "2026-04-07T01:42:42Z",
+      "updated_at": "2026-05-09T04:35:58Z",
+      "fork": false,
+      "license": "Unlicense",
+      "open_issues_count": 4
+    },
+    {
+      "name": "qwen-code",
+      "full_name": "euxaristia/qwen-code",
+      "description": "An open-source AI agent that lives in your terminal.",
+      "language": "TypeScript",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/qwen-code",
+      "homepage": "https://qwenlm.github.io/qwen-code-docs/en/users/overview",
+      "created_at": "2026-04-01T06:51:57Z",
+      "updated_at": "2026-04-13T00:25:21Z",
+      "fork": true,
+      "license": "Apache-2.0",
+      "open_issues_count": 0
+    },
+    {
+      "name": "fastfetch",
+      "full_name": "euxaristia/fastfetch",
+      "description": "A maintained, feature-rich and performance oriented, neofetch like system information tool.",
+      "language": null,
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/fastfetch",
+      "homepage": "",
+      "created_at": "2026-03-30T19:27:46Z",
+      "updated_at": "2026-03-30T19:27:46Z",
+      "fork": true,
+      "license": "MIT",
+      "open_issues_count": 0
+    },
+    {
+      "name": "claude-octopus",
+      "full_name": "euxaristia/claude-octopus",
+      "description": "Multi-LLM orchestration plugin for Claude Code — 8 providers (Codex, Gemini, Claude, Perplexity, OpenRouter, Copilot, Qwen, Ollama), 47 commands, 50 skills, Double Diamond workflows",
+      "language": null,
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/claude-octopus",
+      "homepage": "https://reddit.com/r/ClaudeOctopus/",
+      "created_at": "2026-03-24T19:49:15Z",
+      "updated_at": "2026-03-24T19:49:15Z",
+      "fork": true,
+      "license": "MIT",
+      "open_issues_count": 0
+    },
+    {
+      "name": "fireterm",
+      "full_name": "euxaristia/fireterm",
+      "description": "ASCII animated fireplace for your terminal",
+      "language": "Pony",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/fireterm",
+      "homepage": null,
+      "created_at": "2026-03-23T03:18:02Z",
+      "updated_at": "2026-04-11T00:23:46Z",
+      "fork": false,
+      "license": "Unlicense",
+      "open_issues_count": 0
+    },
+    {
+      "name": "ts-matrix-effect",
+      "full_name": "euxaristia/ts-matrix-effect",
+      "description": "A clean, responsive TypeScript implementation of the classic \"Digital Rain\" effect from The Matrix",
+      "language": "TypeScript",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/ts-matrix-effect",
+      "homepage": "",
+      "created_at": "2026-03-20T16:42:01Z",
+      "updated_at": "2026-03-20T16:52:31Z",
+      "fork": false,
+      "license": "Unlicense",
+      "open_issues_count": 0
+    },
+    {
+      "name": "xv6-x86_64",
+      "full_name": "euxaristia/xv6-x86_64",
+      "description": "re-implementation of UNIX v6 in ANSI C for x86_64 SMP",
+      "language": "C",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/xv6-x86_64",
+      "homepage": "",
+      "created_at": "2026-03-16T11:35:46Z",
+      "updated_at": "2026-03-16T12:24:25Z",
+      "fork": true,
+      "license": "NOASSERTION",
+      "open_issues_count": 0
+    },
+    {
+      "name": "node-pty",
+      "full_name": "euxaristia/node-pty",
+      "description": "Fork pseudoterminals in Node.JS",
+      "language": "TypeScript",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/node-pty",
+      "homepage": "",
+      "created_at": "2026-03-13T14:52:31Z",
+      "updated_at": "2026-03-13T15:14:52Z",
+      "fork": true,
+      "license": "NOASSERTION",
+      "open_issues_count": 0
+    },
+    {
+      "name": "gemini-cli",
+      "full_name": "euxaristia/gemini-cli",
+      "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
+      "language": "TypeScript",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/gemini-cli",
+      "homepage": "https://geminicli.com",
+      "created_at": "2026-03-13T13:48:31Z",
+      "updated_at": "2026-04-30T18:52:42Z",
+      "fork": true,
+      "license": "Apache-2.0",
+      "open_issues_count": 2
+    },
+    {
+      "name": "SpacetimeDB",
+      "full_name": "euxaristia/SpacetimeDB",
+      "description": "Development at the speed of light",
+      "language": "Rust",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/SpacetimeDB",
+      "homepage": "https://spacetimedb.com",
+      "created_at": "2026-03-13T13:22:47Z",
+      "updated_at": "2026-04-09T22:07:28Z",
+      "fork": true,
+      "license": "NOASSERTION",
+      "open_issues_count": 0
+    },
+    {
+      "name": "node-pty-lydell",
+      "full_name": "euxaristia/node-pty-lydell",
+      "description": "Smaller distribution of microsoft/node-pty.",
+      "language": "TypeScript",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/node-pty-lydell",
+      "homepage": "",
+      "created_at": "2026-03-13T13:22:14Z",
+      "updated_at": "2026-03-13T14:51:58Z",
+      "fork": false,
+      "license": "NOASSERTION",
+      "open_issues_count": 0
+    },
+    {
+      "name": "whatscli",
+      "full_name": "euxaristia/whatscli",
+      "description": "A command line interface for WhatsApp",
+      "language": null,
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/whatscli",
+      "homepage": null,
+      "created_at": "2026-03-13T00:44:33Z",
+      "updated_at": "2026-03-13T00:47:26Z",
+      "fork": true,
+      "license": null,
+      "open_issues_count": 0
+    },
+    {
+      "name": "kilo",
+      "full_name": "euxaristia/kilo",
+      "description": "A text editor in less than 1000 LOC with syntax highlight and search.",
+      "language": "Rust",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/kilo",
+      "homepage": null,
+      "created_at": "2026-03-06T22:03:57Z",
+      "updated_at": "2026-03-13T09:16:54Z",
+      "fork": true,
+      "license": "BSD-2-Clause",
+      "open_issues_count": 0
+    },
+    {
+      "name": "catimg",
+      "full_name": "euxaristia/catimg",
+      "description": "🦦 Insanely fast image printing in your terminal",
+      "language": "C",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/catimg",
+      "homepage": "http://posva.net/shell/retro/bash/2013/05/27/catimg",
+      "created_at": "2026-02-22T06:41:35Z",
+      "updated_at": "2026-04-07T05:34:41Z",
+      "fork": true,
+      "license": "MIT",
+      "open_issues_count": 0
+    },
+    {
+      "name": "holyc-lang",
+      "full_name": "euxaristia/holyc-lang",
+      "description": "HolyC compiler & transpiler",
+      "language": "C",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/holyc-lang",
+      "homepage": "",
+      "created_at": "2026-02-17T21:46:07Z",
+      "updated_at": "2026-03-16T11:09:35Z",
+      "fork": true,
+      "license": "BSD-2-Clause",
+      "open_issues_count": 0
+    },
+    {
+      "name": "utop",
+      "full_name": "euxaristia/utop",
+      "description": "A balanced system monitor",
+      "language": "Rust",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/utop",
+      "homepage": "",
+      "created_at": "2026-02-16T05:37:57Z",
+      "updated_at": "2026-03-22T19:23:28Z",
+      "fork": false,
+      "license": "Unlicense",
+      "open_issues_count": 0
+    },
+    {
+      "name": "gitee-cli",
+      "full_name": "euxaristia/gitee-cli",
+      "description": "A full-featured Gitee CLI inspired by gh for GitHub",
+      "language": "Go",
+      "stargazers_count": 0,
+      "forks_count": 1,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/gitee-cli",
+      "homepage": "",
+      "created_at": "2026-02-16T01:41:36Z",
+      "updated_at": "2026-05-09T04:35:57Z",
+      "fork": false,
+      "license": "GPL-3.0",
+      "open_issues_count": 1
+    },
+    {
+      "name": "Farmiga",
+      "full_name": "euxaristia/Farmiga",
+      "description": "Farmiga is a UNIX SysV-inspired hobby kernel project",
+      "language": "Assembly",
+      "stargazers_count": 1,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/Farmiga",
+      "homepage": "",
+      "created_at": "2026-02-12T23:50:25Z",
+      "updated_at": "2026-03-13T11:16:53Z",
+      "fork": false,
+      "license": "GPL-3.0",
+      "open_issues_count": 0
+    },
+    {
+      "name": "meowsh",
+      "full_name": "euxaristia/meowsh",
+      "description": "A POSIX-compliant shell implementation",
+      "language": "Rust",
+      "stargazers_count": 1,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/meowsh",
+      "homepage": "",
+      "created_at": "2026-02-09T21:16:49Z",
+      "updated_at": "2026-05-08T21:25:58Z",
+      "fork": false,
+      "license": "Unlicense",
+      "open_issues_count": 0
+    },
+    {
+      "name": "awhy",
+      "full_name": "euxaristia/awhy",
+      "description": null,
+      "language": "Go",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/awhy",
+      "homepage": "https://github.com/euxaristia/awhy/wiki",
+      "created_at": "2026-02-09T06:19:04Z",
+      "updated_at": "2026-03-04T22:19:17Z",
+      "fork": false,
+      "license": "GPL-3.0",
+      "open_issues_count": 0
+    },
+    {
+      "name": "xxd",
+      "full_name": "euxaristia/xxd",
+      "description": "hex-dump-type utility xxd",
+      "language": "Go",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/xxd",
+      "homepage": "",
+      "created_at": "2026-02-08T23:46:10Z",
+      "updated_at": "2026-03-25T22:33:33Z",
+      "fork": true,
+      "license": "GPL-2.0",
+      "open_issues_count": 0
+    },
+    {
+      "name": "1662-BCP-Lectionary",
+      "full_name": "euxaristia/1662-BCP-Lectionary",
+      "description": "A python tool to generate a Bible lectionary based on 1662 Book of Common Prayer.",
+      "language": null,
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/1662-BCP-Lectionary",
+      "homepage": null,
+      "created_at": "2026-02-07T18:59:44Z",
+      "updated_at": "2026-02-07T18:59:44Z",
+      "fork": true,
+      "license": null,
+      "open_issues_count": 0
+    },
+    {
+      "name": "pcc",
+      "full_name": "euxaristia/pcc",
+      "description": "🥒 Pickle C Compiler",
+      "language": "TypeScript",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/pcc",
+      "homepage": "",
+      "created_at": "2026-02-07T03:19:43Z",
+      "updated_at": "2026-04-22T06:16:40Z",
+      "fork": false,
+      "license": "GPL-3.0",
+      "open_issues_count": 0
+    },
+    {
+      "name": "haxedit",
+      "full_name": "euxaristia/haxedit",
+      "description": "#️⃣ View and edit files in hexadecimal or ASCII",
+      "language": "HolyC",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/haxedit",
+      "homepage": "",
+      "created_at": "2026-02-05T00:57:44Z",
+      "updated_at": "2026-03-16T10:59:20Z",
+      "fork": true,
+      "license": "GPL-2.0",
+      "open_issues_count": 0
+    },
+    {
+      "name": "Coatl",
+      "full_name": "euxaristia/Coatl",
+      "description": "Coatl is a native systems language focusing on x86_64 and AArch64 Linux backends. The compiler is implemented in Rust",
+      "language": "Rust",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/Coatl",
+      "homepage": "https://github.com/euxaristia/Coatl/wiki",
+      "created_at": "2026-02-03T14:44:47Z",
+      "updated_at": "2026-04-03T12:07:31Z",
+      "fork": false,
+      "license": "GPL-3.0",
+      "open_issues_count": 0
+    },
+    {
+      "name": "doom",
+      "full_name": "euxaristia/doom",
+      "description": "DOOM translated from C to V. ",
+      "language": "V",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/doom",
+      "homepage": "",
+      "created_at": "2026-01-26T13:58:06Z",
+      "updated_at": "2026-03-22T11:29:00Z",
+      "fork": true,
+      "license": "GPL-2.0",
+      "open_issues_count": 0
+    },
+    {
+      "name": "VoxelPopuli",
+      "full_name": "euxaristia/VoxelPopuli",
+      "description": "A lightweight Minecraft-inspired voxel sandbox written in Rust with OpenGL.",
+      "language": "Rust",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/VoxelPopuli",
+      "homepage": "",
+      "created_at": "2026-01-16T07:55:20Z",
+      "updated_at": "2026-04-28T23:29:21Z",
+      "fork": false,
+      "license": "Unlicense",
+      "open_issues_count": 2
+    },
+    {
+      "name": "mochadoom",
+      "full_name": "euxaristia/mochadoom",
+      "description": "A pure Java Doom source port",
+      "language": "Java",
+      "stargazers_count": 1,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/mochadoom",
+      "homepage": "",
+      "created_at": "2026-01-14T11:55:43Z",
+      "updated_at": "2026-01-14T18:50:45Z",
+      "fork": true,
+      "license": "GPL-3.0",
+      "open_issues_count": 0
+    },
+    {
+      "name": "ZigDoom",
+      "full_name": "euxaristia/ZigDoom",
+      "description": null,
+      "language": "Zig",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/ZigDoom",
+      "homepage": null,
+      "created_at": "2026-01-11T09:15:57Z",
+      "updated_at": "2026-04-04T04:57:57Z",
+      "fork": false,
+      "license": "Unlicense",
+      "open_issues_count": 0
+    },
+    {
+      "name": "Nimbus",
+      "full_name": "euxaristia/Nimbus",
+      "description": "A minimal, Swift-native framework wrapper for SDL3.",
+      "language": "Swift",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/Nimbus",
+      "homepage": "",
+      "created_at": "2026-01-07T15:00:42Z",
+      "updated_at": "2026-03-07T13:34:39Z",
+      "fork": false,
+      "license": "BSD-3-Clause",
+      "open_issues_count": 0
+    },
+    {
+      "name": "cu-chulainn",
+      "full_name": "euxaristia/cu-chulainn",
+      "description": "A minimal, secure HTTP server for static file serving",
+      "language": "Pony",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/cu-chulainn",
+      "homepage": "",
+      "created_at": "2025-12-19T06:03:09Z",
+      "updated_at": "2026-04-10T21:53:54Z",
+      "fork": false,
+      "license": "Unlicense",
+      "open_issues_count": 0
+    },
+    {
+      "name": "winamp",
+      "full_name": "euxaristia/winamp",
+      "description": "Iconic media player",
+      "language": null,
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/winamp",
+      "homepage": "https://winamp.com",
+      "created_at": "2024-10-17T04:27:32Z",
+      "updated_at": "2024-10-17T04:27:32Z",
+      "fork": true,
+      "license": "NOASSERTION",
+      "open_issues_count": 0
+    },
+    {
+      "name": "libertybsd-scripts",
+      "full_name": "euxaristia/libertybsd-scripts",
+      "description": null,
+      "language": "Shell",
+      "stargazers_count": 1,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/libertybsd-scripts",
+      "homepage": "https://libertybsd.github.io",
+      "created_at": "2024-10-06T06:44:19Z",
+      "updated_at": "2026-03-14T02:55:25Z",
+      "fork": false,
+      "license": "ISC",
+      "open_issues_count": 0
+    },
+    {
+      "name": "ubuntu-mainline-kernel.sh",
+      "full_name": "euxaristia/ubuntu-mainline-kernel.sh",
+      "description": "Bash script for Ubuntu (and derivatives) to easily (un)install kernels from the Ubuntu Kernel PPA",
+      "language": "Shell",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/ubuntu-mainline-kernel.sh",
+      "homepage": null,
+      "created_at": "2024-06-05T19:24:15Z",
+      "updated_at": "2024-06-05T20:18:23Z",
+      "fork": true,
+      "license": null,
+      "open_issues_count": 0
+    },
+    {
+      "name": "MediaWriter",
+      "full_name": "euxaristia/MediaWriter",
+      "description": "Fedora Media Writer",
+      "language": "C++",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/MediaWriter",
+      "homepage": null,
+      "created_at": "2017-11-22T12:45:07Z",
+      "updated_at": "2018-04-25T12:51:28Z",
+      "fork": true,
+      "license": "GPL-2.0",
+      "open_issues_count": 0
+    },
+    {
+      "name": "No-Opener-No-Phishers-No-JQuery",
+      "full_name": "euxaristia/No-Opener-No-Phishers-No-JQuery",
+      "description": "Chrome extension to stop yourself from falling victim to phishing attacks, remixed with no JQuery",
+      "language": "JavaScript",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/No-Opener-No-Phishers-No-JQuery",
+      "homepage": "",
+      "created_at": "2017-11-19T18:43:25Z",
+      "updated_at": "2018-04-29T16:52:25Z",
+      "fork": true,
+      "license": "BSD-2-Clause",
+      "open_issues_count": 0
+    },
+    {
+      "name": "InnerDemons",
+      "full_name": "euxaristia/InnerDemons",
+      "description": "Mini Dungeon Crawler Game - Project",
+      "language": "Processing",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/InnerDemons",
+      "homepage": "https://project-crystal.github.io/Inner-Demons/",
+      "created_at": "2017-09-16T21:37:55Z",
+      "updated_at": "2017-12-14T21:38:40Z",
+      "fork": true,
+      "license": null,
+      "open_issues_count": 0
+    },
+    {
+      "name": "fsfoundation",
+      "full_name": "euxaristia/fsfoundation",
+      "description": "The F# Software Foundation website",
+      "language": "HTML",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/fsfoundation",
+      "homepage": null,
+      "created_at": "2017-08-08T22:56:01Z",
+      "updated_at": "2017-08-08T22:56:03Z",
+      "fork": true,
+      "license": null,
+      "open_issues_count": 0
+    },
+    {
+      "name": "euxaristia.github.io",
+      "full_name": "euxaristia/euxaristia.github.io",
+      "description": "my little corner of the internet",
+      "language": "TypeScript",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/euxaristia.github.io",
+      "homepage": "https://euxaristia.github.io/",
+      "created_at": "2017-08-06T04:30:19Z",
+      "updated_at": "2026-03-20T16:37:51Z",
+      "fork": false,
+      "license": null,
+      "open_issues_count": 1
+    },
+    {
+      "name": "rubosudo",
+      "full_name": "euxaristia/rubosudo",
+      "description": "I'm attempting to rewrite sudobot in Ruby",
+      "language": "Ruby",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/rubosudo",
+      "homepage": "",
+      "created_at": "2017-07-25T14:27:34Z",
+      "updated_at": "2017-07-25T15:49:49Z",
+      "fork": true,
+      "license": "GPL-3.0",
+      "open_issues_count": 0
+    },
+    {
+      "name": "gocover.io",
+      "full_name": "euxaristia/gocover.io",
+      "description": "GoCover.io offers the code coverage of any golang package as a service.",
+      "language": "Go",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/gocover.io",
+      "homepage": "http://gocover.io",
+      "created_at": "2017-07-20T21:24:45Z",
+      "updated_at": "2017-08-20T18:14:34Z",
+      "fork": true,
+      "license": "MIT",
+      "open_issues_count": 0
+    },
+    {
+      "name": "ssh-chat",
+      "full_name": "euxaristia/ssh-chat",
+      "description": "Chat over SSH.",
+      "language": "Go",
+      "stargazers_count": 0,
+      "forks_count": 1,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/ssh-chat",
+      "homepage": "https://medium.com/@shazow/ssh-how-does-it-even-9e43586e4ffc",
+      "created_at": "2017-07-16T12:22:39Z",
+      "updated_at": "2020-03-25T00:26:34Z",
+      "fork": true,
+      "license": "MIT",
+      "open_issues_count": 0
+    },
+    {
+      "name": "gitplex",
+      "full_name": "euxaristia/gitplex",
+      "description": "last open source verison of GitPlex",
+      "language": "Java",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/gitplex",
+      "homepage": "",
+      "created_at": "2017-07-10T23:44:18Z",
+      "updated_at": "2026-02-14T06:27:38Z",
+      "fork": false,
+      "license": "MIT",
+      "open_issues_count": 0
+    },
+    {
+      "name": "dotfiles",
+      "full_name": "euxaristia/dotfiles",
+      "description": "My dotfiles",
+      "language": null,
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/dotfiles",
+      "homepage": "",
+      "created_at": "2017-06-14T02:31:59Z",
+      "updated_at": "2026-05-09T04:35:57Z",
+      "fork": false,
+      "license": null,
+      "open_issues_count": 2
+    },
+    {
+      "name": "gpgpassman",
+      "full_name": "euxaristia/gpgpassman",
+      "description": "This is a fork of Simoniz0r's project gpgpassman",
+      "language": "Shell",
+      "stargazers_count": 1,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/gpgpassman",
+      "homepage": "",
+      "created_at": "2017-06-04T14:31:16Z",
+      "updated_at": "2017-08-20T18:14:27Z",
+      "fork": true,
+      "license": "GPL-2.0",
+      "open_issues_count": 0
+    },
+    {
+      "name": "pacweb",
+      "full_name": "euxaristia/pacweb",
+      "description": "Public facing website for PacBSD",
+      "language": "CSS",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/pacweb",
+      "homepage": null,
+      "created_at": "2017-05-29T15:04:27Z",
+      "updated_at": "2017-05-29T15:04:28Z",
+      "fork": true,
+      "license": null,
+      "open_issues_count": 0
+    },
+    {
+      "name": "nyan-cat",
+      "full_name": "euxaristia/nyan-cat",
+      "description": "Nyan Cat made with HTML5+CSS3+JavaScript",
+      "language": "CSS",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/nyan-cat",
+      "homepage": "http://li516-28.members.linode.com/nyan-cat/",
+      "created_at": "2017-04-17T01:43:25Z",
+      "updated_at": "2017-04-17T01:53:23Z",
+      "fork": true,
+      "license": "MIT",
+      "open_issues_count": 0
+    },
+    {
+      "name": "cristurm.github.io",
+      "full_name": "euxaristia/cristurm.github.io",
+      "description": "My User Page. :)",
+      "language": "HTML",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/cristurm.github.io",
+      "homepage": null,
+      "created_at": "2017-04-17T01:19:25Z",
+      "updated_at": "2017-04-17T01:19:27Z",
+      "fork": true,
+      "license": null,
+      "open_issues_count": 0
+    }
+  ],
+  "pinned": [
+    {
+      "name": "1662-BCP-Lectionary",
+      "full_name": "euxaristia/1662-BCP-Lectionary",
+      "description": "A python tool to generate a Bible lectionary based on 1662 Book of Common Prayer.",
+      "language": null,
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/1662-BCP-Lectionary",
+      "homepage": null,
+      "created_at": "2026-02-07T18:59:44Z",
+      "updated_at": "2026-02-07T18:59:44Z",
+      "fork": true,
+      "license": null,
+      "open_issues_count": 0
+    },
+    {
+      "name": "adapt",
+      "full_name": "euxaristia/adapt",
+      "description": "A paru-like wrapper for apt",
+      "language": "Rust",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/adapt",
+      "homepage": null,
+      "created_at": "2026-05-07T04:11:45Z",
+      "updated_at": "2026-05-12T22:02:09Z",
+      "fork": false,
+      "license": null,
+      "open_issues_count": 2
+    },
+    {
+      "name": "agency-agents",
+      "full_name": "euxaristia/agency-agents",
+      "description": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.",
+      "language": null,
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/agency-agents",
+      "homepage": "",
+      "created_at": "2026-04-13T03:29:03Z",
+      "updated_at": "2026-04-13T03:29:03Z",
+      "fork": true,
+      "license": "MIT",
+      "open_issues_count": 0
+    },
+    {
+      "name": "awhy",
+      "full_name": "euxaristia/awhy",
+      "description": null,
+      "language": "Go",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/awhy",
+      "homepage": "https://github.com/euxaristia/awhy/wiki",
+      "created_at": "2026-02-09T06:19:04Z",
+      "updated_at": "2026-03-04T22:19:17Z",
+      "fork": false,
+      "license": "GPL-3.0",
+      "open_issues_count": 0
+    },
+    {
+      "name": "catimg",
+      "full_name": "euxaristia/catimg",
+      "description": "🦦 Insanely fast image printing in your terminal",
+      "language": "C",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/catimg",
+      "homepage": "http://posva.net/shell/retro/bash/2013/05/27/catimg",
+      "created_at": "2026-02-22T06:41:35Z",
+      "updated_at": "2026-04-07T05:34:41Z",
+      "fork": true,
+      "license": "MIT",
+      "open_issues_count": 0
+    },
+    {
+      "name": "claude-octopus",
+      "full_name": "euxaristia/claude-octopus",
+      "description": "Multi-LLM orchestration plugin for Claude Code — 8 providers (Codex, Gemini, Claude, Perplexity, OpenRouter, Copilot, Qwen, Ollama), 47 commands, 50 skills, Double Diamond workflows",
+      "language": null,
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/claude-octopus",
+      "homepage": "https://reddit.com/r/ClaudeOctopus/",
+      "created_at": "2026-03-24T19:49:15Z",
+      "updated_at": "2026-03-24T19:49:15Z",
+      "fork": true,
+      "license": "MIT",
+      "open_issues_count": 0
+    }
+  ],
+  "events": [
+    {
+      "type": "PullRequestEvent",
+      "repo": "euxaristia/adapt",
+      "created_at": "2026-05-12T22:16:29Z",
+      "detail": "opened #2"
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/adapt",
+      "created_at": "2026-05-12T22:16:24Z",
+      "detail": null
+    },
+    {
+      "type": "CreateEvent",
+      "repo": "euxaristia/adapt",
+      "created_at": "2026-05-12T22:16:19Z",
+      "detail": null
+    },
+    {
+      "type": "PublicEvent",
+      "repo": "euxaristia/adapt",
+      "created_at": "2026-05-07T04:11:45Z",
+      "detail": null
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/adapt",
+      "created_at": "2026-05-12T22:02:04Z",
+      "detail": null
+    },
+    {
+      "type": "PullRequestEvent",
+      "repo": "euxaristia/gemini-cli",
+      "created_at": "2026-05-12T20:35:46Z",
+      "detail": "opened #4"
+    },
+    {
+      "type": "WatchEvent",
+      "repo": "webinstall/webi-installers",
+      "created_at": "2026-05-12T20:27:19Z",
+      "detail": "started"
+    },
+    {
+      "type": "PullRequestEvent",
+      "repo": "euxaristia/gemini-cli",
+      "created_at": "2026-05-12T20:05:43Z",
+      "detail": "opened #3"
+    },
+    {
+      "type": "CreateEvent",
+      "repo": "euxaristia/gemini-cli",
+      "created_at": "2026-05-12T20:05:29Z",
+      "detail": null
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/gemini-cli",
+      "created_at": "2026-05-11T05:50:32Z",
+      "detail": null
+    },
+    {
+      "type": "PullRequestEvent",
+      "repo": "euxaristia/gitee-cli",
+      "created_at": "2026-05-09T06:29:41Z",
+      "detail": "opened #2"
+    },
+    {
+      "type": "CreateEvent",
+      "repo": "euxaristia/gitee-cli",
+      "created_at": "2026-05-09T06:28:38Z",
+      "detail": null
+    },
+    {
+      "type": "ForkEvent",
+      "repo": "PureDarwin/PureDarwin",
+      "created_at": "2026-05-09T04:29:58Z",
+      "detail": "forked"
+    },
+    {
+      "type": "IssueCommentEvent",
+      "repo": "euxaristia/colt",
+      "created_at": "2026-05-09T00:39:36Z",
+      "detail": "created"
+    },
+    {
+      "type": "IssueCommentEvent",
+      "repo": "euxaristia/colt",
+      "created_at": "2026-05-09T00:39:35Z",
+      "detail": "created"
+    },
+    {
+      "type": "IssueCommentEvent",
+      "repo": "euxaristia/colt",
+      "created_at": "2026-05-09T00:39:34Z",
+      "detail": "created"
+    },
+    {
+      "type": "IssueCommentEvent",
+      "repo": "euxaristia/colt",
+      "created_at": "2026-05-09T00:39:33Z",
+      "detail": "created"
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/colt",
+      "created_at": "2026-05-09T00:29:53Z",
+      "detail": null
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/colt",
+      "created_at": "2026-05-09T00:29:08Z",
+      "detail": null
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/colt",
+      "created_at": "2026-05-09T00:28:15Z",
+      "detail": null
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/colt",
+      "created_at": "2026-05-09T00:23:27Z",
+      "detail": null
+    },
+    {
+      "type": "PullRequestEvent",
+      "repo": "euxaristia/colt",
+      "created_at": "2026-05-09T00:01:29Z",
+      "detail": "opened #5"
+    },
+    {
+      "type": "CreateEvent",
+      "repo": "euxaristia/colt",
+      "created_at": "2026-05-09T00:01:15Z",
+      "detail": null
+    },
+    {
+      "type": "DeleteEvent",
+      "repo": "euxaristia/dotfiles",
+      "created_at": "2026-05-08T23:59:53Z",
+      "detail": null
+    },
+    {
+      "type": "CreateEvent",
+      "repo": "euxaristia/dotfiles",
+      "created_at": "2026-05-08T23:59:51Z",
+      "detail": null
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/dotfiles",
+      "created_at": "2026-05-08T23:59:46Z",
+      "detail": null
+    },
+    {
+      "type": "PullRequestEvent",
+      "repo": "euxaristia/meowsh",
+      "created_at": "2026-05-08T21:25:45Z",
+      "detail": "merged #2"
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/meowsh",
+      "created_at": "2026-05-08T21:25:46Z",
+      "detail": null
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/meowsh",
+      "created_at": "2026-05-08T21:25:20Z",
+      "detail": null
+    },
+    {
+      "type": "PullRequestEvent",
+      "repo": "euxaristia/meowsh",
+      "created_at": "2026-05-08T21:25:18Z",
+      "detail": "merged #3"
+    },
+    {
+      "type": "PullRequestEvent",
+      "repo": "euxaristia/meowsh",
+      "created_at": "2026-05-08T21:25:11Z",
+      "detail": "merged #4"
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/meowsh",
+      "created_at": "2026-05-08T21:25:12Z",
+      "detail": null
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/meowsh",
+      "created_at": "2026-05-08T21:25:00Z",
+      "detail": null
+    },
+    {
+      "type": "WatchEvent",
+      "repo": "zsh-users/zsh-autosuggestions",
+      "created_at": "2026-05-08T21:05:47Z",
+      "detail": "started"
+    },
+    {
+      "type": "PullRequestEvent",
+      "repo": "euxaristia/meowsh",
+      "created_at": "2026-05-07T18:04:55Z",
+      "detail": "opened #4"
+    },
+    {
+      "type": "CreateEvent",
+      "repo": "euxaristia/meowsh",
+      "created_at": "2026-05-07T18:04:37Z",
+      "detail": null
+    },
+    {
+      "type": "PullRequestEvent",
+      "repo": "euxaristia/meowsh",
+      "created_at": "2026-05-07T17:21:19Z",
+      "detail": "opened #3"
+    },
+    {
+      "type": "CreateEvent",
+      "repo": "euxaristia/meowsh",
+      "created_at": "2026-05-07T17:21:01Z",
+      "detail": null
+    },
+    {
+      "type": "IssueCommentEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-05-07T04:37:33Z",
+      "detail": "created"
+    },
+    {
+      "type": "IssueCommentEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-05-07T04:53:25Z",
+      "detail": "created"
+    },
+    {
+      "type": "PullRequestEvent",
+      "repo": "euxaristia/meowsh",
+      "created_at": "2026-05-07T06:09:36Z",
+      "detail": "opened #2"
+    },
+    {
+      "type": "CreateEvent",
+      "repo": "euxaristia/meowsh",
+      "created_at": "2026-05-07T06:08:35Z",
+      "detail": null
+    },
+    {
+      "type": "IssueCommentEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-05-07T04:42:58Z",
+      "detail": "created"
+    },
+    {
+      "type": "PullRequestEvent",
+      "repo": "euxaristia/colt",
+      "created_at": "2026-05-07T05:37:02Z",
+      "detail": "opened #4"
+    },
+    {
+      "type": "CreateEvent",
+      "repo": "euxaristia/colt",
+      "created_at": "2026-05-07T05:36:51Z",
+      "detail": null
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/gemini-cli",
+      "created_at": "2026-05-07T04:42:49Z",
+      "detail": null
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/gemini-cli",
+      "created_at": "2026-05-07T04:37:20Z",
+      "detail": null
+    },
+    {
+      "type": "WatchEvent",
+      "repo": "SuperDuperZed/openclaude",
+      "created_at": "2026-05-07T03:51:41Z",
+      "detail": "started"
+    },
+    {
+      "type": "WatchEvent",
+      "repo": "zai-org/GLM-5",
+      "created_at": "2026-05-07T03:12:34Z",
+      "detail": "started"
+    },
+    {
+      "type": "WatchEvent",
+      "repo": "zai-org/GLM-skills",
+      "created_at": "2026-05-07T03:12:24Z",
+      "detail": "started"
+    },
+    {
+      "type": "WatchEvent",
+      "repo": "zai-org/GLM-Image",
+      "created_at": "2026-05-07T03:11:45Z",
+      "detail": "started"
+    },
+    {
+      "type": "IssueCommentEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-05-05T16:08:48Z",
+      "detail": "created"
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/gemini-cli",
+      "created_at": "2026-05-05T16:08:47Z",
+      "detail": null
+    },
+    {
+      "type": "IssueCommentEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-05-05T15:23:05Z",
+      "detail": "created"
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/gemini-cli",
+      "created_at": "2026-05-05T15:22:52Z",
+      "detail": null
+    },
+    {
+      "type": "IssueCommentEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-05-05T11:41:47Z",
+      "detail": "created"
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/gemini-cli",
+      "created_at": "2026-05-05T11:41:36Z",
+      "detail": null
+    },
+    {
+      "type": "IssueCommentEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-05-05T11:37:52Z",
+      "detail": "created"
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/gemini-cli",
+      "created_at": "2026-05-05T11:37:44Z",
+      "detail": null
+    },
+    {
+      "type": "IssueCommentEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-05-05T11:04:35Z",
+      "detail": "created"
+    },
+    {
+      "type": "PullRequestEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-05-05T11:03:16Z",
+      "detail": "opened #26498"
+    },
+    {
+      "type": "CreateEvent",
+      "repo": "euxaristia/gemini-cli",
+      "created_at": "2026-05-05T11:01:11Z",
+      "detail": null
+    },
+    {
+      "type": "IssueCommentEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-05-05T03:40:39Z",
+      "detail": "created"
+    },
+    {
+      "type": "IssuesEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-05-05T03:40:32Z",
+      "detail": "opened"
+    },
+    {
+      "type": "PullRequestEvent",
+      "repo": "clockworklabs/SpacetimeDB",
+      "created_at": "2026-05-05T01:01:52Z",
+      "detail": "merged #4774"
+    },
+    {
+      "type": "WatchEvent",
+      "repo": "Vendicated/Vencord",
+      "created_at": "2026-05-04T02:39:42Z",
+      "detail": "started"
+    },
+    {
+      "type": "WatchEvent",
+      "repo": "Q00/ouroboros",
+      "created_at": "2026-05-02T01:57:05Z",
+      "detail": "started"
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/opencode",
+      "created_at": "2026-05-01T20:14:51Z",
+      "detail": null
+    },
+    {
+      "type": "PullRequestEvent",
+      "repo": "anomalyco/opencode",
+      "created_at": "2026-05-01T20:10:08Z",
+      "detail": "opened #25355"
+    },
+    {
+      "type": "CreateEvent",
+      "repo": "euxaristia/opencode",
+      "created_at": "2026-05-01T20:09:33Z",
+      "detail": null
+    },
+    {
+      "type": "WatchEvent",
+      "repo": "code-yeongyu/oh-my-openagent",
+      "created_at": "2026-05-01T19:01:22Z",
+      "detail": "started"
+    },
+    {
+      "type": "IssueCommentEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T20:57:08Z",
+      "detail": "created"
+    },
+    {
+      "type": "PullRequestReviewCommentEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T20:57:07Z",
+      "detail": "created"
+    },
+    {
+      "type": "PullRequestReviewEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T20:57:07Z",
+      "detail": "created"
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/gemini-cli",
+      "created_at": "2026-04-30T20:56:54Z",
+      "detail": null
+    },
+    {
+      "type": "IssueCommentEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T20:36:05Z",
+      "detail": "created"
+    },
+    {
+      "type": "PullRequestReviewCommentEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T20:36:04Z",
+      "detail": "created"
+    },
+    {
+      "type": "PullRequestReviewEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T20:36:05Z",
+      "detail": "created"
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/gemini-cli",
+      "created_at": "2026-04-30T20:35:47Z",
+      "detail": null
+    },
+    {
+      "type": "IssueCommentEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T20:26:00Z",
+      "detail": "created"
+    },
+    {
+      "type": "PullRequestReviewCommentEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T20:25:51Z",
+      "detail": "created"
+    },
+    {
+      "type": "PullRequestReviewEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T20:25:52Z",
+      "detail": "created"
+    },
+    {
+      "type": "PullRequestReviewCommentEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T20:25:50Z",
+      "detail": "created"
+    },
+    {
+      "type": "PullRequestReviewEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T20:25:51Z",
+      "detail": "created"
+    },
+    {
+      "type": "PullRequestReviewCommentEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T20:25:49Z",
+      "detail": "created"
+    },
+    {
+      "type": "PullRequestReviewEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T20:25:49Z",
+      "detail": "created"
+    },
+    {
+      "type": "PullRequestReviewCommentEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T20:25:47Z",
+      "detail": "created"
+    },
+    {
+      "type": "PullRequestReviewEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T20:25:48Z",
+      "detail": "created"
+    },
+    {
+      "type": "PullRequestReviewCommentEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T20:25:21Z",
+      "detail": "created"
+    },
+    {
+      "type": "PullRequestReviewEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T20:25:22Z",
+      "detail": "created"
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/gemini-cli",
+      "created_at": "2026-04-30T20:23:48Z",
+      "detail": null
+    },
+    {
+      "type": "IssueCommentEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T20:11:28Z",
+      "detail": "created"
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/gemini-cli",
+      "created_at": "2026-04-30T20:09:27Z",
+      "detail": null
+    },
+    {
+      "type": "IssueCommentEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T19:46:46Z",
+      "detail": "created"
+    },
+    {
+      "type": "PushEvent",
+      "repo": "euxaristia/gemini-cli",
+      "created_at": "2026-04-30T19:44:41Z",
+      "detail": null
+    },
+    {
+      "type": "PullRequestEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T19:29:27Z",
+      "detail": "opened #26280"
+    },
+    {
+      "type": "CreateEvent",
+      "repo": "euxaristia/gemini-cli",
+      "created_at": "2026-04-30T19:26:58Z",
+      "detail": null
+    },
+    {
+      "type": "IssuesEvent",
+      "repo": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T19:12:36Z",
+      "detail": "opened"
+    },
+    {
+      "type": "DeleteEvent",
+      "repo": "euxaristia/gemini-cli",
+      "created_at": "2026-04-30T18:59:41Z",
+      "detail": null
+    },
+    {
+      "type": "DeleteEvent",
+      "repo": "euxaristia/gemini-cli",
+      "created_at": "2026-04-30T18:59:41Z",
+      "detail": null
+    }
+  ],
+  "prs_all": [
+    {
+      "number": 2,
+      "title": "Release into the public domain via Unlicense",
+      "state": "open",
+      "html_url": "https://github.com/euxaristia/adapt/pull/2",
+      "repo_name": "euxaristia/adapt",
+      "created_at": "2026-05-12T22:16:29Z",
+      "updated_at": "2026-05-12T22:21:35Z",
+      "merged_at": null,
+      "body_preview": "Add an UNLICENSE file and set `license = \"Unlicense\"` in `Cargo.toml`, dedicating the project to the public domain.\n\n## Test plan\n- [ ] UNLICENSE renders on the GitHub repo landing page after merge\n- [ ] `cargo build` succeeds with the new license field\n\n🤖 Generated with [Claude Code](https://claude"
+    },
+    {
+      "number": 4,
+      "title": "fix(build): detect Bun runtime in build scripts",
+      "state": "open",
+      "html_url": "https://github.com/euxaristia/gemini-cli/pull/4",
+      "repo_name": "euxaristia/gemini-cli",
+      "created_at": "2026-05-12T20:35:46Z",
+      "updated_at": "2026-05-12T20:38:20Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n\n`scripts/build.js`, `scripts/build_package.js`, and the husky pre-commit hook all invoke `npm` and `node` unconditionally, which breaks `bun install` and `bun run build` on systems where bun is the only package manager on PATH. The `prepare` script chain runs `scripts/build.js`, and the "
+    },
+    {
+      "number": 3,
+      "title": "fix(core): make shell tool work under Bun",
+      "state": "open",
+      "html_url": "https://github.com/euxaristia/gemini-cli/pull/3",
+      "repo_name": "euxaristia/gemini-cli",
+      "created_at": "2026-05-12T20:05:43Z",
+      "updated_at": "2026-05-12T20:05:50Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n\nTwo related runtime issues prevented `bun`-launched builds of gemini-cli from running shell tool calls. The first failure visible to a user is an `ioctl(2) failed, EBADF` crash inside a React `useEffect`. After patching that, the shell tool stops crashing but every command returns empty "
+    },
+    {
+      "number": 2,
+      "title": "feat: implicitly use current repo and branch context for pr commands",
+      "state": "open",
+      "html_url": "https://github.com/euxaristia/gitee-cli/pull/2",
+      "repo_name": "euxaristia/gitee-cli",
+      "created_at": "2026-05-09T06:29:41Z",
+      "updated_at": "2026-05-09T06:31:48Z",
+      "merged_at": null,
+      "body_preview": "This PR updates the `gt pr` commands to implicitly infer the repository context from the local git remote if the `--repo` flag is not explicitly provided. This brings `gt` up to parity with standard `gh` behavior. It also modifies `gt pr view` to implicitly view the PR associated with the current ch"
+    },
+    {
+      "number": 1,
+      "title": "Add shell completion for zsh and bash",
+      "state": "open",
+      "html_url": "https://github.com/euxaristia/adapt/pull/1",
+      "repo_name": "euxaristia/adapt",
+      "created_at": "2026-05-09T00:27:04Z",
+      "updated_at": "2026-05-12T22:16:24Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n- Add `completions/_adapt` (zsh) and `completions/adapt.bash` (bash) so `adapt install <TAB>` and `adapt remove <TAB>` complete package names — closing the gap with raw `apt`, where the shell otherwise falls back to filename completion.\n- Use the same data sources apt's own completions do"
+    },
+    {
+      "number": 5,
+      "title": "fix(editor): typing/pasting ( now actually inserts the character",
+      "state": "open",
+      "html_url": "https://github.com/euxaristia/colt/pull/5",
+      "repo_name": "euxaristia/colt",
+      "created_at": "2026-05-09T00:01:29Z",
+      "updated_at": "2026-05-09T00:41:56Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n\nTwo compounding bugs made it impossible to enter an opening paren:\n\n1. **`_auto_insert_pair` discarded its work.** It used Pony stdlib's `String.insert`, which clones and returns a new string rather than mutating in place. The return value was ignored, so the open/close bytes never lande"
+    },
+    {
+      "number": 4,
+      "title": "feat: phase 2A — indexed arrays, ${var/old/new}, compsys stubs",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/meowsh/pull/4",
+      "repo_name": "euxaristia/meowsh",
+      "created_at": "2026-05-07T18:04:55Z",
+      "updated_at": "2026-05-08T21:25:11Z",
+      "merged_at": "2026-05-08T21:25:11Z",
+      "body_preview": "## Summary\nCloses most of what oh-my-zsh's skeleton needs to parse. **Stacked on #3** (target = `feat/phase-1-zshrc-compat`); rebase to `main` after #2/#3 land.\n\n### Indexed arrays\n- `arr=(a b c)` literal assignment, `arr+=(d e)` append\n- `${arr[N]}` with 1-based indexing (zsh-style); negative indic"
+    },
+    {
+      "number": 3,
+      "title": "feat: phase 1 zsh compatibility (.zshrc parses & runs)",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/meowsh/pull/3",
+      "repo_name": "euxaristia/meowsh",
+      "created_at": "2026-05-07T17:21:19Z",
+      "updated_at": "2026-05-08T21:25:19Z",
+      "merged_at": "2026-05-08T21:25:18Z",
+      "body_preview": "## Summary\nSmallest 5 features that get a typical `.zshrc` to parse and the common control flow to run. **Stacked on top of #2** (target branch is `feat/local-scoping`); rebase onto `main` after #2 merges.\n\n- POSIX function syntax `f() { ... }`\n- `[[ ]]` conditional command with logical ops, unary t"
+    },
+    {
+      "number": 2,
+      "title": "feat: implement function-local variable scoping",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/meowsh/pull/2",
+      "repo_name": "euxaristia/meowsh",
+      "created_at": "2026-05-07T06:09:36Z",
+      "updated_at": "2026-05-08T21:25:45Z",
+      "merged_at": "2026-05-08T21:25:45Z",
+      "body_preview": "## Summary\n- `local NAME[=VALUE]` inside a function now snapshots the prior global value (or absence) and restores it on return; bare `local foo` masks an outer `foo` with an empty value for the call's duration.\n- Fixes two pre-existing bugs that made `local` untestable: `FuncDef.body` was stored as"
+    },
+    {
+      "number": 4,
+      "title": "feat: mouse click moves cursor; drag enters Visual mode",
+      "state": "open",
+      "html_url": "https://github.com/euxaristia/colt/pull/4",
+      "repo_name": "euxaristia/colt",
+      "created_at": "2026-05-07T05:37:02Z",
+      "updated_at": "2026-05-09T00:46:47Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n- Switches SGR mouse mode from \\`?1000\\` (press only) to \\`?1002\\` (press, release, motion-while-held) and parses the new event types.\n- Left-click moves the cursor to the clicked cell. \\`_rx_to_cx\\` is the inverse of the existing \\`_cx_to_rx\\` so clicks inside a tab's render-cells land o"
+    },
+    {
+      "number": 26498,
+      "title": "feat(cli): show acknowledgment when user steering hint is processed",
+      "state": "open",
+      "html_url": "https://github.com/google-gemini/gemini-cli/pull/26498",
+      "repo_name": "google-gemini/gemini-cli",
+      "created_at": "2026-05-05T11:03:16Z",
+      "updated_at": "2026-05-11T05:50:33Z",
+      "merged_at": null,
+      "body_preview": "Refs #26485\n\n## Summary\n\nWhen a user submits a steering hint mid-turn, today the CLI silently\nsplices the hint into the conversation and the user gets no visible\nfeedback that the hint registered until the model itself acknowledges\nit — which can be slow, may be omitted, or per #21508 may even leak\n"
+    },
+    {
+      "number": 25355,
+      "title": "fix(tui): bind home/end to line start/end in input",
+      "state": "open",
+      "html_url": "https://github.com/anomalyco/opencode/pull/25355",
+      "repo_name": "anomalyco/opencode",
+      "created_at": "2026-05-01T20:10:08Z",
+      "updated_at": "2026-05-11T01:39:11Z",
+      "merged_at": null,
+      "body_preview": "### Issue for this PR\n\nCloses #14899\n\n(Overlaps with the older PR #19135, which targets `packages/opencode/src/config/config.ts` — keybind defaults have since moved to `packages/opencode/src/config/keybinds.ts`, so #19135 no longer applies cleanly. This PR updates the current source-of-truth file pl"
+    },
+    {
+      "number": 26280,
+      "title": "fix(build): detect Bun runtime in build scripts to avoid hardcoded npm",
+      "state": "open",
+      "html_url": "https://github.com/google-gemini/gemini-cli/pull/26280",
+      "repo_name": "google-gemini/gemini-cli",
+      "created_at": "2026-04-30T19:29:27Z",
+      "updated_at": "2026-05-08T02:21:58Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n\n`scripts/build.js`, `scripts/build_package.js`, and the husky `pre-commit` hook all invoke `npm` unconditionally. This breaks `bun install` and committing on Bun-only systems (where `npm` is not on `PATH`), because the `prepare` script chain runs `scripts/build.js` and the pre-commit hoo"
+    },
+    {
+      "number": 25016,
+      "title": "fix(tui): prevent question option submission on drag-to-select copy",
+      "state": "closed",
+      "html_url": "https://github.com/anomalyco/opencode/pull/25016",
+      "repo_name": "anomalyco/opencode",
+      "created_at": "2026-04-29T22:59:41Z",
+      "updated_at": "2026-04-30T01:37:14Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n\nIn the TUI question prompt, dragging to select text on a question option (or tab) submits the option instead of copying the selected text to the clipboard. This is especially common in **plan mode** where the agent asks multiple-choice questions.\n\n## Root cause\n\nThe app root handles copy"
+    },
+    {
+      "number": 25015,
+      "title": "fix: make Home/End move caret to line edges in prompt input",
+      "state": "closed",
+      "html_url": "https://github.com/anomalyco/opencode/pull/25015",
+      "repo_name": "anomalyco/opencode",
+      "created_at": "2026-04-29T22:43:44Z",
+      "updated_at": "2026-04-30T01:37:16Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n- The prompt input is a `contenteditable` div, not a `<textarea>`. Chromium's default `Home`/`End` handling in a contenteditable is unreliable when the editor mixes text nodes, `<br>` newlines, and `contenteditable=\"false\"` pill elements (file/agent attachments) — see `packages/app/src/co"
+    },
+    {
+      "number": 4,
+      "title": "Parallelize chunk generation across rayon worker pool",
+      "state": "open",
+      "html_url": "https://github.com/euxaristia/VoxelPopuli/pull/4",
+      "repo_name": "euxaristia/VoxelPopuli",
+      "created_at": "2026-04-28T23:04:07Z",
+      "updated_at": "2026-04-28T23:40:17Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n`Chunk::generate()` previously ran on the render thread, throttled to 8 chunks/frame in normal mode and 64 in initial loading. With `VIEW_DISTANCE=35` that's 5,041 chunks sampled serially on a single core while the rest of the CPU sat idle. This PR moves generation onto the existing rayon"
+    },
+    {
+      "number": 3,
+      "title": "Fix cloud transparency over water when viewed from above",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/VoxelPopuli/pull/3",
+      "repo_name": "euxaristia/VoxelPopuli",
+      "created_at": "2026-04-28T22:24:50Z",
+      "updated_at": "2026-04-28T23:29:17Z",
+      "merged_at": "2026-04-28T23:29:17Z",
+      "body_preview": "## Summary\n- Clouds render with `DepthMask` off and were always drawn before water, so when the camera was above the cloud layer the water draw passed depth and overwrote the cloud's color contribution — water visible through clouds with almost no occlusion.\n- Now the cloud layer is drawn last when "
+    },
+    {
+      "number": 3,
+      "title": "fix: prevent status bar from wrapping when narrower than its content",
+      "state": "open",
+      "html_url": "https://github.com/euxaristia/colt/pull/3",
+      "repo_name": "euxaristia/colt",
+      "created_at": "2026-04-28T04:30:55Z",
+      "updated_at": "2026-05-09T00:41:32Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n- When `left + right` is wider than `_cols` in `_draw_status_bar`, the bar was emitted in full and relied on the terminal to wrap onto a second row.\n- That wrap scrolled the screen up by one line, leaving the cursor positioned on the `~` row below the intended buffer line — the distortion"
+    },
+    {
+      "number": 937,
+      "title": "fix: ensure closing fence in WrapCodeBlock is on its own line",
+      "state": "open",
+      "html_url": "https://github.com/charmbracelet/glow/pull/937",
+      "repo_name": "charmbracelet/glow",
+      "created_at": "2026-04-26T19:33:29Z",
+      "updated_at": "2026-04-26T19:33:29Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n\n`WrapCodeBlock` glued the closing ``` ``` ``` directly onto the last line of the content. When the input didn't end with a newline (e.g. a source file without a trailing newline), Markdown renderers never saw the closing fence on its own line and the code block stayed open through the re"
+    },
+    {
+      "number": 5,
+      "title": "feat: POSIX recipe prefixes, -S/-e/-t flags, command-line macro overrides",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/mkultra/pull/5",
+      "repo_name": "euxaristia/mkultra",
+      "created_at": "2026-04-26T01:10:56Z",
+      "updated_at": "2026-04-28T06:29:50Z",
+      "merged_at": "2026-04-28T06:29:50Z",
+      "body_preview": "PR 2 of ~6 toward POSIX Make conformance. Stacked on #4 → #3.\n\n## Summary\n\n**Recipe prefixes** (any combination, any order, all stripped before expansion):\n- `-` ignores the exit status of that recipe line\n- `+` always runs even under `-n`/`-q`\n- `@` continues to silence\n\n**Flags:**\n- `-S` cancels a"
+    },
+    {
+      "number": 4,
+      "title": "feat(expand): POSIX expansion — ${VAR}, substitution refs, $?/$*/$+",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/mkultra/pull/4",
+      "repo_name": "euxaristia/mkultra",
+      "created_at": "2026-04-26T01:02:22Z",
+      "updated_at": "2026-04-28T06:28:18Z",
+      "merged_at": "2026-04-28T06:28:18Z",
+      "body_preview": "First slice of the POSIX-Make conformance work. Stacked on top of #3 (`feat/parallel-jobs`) — once that merges, GitHub will rebase this PR's base to `master`.\n\n## Summary\n- `${VAR}` curly-brace macro syntax alongside `$(VAR)`. `_parse_func` now takes the opener char and matches the corresponding clo"
+    },
+    {
+      "number": 3,
+      "title": "feat: parallel jobs (-j N) and mtime-aware Makefile",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/mkultra/pull/3",
+      "repo_name": "euxaristia/mkultra",
+      "created_at": "2026-04-26T00:32:11Z",
+      "updated_at": "2026-04-28T06:27:54Z",
+      "merged_at": "2026-04-28T06:27:53Z",
+      "body_preview": "## Summary\n- Convert `Executor` from a synchronous class into an actor; add a one-shot `_Worker` actor per recipe set. The coordinator tracks remaining-prereq counts and dispatches as workers free up, capped at `-j` (default 1).\n- Refactor `Expand.with_node` → `Expand.with_auto` taking a sendable `A"
+    },
+    {
+      "number": 2,
+      "title": "docs: update README for Pony rewrite",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/mkultra/pull/2",
+      "repo_name": "euxaristia/mkultra",
+      "created_at": "2026-04-25T17:18:00Z",
+      "updated_at": "2026-04-25T22:51:59Z",
+      "merged_at": "2026-04-25T17:32:59Z",
+      "body_preview": "## Summary\n- Replace Rust/cargo references with `ponyc` and `make`\n- Document the actual flag set from `cli.pony` (`-i`, `-s`, `-q`, `-p`, `-r`, `--version`)\n- Drop the parallel-jobs claim — `-j` is parsed but never read by the executor\n- Note cycle-safe variable expansion\n\nFollow-up to #1; the READ"
+    },
+    {
+      "number": 1,
+      "title": "rewrite: port mkultra from Rust to Pony, add install target",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/mkultra/pull/1",
+      "repo_name": "euxaristia/mkultra",
+      "created_at": "2026-04-25T16:04:50Z",
+      "updated_at": "2026-04-25T16:27:08Z",
+      "merged_at": "2026-04-25T16:27:03Z",
+      "body_preview": "## Summary\n- Replace Rust implementation with a stdlib-only Pony port (`src/{cli,parser,expand,dag,executor,main}.pony`)\n- Drop Cargo manifests and stale Rust-era test fixtures\n- Add `Makefile` with `all` / `clean` / `test` / `install` / `uninstall`; `install` puts the binary at `~/.local/bin/mkultr"
+    },
+    {
+      "number": 2,
+      "title": "fix: SHIFT+G goes to bottom of file instead of top",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/colt/pull/2",
+      "repo_name": "euxaristia/colt",
+      "created_at": "2026-04-25T14:03:03Z",
+      "updated_at": "2026-04-25T16:02:18Z",
+      "merged_at": "2026-04-25T16:02:17Z",
+      "body_preview": "## Summary\n\nFixed a bug where pressing `SHIFT+G` (uppercase G) in normal mode, which should move the cursor to the bottom of the file (vim behavior), instead moved it to the top.\n\n## Root Cause\n\nIn `src/editor.pony`, the `count` variable defaults to `1` when no count prefix is typed (`let count = if"
+    },
+    {
+      "number": 2,
+      "title": "feat: add ghostty config to disable ligatures",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/dotfiles/pull/2",
+      "repo_name": "euxaristia/dotfiles",
+      "created_at": "2026-04-25T10:32:21Z",
+      "updated_at": "2026-04-25T10:57:14Z",
+      "merged_at": "2026-04-25T10:57:14Z",
+      "body_preview": "## Summary\n- Adds `.config/ghostty/config` with `font-feature = -calt`\n- Disables contextual-alternates ligatures so ASCII characters like `*` and `#` render at correct cell width instead of being merged into ligature glyphs by programming fonts\n\n## Test plan\n- [ ] Open Ghostty, confirm `*` and `#` "
+    },
+    {
+      "number": 7,
+      "title": "fix(parser,semantic): resolve crashes and get all 67 tests passing",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/pcc/pull/7",
+      "repo_name": "euxaristia/pcc",
+      "created_at": "2026-04-22T04:38:01Z",
+      "updated_at": "2026-04-22T06:16:36Z",
+      "merged_at": "2026-04-22T06:16:36Z",
+      "body_preview": "## Summary\n\nFixes multiple parser and semantic analyzer bugs to get the C port test suite to 67/67 passing.\n\n### Parser fixes\n- Return statement no longer consumes semicolon twice\n- For-loop init handles C99-style declarations (`for (int i = 0; ...)`) without extra semicolon consumption\n- Array decl"
+    },
+    {
+      "number": 2,
+      "title": "chore(deps): replace image and rayon with smaller alternatives",
+      "state": "open",
+      "html_url": "https://github.com/euxaristia/VoxelPopuli/pull/2",
+      "repo_name": "euxaristia/VoxelPopuli",
+      "created_at": "2026-04-22T04:03:20Z",
+      "updated_at": "2026-04-22T04:05:00Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n- Remove `image` crate; replace with direct `png` decoding\n- Remove `rayon` crate; replace `rayon::spawn` with `std::thread::spawn`\n- Drop `rayon-core`, `crossbeam-*`, `either`, `image`, `num-traits`, and other transitive deps\n\n## Verification\n```\ncargo check\n```\nPasses cleanly."
+    },
+    {
+      "number": 1,
+      "title": "chore(deps): update dependencies and remove unused crates",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/VoxelPopuli/pull/1",
+      "repo_name": "euxaristia/VoxelPopuli",
+      "created_at": "2026-04-22T03:54:19Z",
+      "updated_at": "2026-04-22T03:56:44Z",
+      "merged_at": "2026-04-22T03:56:44Z",
+      "body_preview": "## Summary\n- Remove unused dependencies: `lazy_static`, `noise`\n- Update `glfw` 0.61.0 → 0.62.0\n- Update `rand` and `rayon` to latest patch versions\n- Reduce `image` crate to only `png` feature (drops unused format support)\n- Fix missing trailing newline in `Cargo.toml`\n\n## Verification\n```\ncargo ch"
+    },
+    {
+      "number": 6,
+      "title": "fix(gitattributes): make src-c/ code detectable by linguist",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/pcc/pull/6",
+      "repo_name": "euxaristia/pcc",
+      "created_at": "2026-04-22T02:38:13Z",
+      "updated_at": "2026-04-22T02:53:05Z",
+      "merged_at": "2026-04-22T02:53:04Z",
+      "body_preview": "## Summary\nGitHub Linguist was ignoring all C files because of a blanket `*.c linguist-detectable=false` rule in `.gitattributes`. Since `src-c/` contains the actual compiler implementation being incrementally ported from TypeScript to C, it should be counted in language statistics.\n\n## Changes\n- Ad"
+    },
+    {
+      "number": 5,
+      "title": "feat(parser): implement C recursive descent parser",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/pcc/pull/5",
+      "repo_name": "euxaristia/pcc",
+      "created_at": "2026-04-22T01:56:19Z",
+      "updated_at": "2026-04-22T02:31:38Z",
+      "merged_at": "2026-04-22T02:31:38Z",
+      "body_preview": "## Summary\n- Implement complete recursive descent parser in C (parser.c)\n- Add lexer tests (10 tests) and parser tests (12 tests)\n- Fix lexer operator tokenization: <<= and >>= must be checked before << and >>\n- Fix function call argument parsing to use parse_assignment instead of parse_expression\n\n"
+    },
+    {
+      "number": 4,
+      "title": "feat(port): C lexer and parser header (phase 1 of TypeScript→C port)",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/pcc/pull/4",
+      "repo_name": "euxaristia/pcc",
+      "created_at": "2026-04-21T10:47:03Z",
+      "updated_at": "2026-04-21T11:03:57Z",
+      "merged_at": "2026-04-21T11:03:57Z",
+      "body_preview": "## Summary\n\n- Adds `src-c/lexer/lexer.h` and `src-c/lexer/lexer.c` — a complete C implementation of the tokenizer, replacing `src/lexer/Lexer.ts` (633 lines of TypeScript → ~450 lines of C)\n- Adds `src-c/parser/parser.h` — full AST node type definitions and parser interface, covering all node types "
+    },
+    {
+      "number": 3,
+      "title": "fix(preprocessor): process directives in included files",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/pcc/pull/3",
+      "repo_name": "euxaristia/pcc",
+      "created_at": "2026-04-21T09:41:34Z",
+      "updated_at": "2026-04-21T10:14:57Z",
+      "merged_at": "2026-04-21T10:14:57Z",
+      "body_preview": "## Summary\n- Extract main preprocessing loop into `preprocess_token_stream()` so `handle_include()` can recursively preprocess included files\n- Previously, included files only had macro expansion applied, so `#define` directives inside headers were never executed\n- Fix `compile.ts` C preprocessor in"
+    },
+    {
+      "number": 2,
+      "title": "ci: switch GitHub Actions to Bun",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/pcc/pull/2",
+      "repo_name": "euxaristia/pcc",
+      "created_at": "2026-04-21T08:42:17Z",
+      "updated_at": "2026-04-21T08:46:11Z",
+      "merged_at": "2026-04-21T08:46:11Z",
+      "body_preview": "## Summary\n\nFixes CI failures caused by the new CLI tests requiring Bun, while the GitHub Actions workflow was using Node.js.\n\n### Changes\n- Revert `cli.test.ts` back to `bun run src/compile.ts`\n- Update CI workflow to use `oven-sh/setup-bun` instead of `actions/setup-node`\n- Use `bun install`, `bun"
+    },
+    {
+      "number": 1,
+      "title": "feat(cli): add gcc-compatible compiler flags",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/pcc/pull/1",
+      "repo_name": "euxaristia/pcc",
+      "created_at": "2026-04-21T08:25:23Z",
+      "updated_at": "2026-04-21T08:37:35Z",
+      "merged_at": "2026-04-21T08:37:35Z",
+      "body_preview": "## Summary\n\nAdds comprehensive gcc-like CLI argument parsing to `compile.ts` and updates `pcc-wrapper` to pass flags through properly.\n\n### New flags\n- Compilation modes: `-o`, `-c`, `-S`, `-E`\n- Preprocessor: `-I <path>`, `-D <name>[=value]`\n- Quality/debug: `-g`, `-O0/1/2/3/s/z`, `-Wall`, `-Werror"
+    },
+    {
+      "number": 1,
+      "title": "feat(substitute): add regex support to :s/ command",
+      "state": "open",
+      "html_url": "https://github.com/euxaristia/colt/pull/1",
+      "repo_name": "euxaristia/colt",
+      "created_at": "2026-04-14T06:41:21Z",
+      "updated_at": "2026-05-09T00:44:56Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n- Adds a pure-Pony backtracking regex engine (`src/regex.pony`, ~230 LOC)\n- Wires it into `:s/`, `:%s/`, and `:.,\\$s/` — previously literal-only\n\n## Supported syntax\n- Metachars: `.` `^` `$` `*` `+` `?`\n- Classes: `[abc]`, `[a-z]`, `[^...]`\n- Escapes: `\\d \\D \\w \\W \\s \\S \\n \\t \\r \\\\` + `\\`"
+    },
+    {
+      "number": 1,
+      "title": "feat(runtime): pure-Rust runtime crate; port point.c",
+      "state": "open",
+      "html_url": "https://github.com/euxaristia/tree-sitter/pull/1",
+      "repo_name": "euxaristia/tree-sitter",
+      "created_at": "2026-04-14T06:31:17Z",
+      "updated_at": "2026-04-14T06:41:38Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n\n- Introduces `crates/runtime/` — a pure-Rust `staticlib` crate that will progressively replace the C runtime under `lib/src/` while preserving the tree-sitter C ABI.\n- Ports `lib/src/point.c` as the first module. `ts_point_edit` is implemented in Rust and exported with `extern \"C\"` linka"
+    },
+    {
+      "number": 1,
+      "title": "feat: add protected-branch check to git safety rules",
+      "state": "open",
+      "html_url": "https://github.com/euxaristia/dotfiles/pull/1",
+      "repo_name": "euxaristia/dotfiles",
+      "created_at": "2026-04-13T21:21:51Z",
+      "updated_at": "2026-05-08T23:59:52Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n- Add a rule to check for protected branches before pushing, and open a PR instead when protected.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)"
+    },
+    {
+      "number": 1,
+      "title": "chore(deps): bump rustyline to 18",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/meowsh/pull/1",
+      "repo_name": "euxaristia/meowsh",
+      "created_at": "2026-04-13T21:09:44Z",
+      "updated_at": "2026-04-14T06:43:44Z",
+      "merged_at": "2026-04-14T06:43:43Z",
+      "body_preview": "## Summary\n- Bump `rustyline` from 17 to 18\n- Regenerated Cargo.lock (drops `fd-lock`, consolidates `windows-sys` to 0.61)\n\n## Test plan\n- [ ] `cargo build`\n- [ ] `cargo test`\n- [ ] Manual smoke test of line editing\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)"
+    },
+    {
+      "number": 3237,
+      "title": "fix(build): invoke tsx directly via node --import instead of npx",
+      "state": "closed",
+      "html_url": "https://github.com/QwenLM/qwen-code/pull/3237",
+      "repo_name": "QwenLM/qwen-code",
+      "created_at": "2026-04-13T20:57:30Z",
+      "updated_at": "2026-04-18T19:14:14Z",
+      "merged_at": "2026-04-18T19:14:14Z",
+      "body_preview": "## Summary\n`scripts/build.js` calls `execSync('npx tsx scripts/generate-settings-schema.ts', ...)`. When the build is invoked under bun (e.g. \\`bun run build\\`), bun's \\`npx\\` wrapper intercepts the call and runs \\`tsx\\` inside bun's runtime, where tsx's CJS entry fails to resolve with:\n\n\\`\\`\\`\nerro"
+    },
+    {
+      "number": 3236,
+      "title": "feat(core): enhanced loop detection with stagnation + validation-retry checks",
+      "state": "closed",
+      "html_url": "https://github.com/QwenLM/qwen-code/pull/3236",
+      "repo_name": "QwenLM/qwen-code",
+      "created_at": "2026-04-13T19:17:49Z",
+      "updated_at": "2026-04-22T02:42:00Z",
+      "merged_at": "2026-04-19T10:06:43Z",
+      "body_preview": "## Summary\n- Detect tool validation retry loops and inject a stop directive to break the cycle\n- Enhance loop detection with read-file, action-stagnation, and repetitive-thought checks\n- Repetitive-thought detection now hooks `GeminiEventType.Thought` events (the model's actual reasoning channel) ra"
+    },
+    {
+      "number": 2,
+      "title": "feat(core): enhanced loop detection with stagnation + validation-retry checks",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/qwen-code/pull/2",
+      "repo_name": "euxaristia/qwen-code",
+      "created_at": "2026-04-13T19:15:59Z",
+      "updated_at": "2026-04-13T19:20:10Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n- Detect tool validation retry loops and inject a stop directive to break the cycle\n- Enhance loop detection with thought and action stagnation checks\n- Fix EAGAIN pty errors and schema generation build\n\n## Commits\n- `7c2125868` feat(core): detect tool validation retry loops and inject st"
+    },
+    {
+      "number": 3235,
+      "title": "feat(core): enhance loop detection with thought and action stagnation checks",
+      "state": "closed",
+      "html_url": "https://github.com/QwenLM/qwen-code/pull/3235",
+      "repo_name": "QwenLM/qwen-code",
+      "created_at": "2026-04-13T19:04:53Z",
+      "updated_at": "2026-04-13T19:05:26Z",
+      "merged_at": null,
+      "body_preview": "This PR adds new loop detection patterns to catch more subtle looping behaviors that were previously undetected, replacing the functionality intended for the closed PR #3176. This includes repetitive thoughts detection, read file loop detection, and action stagnation detection."
+    },
+    {
+      "number": 1,
+      "title": "feat(core): enhance loop detection with thought and action stagnation checks",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/qwen-code/pull/1",
+      "repo_name": "euxaristia/qwen-code",
+      "created_at": "2026-04-13T19:02:56Z",
+      "updated_at": "2026-04-13T19:06:36Z",
+      "merged_at": null,
+      "body_preview": "This PR adds new loop detection patterns to catch more subtle looping behaviors that were previously undetected, replacing the functionality intended for the closed PR #3176. This includes repetitive thoughts detection, read file loop detection, and action stagnation detection."
+    },
+    {
+      "number": 653,
+      "title": "docs(attribution): clarify Qwen contribution attribution",
+      "state": "closed",
+      "html_url": "https://github.com/Gitlawb/openclaude/pull/653",
+      "repo_name": "Gitlawb/openclaude",
+      "created_at": "2026-04-13T02:19:34Z",
+      "updated_at": "2026-04-13T02:20:23Z",
+      "merged_at": null,
+      "body_preview": "This PR adds documentation to clarify that the Qwen OAuth integration commit (9d6330027) was co-authored by Qwen technology, with future Qwen contributions using the proper attribution format: Co-Authored-By: Qwen-Coder <qwen-coder@alibabacloud.com>."
+    },
+    {
+      "number": 650,
+      "title": "feat: add Qwen OAuth integration and provider support",
+      "state": "closed",
+      "html_url": "https://github.com/Gitlawb/openclaude/pull/650",
+      "repo_name": "Gitlawb/openclaude",
+      "created_at": "2026-04-13T01:28:48Z",
+      "updated_at": "2026-04-24T10:30:34Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n\n- Add Qwen OAuth authentication support via `/onboard-qwen` command\n- Implement Qwen provider configuration in provider manager UI\n- Add Qwen-specific API client handling with proper headers and token refresh\n- Include Qwen in model configuration and provider detection logic\n- Add Qwen c"
+    },
+    {
+      "number": 3178,
+      "title": "feat(core): detect tool validation retry loops and inject stop directive",
+      "state": "closed",
+      "html_url": "https://github.com/QwenLM/qwen-code/pull/3178",
+      "repo_name": "QwenLM/qwen-code",
+      "created_at": "2026-04-12T23:37:25Z",
+      "updated_at": "2026-04-18T02:24:47Z",
+      "merged_at": "2026-04-18T02:24:47Z",
+      "body_preview": "## Summary\n\nPrevents the model from entering an infinite retry loop when a tool call repeatedly fails schema validation with the same error (e.g., `ask_user_question` with malformed `questions` parameter).\n\n## Problem\n\nWhen the model generates a tool call with invalid parameters, the validation erro"
+    },
+    {
+      "number": 3176,
+      "title": "feat(core): enhance loop detection with thought and action stagnation checks",
+      "state": "closed",
+      "html_url": "https://github.com/QwenLM/qwen-code/pull/3176",
+      "repo_name": "QwenLM/qwen-code",
+      "created_at": "2026-04-12T23:08:05Z",
+      "updated_at": "2026-04-13T16:56:07Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n\nEnhance the LoopDetectionService with additional loop detection patterns to catch more subtle looping behaviors that were previously undetected.\n\n## Changes\n\n### New Loop Detection Patterns\n- **Repetitive Thoughts**: Detects when the model produces the same thought patterns repeatedly, i"
+    },
+    {
+      "number": 3175,
+      "title": "feat(core): enhance loop detection with thought and action stagnation checks",
+      "state": "closed",
+      "html_url": "https://github.com/QwenLM/qwen-code/pull/3175",
+      "repo_name": "QwenLM/qwen-code",
+      "created_at": "2026-04-12T23:00:35Z",
+      "updated_at": "2026-04-12T23:06:47Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n\nEnhance the LoopDetectionService with additional loop detection patterns to catch more subtle looping behaviors that were previously undetected.\n\n## Changes\n\n### New Loop Detection Patterns\n- **Repetitive Thoughts**: Detects when the model produces the same thought patterns repeatedly, i"
+    },
+    {
+      "number": 611,
+      "title": "fix(web-search): stop leaking abort listeners in custom provider retry",
+      "state": "closed",
+      "html_url": "https://github.com/Gitlawb/openclaude/pull/611",
+      "repo_name": "Gitlawb/openclaude",
+      "created_at": "2026-04-12T04:09:52Z",
+      "updated_at": "2026-04-12T11:37:08Z",
+      "merged_at": "2026-04-12T11:37:08Z",
+      "body_preview": "## Summary\n\n`fetchWithRetry` in `src/tools/WebSearchTool/providers/custom.ts` attached a fresh abort listener to the caller's `AbortSignal` on every retry attempt and never removed it:\n\n```js\nsignal?.addEventListener('abort', () => controller.abort(), { once: true })\n```\n\n`{ once: true }` only clean"
+    },
+    {
+      "number": 610,
+      "title": "fix(web-search): close SSRF bypasses in custom provider hostname guard",
+      "state": "closed",
+      "html_url": "https://github.com/Gitlawb/openclaude/pull/610",
+      "repo_name": "Gitlawb/openclaude",
+      "created_at": "2026-04-12T04:08:10Z",
+      "updated_at": "2026-04-12T13:09:47Z",
+      "merged_at": "2026-04-12T13:09:47Z",
+      "body_preview": "## Summary\n\nThe custom search provider's `isPrivateHostname` guard in `src/tools/WebSearchTool/providers/custom.ts` missed several literal-address forms that resolve to private/reserved IPs. The most notable: **IPv4-mapped IPv6** (`[::ffff:127.0.0.1]`, which WHATWG URL normalizes to `[::ffff:7f00:1]"
+    },
+    {
+      "number": 587,
+      "title": "fix: display selected model in startup screen instead of hardcoded sonnet 4.6",
+      "state": "closed",
+      "html_url": "https://github.com/Gitlawb/openclaude/pull/587",
+      "repo_name": "Gitlawb/openclaude",
+      "created_at": "2026-04-10T18:41:33Z",
+      "updated_at": "2026-04-11T13:20:01Z",
+      "merged_at": "2026-04-11T13:20:01Z",
+      "body_preview": "## Summary\n- Fix startup screen to display the actual selected model instead of hardcoded sonnet-4-6\n- Now reads model from `settings.model` first, then falls back to `ANTHROPIC_MODEL`/`CLAUDE_MODEL` env vars\n- Uses `parseUserSpecifiedModel` to resolve model aliases (e.g., `opus` → `claude-opus-4-6`"
+    },
+    {
+      "number": 4774,
+      "title": "fix(update): check version exists before confirming uninstall",
+      "state": "closed",
+      "html_url": "https://github.com/clockworklabs/SpacetimeDB/pull/4774",
+      "repo_name": "clockworklabs/SpacetimeDB",
+      "created_at": "2026-04-10T06:12:36Z",
+      "updated_at": "2026-05-05T01:01:52Z",
+      "merged_at": "2026-05-05T01:01:52Z",
+      "body_preview": "## Summary\n\nPrevents `spacetime version uninstall <ver>` from showing a confirmation prompt when the version isn't installed, which previously resulted in a cryptic \"No such file or directory (os error 2)\" error after the user confirmed.\n\n## Changes\n\n### Bug fix\n- Check if the version directory exis"
+    },
+    {
+      "number": 4773,
+      "title": "feat(bindings-cpp-ffi): add Rust FFI crate for WASM modules",
+      "state": "open",
+      "html_url": "https://github.com/clockworklabs/SpacetimeDB/pull/4773",
+      "repo_name": "clockworklabs/SpacetimeDB",
+      "created_at": "2026-04-10T04:22:37Z",
+      "updated_at": "2026-04-28T05:33:51Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n\nAdd `crates/bindings-cpp-ffi`, a new Rust crate providing type registration and FFI\ndispatch for SpacetimeDB WASM modules. It re-implements the logic from\n`crates/bindings-cpp` (specifically `module_type_registration.cpp`,\n`module_exports.cpp`, and `Module.cpp`) in Rust.\n\nMotivation: The"
+    },
+    {
+      "number": 4772,
+      "title": "fix(cli): add confirmation prompt to `spacetime delete`",
+      "state": "closed",
+      "html_url": "https://github.com/clockworklabs/SpacetimeDB/pull/4772",
+      "repo_name": "clockworklabs/SpacetimeDB",
+      "created_at": "2026-04-09T22:14:34Z",
+      "updated_at": "2026-04-10T04:24:51Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n\n- Adds a `y/N` confirmation prompt before `spacetime delete` sends the delete request, preventing accidental database destruction\n- The existing `--yes`/`-y` flag skips the prompt for scripting/CI use\n\nCloses #4679\n\n## Test plan\n\n- [ ] Run `spacetime delete <db>` — confirm prompt appears"
+    },
+    {
+      "number": 87,
+      "title": "ci: add cppcheck security scanning workflow",
+      "state": "closed",
+      "html_url": "https://github.com/posva/catimg/pull/87",
+      "repo_name": "posva/catimg",
+      "created_at": "2026-04-07T06:39:35Z",
+      "updated_at": "2026-04-07T08:20:47Z",
+      "merged_at": null,
+      "body_preview": "Add a GitHub Actions workflow that runs cppcheck on every push and PR to catch potential bugs, performance issues, and portability problems early.\n\n**Design decisions:**\n- Scans only project source files (`catimg.c`, `sh_color.c`, `sh_image.c`, `sh_utils.c`) — excludes the vendored `stb_image.h` hea"
+    },
+    {
+      "number": 86,
+      "title": "test: add unit test suite (35 tests)",
+      "state": "closed",
+      "html_url": "https://github.com/posva/catimg/pull/86",
+      "repo_name": "posva/catimg",
+      "created_at": "2026-04-07T06:18:54Z",
+      "updated_at": "2026-04-07T08:20:18Z",
+      "merged_at": null,
+      "body_preview": "Add a unit test suite covering core library functions:\r\n\r\n**sh_color** (15 tests)\r\n- RGB→YUV conversion for black, white, red, green, blue\r\n- YUV distance: same, different, symmetry\r\n- Color copy: basic, source preservation\r\n- Hash color init/free, palette conversion (exact, transparent, near-white,"
+    },
+    {
+      "number": 85,
+      "title": "docs(man): refresh catimg.1 to match current CLI behavior",
+      "state": "closed",
+      "html_url": "https://github.com/posva/catimg/pull/85",
+      "repo_name": "posva/catimg",
+      "created_at": "2026-04-07T05:56:12Z",
+      "updated_at": "2026-04-08T00:17:22Z",
+      "merged_at": "2026-04-07T08:59:37Z",
+      "body_preview": "Refresh the `catimg(1)` manual page so it reflects how the current C implementation actually works.\n\n- Document stdin input via `-` in synopsis/arguments\n- Clarify that `-w` and `-H` are mutually exclusive\n- Correct `-H` semantics (remove stale '0 means terminal height' claim)\n- Expand loop/resoluti"
+    },
+    {
+      "number": 2857,
+      "title": "fix(ui): constrain shell output width to prevent box overflow",
+      "state": "closed",
+      "html_url": "https://github.com/QwenLM/qwen-code/pull/2857",
+      "repo_name": "QwenLM/qwen-code",
+      "created_at": "2026-04-03T13:38:49Z",
+      "updated_at": "2026-04-22T02:37:28Z",
+      "merged_at": "2026-04-19T07:42:53Z",
+      "body_preview": "## Problem\n\nWhen shell commands produce wide table output (e.g. `gh run list`), the text overflows the bordered box container in the TUI instead of being truncated or wrapped to fit.\n\n## Root Cause\n\nThe `AnsiOutputText` component (used for shell output rendering) didn't receive or apply any width co"
+    },
+    {
+      "number": 2856,
+      "title": "fix(ui): prevent slash commands from being queued during AI response",
+      "state": "closed",
+      "html_url": "https://github.com/QwenLM/qwen-code/pull/2856",
+      "repo_name": "QwenLM/qwen-code",
+      "created_at": "2026-04-03T12:33:07Z",
+      "updated_at": "2026-04-05T06:10:36Z",
+      "merged_at": null,
+      "body_preview": "## Problem\n\nWhen the AI is responding, slash commands like `/settings`, `/help`, `/clear` etc. were being queued and sent to the LLM as regular messages instead of being handled as CLI commands.\n\nThis is visible when users type a slash command while the AI is thinking - the command gets displayed in"
+    },
+    {
+      "number": 2855,
+      "title": "fix(ui): prevent slash commands from being queued during AI response",
+      "state": "closed",
+      "html_url": "https://github.com/QwenLM/qwen-code/pull/2855",
+      "repo_name": "QwenLM/qwen-code",
+      "created_at": "2026-04-03T12:23:52Z",
+      "updated_at": "2026-04-03T12:32:39Z",
+      "merged_at": null,
+      "body_preview": "## Problem\n\nWhen the AI is responding, slash commands like `/settings`, `/help`, `/clear` etc. were being queued and sent to the LLM as regular messages instead of being handled as CLI commands.\n\nThis is visible when users type a slash command while the AI is thinking - the command gets displayed in"
+    },
+    {
+      "number": 2838,
+      "title": "feat: add bun runtime support",
+      "state": "open",
+      "html_url": "https://github.com/QwenLM/qwen-code/pull/2838",
+      "repo_name": "QwenLM/qwen-code",
+      "created_at": "2026-04-02T20:40:44Z",
+      "updated_at": "2026-04-24T23:31:33Z",
+      "merged_at": null,
+      "body_preview": "## TLDR\n\nAdd support for running Qwen Code with **Bun** runtime for significantly improved performance. Bun provides faster startup times, lower memory usage, and native TypeScript support compared to Node.js.\n\n## Dive Deeper\n\n### Why Bun?\n\nBun is a modern JavaScript runtime that offers:\n- **3-5x fa"
+    },
+    {
+      "number": 2837,
+      "title": "fix(cli): remove quote-based drag detection to prevent input lag",
+      "state": "closed",
+      "html_url": "https://github.com/QwenLM/qwen-code/pull/2837",
+      "repo_name": "QwenLM/qwen-code",
+      "created_at": "2026-04-02T20:25:04Z",
+      "updated_at": "2026-04-05T06:40:23Z",
+      "merged_at": "2026-04-05T06:40:22Z",
+      "body_preview": "## TLDR\n\nFixes significant input lag when typing single quote (`'`) and double quote (`\"`) characters by removing the quote-based drag-and-drop detection mechanism. The previous implementation delayed broadcasting quote characters by 100ms, causing noticeable lag during normal typing. Modern termina"
+    },
+    {
+      "number": 2,
+      "title": "refactor(core): improve isTimeoutError type guard",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/gemini-cli/pull/2",
+      "repo_name": "euxaristia/gemini-cli",
+      "created_at": "2026-03-16T07:27:43Z",
+      "updated_at": "2026-04-01T06:24:33Z",
+      "merged_at": null,
+      "body_preview": "Improves the isTimeoutError type guard by making it more robust and easier to read."
+    },
+    {
+      "number": 1,
+      "title": "fix(cli): suppress TimeoutError in unhandled rejections and improve clipboard error handling",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/gemini-cli/pull/1",
+      "repo_name": "euxaristia/gemini-cli",
+      "created_at": "2026-03-16T06:58:07Z",
+      "updated_at": "2026-03-16T07:49:33Z",
+      "merged_at": null,
+      "body_preview": "This PR suppresses unhandled TimeoutError rejections in the CLI and improves the robustness of clipboard paste operations.\n\n## Details\n\n- **Timeout Suppression**: Unhandled TimeoutError rejections (common in streaming or poor network conditions) now logged as suppressed instead of triggering the deb"
+    },
+    {
+      "number": 22629,
+      "title": "fix(cli): suppress TimeoutError in unhandled rejections and improve clipboard error handling",
+      "state": "closed",
+      "html_url": "https://github.com/google-gemini/gemini-cli/pull/22629",
+      "repo_name": "google-gemini/gemini-cli",
+      "created_at": "2026-03-16T06:56:25Z",
+      "updated_at": "2026-03-16T07:31:18Z",
+      "merged_at": null,
+      "body_preview": "This PR suppresses unhandled TimeoutError rejections in the CLI and improves the robustness of clipboard paste operations.\n\n## Details\n\n- **Timeout Suppression**: Unhandled TimeoutError rejections (common in streaming or poor network conditions) now logged as suppressed instead of triggering the deb"
+    },
+    {
+      "number": 22625,
+      "title": "fix(core): ensure auto mode falls back through Gemini 3.0 Pro before Flash",
+      "state": "closed",
+      "html_url": "https://github.com/google-gemini/gemini-cli/pull/22625",
+      "repo_name": "google-gemini/gemini-cli",
+      "created_at": "2026-03-16T06:15:44Z",
+      "updated_at": "2026-03-16T14:45:12Z",
+      "merged_at": null,
+      "body_preview": "Fixes #22617"
+    },
+    {
+      "number": 22624,
+      "title": "fix(cli): resolve text sanitization data loss due to C1 control characters",
+      "state": "closed",
+      "html_url": "https://github.com/google-gemini/gemini-cli/pull/22624",
+      "repo_name": "google-gemini/gemini-cli",
+      "created_at": "2026-03-16T06:15:41Z",
+      "updated_at": "2026-04-30T18:59:41Z",
+      "merged_at": "2026-04-10T19:18:25Z",
+      "body_preview": "Fixes #22616"
+    },
+    {
+      "number": 22623,
+      "title": "fix(cli): force full redraw on terminal resize to prevent UI duplication",
+      "state": "closed",
+      "html_url": "https://github.com/google-gemini/gemini-cli/pull/22623",
+      "repo_name": "google-gemini/gemini-cli",
+      "created_at": "2026-03-16T06:15:38Z",
+      "updated_at": "2026-04-09T03:06:13Z",
+      "merged_at": null,
+      "body_preview": "Fixes #22615"
+    },
+    {
+      "number": 22622,
+      "title": "fix(core): prevent MaxListenersExceededWarning on CoreEventEmitter",
+      "state": "closed",
+      "html_url": "https://github.com/google-gemini/gemini-cli/pull/22622",
+      "repo_name": "google-gemini/gemini-cli",
+      "created_at": "2026-03-16T06:15:34Z",
+      "updated_at": "2026-03-31T03:07:52Z",
+      "merged_at": null,
+      "body_preview": "Fixes #22614"
+    },
+    {
+      "number": 22621,
+      "title": "fix(cli): suppress unhandled AbortError logs during request cancellation",
+      "state": "closed",
+      "html_url": "https://github.com/google-gemini/gemini-cli/pull/22621",
+      "repo_name": "google-gemini/gemini-cli",
+      "created_at": "2026-03-16T06:15:32Z",
+      "updated_at": "2026-04-30T18:59:41Z",
+      "merged_at": "2026-04-09T19:07:20Z",
+      "body_preview": "Fixes #22613"
+    },
+    {
+      "number": 22620,
+      "title": "fix(core): disable detached mode in Bun to prevent immediate SIGHUP of child processes",
+      "state": "closed",
+      "html_url": "https://github.com/google-gemini/gemini-cli/pull/22620",
+      "repo_name": "google-gemini/gemini-cli",
+      "created_at": "2026-03-16T06:15:28Z",
+      "updated_at": "2026-04-30T18:59:41Z",
+      "merged_at": "2026-04-21T20:17:24Z",
+      "body_preview": "Fixes #22612"
+    },
+    {
+      "number": 22619,
+      "title": "fix(cli): clear thought state on response completion to prevent UI ghosting",
+      "state": "closed",
+      "html_url": "https://github.com/google-gemini/gemini-cli/pull/22619",
+      "repo_name": "google-gemini/gemini-cli",
+      "created_at": "2026-03-16T06:15:26Z",
+      "updated_at": "2026-05-07T04:37:33Z",
+      "merged_at": null,
+      "body_preview": "Fixes #22611"
+    },
+    {
+      "number": 22618,
+      "title": "fix(cli): respect ui.loadingPhrases 'off' setting in LoadingIndicator",
+      "state": "closed",
+      "html_url": "https://github.com/google-gemini/gemini-cli/pull/22618",
+      "repo_name": "google-gemini/gemini-cli",
+      "created_at": "2026-03-16T06:15:24Z",
+      "updated_at": "2026-05-12T20:42:09Z",
+      "merged_at": null,
+      "body_preview": "Fixes #22610"
+    },
+    {
+      "number": 22357,
+      "title": "fix(core): prevent mcp-progress listener accumulation on CoreEventEmitter",
+      "state": "closed",
+      "html_url": "https://github.com/google-gemini/gemini-cli/pull/22357",
+      "repo_name": "google-gemini/gemini-cli",
+      "created_at": "2026-03-13T17:33:31Z",
+      "updated_at": "2026-04-09T21:09:14Z",
+      "merged_at": null,
+      "body_preview": "## Problem\n\nWhen multiple `Scheduler` instances are active simultaneously (e.g. during sub-agent tool calls), each registers an `mcp-progress` listener on the global `CoreEventEmitter`. With enough concurrent schedulers, this trips Node's `MaxListenersExceededWarning`:\n\n```\nMaxListenersExceededWarni"
+    },
+    {
+      "number": 22341,
+      "title": "fix(core): improve Bun compatibility and add test runner support",
+      "state": "closed",
+      "html_url": "https://github.com/google-gemini/gemini-cli/pull/22341",
+      "repo_name": "google-gemini/gemini-cli",
+      "created_at": "2026-03-13T16:29:27Z",
+      "updated_at": "2026-03-16T06:06:28Z",
+      "merged_at": null,
+      "body_preview": "## Problem\n\nWhen `gemini` is installed and run via [Bun](https://bun.sh) (e.g. `bun add -g @google/gemini-cli`), several subsystems fail because they rely on Node.js-specific native addon loading or `child_process` behaviour that Bun does not fully replicate. Additionally, running tests with Bun req"
+    },
+    {
+      "number": 80,
+      "title": "security: hardening, add CI, and improve POSIX/Clang compliance",
+      "state": "closed",
+      "html_url": "https://github.com/posva/catimg/pull/80",
+      "repo_name": "posva/catimg",
+      "created_at": "2026-03-13T15:42:09Z",
+      "updated_at": "2026-03-30T14:26:53Z",
+      "merged_at": null,
+      "body_preview": "This PR introduces several security hardening and code quality improvements:\n\n- **Harden Format String Usage (CWE-134)**: Replaced `printf()` with `fputs()` for constant strings. This follows defense-in-depth best practices to prevent potential format string issues if macros are modified in the futu"
+    },
+    {
+      "number": 901,
+      "title": "fix: swallow resize() errors after PTY exit on Windows and Unix",
+      "state": "open",
+      "html_url": "https://github.com/microsoft/node-pty/pull/901",
+      "repo_name": "microsoft/node-pty",
+      "created_at": "2026-03-13T15:11:41Z",
+      "updated_at": "2026-03-13T15:21:49Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n\n- Silently ignore `resize()` calls after the PTY process has already exited instead of throwing `'Cannot resize a pty that has already exited'` (Windows)\n- Catch `EBADF` errors on `resize()` when the PTY file descriptor is already closed and silently return instead of crashing (Unix)\n- P"
+    },
+    {
+      "number": 900,
+      "title": "fix: swallow resize() error when conpty has already exited",
+      "state": "closed",
+      "html_url": "https://github.com/microsoft/node-pty/pull/900",
+      "repo_name": "microsoft/node-pty",
+      "created_at": "2026-03-13T15:03:40Z",
+      "updated_at": "2026-03-13T15:09:37Z",
+      "merged_at": null,
+      "body_preview": "## Summary\n\n- Silently ignore `resize()` calls after the PTY process has already exited instead of throwing `'Cannot resize a pty that has already exited'`\n- Prevents crashes on Windows with Node.js v22 when a resize is triggered after process exit (e.g. during terminal cleanup)\n\nFixes #827\n\n## Deta"
+    },
+    {
+      "number": 12,
+      "title": "fix: swallow EBADF on resize() when PTY fd is already closed",
+      "state": "closed",
+      "html_url": "https://github.com/lydell/node-pty/pull/12",
+      "repo_name": "lydell/node-pty",
+      "created_at": "2026-03-13T13:32:52Z",
+      "updated_at": "2026-03-13T14:11:20Z",
+      "merged_at": null,
+      "body_preview": "  pty.resize() throws with message 'ioctl(2) failed, EBADF' when the PTY\r\n  file descriptor has already been closed (e.g. the process exited and the\r\n  fd was destroyed before a resize event fired).\r\n\r\n  Observed crashing @google/gemini-cli on Linux when a shell command\r\n  completes and a terminal r"
+    },
+    {
+      "number": 78,
+      "title": "fix: upgrade stb_image to v2.30 and improve MJPEG (AVI1)/raw YUYV decoding",
+      "state": "closed",
+      "html_url": "https://github.com/posva/catimg/pull/78",
+      "repo_name": "posva/catimg",
+      "created_at": "2026-02-26T19:35:01Z",
+      "updated_at": "2026-02-27T08:20:06Z",
+      "merged_at": "2026-02-27T08:20:05Z",
+      "body_preview": "**What kind of change does this PR introduce?** (check at least one)\r\n\r\n- [x] Bugfix\r\n- [ ] Feature\r\n- [ ] Code style update\r\n- [ ] Refactor\r\n- [ ] Build-related changes\r\n- [ ] Other, please describe:\r\n\r\n**Does this PR introduce a breaking change?** (check one)\r\n\r\n- [ ] Yes\r\n- [x] No\r\n\r\n**Other info"
+    },
+    {
+      "number": 145,
+      "title": "Fix spelling error in README",
+      "state": "closed",
+      "html_url": "https://github.com/charmbracelet/fantasy/pull/145",
+      "repo_name": "charmbracelet/fantasy",
+      "created_at": "2026-02-20T03:11:28Z",
+      "updated_at": "2026-03-17T17:43:21Z",
+      "merged_at": null,
+      "body_preview": "Corrected spelling of 'glamourously' to 'glamorously' in README.\r\n\r\n- [x] I have read [`CONTRIBUTING.md`](https://github.com/charmbracelet/.github/blob/main/CONTRIBUTING.md).\r\n- [ ] I have created a discussion that was approved by a maintainer (for new features).\r\n"
+    },
+    {
+      "number": 47,
+      "title": "Add missing \"a\"s in DownloadPage.vue",
+      "state": "closed",
+      "html_url": "https://github.com/FyroxEngine/rg3d.rs/pull/47",
+      "repo_name": "FyroxEngine/rg3d.rs",
+      "created_at": "2026-02-05T21:21:40Z",
+      "updated_at": "2026-02-06T09:22:33Z",
+      "merged_at": "2026-02-06T09:22:32Z",
+      "body_preview": "Indefinite articles missing before the phrase \"self-contained\" on several lines."
+    },
+    {
+      "number": 30,
+      "title": "Add .gitattributes to specify Java files",
+      "state": "closed",
+      "html_url": "https://github.com/AXDOOMER/mochadoom/pull/30",
+      "repo_name": "AXDOOMER/mochadoom",
+      "created_at": "2026-01-14T12:59:08Z",
+      "updated_at": "2026-01-14T17:00:30Z",
+      "merged_at": "2026-01-14T17:00:30Z",
+      "body_preview": "Some of the .java files are being detected as C++ by GitHub, I added a .gitignore file to strictly identify .java files as Java source code and it fixed it in my fork."
+    },
+    {
+      "number": 1228,
+      "title": "Double-quote curl commands to enable substitution in Linux installation guide on zsh",
+      "state": "closed",
+      "html_url": "https://github.com/swiftlang/swift-org-website/pull/1228",
+      "repo_name": "swiftlang/swift-org-website",
+      "created_at": "2025-11-10T15:02:13Z",
+      "updated_at": "2025-11-14T00:22:52Z",
+      "merged_at": "2025-11-14T00:22:52Z",
+      "body_preview": "### Motivation:\r\n\r\nThe current unquoted curl commands with substitution used for installing swiftly on Linux fail when executed in the Zsh (Z Shell) environment.\r\n\r\nZsh's default behavior is to treat special characters within an unquoted URL (such as periods, slashes, or the parentheses around `$(un"
+    },
+    {
+      "number": 3843,
+      "title": "Update BuildInstructionsLadybird.md",
+      "state": "closed",
+      "html_url": "https://github.com/LadybirdBrowser/ladybird/pull/3843",
+      "repo_name": "LadybirdBrowser/ladybird",
+      "created_at": "2025-03-06T23:29:31Z",
+      "updated_at": "2026-01-10T01:57:33Z",
+      "merged_at": null,
+      "body_preview": "Docs: Fix some grammar in BuildInstructionsLadybird.md"
+    },
+    {
+      "number": 138,
+      "title": "fix grammar in PRIVACY.md",
+      "state": "closed",
+      "html_url": "https://github.com/FedoraQt/MediaWriter/pull/138",
+      "repo_name": "FedoraQt/MediaWriter",
+      "created_at": "2017-11-22T12:47:27Z",
+      "updated_at": "2018-04-25T12:51:35Z",
+      "merged_at": "2017-11-22T12:47:51Z",
+      "body_preview": "https://github.com/MartinBriza/MediaWriter/issues/137"
+    },
+    {
+      "number": 4,
+      "title": "Update .travis.yml",
+      "state": "closed",
+      "html_url": "https://github.com/2Bot/2Bot-Discord-Bot/pull/4",
+      "repo_name": "2Bot/2Bot-Discord-Bot",
+      "created_at": "2017-09-17T19:50:10Z",
+      "updated_at": "2018-06-26T22:37:07Z",
+      "merged_at": "2017-09-17T22:05:05Z",
+      "body_preview": "https://github.com/Strum355/2Bot-Discord-Bot/issues/3"
+    },
+    {
+      "number": 679,
+      "title": "This download works fine over https",
+      "state": "closed",
+      "html_url": "https://github.com/fsharp/fsharp.org/pull/679",
+      "repo_name": "fsharp/fsharp.org",
+      "created_at": "2017-08-08T22:56:59Z",
+      "updated_at": "2017-08-15T21:04:45Z",
+      "merged_at": "2017-08-08T23:03:29Z",
+      "body_preview": "I noticed this download link in the powershell instructions was served over http:// and I noticed it also works over https://"
+    },
+    {
+      "number": 1,
+      "title": "Rename LICENSE to rubosudo/LICENSE",
+      "state": "closed",
+      "html_url": "https://github.com/euxaristia/rubosudo/pull/1",
+      "repo_name": "euxaristia/rubosudo",
+      "created_at": "2017-07-28T16:19:28Z",
+      "updated_at": "2017-07-28T16:20:07Z",
+      "merged_at": "2017-07-28T16:20:04Z",
+      "body_preview": ""
+    },
+    {
+      "number": 3,
+      "title": "Found typo in source code too",
+      "state": "closed",
+      "html_url": "https://github.com/P0cL4bs/hanzoInjection/pull/3",
+      "repo_name": "P0cL4bs/hanzoInjection",
+      "created_at": "2017-07-20T16:03:02Z",
+      "updated_at": "2026-04-08T21:29:02Z",
+      "merged_at": null,
+      "body_preview": ""
+    },
+    {
+      "number": 2,
+      "title": "Typo in required",
+      "state": "closed",
+      "html_url": "https://github.com/P0cL4bs/hanzoInjection/pull/2",
+      "repo_name": "P0cL4bs/hanzoInjection",
+      "created_at": "2017-07-20T16:01:55Z",
+      "updated_at": "2026-04-08T21:29:10Z",
+      "merged_at": null,
+      "body_preview": ""
+    },
+    {
+      "number": 2,
+      "title": "Typo in length",
+      "state": "closed",
+      "html_url": "https://github.com/P0cL4bs/Shellcodes/pull/2",
+      "repo_name": "P0cL4bs/Shellcodes",
+      "created_at": "2017-07-20T15:51:52Z",
+      "updated_at": "2017-07-20T18:52:02Z",
+      "merged_at": "2017-07-20T18:52:02Z",
+      "body_preview": ""
+    },
+    {
+      "number": 1,
+      "title": "gofmt simplify and correct readme to standards + add report card",
+      "state": "closed",
+      "html_url": "https://github.com/2Bot/2Bot-Discord-Bot/pull/1",
+      "repo_name": "2Bot/2Bot-Discord-Bot",
+      "created_at": "2017-07-18T17:15:43Z",
+      "updated_at": "2018-06-26T22:37:07Z",
+      "merged_at": "2017-07-18T19:35:02Z",
+      "body_preview": ""
+    },
+    {
+      "number": 1601,
+      "title": "Fixed typo: repetition of the word is \"is is\"",
+      "state": "closed",
+      "html_url": "https://github.com/librariesio/libraries.io/pull/1601",
+      "repo_name": "librariesio/libraries.io",
+      "created_at": "2017-07-16T14:23:37Z",
+      "updated_at": "2017-07-17T10:03:08Z",
+      "merged_at": "2017-07-16T14:24:27Z",
+      "body_preview": "Just noticed this typo today while searching for libraries\r\n"
+    },
+    {
+      "number": 240,
+      "title": "Typo and odd grammar fix",
+      "state": "closed",
+      "html_url": "https://github.com/shazow/ssh-chat/pull/240",
+      "repo_name": "shazow/ssh-chat",
+      "created_at": "2017-07-16T13:17:13Z",
+      "updated_at": "2017-07-24T20:47:24Z",
+      "merged_at": "2017-07-16T14:47:46Z",
+      "body_preview": "Found a little typo and a grammar error while digging thru ssh-chat's lovely source"
+    },
+    {
+      "number": 4,
+      "title": "fix mathjax",
+      "state": "closed",
+      "html_url": "https://github.com/PacBSD/pacweb/pull/4",
+      "repo_name": "PacBSD/pacweb",
+      "created_at": "2017-07-09T08:24:58Z",
+      "updated_at": "2017-08-29T01:23:57Z",
+      "merged_at": null,
+      "body_preview": "I think there might be one more reference to the outdated source of mathjax, but this pr removes 2 mentions of mathjax and replaces them with the needed value"
+    },
+    {
+      "number": 415,
+      "title": "Update README.md",
+      "state": "closed",
+      "html_url": "https://github.com/leachim6/hello-world/pull/415",
+      "repo_name": "leachim6/hello-world",
+      "created_at": "2017-07-06T04:40:54Z",
+      "updated_at": "2017-07-11T07:18:32Z",
+      "merged_at": "2017-07-11T07:18:32Z",
+      "body_preview": "correct nimrod to nim"
+    },
+    {
+      "number": 414,
+      "title": "Rename nimrod.nim to nim.nim",
+      "state": "closed",
+      "html_url": "https://github.com/leachim6/hello-world/pull/414",
+      "repo_name": "leachim6/hello-world",
+      "created_at": "2017-07-06T04:40:20Z",
+      "updated_at": "2017-07-11T07:18:45Z",
+      "merged_at": "2017-07-11T07:18:45Z",
+      "body_preview": ""
+    },
+    {
+      "number": 6,
+      "title": "Package description",
+      "state": "closed",
+      "html_url": "https://github.com/AtomLinter/linter-bailey/pull/6",
+      "repo_name": "AtomLinter/linter-bailey",
+      "created_at": "2017-07-01T08:58:54Z",
+      "updated_at": "2017-07-02T20:07:21Z",
+      "merged_at": "2017-07-01T09:00:34Z",
+      "body_preview": "I've allowed edits from maintainers if you would like to change anything"
+    }
+  ],
+  "catimg": {
+    "pull_requests": [
+      {
+        "number": 87,
+        "title": "ci: add cppcheck security scanning workflow",
+        "state": "closed",
+        "html_url": "https://github.com/posva/catimg/pull/87",
+        "created_at": "2026-04-07T06:39:35Z",
+        "merged_at": null,
+        "body": "Add a GitHub Actions workflow that runs cppcheck on every push and PR to catch potential bugs, performance issues, and portability problems early.\n\n**Design decisions:**\n- Scans only project source files (`catimg.c`, `sh_color.c`, `sh_image.c`, `sh_utils.c`) — excludes the vendored `stb_image.h` header entirely\n- Enables `warning,performance,portability` checks (not `style` or `information`) to avoid noise\n- Uses native `--error-exitcode=1` instead of fragile grep-based output filtering\n- 5 explicit suppressions, all scoped to specific files or the vendored header:\n  - `memleak:src/sh_color.c:30` — KHASH_MAP_INIT_INT macro (memory freed properly on `free_hash_colors()`)\n  - `returnDanglingLifetime:src/sh_image.c` — stb_image wrapper returns heap memory, false positive\n  - `autovarInvalidDeallocation:src/sh_image.c` — stb_image GIF code only frees heap data, false positive\n  - `unusedFunction:src/stb_image.h` — vendored header has unused internal functions\n  - `staticFunction:src/stb_im",
+        "author_association": "CONTRIBUTOR"
+      },
+      {
+        "number": 86,
+        "title": "test: add unit test suite (35 tests)",
+        "state": "closed",
+        "html_url": "https://github.com/posva/catimg/pull/86",
+        "created_at": "2026-04-07T06:18:54Z",
+        "merged_at": null,
+        "body": "Add a unit test suite covering core library functions:\r\n\r\n**sh_color** (15 tests)\r\n- RGB→YUV conversion for black, white, red, green, blue\r\n- YUV distance: same, different, symmetry\r\n- Color copy: basic, source preservation\r\n- Hash color init/free, palette conversion (exact, transparent, near-white, near-black)\r\n\r\n**sh_utils** (8 tests)\r\n- RGB/hex conversion macros (roundtrip, edge cases)\r\n- `SQUARED` macro\r\n\r\n**sh_image** (12 tests)\r\n- Create, copy (deep copy verification)\r\n- Pixel set/get, corner cases\r\n- Resize (downscale, frame preservation)\r\n- Color conversion, free (with/without delays)\r\n- File loading (PNG, ICO)\r\n\r\n**Changes from the original bundled PR:**\r\n- Removed terminal dimension tests (fail in headless CI via `ioctl(TIOCGWINSZ)`)\r\n- Removed `pixelToInt` tests (reimplemented a static internal function)\r\n- All remaining tests are pure unit tests with no TTY or terminal dependencies\r\n- Builds and runs cleanly with `ctest`",
+        "author_association": "CONTRIBUTOR"
+      },
+      {
+        "number": 85,
+        "title": "docs(man): refresh catimg.1 to match current CLI behavior",
+        "state": "closed",
+        "html_url": "https://github.com/posva/catimg/pull/85",
+        "created_at": "2026-04-07T05:56:12Z",
+        "merged_at": "2026-04-07T08:59:37Z",
+        "body": "Refresh the `catimg(1)` manual page so it reflects how the current C implementation actually works.\n\n- Document stdin input via `-` in synopsis/arguments\n- Clarify that `-w` and `-H` are mutually exclusive\n- Correct `-H` semantics (remove stale '0 means terminal height' claim)\n- Expand loop/resolution descriptions to match runtime behavior\n- Add environment, exit status, and practical examples sections\n- Update manual metadata to indicate a current revision\n\nThis is a focused PR for the documentation improvements that were previously bundled with the security hardening work.",
+        "author_association": "CONTRIBUTOR"
+      },
+      {
+        "number": 80,
+        "title": "security: hardening, add CI, and improve POSIX/Clang compliance",
+        "state": "closed",
+        "html_url": "https://github.com/posva/catimg/pull/80",
+        "created_at": "2026-03-13T15:42:09Z",
+        "merged_at": null,
+        "body": "This PR introduces several security hardening and code quality improvements:\n\n- **Harden Format String Usage (CWE-134)**: Replaced `printf()` with `fputs()` for constant strings. This follows defense-in-depth best practices to prevent potential format string issues if macros are modified in the future.\n- **Harden Terminal Clearing**: Replaced `system(\"clear\")` with ANSI escape sequences (`\\033[2J\\033[H`). This removes a shell invocation (addressing potential PATH-based attack vectors) and improves GIF playback performance by avoiding `fork()`/`exec()`.\n- **POSIX Compliance via Clang**: By preferring Clang for its superior POSIX compliance and stricter diagnostic output, several necessary improvements were identified and addressed:\n    - Removed redundant local `getopt` declarations that conflicted with system headers under stricter checks.\n    - Added `(void)sig` to signal handlers to satisfy compiler requirements for unused parameters.\n    - Added `static` to internal functions to pro",
+        "author_association": "CONTRIBUTOR"
+      },
+      {
+        "number": 78,
+        "title": "fix: upgrade stb_image to v2.30 and improve MJPEG (AVI1)/raw YUYV decoding",
+        "state": "closed",
+        "html_url": "https://github.com/posva/catimg/pull/78",
+        "created_at": "2026-02-26T19:35:01Z",
+        "merged_at": "2026-02-27T08:20:05Z",
+        "body": "**What kind of change does this PR introduce?** (check at least one)\r\n\r\n- [x] Bugfix\r\n- [ ] Feature\r\n- [ ] Code style update\r\n- [ ] Refactor\r\n- [ ] Build-related changes\r\n- [ ] Other, please describe:\r\n\r\n**Does this PR introduce a breaking change?** (check one)\r\n\r\n- [ ] Yes\r\n- [x] No\r\n\r\n**Other information:**\r\n\r\n This PR contains my 2 commits since forking:\r\n\r\n1. Upgrade `stb_image` to v2.30 and improve MJPEG (`AVI1`) handling by loading default JPEG Huffman tables when DHT tables are missing.\r\n2. Add fallback decoding for raw YUYV inputs in common resolutions, and improve decode error messages by printing `stbi_failure_reason()`.",
+        "author_association": "CONTRIBUTOR"
+      }
+    ],
+    "contributor_entry": {
+      "login": "euxaristia",
+      "contributions": 4
+    }
+  },
+  "starred": [
+    {
+      "name": "sveltejs/svelte",
+      "description": "web development for the rest of us",
+      "language": "JavaScript",
+      "stargazers_count": 86549,
+      "html_url": "https://github.com/sveltejs/svelte",
+      "topics": [
+        "compiler",
+        "template",
+        "ui"
+      ]
+    },
+    {
+      "name": "chapel-lang/chapel",
+      "description": "a Productive Parallel Programming Language",
+      "language": "Chapel",
+      "stargazers_count": 1995,
+      "html_url": "https://github.com/chapel-lang/chapel",
+      "topics": [
+        "chapel",
+        "compiler",
+        "concurrency",
+        "distributed-computing",
+        "gpu",
+        "high-performance-computing",
+        "hpc",
+        "language",
+        "open-source",
+        "parallel",
+        "parallel-computing",
+        "performance",
+        "productive",
+        "programming-language",
+        "scientific-computing"
+      ]
+    },
+    {
+      "name": "microsoft/vscode",
+      "description": "Visual Studio Code",
+      "language": "TypeScript",
+      "stargazers_count": 184839,
+      "html_url": "https://github.com/microsoft/vscode",
+      "topics": [
+        "editor",
+        "electron",
+        "microsoft",
+        "typescript",
+        "visual-studio-code"
+      ]
+    },
+    {
+      "name": "warpdotdev/warp",
+      "description": "Warp is an agentic development environment, born out of the terminal.",
+      "language": "Rust",
+      "stargazers_count": 57943,
+      "html_url": "https://github.com/warpdotdev/warp",
+      "topics": [
+        "bash",
+        "linux",
+        "macos",
+        "rust",
+        "shell",
+        "terminal",
+        "wasm",
+        "zsh"
+      ]
+    },
+    {
+      "name": "openai/skills",
+      "description": "Skills Catalog for Codex",
+      "language": "Python",
+      "stargazers_count": 18942,
+      "html_url": "https://github.com/openai/skills",
+      "topics": []
+    },
+    {
+      "name": "jdx/mise",
+      "description": "dev tools, env vars, task runner",
+      "language": "Rust",
+      "stargazers_count": 28099,
+      "html_url": "https://github.com/jdx/mise",
+      "topics": []
+    },
+    {
+      "name": "openclaw/openclaw",
+      "description": "Your own personal AI assistant. Any OS. Any Platform. The lobster way. 🦞 ",
+      "language": "TypeScript",
+      "stargazers_count": 371269,
+      "html_url": "https://github.com/openclaw/openclaw",
+      "topics": [
+        "ai",
+        "assistant",
+        "crustacean",
+        "molty",
+        "openclaw",
+        "own-your-data",
+        "personal"
+      ]
+    },
+    {
+      "name": "oven-sh/bun",
+      "description": "Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one",
+      "language": "Zig",
+      "stargazers_count": 89940,
+      "html_url": "https://github.com/oven-sh/bun",
+      "topics": [
+        "bun",
+        "bundler",
+        "javascript",
+        "javascriptcore",
+        "jsx",
+        "nodejs",
+        "npm",
+        "react",
+        "transpiler",
+        "typescript",
+        "zig",
+        "ziglang"
+      ]
+    },
+    {
+      "name": "btrfs/linux",
+      "description": "Linux kernel source tree -- Btrfs commits",
+      "language": "C",
+      "stargazers_count": 34,
+      "html_url": "https://github.com/btrfs/linux",
+      "topics": [
+        "btrfs",
+        "linux"
+      ]
+    },
+    {
+      "name": "charmbracelet/crush",
+      "description": "Glamourous agentic coding for all 💘",
+      "language": "Go",
+      "stargazers_count": 24202,
+      "html_url": "https://github.com/charmbracelet/crush",
+      "topics": [
+        "agentic-ai",
+        "ai",
+        "llms",
+        "ravishing"
+      ]
+    },
+    {
+      "name": "apple/foundationdb",
+      "description": "FoundationDB - the open source, distributed, transactional key-value store",
+      "language": "C++",
+      "stargazers_count": 16316,
+      "html_url": "https://github.com/apple/foundationdb",
+      "topics": [
+        "acid",
+        "distributed-database",
+        "foundationdb",
+        "key-value-store",
+        "transactional"
+      ]
+    },
+    {
+      "name": "bitwarden/server",
+      "description": "Bitwarden infrastructure/backend (API, database, Docker, etc).",
+      "language": "C#",
+      "stargazers_count": 18576,
+      "html_url": "https://github.com/bitwarden/server",
+      "topics": [
+        "api",
+        "aspnet",
+        "aspnetcore",
+        "bitwarden",
+        "csharp",
+        "docker",
+        "dotnet",
+        "dotnet-core",
+        "signalr",
+        "sql",
+        "sql-server"
+      ]
+    },
+    {
+      "name": "openai/codex",
+      "description": "Lightweight coding agent that runs in your terminal",
+      "language": "Rust",
+      "stargazers_count": 82127,
+      "html_url": "https://github.com/openai/codex",
+      "topics": []
+    },
+    {
+      "name": "n8n-io/n8n",
+      "description": "Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.",
+      "language": "TypeScript",
+      "stargazers_count": 187604,
+      "html_url": "https://github.com/n8n-io/n8n",
+      "topics": [
+        "ai",
+        "apis",
+        "automation",
+        "cli",
+        "data-flow",
+        "development",
+        "integration-framework",
+        "integrations",
+        "ipaas",
+        "low-code",
+        "low-code-platform",
+        "mcp",
+        "mcp-client",
+        "mcp-server",
+        "n8n",
+        "no-code",
+        "self-hosted",
+        "typescript",
+        "workflow",
+        "workflow-automation"
+      ]
+    },
+    {
+      "name": "klange/toaruos",
+      "description": "A completely-from-scratch hobby operating system: bootloader, kernel, drivers, C library, and userspace including a composited graphical UI, dynamic linker, syntax-highlighting text editor, network stack, etc.",
+      "language": "C",
+      "stargazers_count": 6717,
+      "html_url": "https://github.com/klange/toaruos",
+      "topics": [
+        "aarch64",
+        "armv8",
+        "baremetal",
+        "bootloader",
+        "c",
+        "c-library",
+        "cdrom",
+        "compositor",
+        "kernel",
+        "operating-system",
+        "operating-systems",
+        "os",
+        "osdev",
+        "smp",
+        "text-editor",
+        "toaruos",
+        "window-manager",
+        "x86",
+        "x86-64"
+      ]
+    },
+    {
+      "name": "GitoxideLabs/gitoxide",
+      "description": "An idiomatic, lean, fast & safe pure Rust implementation of Git",
+      "language": "Rust",
+      "stargazers_count": 11404,
+      "html_url": "https://github.com/GitoxideLabs/gitoxide",
+      "topics": [
+        "blazingly-fast",
+        "built-with-rust",
+        "cli",
+        "git",
+        "version-control"
+      ]
+    },
+    {
+      "name": "google-gemini/gemini-cli",
+      "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
+      "language": "TypeScript",
+      "stargazers_count": 103802,
+      "html_url": "https://github.com/google-gemini/gemini-cli",
+      "topics": [
+        "ai",
+        "ai-agents",
+        "cli",
+        "gemini",
+        "gemini-api",
+        "mcp-client",
+        "mcp-server"
+      ]
+    },
+    {
+      "name": "aaif-goose/goose",
+      "description": "an open source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with any LLM",
+      "language": "Rust",
+      "stargazers_count": 45098,
+      "html_url": "https://github.com/aaif-goose/goose",
+      "topics": [
+        "acp",
+        "ai",
+        "ai-agents",
+        "mcp"
+      ]
+    },
+    {
+      "name": "bevyengine/bevy",
+      "description": "A refreshingly simple data-driven game engine built in Rust",
+      "language": "Rust",
+      "stargazers_count": 46043,
+      "html_url": "https://github.com/bevyengine/bevy",
+      "topics": [
+        "bevy",
+        "game-development",
+        "game-engine",
+        "gamedev",
+        "open-source",
+        "rust"
+      ]
+    },
+    {
+      "name": "Homebrew/homebrew-cask",
+      "description": "🍻 A CLI workflow for the administration of macOS applications distributed as binaries",
+      "language": "Ruby",
+      "stargazers_count": 22013,
+      "html_url": "https://github.com/Homebrew/homebrew-cask",
+      "topics": [
+        "cask",
+        "hacktoberfest",
+        "homebrew"
+      ]
+    },
+    {
+      "name": "archlinux/archinstall",
+      "description": "Arch Linux installer - guided, templates etc.",
+      "language": "Python",
+      "stargazers_count": 8205,
+      "html_url": "https://github.com/archlinux/archinstall",
+      "topics": [
+        "arch",
+        "arch-installer",
+        "arch-linux",
+        "archinstall",
+        "archlinux",
+        "archlinux-installer",
+        "installer",
+        "iso",
+        "linux",
+        "python3"
+      ]
+    },
+    {
+      "name": "microsoft/azurelinux",
+      "description": "Linux OS for Azure 1P services and edge appliances",
+      "language": "RPM Spec",
+      "stargazers_count": 4611,
+      "html_url": "https://github.com/microsoft/azurelinux",
+      "topics": []
+    },
+    {
+      "name": "cline/cline",
+      "description": "Autonomous coding agent right in your IDE, capable of creating/editing files, executing commands, using the browser, and more with your permission every step of the way.",
+      "language": "TypeScript",
+      "stargazers_count": 61685,
+      "html_url": "https://github.com/cline/cline",
+      "topics": []
+    },
+    {
+      "name": "NousResearch/hermes-agent",
+      "description": "The agent that grows with you",
+      "language": "Python",
+      "stargazers_count": 146784,
+      "html_url": "https://github.com/NousResearch/hermes-agent",
+      "topics": [
+        "ai",
+        "ai-agent",
+        "ai-agents",
+        "anthropic",
+        "chatgpt",
+        "claude",
+        "claude-code",
+        "clawdbot",
+        "codex",
+        "hermes",
+        "hermes-agent",
+        "llm",
+        "moltbot",
+        "nous-research",
+        "openai",
+        "openclaw"
+      ]
+    },
+    {
+      "name": "cisagov/manage.get.gov",
+      "description": "A Django-based domain name registrar that interfaces with an EPP registry",
+      "language": "Python",
+      "stargazers_count": 85,
+      "html_url": "https://github.com/cisagov/manage.get.gov",
+      "topics": []
+    },
+    {
+      "name": "emscripten-core/emscripten",
+      "description": "Emscripten: An LLVM-to-WebAssembly Compiler",
+      "language": "C++",
+      "stargazers_count": 27356,
+      "html_url": "https://github.com/emscripten-core/emscripten",
+      "topics": [
+        "emscripten",
+        "hacktoberfest",
+        "wasm",
+        "webassembly"
+      ]
+    },
+    {
+      "name": "Q00/ouroboros",
+      "description": "Agent OS: Stop prompting. Start specifying.",
+      "language": "Python",
+      "stargazers_count": 3989,
+      "html_url": "https://github.com/Q00/ouroboros",
+      "topics": [
+        "agent-os",
+        "ai-agent",
+        "mcp"
+      ]
+    },
+    {
+      "name": "openwrt/openwrt",
+      "description": "This repository is a mirror of https://git.openwrt.org/openwrt/openwrt.git It is for reference only and is not active for check-ins.  We will continue to accept Pull Requests here. They will be merged via staging trees then into openwrt.git.",
+      "language": "C",
+      "stargazers_count": 26852,
+      "html_url": "https://github.com/openwrt/openwrt",
+      "topics": []
+    },
+    {
+      "name": "simplex-chat/simplex-chat",
+      "description": "SimpleX - the first messaging network operating without user identifiers of any kind - 100% private by design! iOS, Android and desktop apps 📱!",
+      "language": "Haskell",
+      "stargazers_count": 11067,
+      "html_url": "https://github.com/simplex-chat/simplex-chat",
+      "topics": [
+        "chat",
+        "double-ratchet",
+        "e2ee",
+        "encryption",
+        "haskell",
+        "messaging",
+        "privacy",
+        "protocol",
+        "security"
+      ]
+    },
+    {
+      "name": "bytecodealliance/wasmtime",
+      "description": "A lightweight WebAssembly runtime that is fast, secure, and standards-compliant",
+      "language": "Rust",
+      "stargazers_count": 18001,
+      "html_url": "https://github.com/bytecodealliance/wasmtime",
+      "topics": [
+        "aot",
+        "cranelift",
+        "jit",
+        "lightweight",
+        "portable",
+        "runtime",
+        "rust",
+        "sandbox",
+        "standalone",
+        "wasi",
+        "wasm",
+        "wasmtime",
+        "webassembly"
+      ]
+    },
+    {
+      "name": "bitwarden/clients",
+      "description": "Bitwarden client apps (web, browser extension, desktop, and cli).",
+      "language": "TypeScript",
+      "stargazers_count": 12825,
+      "html_url": "https://github.com/bitwarden/clients",
+      "topics": [
+        "angular",
+        "bitwarden",
+        "browser-extension",
+        "chrome",
+        "cli",
+        "desktop",
+        "electron",
+        "firefox",
+        "javascript",
+        "nodejs",
+        "safari",
+        "typescript",
+        "webextension"
+      ]
+    },
+    {
+      "name": "promptfoo/promptfoo",
+      "description": "Test your prompts, agents, and RAGs. Red teaming/pentesting/vulnerability scanning for AI. Compare performance of GPT, Claude, Gemini, Llama, and more. Simple declarative configs with command line and CI/CD integration.  Used by OpenAI and Anthropic.",
+      "language": "TypeScript",
+      "stargazers_count": 21185,
+      "html_url": "https://github.com/promptfoo/promptfoo",
+      "topics": [
+        "ci",
+        "ci-cd",
+        "cicd",
+        "evaluation",
+        "evaluation-framework",
+        "llm",
+        "llm-eval",
+        "llm-evaluation",
+        "llm-evaluation-framework",
+        "llmops",
+        "pentesting",
+        "prompt-engineering",
+        "prompt-testing",
+        "prompts",
+        "rag",
+        "red-teaming",
+        "testing",
+        "vulnerability-scanners"
+      ]
+    },
+    {
+      "name": "tinygrad/tinygrad",
+      "description": "You like pytorch? You like micrograd? You love tinygrad! ❤️ ",
+      "language": "Python",
+      "stargazers_count": 32678,
+      "html_url": "https://github.com/tinygrad/tinygrad",
+      "topics": []
+    },
+    {
+      "name": "llvm/llvm-project",
+      "description": "The LLVM Project is a collection of modular and reusable compiler and toolchain technologies.",
+      "language": "LLVM",
+      "stargazers_count": 38289,
+      "html_url": "https://github.com/llvm/llvm-project",
+      "topics": []
+    },
+    {
+      "name": "pytorch/pytorch",
+      "description": "Tensors and Dynamic neural networks in Python with strong GPU acceleration",
+      "language": "Python",
+      "stargazers_count": 99857,
+      "html_url": "https://github.com/pytorch/pytorch",
+      "topics": [
+        "autograd",
+        "deep-learning",
+        "gpu",
+        "machine-learning",
+        "neural-network",
+        "numpy",
+        "python",
+        "tensor"
+      ]
+    },
+    {
+      "name": "nanocoai/nanoclaw",
+      "description": "A lightweight alternative to OpenClaw that runs in containers for security. Connects to WhatsApp, Telegram, Slack, Discord, Gmail and other messaging apps,, has memory, scheduled jobs, and runs directly on Anthropic's Agents SDK",
+      "language": "TypeScript",
+      "stargazers_count": 28813,
+      "html_url": "https://github.com/nanocoai/nanoclaw",
+      "topics": [
+        "ai-agents",
+        "ai-assistant",
+        "claude-code",
+        "claude-skills",
+        "openclaw"
+      ]
+    },
+    {
+      "name": "openjdk/jdk",
+      "description": "JDK main-line development https://openjdk.org/projects/jdk",
+      "language": "Java",
+      "stargazers_count": 22881,
+      "html_url": "https://github.com/openjdk/jdk",
+      "topics": [
+        "java",
+        "jvm",
+        "openjdk"
+      ]
+    },
+    {
+      "name": "JetBrains/kotlin",
+      "description": "The Kotlin Programming Language. ",
+      "language": "Kotlin",
+      "stargazers_count": 52717,
+      "html_url": "https://github.com/JetBrains/kotlin",
+      "topics": [
+        "compiler",
+        "gradle-plugin",
+        "intellij-plugin",
+        "kotlin",
+        "kotlin-library",
+        "maven-plugin",
+        "programming-language",
+        "wasm",
+        "webassembly"
+      ]
+    },
+    {
+      "name": "GrapheneOS/grapheneos.org",
+      "description": "Servers for our website, HTTP/HTTPS connectivity checks, HTTPS network time, NTP (for Qualcomm XTRA), Broadcom PSDS cache, Samsung PSDS cache, Qualcomm PSDS (XTRA) cache, SUPL proxy, attestation key provisioning proxy, Vanadium component update check/download proxy, network location proxy and geocoding proxy.",
+      "language": "HTML",
+      "stargazers_count": 654,
+      "html_url": "https://github.com/GrapheneOS/grapheneos.org",
+      "topics": [
+        "android",
+        "grapheneos",
+        "privacy",
+        "security"
+      ]
+    },
+    {
+      "name": "swiftlang/swift",
+      "description": "The Swift Programming Language",
+      "language": "Swift",
+      "stargazers_count": 69980,
+      "html_url": "https://github.com/swiftlang/swift",
+      "topics": []
+    },
+    {
+      "name": "cisagov/vulnrichment",
+      "description": "A repo to conduct vulnerability enrichment.",
+      "language": null,
+      "stargazers_count": 771,
+      "html_url": "https://github.com/cisagov/vulnrichment",
+      "topics": []
+    },
+    {
+      "name": "clockworklabs/SpacetimeDB",
+      "description": "Development at the speed of light",
+      "language": "Rust",
+      "stargazers_count": 24652,
+      "html_url": "https://github.com/clockworklabs/SpacetimeDB",
+      "topics": [
+        "database",
+        "dataoriented",
+        "game-development",
+        "mmorpg-server",
+        "relational",
+        "relational-database",
+        "web-development",
+        "web-framework"
+      ]
+    },
+    {
+      "name": "gravitational/teleport",
+      "description": "The easiest, and most secure way to access and protect all of your infrastructure.",
+      "language": "Go",
+      "stargazers_count": 20284,
+      "html_url": "https://github.com/gravitational/teleport",
+      "topics": [
+        "audit",
+        "bastion",
+        "certificate",
+        "cluster",
+        "database-access",
+        "firewall",
+        "firewalls",
+        "go",
+        "golang",
+        "jumpserver",
+        "kubernetes",
+        "kubernetes-access",
+        "pam",
+        "postgres",
+        "rbac",
+        "rdp",
+        "security",
+        "ssh",
+        "teleport",
+        "teleport-binaries"
+      ]
+    },
+    {
+      "name": "microsoft/terminal",
+      "description": "The new Windows Terminal and the original Windows console host, all in the same place!",
+      "language": "C++",
+      "stargazers_count": 103127,
+      "html_url": "https://github.com/microsoft/terminal",
+      "topics": [
+        "cmd",
+        "command-line",
+        "console",
+        "contributions-welcome",
+        "good-first-issue",
+        "hacktoberfest",
+        "terminal",
+        "windows",
+        "windows-console",
+        "windows-terminal",
+        "wsl"
+      ]
+    },
+    {
+      "name": "QwenLM/qwen-code",
+      "description": "An open-source AI agent that lives in your terminal.",
+      "language": "TypeScript",
+      "stargazers_count": 24344,
+      "html_url": "https://github.com/QwenLM/qwen-code",
+      "topics": []
+    },
+    {
+      "name": "agda/agda",
+      "description": "Agda is a dependently typed programming language / interactive theorem prover.",
+      "language": "Haskell",
+      "stargazers_count": 2843,
+      "html_url": "https://github.com/agda/agda",
+      "topics": [
+        "agda",
+        "dependent-types",
+        "programming-language",
+        "proof-assistant",
+        "type-theory"
+      ]
+    },
+    {
+      "name": "microsoft/winget-pkgs",
+      "description": "The Microsoft community Windows Package Manager manifest repository",
+      "language": null,
+      "stargazers_count": 10576,
+      "html_url": "https://github.com/microsoft/winget-pkgs",
+      "topics": [
+        "hacktoberfest"
+      ]
+    },
+    {
+      "name": "discourse/discourse",
+      "description": "A platform for community discussion. Free, open, simple.",
+      "language": "Ruby",
+      "stargazers_count": 47013,
+      "html_url": "https://github.com/discourse/discourse",
+      "topics": [
+        "discourse",
+        "ember",
+        "forum",
+        "javascript",
+        "postgresql",
+        "rails",
+        "ruby"
+      ]
+    },
+    {
+      "name": "anomalyco/opencode",
+      "description": "The open source coding agent.",
+      "language": "TypeScript",
+      "stargazers_count": 159170,
+      "html_url": "https://github.com/anomalyco/opencode",
+      "topics": []
+    },
+    {
+      "name": "ngosang/trackerslist",
+      "description": "Updated list of public BitTorrent trackers",
+      "language": null,
+      "stargazers_count": 53814,
+      "html_url": "https://github.com/ngosang/trackerslist",
+      "topics": [
+        "bittorrent",
+        "bittorrent-tracker",
+        "bittorrent-trackers",
+        "http",
+        "list",
+        "lists",
+        "public-tracker",
+        "public-trackers",
+        "torrent",
+        "tracker",
+        "trackers",
+        "trackerslist",
+        "udp",
+        "webtorrent",
+        "ws"
+      ]
+    },
+    {
+      "name": "superset-sh/superset",
+      "description": "Code Editor for the AI Agents Era - Run an army of Claude Code, Codex, etc. on your machine",
+      "language": "TypeScript",
+      "stargazers_count": 10610,
+      "html_url": "https://github.com/superset-sh/superset",
+      "topics": [
+        "agentic-ai",
+        "ai-agents",
+        "claude-code",
+        "cli",
+        "codex",
+        "coding-agents",
+        "cursor-agent",
+        "desktop-app",
+        "developer-tools",
+        "electron",
+        "git-worktree",
+        "llm",
+        "mcp",
+        "opencode",
+        "orchestration",
+        "parallel-agents",
+        "terminal",
+        "tui",
+        "vibe-coding",
+        "worktrees"
+      ]
+    },
+    {
+      "name": "bluesky-social/social-app",
+      "description": "The Bluesky Social application for Web, iOS, and Android",
+      "language": "TypeScript",
+      "stargazers_count": 17951,
+      "html_url": "https://github.com/bluesky-social/social-app",
+      "topics": []
+    },
+    {
+      "name": "TryGhost/Ghost",
+      "description": "Independent technology for modern publishing, memberships, subscriptions and newsletters.",
+      "language": "JavaScript",
+      "stargazers_count": 52793,
+      "html_url": "https://github.com/TryGhost/Ghost",
+      "topics": [
+        "blogging",
+        "cms",
+        "ghost",
+        "javascript",
+        "journalism",
+        "nodejs",
+        "publishing",
+        "web-application"
+      ]
+    },
+    {
+      "name": "cisagov/thorium",
+      "description": "A scalable file analysis and data generation platform that allows users to easily orchestrate arbitrary docker/vm/shell tools at scale.",
+      "language": "Rust",
+      "stargazers_count": 998,
+      "html_url": "https://github.com/cisagov/thorium",
+      "topics": [
+        "docker",
+        "kubernetes",
+        "malware-analysis",
+        "rust",
+        "rust-lang",
+        "scalability"
+      ]
+    },
+    {
+      "name": "flutter/flutter",
+      "description": "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      "language": "Dart",
+      "stargazers_count": 176298,
+      "html_url": "https://github.com/flutter/flutter",
+      "topics": [
+        "android",
+        "app-framework",
+        "cross-platform",
+        "dart",
+        "dart-platform",
+        "desktop",
+        "flutter",
+        "flutter-package",
+        "fuchsia",
+        "ios",
+        "linux-desktop",
+        "macos",
+        "material-design",
+        "mobile",
+        "mobile-development",
+        "skia",
+        "web",
+        "web-framework",
+        "windows"
+      ]
+    },
+    {
+      "name": "crewAIInc/crewAI",
+      "description": "Framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seamlessly, tackling complex tasks.",
+      "language": "Python",
+      "stargazers_count": 51260,
+      "html_url": "https://github.com/crewAIInc/crewAI",
+      "topics": [
+        "agents",
+        "ai",
+        "ai-agents",
+        "aiagentframework",
+        "llms"
+      ]
+    },
+    {
+      "name": "RooCodeInc/Roo-Code",
+      "description": "Roo Code gives you a whole dev team of AI agents in your code editor.",
+      "language": "TypeScript",
+      "stargazers_count": 24025,
+      "html_url": "https://github.com/RooCodeInc/Roo-Code",
+      "topics": []
+    },
+    {
+      "name": "danny-avila/LibreChat",
+      "description": "Enhanced ChatGPT Clone: Features Agents, MCP, DeepSeek, Anthropic, AWS, OpenAI, Responses API, Azure, Groq, o1, GPT-5, Mistral, OpenRouter, Vertex AI, Gemini, Artifacts, AI model switching, message search, Code Interpreter, langchain, DALL-E-3, OpenAPI Actions, Functions, Secure Multi-User Auth, Presets, open-source for self-hosting. Active.",
+      "language": "TypeScript",
+      "stargazers_count": 36930,
+      "html_url": "https://github.com/danny-avila/LibreChat",
+      "topics": [
+        "ai",
+        "anthropic",
+        "artifacts",
+        "aws",
+        "azure",
+        "chatgpt",
+        "chatgpt-clone",
+        "claude",
+        "clone",
+        "deepseek",
+        "gemini",
+        "google",
+        "gpt-5",
+        "librechat",
+        "mcp",
+        "o1",
+        "openai",
+        "responses-api",
+        "vision",
+        "webui"
+      ]
+    },
+    {
+      "name": "systemd/systemd",
+      "description": "The systemd System and Service Manager ",
+      "language": "C",
+      "stargazers_count": 16295,
+      "html_url": "https://github.com/systemd/systemd",
+      "topics": [
+        "c",
+        "init",
+        "linux",
+        "services",
+        "system",
+        "systemd"
+      ]
+    },
+    {
+      "name": "continuedev/continue",
+      "description": "⏩ Source-controlled AI checks, enforceable in CI. Powered by the open-source Continue CLI",
+      "language": "TypeScript",
+      "stargazers_count": 33146,
+      "html_url": "https://github.com/continuedev/continue",
+      "topics": [
+        "agent",
+        "ai",
+        "cli",
+        "developer-tools",
+        "jetbrains-plugin",
+        "llm",
+        "open-source",
+        "vs-code-extenstion"
+      ]
+    },
+    {
+      "name": "astral-sh/ruff",
+      "description": "An extremely fast Python linter and code formatter, written in Rust.",
+      "language": "Rust",
+      "stargazers_count": 47493,
+      "html_url": "https://github.com/astral-sh/ruff",
+      "topics": [
+        "linter",
+        "pep8",
+        "python",
+        "python3",
+        "ruff",
+        "rust",
+        "rustpython",
+        "static-analysis",
+        "static-code-analysis",
+        "style-guide",
+        "styleguide"
+      ]
+    },
+    {
+      "name": "ggml-org/llama.cpp",
+      "description": "LLM inference in C/C++",
+      "language": "C++",
+      "stargazers_count": 109779,
+      "html_url": "https://github.com/ggml-org/llama.cpp",
+      "topics": [
+        "ggml"
+      ]
+    },
+    {
+      "name": "JuliaLang/julia",
+      "description": "The Julia Programming Language",
+      "language": "Julia",
+      "stargazers_count": 48699,
+      "html_url": "https://github.com/JuliaLang/julia",
+      "topics": [
+        "hacktoberfest",
+        "hpc",
+        "julia",
+        "julia-language",
+        "julialang",
+        "machine-learning",
+        "numerical",
+        "programming-language",
+        "science",
+        "scientific"
+      ]
+    },
+    {
+      "name": "rfxn/linux-malware-detect",
+      "description": "Multi-engine Linux malware scanner with five detection stages (MD5, HEX pattern, YARA, ClamAV, statistical), real-time inotify monitoring, quarantine, and multi-channel alerting",
+      "language": "Shell",
+      "stargazers_count": 1412,
+      "html_url": "https://github.com/rfxn/linux-malware-detect",
+      "topics": [
+        "bash",
+        "clamav",
+        "inotify",
+        "intrusion-detection",
+        "linux-security",
+        "malware-detection",
+        "security-scanner",
+        "yara"
+      ]
+    },
+    {
+      "name": "PyO3/pyo3",
+      "description": "Rust bindings for the Python interpreter",
+      "language": "Rust",
+      "stargazers_count": 15661,
+      "html_url": "https://github.com/PyO3/pyo3",
+      "topics": [
+        "binding",
+        "ffi",
+        "python",
+        "python-c-api",
+        "rust"
+      ]
+    },
+    {
+      "name": "openjdk/valhalla",
+      "description": "https://openjdk.org/projects/valhalla",
+      "language": "Java",
+      "stargazers_count": 698,
+      "html_url": "https://github.com/openjdk/valhalla",
+      "topics": []
+    },
+    {
+      "name": "microsoft/PowerToys",
+      "description": "Microsoft PowerToys is a collection of utilities that supercharge productivity and customization on Windows",
+      "language": "C#",
+      "stargazers_count": 133092,
+      "html_url": "https://github.com/microsoft/PowerToys",
+      "topics": [
+        "advanced-paste",
+        "color-picker",
+        "command-palette",
+        "desktop",
+        "fancyzones",
+        "keyboard-manager",
+        "microsoft-powertoys",
+        "powerrename",
+        "powertoys",
+        "windows",
+        "windows-10",
+        "windows-11"
+      ]
+    },
+    {
+      "name": "astral-sh/uv",
+      "description": "An extremely fast Python package and project manager, written in Rust.",
+      "language": "Rust",
+      "stargazers_count": 84808,
+      "html_url": "https://github.com/astral-sh/uv",
+      "topics": [
+        "packaging",
+        "python",
+        "resolver",
+        "uv"
+      ]
+    },
+    {
+      "name": "Kilo-Org/kilocode",
+      "description": "Kilo is the all-in-one agentic engineering platform. Build, ship, and iterate faster with the most popular open source coding agent.",
+      "language": "TypeScript",
+      "stargazers_count": 19230,
+      "html_url": "https://github.com/Kilo-Org/kilocode",
+      "topics": [
+        "ai",
+        "ai-age",
+        "ai-coding",
+        "ai-developer-tools",
+        "chatgpt",
+        "claude",
+        "cli",
+        "gemini",
+        "jetbrains",
+        "sonnet",
+        "vscode",
+        "vscode-extension"
+      ]
+    },
+    {
+      "name": "keepandroidopen/keepandroidopen.github.io",
+      "description": "Resisting Google's Android developer verification mandate",
+      "language": "HTML",
+      "stargazers_count": 349,
+      "html_url": "https://github.com/keepandroidopen/keepandroidopen.github.io",
+      "topics": []
+    },
+    {
+      "name": "cli/cli",
+      "description": "GitHub’s official command line tool",
+      "language": "Go",
+      "stargazers_count": 44356,
+      "html_url": "https://github.com/cli/cli",
+      "topics": [
+        "cli",
+        "git",
+        "github-api-v4",
+        "golang"
+      ]
+    },
+    {
+      "name": "Faithful-Resource-Pack/Faithful-64x-Bedrock",
+      "description": "The official repository for the Bedrock version of Faithful 64x",
+      "language": null,
+      "stargazers_count": 51,
+      "html_url": "https://github.com/Faithful-Resource-Pack/Faithful-64x-Bedrock",
+      "topics": [
+        "64x",
+        "64x64",
+        "bedrock",
+        "compliance",
+        "faithful",
+        "minecraft",
+        "minecraft-bedrock-edition",
+        "resource-pack",
+        "texture-pack"
+      ]
+    },
+    {
+      "name": "Mintplex-Labs/anything-llm",
+      "description": "The all-in-one AI productivity accelerator. On device and privacy first with no annoying setup or configuration.",
+      "language": "JavaScript",
+      "stargazers_count": 59940,
+      "html_url": "https://github.com/Mintplex-Labs/anything-llm",
+      "topics": [
+        "ai-agents",
+        "custom-ai-agents",
+        "deepseek",
+        "kimi",
+        "llama3",
+        "llm",
+        "lmstudio",
+        "local-llm",
+        "localai",
+        "mcp",
+        "mcp-servers",
+        "moonshot",
+        "multimodal",
+        "no-code",
+        "ollama",
+        "qwen3",
+        "rag",
+        "vector-database",
+        "web-scraping"
+      ]
+    },
+    {
+      "name": "microsoft/winget-cli",
+      "description": "WinGet is the Windows Package Manager. This project includes a CLI (Command Line Interface), PowerShell modules, and a COM (Component Object Model) API (Application Programming Interface).",
+      "language": "C++",
+      "stargazers_count": 25841,
+      "html_url": "https://github.com/microsoft/winget-cli",
+      "topics": [
+        "command-line",
+        "package-manager",
+        "windows",
+        "winget"
+      ]
+    },
+    {
+      "name": "LadybirdBrowser/ladybird",
+      "description": "Truly independent web browser",
+      "language": "C++",
+      "stargazers_count": 63316,
+      "html_url": "https://github.com/LadybirdBrowser/ladybird",
+      "topics": [
+        "browser",
+        "browser-engine"
+      ]
+    },
+    {
+      "name": "triton-lang/triton",
+      "description": "Development repository for the Triton language and compiler",
+      "language": "MLIR",
+      "stargazers_count": 19158,
+      "html_url": "https://github.com/triton-lang/triton",
+      "topics": []
+    },
+    {
+      "name": "docker-library/official-images",
+      "description": "Primary source of truth for the Docker \"Official Images\" program",
+      "language": "Shell",
+      "stargazers_count": 6956,
+      "html_url": "https://github.com/docker-library/official-images",
+      "topics": []
+    },
+    {
+      "name": "Heroic-Games-Launcher/HeroicGamesLauncher",
+      "description": "A games launcher for GOG, Amazon and Epic Games for Linux, Windows and macOS.",
+      "language": "TypeScript",
+      "stargazers_count": 11363,
+      "html_url": "https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher",
+      "topics": [
+        "amazon-prime",
+        "electron",
+        "epic-games-launcher",
+        "epic-games-store",
+        "epic-store",
+        "gaming",
+        "gog",
+        "gog-galaxy",
+        "heroic-games-launcher",
+        "linux",
+        "play-games",
+        "proton",
+        "steam",
+        "wine"
+      ]
+    },
+    {
+      "name": "microsoft/typescript-go",
+      "description": "Staging repo for development of native port of TypeScript",
+      "language": "Go",
+      "stargazers_count": 25402,
+      "html_url": "https://github.com/microsoft/typescript-go",
+      "topics": []
+    },
+    {
+      "name": "uxlfoundation/oneDNN",
+      "description": "oneAPI Deep Neural Network Library (oneDNN)",
+      "language": "C++",
+      "stargazers_count": 3991,
+      "html_url": "https://github.com/uxlfoundation/oneDNN",
+      "topics": [
+        "aarch64",
+        "amx",
+        "avx512",
+        "bfloat16",
+        "cpp",
+        "deep-learning",
+        "deep-neural-networks",
+        "library",
+        "oneapi",
+        "onednn",
+        "openmp",
+        "performance",
+        "sycl",
+        "tbb",
+        "vnni",
+        "x64",
+        "x86-64",
+        "xe-architecture"
+      ]
+    },
+    {
+      "name": "dart-lang/sdk",
+      "description": "The Dart SDK, including the VM, JS and Wasm compilers, analysis, core libraries, and more.",
+      "language": "Dart",
+      "stargazers_count": 11142,
+      "html_url": "https://github.com/dart-lang/sdk",
+      "topics": [
+        "dart",
+        "language",
+        "programming-language",
+        "sdk"
+      ]
+    },
+    {
+      "name": "hashicorp/vault",
+      "description": "A tool for secrets management, encryption as a service, and privileged access management",
+      "language": "Go",
+      "stargazers_count": 35601,
+      "html_url": "https://github.com/hashicorp/vault",
+      "topics": [
+        "go",
+        "secrets",
+        "vault"
+      ]
+    },
+    {
+      "name": "argmaxinc/argmax-oss-swift",
+      "description": "On-device Speech AI for Apple Silicon",
+      "language": "Swift",
+      "stargazers_count": 6080,
+      "html_url": "https://github.com/argmaxinc/argmax-oss-swift",
+      "topics": [
+        "inference",
+        "ios",
+        "macos",
+        "pyannote",
+        "qwen3-tts",
+        "speaker-diarization",
+        "speakerkit",
+        "speech-recognition",
+        "speech-to-text",
+        "swift",
+        "text-to-speech",
+        "transformers",
+        "ttskit",
+        "whisper",
+        "whisperkit"
+      ]
+    },
+    {
+      "name": "tailwindlabs/tailwindcss",
+      "description": "A utility-first CSS framework for rapid UI development.",
+      "language": "TypeScript",
+      "stargazers_count": 94970,
+      "html_url": "https://github.com/tailwindlabs/tailwindcss",
+      "topics": [
+        "css",
+        "css-framework",
+        "functional-css",
+        "postcss",
+        "responsive",
+        "tailwindcss",
+        "utility-classes"
+      ]
+    },
+    {
+      "name": "macports/macports-ports",
+      "description": "The MacPorts ports tree",
+      "language": "Tcl",
+      "stargazers_count": 1772,
+      "html_url": "https://github.com/macports/macports-ports",
+      "topics": [
+        "command-line",
+        "macos",
+        "macosx",
+        "macports",
+        "package-manager",
+        "ports"
+      ]
+    },
+    {
+      "name": "mozilla-firefox/firefox",
+      "description": "The official repository of Mozilla's Firefox web browser.",
+      "language": "JavaScript",
+      "stargazers_count": 12074,
+      "html_url": "https://github.com/mozilla-firefox/firefox",
+      "topics": []
+    },
+    {
+      "name": "Yeachan-Heo/oh-my-codex",
+      "description": "OmX - Oh My codeX: Your codex is not alone. Add hooks, agent teams, HUDs, and so much more.",
+      "language": "TypeScript",
+      "stargazers_count": 28389,
+      "html_url": "https://github.com/Yeachan-Heo/oh-my-codex",
+      "topics": []
+    },
+    {
+      "name": "PaperMC/Paper",
+      "description": "The most widely used, high performance Minecraft server that aims to fix gameplay and mechanics inconsistencies",
+      "language": "Java",
+      "stargazers_count": 12245,
+      "html_url": "https://github.com/PaperMC/Paper",
+      "topics": [
+        "bukkit",
+        "java",
+        "minecraft",
+        "minecraft-api",
+        "minecraft-performance",
+        "minecraft-server",
+        "paper",
+        "paper-api",
+        "papermc",
+        "tacos"
+      ]
+    },
+    {
+      "name": "openbsd/ports",
+      "description": "Read-only git conversion of OpenBSD's official cvs ports repository. Pull requests not accepted - send diffs to the ports@ mailing list.",
+      "language": "Makefile",
+      "stargazers_count": 557,
+      "html_url": "https://github.com/openbsd/ports",
+      "topics": []
+    },
+    {
+      "name": "mongodb/mongo",
+      "description": "The MongoDB Database",
+      "language": "C++",
+      "stargazers_count": 28312,
+      "html_url": "https://github.com/mongodb/mongo",
+      "topics": [
+        "c-plus-plus",
+        "database",
+        "mongodb",
+        "nosql"
+      ]
+    },
+    {
+      "name": "freebsd/freebsd-src",
+      "description": "The FreeBSD src tree publish-only repository. Experimenting with 'simple' pull requests....",
+      "language": "C",
+      "stargazers_count": 9070,
+      "html_url": "https://github.com/freebsd/freebsd-src",
+      "topics": []
+    },
+    {
+      "name": "xen-project/xen",
+      "description": "Mirror of the Xen Repository (PRs not accepted see: http://wiki.xenproject.org/wiki/Submitting_Xen_Project_Patches)",
+      "language": "C",
+      "stargazers_count": 804,
+      "html_url": "https://github.com/xen-project/xen",
+      "topics": []
+    },
+    {
+      "name": "batocera-linux/batocera.linux",
+      "description": "batocera.linux",
+      "language": "Python",
+      "stargazers_count": 3013,
+      "html_url": "https://github.com/batocera-linux/batocera.linux",
+      "topics": []
+    },
+    {
+      "name": "bitwarden/android",
+      "description": "Bitwarden mobile apps (Password Manager and Authenticator) for Android.",
+      "language": "Kotlin",
+      "stargazers_count": 8811,
+      "html_url": "https://github.com/bitwarden/android",
+      "topics": [
+        "android",
+        "bitwarden",
+        "compose",
+        "jetpack",
+        "kotlin"
+      ]
+    },
+    {
+      "name": "DioxusLabs/dioxus",
+      "description": "Fullstack app framework for web, desktop, and mobile.",
+      "language": "Rust",
+      "stargazers_count": 35994,
+      "html_url": "https://github.com/DioxusLabs/dioxus",
+      "topics": [
+        "android",
+        "css",
+        "desktop",
+        "html",
+        "ios",
+        "native",
+        "react",
+        "rust",
+        "ssr",
+        "ui",
+        "virtualdom",
+        "wasm",
+        "web"
+      ]
+    },
+    {
+      "name": "anthropics/claude-code",
+      "description": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.",
+      "language": "Shell",
+      "stargazers_count": 122889,
+      "html_url": "https://github.com/anthropics/claude-code",
+      "topics": []
+    },
+    {
+      "name": "NVIDIA/stdexec",
+      "description": "`std::execution`, the proposed C++ framework for asynchronous and parallel programming.",
+      "language": "C++",
+      "stargazers_count": 2338,
+      "html_url": "https://github.com/NVIDIA/stdexec",
+      "topics": []
+    },
+    {
+      "name": "gitlabhq/gitlabhq",
+      "description": "GitLab CE Mirror | Please open new issues in our issue tracker on GitLab.com",
+      "language": "Ruby",
+      "stargazers_count": 24335,
+      "html_url": "https://github.com/gitlabhq/gitlabhq",
+      "topics": [
+        "gitlab",
+        "rails",
+        "ruby"
+      ]
+    },
+    {
+      "name": "tauri-apps/tauri",
+      "description": "Build smaller, faster, and more secure desktop and mobile applications with a web frontend.",
+      "language": "Rust",
+      "stargazers_count": 106544,
+      "html_url": "https://github.com/tauri-apps/tauri",
+      "topics": [
+        "desktop-app",
+        "high-performance",
+        "mobile-app",
+        "native-app",
+        "rust",
+        "web-frontend",
+        "webview"
+      ]
+    },
+    {
+      "name": "anthraxx/linux-hardened",
+      "description": "Minimal supplement to upstream Kernel Self Protection Project changes. Features already provided by SELinux + Yama and archs other than multiarch arm64 / x86_64 aren't in scope. Only tags have stable history. Shared IRC channel with KSPP: irc.libera.chat #linux-hardening",
+      "language": "C",
+      "stargazers_count": 714,
+      "html_url": "https://github.com/anthraxx/linux-hardened",
+      "topics": []
+    }
+  ],
+  "notable_repos": {
+    "euxaristia/colt": {
+      "name": "colt",
+      "full_name": "euxaristia/colt",
+      "description": "A vi text editor written in Pony",
+      "language": "Pony",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/colt",
+      "homepage": "",
+      "created_at": "2026-04-07T01:42:42Z",
+      "updated_at": "2026-05-09T04:35:58Z",
+      "fork": false,
+      "license": "Unlicense",
+      "open_issues_count": 4
+    },
+    "euxaristia/VoxelPopuli": {
+      "name": "VoxelPopuli",
+      "full_name": "euxaristia/VoxelPopuli",
+      "description": "A lightweight Minecraft-inspired voxel sandbox written in Rust with OpenGL.",
+      "language": "Rust",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/VoxelPopuli",
+      "homepage": "",
+      "created_at": "2026-01-16T07:55:20Z",
+      "updated_at": "2026-04-28T23:29:21Z",
+      "fork": false,
+      "license": "Unlicense",
+      "open_issues_count": 2
+    },
+    "euxaristia/gemini-cli": {
+      "name": "gemini-cli",
+      "full_name": "euxaristia/gemini-cli",
+      "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
+      "language": "TypeScript",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/gemini-cli",
+      "homepage": "https://geminicli.com",
+      "created_at": "2026-03-13T13:48:31Z",
+      "updated_at": "2026-04-30T18:52:42Z",
+      "fork": true,
+      "license": "Apache-2.0",
+      "open_issues_count": 2
+    },
+    "euxaristia/gitee-cli": {
+      "name": "gitee-cli",
+      "full_name": "euxaristia/gitee-cli",
+      "description": "A full-featured Gitee CLI inspired by gh for GitHub",
+      "language": "Go",
+      "stargazers_count": 0,
+      "forks_count": 1,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/gitee-cli",
+      "homepage": "",
+      "created_at": "2026-02-16T01:41:36Z",
+      "updated_at": "2026-05-09T04:35:57Z",
+      "fork": false,
+      "license": "GPL-3.0",
+      "open_issues_count": 1
+    },
+    "euxaristia/pcc": {
+      "name": "pcc",
+      "full_name": "euxaristia/pcc",
+      "description": "🥒 Pickle C Compiler",
+      "language": "TypeScript",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/pcc",
+      "homepage": "",
+      "created_at": "2026-02-07T03:19:43Z",
+      "updated_at": "2026-04-22T06:16:40Z",
+      "fork": false,
+      "license": "GPL-3.0",
+      "open_issues_count": 0
+    },
+    "euxaristia/meowsh": {
+      "name": "meowsh",
+      "full_name": "euxaristia/meowsh",
+      "description": "A POSIX-compliant shell implementation",
+      "language": "Rust",
+      "stargazers_count": 1,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/meowsh",
+      "homepage": "",
+      "created_at": "2026-02-09T21:16:49Z",
+      "updated_at": "2026-05-08T21:25:58Z",
+      "fork": false,
+      "license": "Unlicense",
+      "open_issues_count": 0
+    },
+    "euxaristia/mkultra": {
+      "name": "mkultra",
+      "full_name": "euxaristia/mkultra",
+      "description": "A minimal, Unix-philosophy-compliant build tool in Pony",
+      "language": "Pony",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/mkultra",
+      "homepage": "",
+      "created_at": "2026-04-10T08:59:25Z",
+      "updated_at": "2026-04-28T06:29:54Z",
+      "fork": false,
+      "license": "Unlicense",
+      "open_issues_count": 0
+    },
+    "euxaristia/awhy": {
+      "name": "awhy",
+      "full_name": "euxaristia/awhy",
+      "description": null,
+      "language": "Go",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/awhy",
+      "homepage": "https://github.com/euxaristia/awhy/wiki",
+      "created_at": "2026-02-09T06:19:04Z",
+      "updated_at": "2026-03-04T22:19:17Z",
+      "fork": false,
+      "license": "GPL-3.0",
+      "open_issues_count": 0
+    },
+    "euxaristia/adapt": {
+      "name": "adapt",
+      "full_name": "euxaristia/adapt",
+      "description": "A paru-like wrapper for apt",
+      "language": "Rust",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/adapt",
+      "homepage": null,
+      "created_at": "2026-05-07T04:11:45Z",
+      "updated_at": "2026-05-12T22:02:09Z",
+      "fork": false,
+      "license": null,
+      "open_issues_count": 2
+    },
+    "euxaristia/Inquistor": {
+      "name": "Inquistor",
+      "full_name": "euxaristia/Inquistor",
+      "description": "Senior Incident Response Engineer Agent",
+      "language": null,
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "topics": [],
+      "html_url": "https://github.com/euxaristia/Inquistor",
+      "homepage": "",
+      "created_at": "2026-04-22T02:39:53Z",
+      "updated_at": "2026-04-22T02:43:33Z",
+      "fork": false,
+      "license": null,
+      "open_issues_count": 0
+    }
+  }
+}
