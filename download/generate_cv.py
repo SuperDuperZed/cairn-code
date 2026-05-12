@@ -1,78 +1,39 @@
 import os
 from reportlab.lib.pagesizes import A4
-from reportlab.lib.units import inch, mm
+from reportlab.lib.units import inch
 from reportlab.lib.styles import ParagraphStyle
-from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_JUSTIFY, TA_RIGHT
+from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_JUSTIFY
 from reportlab.lib import colors
 from reportlab.platypus import (
-    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, HRFlowable, KeepTogether
+    SimpleDocTemplate, Paragraph, Spacer, HRFlowable
 )
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase.pdfmetrics import registerFontFamily
 
-# ━━ Fonts ━━
 pdfmetrics.registerFont(TTFont('Carlito', '/usr/share/fonts/truetype/english/Carlito-Regular.ttf'))
 pdfmetrics.registerFont(TTFont('Carlito-Bold', '/usr/share/fonts/truetype/english/Carlito-Bold.ttf'))
 pdfmetrics.registerFont(TTFont('LiberationSerif', '/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf'))
 pdfmetrics.registerFont(TTFont('LiberationSerif-Bold', '/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf'))
-pdfmetrics.registerFont(TTFont('DejaVuSans', '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'))
-pdfmetrics.registerFont(TTFont('DejaVuSans-Bold', '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'))
 registerFontFamily('LiberationSerif', normal='LiberationSerif', bold='LiberationSerif-Bold')
 registerFontFamily('Carlito', normal='Carlito', bold='Carlito-Bold')
-registerFontFamily('DejaVuSans', normal='DejaVuSans', bold='DejaVuSans-Bold')
 
-# ━━ Palette ━━
 ACCENT = colors.HexColor('#1b7896')
 TEXT_PRIMARY = colors.HexColor('#1f1e1c')
 TEXT_MUTED = colors.HexColor('#8f8a83')
-BG_SURFACE = colors.HexColor('#e5e2de')
 BORDER = colors.HexColor('#d4d0c2')
 
-# ━━ Styles ━━
-name_style = ParagraphStyle(
-    name='Name', fontName='Carlito-Bold', fontSize=26, leading=32,
-    textColor=TEXT_PRIMARY, alignment=TA_LEFT, spaceAfter=2
-)
-headline_style = ParagraphStyle(
-    name='Headline', fontName='Carlito', fontSize=12, leading=16,
-    textColor=ACCENT, alignment=TA_LEFT, spaceAfter=4
-)
-contact_style = ParagraphStyle(
-    name='Contact', fontName='Carlito', fontSize=9.5, leading=14,
-    textColor=TEXT_MUTED, alignment=TA_LEFT, spaceAfter=1
-)
-section_title_style = ParagraphStyle(
-    name='SectionTitle', fontName='Carlito-Bold', fontSize=12, leading=16,
-    textColor=TEXT_PRIMARY, alignment=TA_LEFT, spaceBefore=14, spaceAfter=6
-)
-body_style = ParagraphStyle(
-    name='Body', fontName='LiberationSerif', fontSize=10, leading=15,
-    textColor=TEXT_PRIMARY, alignment=TA_LEFT, spaceAfter=4
-)
-bullet_style = ParagraphStyle(
-    name='Bullet', fontName='LiberationSerif', fontSize=10, leading=15,
-    textColor=TEXT_PRIMARY, alignment=TA_LEFT, spaceAfter=2,
-    leftIndent=18, bulletIndent=6
-)
-project_title_style = ParagraphStyle(
-    name='ProjectTitle', fontName='Carlito-Bold', fontSize=10.5, leading=15,
-    textColor=TEXT_PRIMARY, alignment=TA_LEFT, spaceAfter=1
-)
-project_meta_style = ParagraphStyle(
-    name='ProjectMeta', fontName='Carlito', fontSize=9, leading=13,
-    textColor=TEXT_MUTED, alignment=TA_LEFT, spaceAfter=2
-)
-tag_style = ParagraphStyle(
-    name='Tag', fontName='Carlito', fontSize=8.5, leading=12,
-    textColor=ACCENT, alignment=TA_LEFT
-)
-small_style = ParagraphStyle(
-    name='Small', fontName='LiberationSerif', fontSize=9, leading=13,
-    textColor=TEXT_MUTED, alignment=TA_LEFT, spaceAfter=2
-)
+name_style = ParagraphStyle(name='Name', fontName='Carlito-Bold', fontSize=26, leading=32, textColor=TEXT_PRIMARY, alignment=TA_LEFT, spaceAfter=2)
+headline_style = ParagraphStyle(name='Headline', fontName='Carlito', fontSize=12, leading=16, textColor=ACCENT, alignment=TA_LEFT, spaceAfter=4)
+contact_style = ParagraphStyle(name='Contact', fontName='Carlito', fontSize=9.5, leading=14, textColor=TEXT_MUTED, alignment=TA_LEFT, spaceAfter=1)
+section_title_style = ParagraphStyle(name='SectionTitle', fontName='Carlito-Bold', fontSize=12, leading=16, textColor=TEXT_PRIMARY, alignment=TA_LEFT, spaceBefore=14, spaceAfter=6)
+body_style = ParagraphStyle(name='Body', fontName='LiberationSerif', fontSize=10, leading=15, textColor=TEXT_PRIMARY, alignment=TA_LEFT, spaceAfter=4)
+bullet_style = ParagraphStyle(name='Bullet', fontName='LiberationSerif', fontSize=10, leading=15, textColor=TEXT_PRIMARY, alignment=TA_LEFT, spaceAfter=2, leftIndent=18, bulletIndent=6)
+project_title_style = ParagraphStyle(name='ProjectTitle', fontName='Carlito-Bold', fontSize=10.5, leading=15, textColor=TEXT_PRIMARY, alignment=TA_LEFT, spaceAfter=1)
+project_meta_style = ParagraphStyle(name='ProjectMeta', fontName='Carlito', fontSize=9, leading=13, textColor=TEXT_MUTED, alignment=TA_LEFT, spaceAfter=2)
+tag_style = ParagraphStyle(name='Tag', fontName='Carlito', fontSize=8.5, leading=12, textColor=ACCENT, alignment=TA_LEFT)
+small_style = ParagraphStyle(name='Small', fontName='LiberationSerif', fontSize=9, leading=13, textColor=TEXT_MUTED, alignment=TA_LEFT, spaceAfter=2)
 
-# ━━ Helpers ━━
 def bullet(text):
     return Paragraph('<bullet>&bull;</bullet> ' + text, bullet_style)
 
@@ -94,20 +55,19 @@ def project(name, meta, tags="", bullets_list=None):
     elems.append(Spacer(1, 4))
     return elems
 
-# ━━ Build ━━
 output = '/home/z/my-project/download/euxaristia_CV.pdf'
 doc = SimpleDocTemplate(
     output, pagesize=A4,
     leftMargin=0.75*inch, rightMargin=0.75*inch,
     topMargin=0.6*inch, bottomMargin=0.6*inch,
     title='euxaristia - Curriculum Vitae', author='euxaristia', creator='Z.ai',
-    subject='Open Source Contributor & Systems Programmer'
+    subject='Agentic Engineer & Open Source Contributor'
 )
 story = []
 
 # ━━ Header ━━
 story.append(Paragraph('<b>euxaristia</b>', name_style))
-story.append(Paragraph('Systems Programmer &amp; Open Source Contributor', headline_style))
+story.append(Paragraph('Agentic Engineer &amp; Open Source Contributor', headline_style))
 story.append(Paragraph(
     'github.com/euxaristia &nbsp;&bull;&nbsp; euxaristia.github.io &nbsp;&bull;&nbsp; Open to opportunities',
     contact_style))
@@ -116,27 +76,30 @@ story.append(Spacer(1, 6))
 # ━━ Summary ━━
 story.extend(section('Professional Summary'))
 story.append(Paragraph(
-    'Systems-oriented software engineer with deep expertise in low-level programming, compiler design, '
-    'and terminal tooling. Active open-source contributor since 2017 with 27+ merged pull requests to '
-    'major projects including Google Gemini CLI, posva/catimg, QwenLM/qwen-code, microsoft/node-pty, '
-    'and clockworklabs/SpacetimeDB. Author of 14 original projects spanning a vi text editor in Pony, '
-    'a POSIX-compliant shell in Rust, a Minecraft-inspired voxel engine, a C compiler written in TypeScript, '
-    'and a UNIX-style hobby kernel in Assembly. Proficient across 18 programming languages with primary '
-    'focus on Rust, Pony, TypeScript, Go, C, and Assembly.',
-    body_style))
+    'Agentic engineer who leverages AI coding assistants and agentic workflows to design, build, and ship '
+    'software across diverse domains. Active open-source contributor since 2017 with 27+ merged pull requests '
+    'to major projects including Google Gemini CLI, posva/catimg, QwenLM/qwen-code, microsoft/node-pty, '
+    'and clockworklabs/SpacetimeDB. Author of 14 original projects spanning systems programming, game engines, '
+    'compilers, and developer tooling, produced through iterative AI-assisted development. Strengths include '
+    'prompt engineering, agent workflow design, code review, debugging complex codebases, and driving contributions '
+    'to unfamiliar codebases by combining domain understanding with AI pair programming.', body_style))
 story.append(Spacer(1, 4))
 
-# ━━ Languages ━━
+# ━━ Skills ━━
 story.extend(section('Technical Skills'))
 story.append(Paragraph(
-    '<b>Languages:</b> Rust, Pony, TypeScript, Go, C, Assembly (x86_64), Zig, Shell (POSIX), '
-    'Swift, HolyC, V, Java, C++, JavaScript, HTML/CSS, Ruby, Processing', body_style))
+    '<b>Agentic Development:</b> AI pair programming, prompt engineering, multi-step agent workflows, '
+    'iterative build-test-debug cycles with AI, context window management, cross-codebase comprehension, '
+    'AI-assisted code review and debugging', body_style))
 story.append(Paragraph(
-    '<b>Domains:</b> Systems programming, compiler/toolchain development, terminal emulators and CLI tools, '
-    'game engines, kernel development, WebAssembly, OpenGL, build systems, POSIX compliance', body_style))
+    '<b>Languages Worked In (AI-assisted):</b> Rust, Pony, TypeScript, Go, C, Assembly (x86_64), Zig, '
+    'Shell, Swift, Java, C++, JavaScript', body_style))
 story.append(Paragraph(
-    '<b>Tools &amp; Platforms:</b> Git, GitHub Actions, Bun runtime, Linux, GCC/Clang, SDL3, Rayon, '
-    'STB image libraries, WebAssembly modules, Docker', body_style))
+    '<b>Domains:</b> CLI tools, game engines, compiler toolchains, terminal emulators, kernel internals, '
+    'build systems, WebAssembly, OpenGL, AI coding agents', body_style))
+story.append(Paragraph(
+    '<b>Platforms &amp; Tools:</b> Git, GitHub, GitHub Actions, Bun runtime, Linux, GCC/Clang, SDL3, '
+    'Rayon, STB image libraries, Docker', body_style))
 story.append(Spacer(1, 2))
 
 # ━━ Open Source Contributions ━━
@@ -211,9 +174,7 @@ story.extend(project(
     [
         'charmbracelet/glow: Fixed markdown code block closing fence rendering (#937)',
         'anomalyco/opencode: Bound Home/End keys to line start/end in input field (#25355)',
-        'swiftlang/swift-org-website: Contributed to Swift.org website improvements',
-        'FedoraQt/MediaWriter: Contributions to cross-platform media writer tooling',
-        'FyroxEngine/rg3d.rs: Bug fixes and improvements to the Fyrox game engine',
+        'swiftlang/swift-org-website, FedoraQt/MediaWriter, FyroxEngine/rg3d.rs: Various improvements and fixes',
     ]
 ))
 
@@ -225,11 +186,9 @@ story.extend(project(
     'Pony | Vi-style text editor',
     '',
     [
-        'Full vi modal editor implementation in the Pony programming language with insert, normal, '
-        'command, and visual modes',
-        'Features include regex substitution (:s/ command), mouse click and drag selection, clipboard '
-        'integration, and a dynamic status bar',
-        '4 open PRs representing active ongoing development of editor features and bug fixes',
+        'Vi modal editor implementation in Pony with insert, normal, command, and visual modes',
+        'Features: regex substitution, mouse click/drag selection, clipboard integration, dynamic status bar',
+        'Actively developed with 4 open feature PRs',
     ]
 ))
 
@@ -238,9 +197,8 @@ story.extend(project(
     'Rust | POSIX-compliant shell',
     '',
     [
-        'POSIX shell implementation in Rust targeting zsh compatibility including indexed arrays, '
-        'function scoping rules, and job control',
-        'Designed for correctness against the POSIX specification test suites',
+        'Shell implementation targeting zsh compatibility with indexed arrays, function scoping, and job control',
+        'Designed for correctness against POSIX specification test suites',
     ]
 ))
 
@@ -249,8 +207,7 @@ story.extend(project(
     'Rust + OpenGL | Voxel sandbox engine',
     '',
     [
-        'Minecraft-inspired voxel rendering engine with chunk generation, cloud transparency, '
-        'and multi-threaded rayon worker pool for parallel chunk computation',
+        'Minecraft-inspired voxel engine with chunk generation, cloud transparency, and rayon parallelization',
     ]
 ))
 
@@ -259,8 +216,7 @@ story.extend(project(
     'TypeScript | C compiler (Pickle C Compiler)',
     '',
     [
-        'Full C lexer, parser, and CLI compiler written in TypeScript with gcc-compatible flag parsing',
-        'Demonstrates compiler design expertise applied in an unconventional language runtime',
+        'Full C lexer, parser, and CLI compiler with gcc-compatible flag parsing',
     ]
 ))
 
@@ -269,8 +225,7 @@ story.extend(project(
     'Rust | Systems language compiler',
     '',
     [
-        'Native compiler targeting x86_64 and AArch64 Linux backends from a custom systems language',
-        'Includes code generation, register allocation, and ELF binary output',
+        'Compiler targeting x86_64 and AArch64 Linux backends with code generation and ELF output',
     ]
 ))
 
@@ -279,8 +234,7 @@ story.extend(project(
     'x86_64 Assembly | UNIX SysV hobby kernel',
     '',
     [
-        'Hobby operating system kernel written in x86_64 Assembly inspired by UNIX System V design',
-        'Implements kernel bootstrapping, interrupt handling, and basic system calls',
+        'Hobby OS kernel in Assembly inspired by UNIX System V with interrupt handling and system calls',
     ]
 ))
 
@@ -289,22 +243,21 @@ story.extend(project(
     'gitee-cli (Go), mkultra (Pony), adapt (Rust), cu-chulainn (Pony), Nimbus (Swift), ZigDoom (Zig), fireterm (Pony)',
     '',
     [
-        'gitee-cli: Full-featured Gitee CLI tool modeled after GitHub CLI (gh)',
-        'mkultra: Minimal Unix-philosophy build tool with parallel job execution and POSIX glob expansion',
-        'adapt: Paru-like APT wrapper with shell completion for Debian-based package management',
-        'ZigDoom: Doom game engine port written in Zig',
+        'gitee-cli: Full-featured Gitee CLI modeled after GitHub CLI (gh)',
+        'mkultra: Minimal Unix-philosophy build tool with parallel jobs and POSIX glob expansion',
+        'adapt: Paru-like APT wrapper with shell completion; ZigDoom: Doom engine port in Zig',
     ]
 ))
 
 # ━━ Education ━━
 story.extend(section('Education'))
 story.append(Paragraph(
-    '<b>Self-Directed Study</b> | Systems Programming, Compiler Design, Operating Systems',
+    '<b>Self-Directed Study</b> | Agentic Engineering, Systems Programming, Software Architecture',
     body_style))
 story.append(Paragraph(
-    'Extensive self-study in low-level systems programming, including OS kernel development (Farmiga), '
-    'compiler construction (Coatl, pcc), and language runtime internals. Active contributor to projects '
-    'spanning the full stack from Assembly kernels to TypeScript AI coding assistants.',
+    'Extensive self-directed learning in agentic development workflows, systems programming concepts, '
+    'and software architecture. Developed expertise in working with AI coding assistants to produce '
+    'meaningful contributions across unfamiliar codebases and languages, from Assembly kernels to TypeScript AI tools.',
     small_style
 ))
 
