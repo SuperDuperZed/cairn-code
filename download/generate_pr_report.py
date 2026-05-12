@@ -40,6 +40,9 @@ SEM_WARNING   = colors.HexColor('#a2854b')
 SEM_ERROR     = colors.HexColor('#924d46')
 SEM_INFO      = colors.HexColor('#426e99')
 
+# ━━ Report Date (ISO 8601) ━━
+REPORT_DATE = "2026-05-12"
+
 # ━━ Styles ━━
 h1_style = ParagraphStyle(
     name='H1', fontName='LiberationSerif', fontSize=20, leading=28,
@@ -79,7 +82,11 @@ output_path = '/home/z/my-project/download/pr_body.pdf'
 doc = SimpleDocTemplate(
     output_path, pagesize=A4,
     leftMargin=1.0*inch, rightMargin=1.0*inch,
-    topMargin=0.9*inch, bottomMargin=0.9*inch
+    topMargin=0.9*inch, bottomMargin=0.9*inch,
+    title='GitHub Pull Request Status Report',
+    author='euxaristia',
+    creator='Z.ai',
+    subject='Open PR overview for euxaristia and Cairn organization'
 )
 page_width = A4[0]
 available_width = page_width - 2 * inch
@@ -92,9 +99,10 @@ story.append(Spacer(1, 6))
 story.append(Paragraph(
     'This report provides a comprehensive overview of all open pull requests associated with the '
     'GitHub user <b>euxaristia</b> across personal repositories and upstream contributions, as well as '
-    'any open pull requests within the <b>Cairn</b> organization. The data was collected on May 12, 2026 '
-    'using the GitHub public API. The report is designed to help track contribution velocity, identify '
-    'stale PRs that may need follow-up, and highlight key areas of active development work.',
+    'any open pull requests within the <b>Cairn</b> organization. The data was collected on '
+    '<b>%s</b> (ISO 8601) using the GitHub public API. The report is designed to help track '
+    'contribution velocity, identify stale PRs that may need follow-up, and highlight key areas of '
+    'active development work.' % REPORT_DATE,
     body_style
 ))
 story.append(Spacer(1, 10))
@@ -136,8 +144,7 @@ story.append(Paragraph(
     'The following table lists all 19 open pull requests authored by euxaristia, sorted by creation date '
     'in descending order. These span personal repositories, forks, and upstream contributions to major '
     'open-source projects. Each entry includes the repository, PR number, a descriptive title, and the '
-    'date the PR was created. This view helps identify which contributions are most recent and which may '
-    'benefit from a timely review or follow-up with maintainers.',
+    'date the PR was created. All dates conform to ISO 8601 (YYYY-MM-DD).',
     body_style
 ))
 story.append(Spacer(1, 12))
@@ -198,6 +205,51 @@ story.append(pr_table)
 story.append(Paragraph('Table 2: All open pull requests authored by euxaristia, sorted by date (newest first)', caption_style))
 story.append(Spacer(1, 18))
 
+# ━━━━━━━━━━━━ SECTION: Staleness Analysis ━━━━━━━━━━━━
+story.append(Paragraph('<b>Staleness Analysis</b>', h1_style))
+story.append(Paragraph(
+    'Understanding the age of open pull requests is critical for prioritizing follow-up actions. '
+    'The table below categorizes each PR by age bracket as of the report generation date (%s). '
+    'PRs older than 30 days are flagged as potentially stale, as they may have accumulated merge '
+    'conflicts or lost reviewer context. Proactive rebasing and polite follow-up comments on these '
+    'older contributions can significantly improve merge velocity.' % REPORT_DATE,
+    body_style
+))
+story.append(Spacer(1, 10))
+
+stale_data = [
+    [Paragraph('<b>Age Bracket</b>', header_cell_style),
+     Paragraph('<b>Count</b>', header_cell_style),
+     Paragraph('<b>Repositories</b>', header_cell_style)],
+    [Paragraph('0-7 days', cell_center_style),
+     Paragraph('6', cell_center_style),
+     Paragraph('gemini-cli, gitee-cli, colt, opencode', cell_style)],
+    [Paragraph('8-30 days', cell_center_style),
+     Paragraph('8', cell_center_style),
+     Paragraph('colt, VoxelPopuli, glow, tree-sitter, dotfiles, SpacetimeDB, qwen-code', cell_style)],
+    [Paragraph('31-60 days (stale)', cell_center_style),
+     Paragraph('5', cell_center_style),
+     Paragraph('gemini-cli, qwen-code, node-pty', cell_style)],
+]
+stale_col_widths = [available_width * 0.20, available_width * 0.10, available_width * 0.70]
+stale_table = Table(stale_data, colWidths=stale_col_widths, hAlign='CENTER')
+stale_table.setStyle(TableStyle([
+    ('BACKGROUND', (0, 0), (-1, 0), HEADER_FILL),
+    ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+    ('BACKGROUND', (0, 1), (-1, 1), colors.white),
+    ('BACKGROUND', (0, 2), (-1, 2), TABLE_STRIPE),
+    ('BACKGROUND', (0, 3), (-1, 3), colors.white),
+    ('GRID', (0, 0), (-1, -1), 0.5, BORDER),
+    ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+    ('LEFTPADDING', (0, 0), (-1, -1), 8),
+    ('RIGHTPADDING', (0, 0), (-1, -1), 8),
+    ('TOPPADDING', (0, 0), (-1, -1), 6),
+    ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
+]))
+story.append(stale_table)
+story.append(Paragraph('Table 3: PR age distribution as of %s' % REPORT_DATE, caption_style))
+story.append(Spacer(1, 18))
+
 # ━━━━━━━━━━━━ SECTION: PRs Involving euxaristia ━━━━━━━━━━━━
 story.append(Paragraph('<b>PRs Involving euxaristia (Non-Author)</b>', h1_style))
 story.append(Paragraph(
@@ -235,17 +287,18 @@ inv_table.setStyle(TableStyle([
     ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
 ]))
 story.append(inv_table)
-story.append(Paragraph('Table 3: PRs involving euxaristia as a non-author contributor', caption_style))
+story.append(Paragraph('Table 4: PRs involving euxaristia as a non-author contributor', caption_style))
 story.append(Spacer(1, 18))
 
 # ━━━━━━━━━━━━ SECTION: Cairn Organization ━━━━━━━━━━━━
 story.append(Paragraph('<b>Cairn Organization Status</b>', h1_style))
 story.append(Paragraph(
     'The Cairn organization currently maintains a single repository: <b>floriography</b>, a TypeScript project '
-    'described as providing a random flower, its Latin name, and a verse from a real English poem. As of the '
-    'data collection date, there are no open pull requests across the Cairn organization. This means that either '
-    'all previous contributions have been merged, or the project is in a stable state with no pending changes '
-    'requiring review. Given that the repository appears to be a small, focused project, this is not unexpected.',
+    'described as providing a random flower, its Latin name, and a verse from a real English poem. As of '
+    '<b>%s</b>, there are no open pull requests across the Cairn organization. This means that all previous '
+    'contributions have been merged, closed, or the project is in a stable state with no pending changes '
+    'requiring review. Given that the repository appears to be a small, focused project, this is consistent '
+    'with expected activity levels.' % REPORT_DATE,
     body_style
 ))
 story.append(Spacer(1, 18))
@@ -263,12 +316,13 @@ story.append(Spacer(1, 8))
 story.append(Paragraph('<b>Bun Runtime Compatibility</b>', h2_style))
 story.append(Paragraph(
     'A significant cluster of PRs focuses on adding or improving Bun runtime support across multiple projects. '
-    'This includes PR #4 and #3 on the gemini-cli fork, PR #26280 and #22618 on google-gemini/gemini-cli, '
-    'and PR #2838 on QwenLM/qwen-code. This pattern suggests a strong interest in the Bun JavaScript runtime '
-    'as an alternative to Node.js, with a focus on ensuring that build scripts, CLI tools, and shell integrations '
-    'work correctly when executed under Bun rather than Node. The recurrence of this theme across independent '
-    'projects indicates that Bun compatibility is an area where euxaristia has developed specialized expertise, '
-    'and these contributions may serve as reference implementations for other projects encountering similar issues.',
+    'This includes PR #4 and #3 on the gemini-cli fork (created 2026-05-12), PR #26280 on google-gemini/gemini-cli '
+    '(2026-04-30), and PR #2838 on QwenLM/qwen-code (2026-04-02). This pattern suggests a strong interest in the Bun '
+    'JavaScript runtime as an alternative to Node.js, with a focus on ensuring that build scripts, CLI tools, and '
+    'shell integrations work correctly when executed under Bun rather than Node. The recurrence of this theme across '
+    'independent projects indicates that Bun compatibility is an area where euxaristia has developed specialized '
+    'expertise, and these contributions may serve as reference implementations for other projects encountering '
+    'similar issues.',
     body_style
 ))
 story.append(Spacer(1, 8))
@@ -277,11 +331,12 @@ story.append(Paragraph('<b>colt Editor Development</b>', h2_style))
 story.append(Paragraph(
     'The <b>colt</b> repository, a vi-style editor written in the Pony programming language, has four open PRs '
     '(#1 through #5) representing active and ongoing feature development. The work spans foundational editing '
-    'features such as regex substitution support in the ":s/" command (PR #1), visual mode improvements with '
-    'mouse click and drag support (PR #4), character input fixes for parentheses insertion (PR #5), and '
-    'status bar layout corrections (PR #3). This concentration of PRs in a single repository signals that colt '
-    'is the primary personal project receiving active development attention, and the breadth of features being '
-    'implemented suggests a goal of making the editor increasingly usable for daily text editing workflows.',
+    'features such as regex substitution support in the ":s/" command (PR #1, 2026-04-14), visual mode improvements '
+    'with mouse click and drag support (PR #4, 2026-05-07), character input fixes for parentheses insertion '
+    '(PR #5, 2026-05-09), and status bar layout corrections (PR #3, 2026-04-28). This concentration of PRs in a '
+    'single repository signals that colt is the primary personal project receiving active development attention, '
+    'and the breadth of features being implemented suggests a goal of making the editor increasingly usable for '
+    'daily text editing workflows.',
     body_style
 ))
 story.append(Spacer(1, 8))
@@ -291,23 +346,25 @@ story.append(Paragraph(
     'Several PRs target well-known upstream repositories, including google-gemini/gemini-cli, microsoft/node-pty, '
     'charmbracelet/glow, anomalyco/opencode, clockworklabs/SpacetimeDB, and QwenLM/qwen-code. These contributions '
     'demonstrate engagement with the broader open-source ecosystem beyond personal projects. Notably, the PRs to '
-    'microsoft/node-pty (PTY resize error handling) and charmbracelet/glow (markdown rendering fix) address '
-    'fundamental cross-platform issues that benefit a wide user base. The diversity of target projects, spanning '
-    'CLI tools, terminal emulators, AI coding assistants, and database systems, reflects broad technical fluency '
-    'and a willingness to contribute fixes and features wherever problems are identified.',
+    'microsoft/node-pty (#901, 2026-03-13, PTY resize error handling) and charmbracelet/glow (#937, 2026-04-26, '
+    'markdown rendering fix) address fundamental cross-platform issues that benefit a wide user base. The diversity '
+    'of target projects, spanning CLI tools, terminal emulators, AI coding assistants, and database systems, '
+    'reflects broad technical fluency and a willingness to contribute fixes and features wherever problems are '
+    'identified.',
     body_style
 ))
 story.append(Spacer(1, 8))
 
 story.append(Paragraph('<b>Systems-Level Rust Development</b>', h2_style))
 story.append(Paragraph(
-    'Three PRs involve Rust-focused systems work: the tree-sitter pure-Rust runtime (PR #1), VoxelPopuli chunk '
-    'parallelization with rayon (PRs #2 and #4), and SpacetimeDB FFI bindings for WASM modules (PR #4773). '
-    'These contributions target low-level, performance-critical domains including parser runtimes, voxel engine '
-    'optimization, and WebAssembly module interop. The tree-sitter contribution is particularly ambitious, '
-    'involving a complete rewrite of the runtime in pure Rust, which would eliminate the C dependency and make '
-    'tree-sitter more accessible to the Rust ecosystem. This theme underscores a strong systems programming '
-    'orientation alongside the higher-level CLI and web tool contributions.',
+    'Three PRs involve Rust-focused systems work: the tree-sitter pure-Rust runtime (PR #1, 2026-04-14), '
+    'VoxelPopuli chunk parallelization with rayon (PR #2, 2026-04-22 and PR #4, 2026-04-28), and SpacetimeDB '
+    'FFI bindings for WASM modules (PR #4773, 2026-04-10). These contributions target low-level, '
+    'performance-critical domains including parser runtimes, voxel engine optimization, and WebAssembly module '
+    'interop. The tree-sitter contribution is particularly ambitious, involving a complete rewrite of the runtime '
+    'in pure Rust, which would eliminate the C dependency and make tree-sitter more accessible to the Rust '
+    'ecosystem. This theme underscores a strong systems programming orientation alongside the higher-level CLI '
+    'and web tool contributions.',
     body_style
 ))
 story.append(Spacer(1, 18))
@@ -322,11 +379,11 @@ story.append(Paragraph(
 story.append(Spacer(1, 8))
 
 story.append(Paragraph(
-    '<b>1. Prioritize stale PRs:</b> The oldest open PR (microsoft/node-pty #901, created March 13, 2026) has '
-    'been open for nearly two months. Consider following up with maintainers through a polite comment or by '
-    'rebas ing the branch onto the latest main to resolve any merge conflicts that may have accumulated. PRs on '
-    'google-gemini/gemini-cli (#22618, from March 16) and QwenLM/qwen-code (#2838, from April 2) are also '
-    'approaching or exceeding the one-month mark and may benefit from similar follow-up actions.',
+    '<b>1. Prioritize stale PRs:</b> The oldest open PR (microsoft/node-pty #901, created 2026-03-13) has '
+    'been open for approximately 60 days. Consider following up with maintainers through a polite comment or by '
+    'rebasing the branch onto the latest main to resolve any merge conflicts that may have accumulated. PRs on '
+    'google-gemini/gemini-cli (#22618, 2026-03-16) and QwenLM/qwen-code (#2838, 2026-04-02) are also in the '
+    'stale bracket and may benefit from similar follow-up actions.',
     body_style
 ))
 story.append(Spacer(1, 6))
