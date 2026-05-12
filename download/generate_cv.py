@@ -77,9 +77,9 @@ story.append(Spacer(1, 6))
 story.extend(section('Professional Summary'))
 story.append(Paragraph(
     'Agentic engineer who leverages AI coding assistants and agentic workflows to design, build, and ship '
-    'software across diverse domains. Active open-source contributor since 2017 with 27+ merged pull requests '
-    'to major projects including Google Gemini CLI, posva/catimg, QwenLM/qwen-code, microsoft/node-pty, '
-    'and clockworklabs/SpacetimeDB. Author of 14 original projects spanning systems programming, game engines, '
+    'software across diverse domains. Active open-source contributor since 2017 with 17 merged pull requests '
+    'to projects including Google Gemini CLI, posva/catimg, QwenLM/qwen-code, clockworklabs/SpacetimeDB, '
+    'and swiftlang/swift-org-website. Author of 14 original projects spanning systems programming, game engines, '
     'compilers, and developer tooling, produced through iterative AI-assisted development. Strengths include '
     'prompt engineering, agent workflow design, code review, debugging complex codebases, and driving contributions '
     'to unfamiliar codebases by combining domain understanding with AI pair programming.', body_style))
@@ -113,7 +113,6 @@ story.extend(project(
         'Fixed text sanitization data loss caused by C1 control characters in CLI output rendering',
         'Resolved Bun detached mode SIGHUP issue causing process termination on signal delivery',
         'Suppressed unhandled AbortError log noise during command cancellation workflows',
-        'Additional open PRs: Bun build script detection (#26280, #26498), loading phrases UI fix (#22618)',
     ]
 ))
 
@@ -151,30 +150,29 @@ story.extend(project(
 
 story.extend(project(
     'clockworklabs/SpacetimeDB',
-    'Clockwork Labs | Rust | Open PR',
+    'Clockwork Labs | Rust | 1 merged PR',
     'clockworklabs/SpacetimeDB',
     [
-        'Authored Rust FFI crate (#4773) enabling WASM module interop via native bindings',
+        'Added version existence check before confirming module uninstall in the CLI (#4774)',
     ]
 ))
 
 story.extend(project(
-    'microsoft/node-pty',
-    'Microsoft | C++ | Open PR',
-    'microsoft/node-pty',
+    'swiftlang/swift-org-website',
+    'Apple Swift | JavaScript | 1 merged PR',
+    'swiftlang/swift-org-website',
     [
-        'Fix to swallow resize() errors after PTY process exit on both Windows and Unix (#901)',
+        'Fixed double-quoting of curl commands to enable shell substitution in Linux installation instructions (#1228)',
     ]
 ))
 
 story.extend(project(
-    'Other Contributions',
-    'Charmbracelet/glow, anomalyco/opencode, swiftlang/swift-org-website, FedoraQt/MediaWriter, FyroxEngine/rg3d.rs',
+    'Other Merged Contributions',
+    'posva/catimg, FedoraQt/MediaWriter, FyroxEngine/rg3d.rs',
     '',
     [
-        'charmbracelet/glow: Fixed markdown code block closing fence rendering (#937)',
-        'anomalyco/opencode: Bound Home/End keys to line start/end in input field (#25355)',
-        'swiftlang/swift-org-website, FedoraQt/MediaWriter, FyroxEngine/rg3d.rs: Various improvements and fixes',
+        'FedoraQt/MediaWriter: Fixed grammar in privacy documentation (#138)',
+        'FyroxEngine/rg3d.rs: Fixed typos in download page template (#47)',
     ]
 ))
 
