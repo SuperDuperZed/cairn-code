@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  @page { size: 794px 1123px; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 794px; height: 1123px; overflow: visible; background: #f3f3f2; }
+
+  .cover {
+    position: relative;
+    width: 794px;
+    height: 1123px;
+    background: #f3f3f2;
+    overflow: visible;
+  }
+
+  /* Layer 0: Background fill */
+  .bg-fill {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #f3f3f2;
+    z-index: 0;
+  }
+
+  /* Layer 1: Decorative geometric accents */
+  .accent-line-top {
+    position: absolute;
+    top: 120px;
+    left: 95px;
+    width: 200px;
+    height: 2px;
+    background: #685e43;
+    opacity: 0.35;
+    z-index: 1;
+  }
+
+  .accent-line-right {
+    position: absolute;
+    top: 180px;
+    right: 95px;
+    width: 80px;
+    height: 1.5px;
+    background: #562dce;
+    opacity: 0.25;
+    z-index: 1;
+  }
+
+  .accent-block {
+    position: absolute;
+    bottom: 160px;
+    right: 95px;
+    width: 120px;
+    height: 120px;
+    border: 1.5px solid #d4d0c2;
+    opacity: 0.5;
+    z-index: 1;
+  }
+
+  .accent-dot {
+    position: absolute;
+    bottom: 175px;
+    right: 110px;
+    width: 6px;
+    height: 6px;
+    background: #562dce;
+    opacity: 0.5;
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  /* Layer 2: Structure */
+  .divider {
+    position: absolute;
+    top: 520px;
+    left: 95px;
+    width: 604px;
+    height: 1px;
+    background: #d4d0c2;
+    opacity: 0.4;
+    z-index: 2;
+  }
+
+  /* Layer 3: Text */
+  .kicker {
+    position: absolute;
+    top: 140px;
+    left: 95px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #562dce;
+    opacity: 0.8;
+    z-index: 3;
+  }
+
+  .title {
+    position: absolute;
+    top: 200px;
+    left: 95px;
+    width: 550px;
+    font-family: 'Lora', serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.18;
+    color: #272623;
+    z-index: 3;
+  }
+
+  .subtitle {
+    position: absolute;
+    top: 420px;
+    left: 95px;
+    width: 480px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: #88857e;
+    z-index: 3;
+  }
+
+  .meta {
+    position: absolute;
+    top: 560px;
+    left: 95px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: #88857e;
+    z-index: 3;
+    line-height: 1.9;
+  }
+
+  .meta strong {
+    font-weight: 500;
+    color: #272623;
+  }
+
+  .footer-line {
+    position: absolute;
+    bottom: 95px;
+    left: 95px;
+    width: 200px;
+    height: 1px;
+    background: #d4d0c2;
+    opacity: 0.3;
+    z-index: 3;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 60px;
+    left: 95px;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #88857e;
+    opacity: 0.6;
+    z-index: 3;
+  }
+</style>
+</head>
+<body>
+  <div class="cover">
+    <div class="bg-fill"></div>
+
+    <!-- Layer 1: Decorative -->
+    <div class="accent-line-top"></div>
+    <div class="accent-line-right"></div>
+    <div class="accent-block"></div>
+    <div class="accent-dot"></div>
+
+    <!-- Layer 2: Structure -->
+    <div class="divider"></div>
+
+    <!-- Layer 3: Text -->
+    <div class="kicker">GitHub Status Report</div>
+    <div class="title">Pull Request<br>Overview</div>
+    <div class="subtitle">Comprehensive analysis of open pull requests across personal repositories and upstream open-source contributions.</div>
+
+    <div class="meta">
+      <strong>User:</strong> euxaristia &nbsp;&middot;&nbsp; <strong>Org:</strong> Cairn<br>
+      <strong>Date:</strong> May 12, 2026 &nbsp;&middot;&nbsp; <strong>Open PRs:</strong> 19
+    </div>
+
+    <div class="footer-line"></div>
+    <div class="footer">euxaristia &middot; github.com/euxaristia</div>
+  </div>
+</body>
+</html>
