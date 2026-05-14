@@ -1,0 +1,1263 @@
+{
+  "reviewed": [
+    {
+      "number": 6,
+      "title": "fix: respect paste state in auto-indent and fix sequence parsing",
+      "repo": "euxaristia/colt",
+      "url": "https://github.com/euxaristia/colt/pull/6",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-05-14T08:59:48Z",
+      "updated_at": "2026-05-14T09:02:15Z",
+      "additions": 406,
+      "deletions": 19,
+      "changed_files": 7,
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "labels": [],
+      "head_sha": "f293b904b9c5eb1565f347306d451ff6c207ce7c",
+      "ci_state": "pending",
+      "ci_statuses": [],
+      "review_states": [
+        "COMMENTED"
+      ],
+      "has_changes_requested": false,
+      "has_approved": false,
+      "reviews": [
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request implements bracketed-paste mode support, allowing the editor to handle pasted text literally by bypassing auto-pairing and auto-indentation. It introduces a PasteStat",
+          "submitted_at": "2026-05-14T09:02:15Z"
+        }
+      ],
+      "comments": [],
+      "review_comments_count": 5,
+      "commits_count": 3,
+      "last_commit_date": "2026-05-14T08:59:46Z",
+      "last_review_date": "2026-05-14T09:02:15Z",
+      "author_pushed_after_review": false,
+      "last_activity": "2026-05-14T09:02:15Z",
+      "classified_status": "reviewed",
+      "analysis_notes": [
+        "Reviews present: COMMENTED",
+        "CI pending"
+      ],
+      "days_since_update": 0
+    },
+    {
+      "number": 2,
+      "title": "fix: implement bracketed paste and persistent input buffer",
+      "repo": "euxaristia/videre",
+      "url": "https://github.com/euxaristia/videre/pull/2",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-05-14T08:49:53Z",
+      "updated_at": "2026-05-14T08:51:26Z",
+      "additions": 232,
+      "deletions": 127,
+      "changed_files": 4,
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "labels": [],
+      "head_sha": "ff140500482bf8bd7e520e4d3b55d184cc96bd9b",
+      "ci_state": "pending",
+      "ci_statuses": [],
+      "review_states": [
+        "COMMENTED"
+      ],
+      "has_changes_requested": false,
+      "has_approved": false,
+      "reviews": [
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request implements bracketed paste support to prevent auto-indentation and auto-pairing of characters when pasting text into the editor. It introduces a global input buffer f",
+          "submitted_at": "2026-05-14T08:51:26Z"
+        }
+      ],
+      "comments": [],
+      "review_comments_count": 4,
+      "commits_count": 1,
+      "last_commit_date": "2026-05-14T08:48:26Z",
+      "last_review_date": "2026-05-14T08:51:26Z",
+      "author_pushed_after_review": false,
+      "last_activity": "2026-05-14T08:51:26Z",
+      "classified_status": "reviewed",
+      "analysis_notes": [
+        "Reviews present: COMMENTED",
+        "CI pending"
+      ],
+      "days_since_update": 0
+    },
+    {
+      "number": 26498,
+      "title": "feat(cli): show acknowledgment when user steering hint is processed",
+      "repo": "google-gemini/gemini-cli",
+      "url": "https://github.com/google-gemini/gemini-cli/pull/26498",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-05-05T11:03:16Z",
+      "updated_at": "2026-05-13T02:22:30Z",
+      "additions": 190,
+      "deletions": 6,
+      "changed_files": 4,
+      "mergeable": true,
+      "mergeable_state": "unstable",
+      "labels": [
+        "priority/p2",
+        "area/agent",
+        "status/pr-nudge-sent"
+      ],
+      "head_sha": "85b5f0151d9fd880fd612fa03702bbf935006e82",
+      "ci_state": "pending",
+      "ci_statuses": [],
+      "review_states": [
+        "COMMENTED",
+        "COMMENTED",
+        "COMMENTED",
+        "COMMENTED",
+        "COMMENTED",
+        "COMMENTED",
+        "COMMENTED",
+        "COMMENTED"
+      ],
+      "has_changes_requested": false,
+      "has_approved": false,
+      "reviews": [
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request implements UI feedback for user steering hints by generating and displaying acknowledgment messages. Key changes include updating the `useGeminiStream` hook to trigge",
+          "submitted_at": "2026-05-05T11:09:34Z"
+        },
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request introduces steering hint acknowledgments in the CLI UI and implements sanitization for user inputs and background outputs to mitigate prompt injection. Key changes in",
+          "submitted_at": "2026-05-05T11:12:15Z"
+        },
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request introduces a steering acknowledgment mechanism for the Gemini CLI, allowing the UI to provide feedback when user steering hints are processed. It includes updates to ",
+          "submitted_at": "2026-05-05T11:45:48Z"
+        },
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request introduces steering acknowledgment messages in the CLI UI and enhances prompt injection mitigation by sanitizing user input and background output. It also improves th",
+          "submitted_at": "2026-05-05T11:52:08Z"
+        },
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request introduces a mechanism for generating and displaying acknowledgment messages for user steering hints, including input sanitization to prevent prompt injection and imp",
+          "submitted_at": "2026-05-05T15:26:19Z"
+        },
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request implements a mechanism for acknowledging user steering hints within the CLI. Key changes include the addition of logic in the `useGeminiStream` hook to trigger acknow",
+          "submitted_at": "2026-05-05T16:11:37Z"
+        },
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request adds steering acknowledgement messages to the CLI UI and implements prompt injection sanitization in the core utility functions. Key changes include updating `useGemi",
+          "submitted_at": "2026-05-07T06:04:45Z"
+        },
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request introduces steering acknowledgement messages in the CLI UI and enhances prompt injection mitigation by sanitizing inputs wrapped in XML tags. Key changes include upda",
+          "submitted_at": "2026-05-07T06:14:48Z"
+        }
+      ],
+      "comments": [
+        {
+          "user": "euxaristia",
+          "body": "/gemini review",
+          "created_at": "2026-05-05T11:04:35Z"
+        },
+        {
+          "user": "gemini-code-assist[bot]",
+          "body": "## Summary of Changes\n\nHello, I'm Gemini Code Assist[^1]! I'm currently reviewing this pull request and will post my feedback shortly. In the meantime, here's a summary to help you and other reviewers",
+          "created_at": "2026-05-05T11:06:42Z"
+        },
+        {
+          "user": "euxaristia",
+          "body": "Addressed in 0351b52a8:\n\n- Closing-tag regex now case-insensitive and accepts whitespace/attributes inside the tag (`<\\/([^>]+)>/gi`), so `</user_input >`, `</USER_INPUT>`, and `</user_input foo=\"bar\"",
+          "created_at": "2026-05-05T11:37:52Z"
+        },
+        {
+          "user": "euxaristia",
+          "body": "Two new items addressed:\n\n**Re: useGeminiStream.ts:2009 (signal captured for the wrong turn)** \u2014 fixed in e81028ad2. Wrapped the launch in `queueMicrotask` so the new turn's `AbortController` is insta",
+          "created_at": "2026-05-05T11:41:47Z"
+        },
+        {
+          "user": "euxaristia",
+          "body": "Both addressed in 698fcc885:\n\n**useGeminiStream.ts:2033** \u2014 good catch, real bug. The `queueMicrotask` block was scheduled before the `modelSwitchedFromQuotaError` early-return, so a hint that never g",
+          "created_at": "2026-05-05T15:23:05Z"
+        },
+        {
+          "user": "euxaristia",
+          "body": "Addressed in 1470105b2 \u2014 moved `ackTimestamp = Date.now()` inside the `queueMicrotask`. The microtask runs after `submitQuery`'s synchronous prefix (and its own `userMessageTimestamp` assignment), so ",
+          "created_at": "2026-05-05T16:08:48Z"
+        },
+        {
+          "user": "euxaristia",
+          "body": "Addressed in 1c5b1e3c3 \u2014 switched `]` from escape (`\\]`) to removal (empty string), per the repeated flag and the repo's sanitization rules. As I'd offered upthread, treating this as the stricter post",
+          "created_at": "2026-05-07T04:42:58Z"
+        },
+        {
+          "user": "euxaristia",
+          "body": "/gemini review",
+          "created_at": "2026-05-07T04:53:25Z"
+        },
+        {
+          "user": "gemini-cli[bot]",
+          "body": "Hi there! Thank you for your interest in contributing to Gemini CLI. \n\nTo ensure we maintain high code quality and focus on our prioritized roadmap, we only guarantee review and consideration of pull ",
+          "created_at": "2026-05-13T02:22:30Z"
+        }
+      ],
+      "review_comments_count": 13,
+      "commits_count": 8,
+      "last_commit_date": "2026-05-11T05:50:30Z",
+      "last_review_date": "2026-05-07T06:14:48Z",
+      "author_pushed_after_review": false,
+      "last_activity": "2026-05-13T02:22:30Z",
+      "classified_status": "reviewed",
+      "analysis_notes": [
+        "Reviews present: COMMENTED",
+        "CI pending",
+        "Latest comment by: gemini-cli[bot]"
+      ],
+      "days_since_update": 1
+    },
+    {
+      "number": 1,
+      "title": "Add shell completion for zsh and bash",
+      "repo": "euxaristia/adapt",
+      "url": "https://github.com/euxaristia/adapt/pull/1",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-05-09T00:27:04Z",
+      "updated_at": "2026-05-12T22:16:24Z",
+      "additions": 239,
+      "deletions": 0,
+      "changed_files": 3,
+      "mergeable": null,
+      "mergeable_state": "unknown",
+      "labels": [],
+      "head_sha": "1c903d99c4aab0849b672a9613e3a509f9d1e3e0",
+      "ci_state": "pending",
+      "ci_statuses": [],
+      "review_states": [
+        "COMMENTED"
+      ],
+      "has_changes_requested": false,
+      "has_approved": false,
+      "reviews": [
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request introduces shell completion support for both zsh and bash, including installation instructions in the README. The review feedback highlights several opportunities for",
+          "submitted_at": "2026-05-09T00:28:35Z"
+        }
+      ],
+      "comments": [],
+      "review_comments_count": 5,
+      "commits_count": 2,
+      "last_commit_date": "2026-05-09T00:53:59Z",
+      "last_review_date": "2026-05-09T00:28:35Z",
+      "author_pushed_after_review": false,
+      "last_activity": "2026-05-12T22:16:24Z",
+      "classified_status": "reviewed",
+      "analysis_notes": [
+        "Reviews present: COMMENTED",
+        "CI pending"
+      ],
+      "days_since_update": 1
+    },
+    {
+      "number": 4,
+      "title": "fix(build): detect Bun runtime in build scripts",
+      "repo": "euxaristia/gemini-cli",
+      "url": "https://github.com/euxaristia/gemini-cli/pull/4",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-05-12T20:35:46Z",
+      "updated_at": "2026-05-12T20:38:20Z",
+      "additions": 44,
+      "deletions": 8,
+      "changed_files": 3,
+      "mergeable": true,
+      "mergeable_state": "unstable",
+      "labels": [],
+      "head_sha": "c9f63c7940876289a8dcfe5c4ee562ec0b6a1f1d",
+      "ci_state": "pending",
+      "ci_statuses": [],
+      "review_states": [
+        "COMMENTED"
+      ],
+      "has_changes_requested": false,
+      "has_approved": false,
+      "reviews": [
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request introduces support for the Bun runtime and package manager across the project's build infrastructure, including pre-commit hooks and build scripts. It adds a detectio",
+          "submitted_at": "2026-05-12T20:38:19Z"
+        }
+      ],
+      "comments": [
+        {
+          "user": "gemini-code-assist[bot]",
+          "body": "## Summary of Changes\n\nHello, I'm Gemini Code Assist[^1]! I'm currently reviewing this pull request and will post my feedback shortly. In the meantime, here's a summary to help you and other reviewers",
+          "created_at": "2026-05-12T20:36:02Z"
+        }
+      ],
+      "review_comments_count": 2,
+      "commits_count": 5,
+      "last_commit_date": "2026-04-30T20:56:51Z",
+      "last_review_date": "2026-05-12T20:38:19Z",
+      "author_pushed_after_review": false,
+      "last_activity": "2026-05-12T20:38:20Z",
+      "classified_status": "reviewed",
+      "analysis_notes": [
+        "Reviews present: COMMENTED",
+        "CI pending",
+        "Latest comment by: gemini-code-assist[bot]"
+      ],
+      "days_since_update": 1
+    },
+    {
+      "number": 2,
+      "title": "feat: implicitly use current repo and branch context for pr commands",
+      "repo": "euxaristia/gitee-cli",
+      "url": "https://github.com/euxaristia/gitee-cli/pull/2",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-05-09T06:29:41Z",
+      "updated_at": "2026-05-09T06:31:48Z",
+      "additions": 116,
+      "deletions": 13,
+      "changed_files": 3,
+      "mergeable": true,
+      "mergeable_state": "unstable",
+      "labels": [],
+      "head_sha": "5135bc649f5c54edbddfc6b3da1d18af4bc51624",
+      "ci_state": "pending",
+      "ci_statuses": [],
+      "review_states": [
+        "COMMENTED"
+      ],
+      "has_changes_requested": false,
+      "has_approved": false,
+      "reviews": [
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request enhances the CLI by allowing repository and branch context to be inferred from the local environment, making the `--repo` flag optional and enabling the `view` comman",
+          "submitted_at": "2026-05-09T06:31:48Z"
+        }
+      ],
+      "comments": [],
+      "review_comments_count": 4,
+      "commits_count": 1,
+      "last_commit_date": "2026-05-09T06:28:36Z",
+      "last_review_date": "2026-05-09T06:31:48Z",
+      "author_pushed_after_review": false,
+      "last_activity": "2026-05-09T06:31:48Z",
+      "classified_status": "reviewed",
+      "analysis_notes": [
+        "Reviews present: COMMENTED",
+        "CI pending"
+      ],
+      "days_since_update": 5
+    },
+    {
+      "number": 4,
+      "title": "feat: mouse click moves cursor; drag enters Visual mode",
+      "repo": "euxaristia/colt",
+      "url": "https://github.com/euxaristia/colt/pull/4",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-05-07T05:37:02Z",
+      "updated_at": "2026-05-09T00:46:47Z",
+      "additions": 138,
+      "deletions": 4,
+      "changed_files": 2,
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "labels": [],
+      "head_sha": "80e522be10c72ad2bf4243924e74717ae7465102",
+      "ci_state": "pending",
+      "ci_statuses": [],
+      "review_states": [
+        "COMMENTED",
+        "COMMENTED"
+      ],
+      "has_changes_requested": false,
+      "has_approved": false,
+      "reviews": [
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request implements mouse-based cursor movement and drag-selection by adding state tracking, coordinate mapping functions, and event handlers. The input system is updated to s",
+          "submitted_at": "2026-05-07T05:42:46Z"
+        },
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request implements mouse-based cursor movement and drag-selection functionality. Key changes include updating terminal escape sequences to enable button-event tracking, addin",
+          "submitted_at": "2026-05-09T00:46:47Z"
+        }
+      ],
+      "comments": [
+        {
+          "user": "euxaristia",
+          "body": "/gemini review",
+          "created_at": "2026-05-09T00:39:35Z"
+        }
+      ],
+      "review_comments_count": 2,
+      "commits_count": 2,
+      "last_commit_date": "2026-05-09T00:29:52Z",
+      "last_review_date": "2026-05-09T00:46:47Z",
+      "author_pushed_after_review": false,
+      "last_activity": "2026-05-09T00:46:47Z",
+      "classified_status": "reviewed",
+      "analysis_notes": [
+        "Reviews present: COMMENTED",
+        "CI pending",
+        "Latest comment by: euxaristia"
+      ],
+      "days_since_update": 5
+    },
+    {
+      "number": 1,
+      "title": "feat(substitute): add regex support to :s/ command",
+      "repo": "euxaristia/colt",
+      "url": "https://github.com/euxaristia/colt/pull/1",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-04-14T06:41:21Z",
+      "updated_at": "2026-05-09T00:44:56Z",
+      "additions": 407,
+      "deletions": 11,
+      "changed_files": 5,
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "labels": [],
+      "head_sha": "929783fe935bb50dadb8b67c2734dd596686b56f",
+      "ci_state": "pending",
+      "ci_statuses": [],
+      "review_states": [
+        "COMMENTED",
+        "COMMENTED"
+      ],
+      "has_changes_requested": false,
+      "has_approved": false,
+      "reviews": [
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request replaces literal string matching in the substitute command with a custom regex engine supporting quantifiers, character classes, and anchors. Review feedback identifi",
+          "submitted_at": "2026-04-14T06:46:30Z"
+        },
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request replaces literal string matching with a custom regex engine for the editor's substitute command, supporting common patterns, quantifiers, and character classes. Feedb",
+          "submitted_at": "2026-05-09T00:44:56Z"
+        }
+      ],
+      "comments": [
+        {
+          "user": "euxaristia",
+          "body": "/gemini review",
+          "created_at": "2026-05-09T00:39:33Z"
+        }
+      ],
+      "review_comments_count": 8,
+      "commits_count": 2,
+      "last_commit_date": "2026-05-09T00:28:11Z",
+      "last_review_date": "2026-05-09T00:44:56Z",
+      "author_pushed_after_review": false,
+      "last_activity": "2026-05-09T00:44:56Z",
+      "classified_status": "reviewed",
+      "analysis_notes": [
+        "Reviews present: COMMENTED",
+        "CI pending",
+        "Latest comment by: euxaristia"
+      ],
+      "days_since_update": 5
+    },
+    {
+      "number": 5,
+      "title": "fix(editor): typing/pasting ( now actually inserts the character",
+      "repo": "euxaristia/colt",
+      "url": "https://github.com/euxaristia/colt/pull/5",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-05-09T00:01:29Z",
+      "updated_at": "2026-05-09T00:41:56Z",
+      "additions": 408,
+      "deletions": 18,
+      "changed_files": 7,
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "labels": [],
+      "head_sha": "de1314548d32b9768d6a00e5618d32791cc3ce9e",
+      "ci_state": "pending",
+      "ci_statuses": [],
+      "review_states": [
+        "COMMENTED",
+        "COMMENTED"
+      ],
+      "has_changes_requested": false,
+      "has_approved": false,
+      "reviews": [
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request implements bracketed-paste mode support to prevent auto-pairing and other side effects when pasting text into the editor. It introduces a PasteState tracker to identi",
+          "submitted_at": "2026-05-09T00:06:41Z"
+        },
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request implements bracketed paste support, allowing the editor to handle literal text insertion by bypassing auto-pairing and auto-indentation when terminal paste markers ar",
+          "submitted_at": "2026-05-09T00:41:56Z"
+        }
+      ],
+      "comments": [
+        {
+          "user": "euxaristia",
+          "body": "/gemini review",
+          "created_at": "2026-05-09T00:39:36Z"
+        }
+      ],
+      "review_comments_count": 4,
+      "commits_count": 2,
+      "last_commit_date": "2026-05-09T00:23:22Z",
+      "last_review_date": "2026-05-09T00:41:56Z",
+      "author_pushed_after_review": false,
+      "last_activity": "2026-05-09T00:41:56Z",
+      "classified_status": "reviewed",
+      "analysis_notes": [
+        "Reviews present: COMMENTED",
+        "CI pending",
+        "Latest comment by: euxaristia"
+      ],
+      "days_since_update": 5
+    },
+    {
+      "number": 3,
+      "title": "fix: prevent status bar from wrapping when narrower than its content",
+      "repo": "euxaristia/colt",
+      "url": "https://github.com/euxaristia/colt/pull/3",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-04-28T04:30:55Z",
+      "updated_at": "2026-05-09T00:41:32Z",
+      "additions": 27,
+      "deletions": 7,
+      "changed_files": 1,
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "labels": [],
+      "head_sha": "0cc91cc7dc0594f1f405ad0b324af5a82bd8d385",
+      "ci_state": "pending",
+      "ci_statuses": [],
+      "review_states": [
+        "COMMENTED",
+        "COMMENTED"
+      ],
+      "has_changes_requested": false,
+      "has_approved": false,
+      "reviews": [
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request refactors the status bar rendering logic in src/editor.pony to ensure the output fits exactly within the terminal width, preventing unwanted line wrapping. Feedback h",
+          "submitted_at": "2026-04-28T04:32:48Z"
+        },
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request refactors the status bar rendering in `src/editor.pony` to ensure the output fits within the terminal's column width. It introduces logic to truncate the left side at",
+          "submitted_at": "2026-05-09T00:41:32Z"
+        }
+      ],
+      "comments": [
+        {
+          "user": "euxaristia",
+          "body": "/gemini review",
+          "created_at": "2026-05-09T00:39:34Z"
+        }
+      ],
+      "review_comments_count": 2,
+      "commits_count": 2,
+      "last_commit_date": "2026-05-09T00:29:07Z",
+      "last_review_date": "2026-05-09T00:41:32Z",
+      "author_pushed_after_review": false,
+      "last_activity": "2026-05-09T00:41:32Z",
+      "classified_status": "reviewed",
+      "analysis_notes": [
+        "Reviews present: COMMENTED",
+        "CI pending",
+        "Latest comment by: euxaristia"
+      ],
+      "days_since_update": 5
+    },
+    {
+      "number": 1,
+      "title": "feat: add protected-branch check to git safety rules",
+      "repo": "euxaristia/dotfiles",
+      "url": "https://github.com/euxaristia/dotfiles/pull/1",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-04-13T21:21:51Z",
+      "updated_at": "2026-05-08T23:59:52Z",
+      "additions": 17,
+      "deletions": 0,
+      "changed_files": 2,
+      "mergeable": null,
+      "mergeable_state": "unknown",
+      "labels": [],
+      "head_sha": "a11f3e889412f11ce1b5d93e794c9ec1672add87",
+      "ci_state": "pending",
+      "ci_statuses": [],
+      "review_states": [
+        "COMMENTED",
+        "COMMENTED"
+      ],
+      "has_changes_requested": false,
+      "has_approved": false,
+      "reviews": [
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request updates CLAUDE.md to include a guideline for checking branch protection before pushing. Feedback suggests using a more reliable GitHub API endpoint and query to deter",
+          "submitted_at": "2026-04-13T21:26:18Z"
+        },
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request updates CLAUDE.md to include a guideline for checking branch protection before pushing. A suggestion was made to use :owner and :repo placeholders in the gh api comma",
+          "submitted_at": "2026-04-14T01:26:59Z"
+        }
+      ],
+      "comments": [
+        {
+          "user": "euxaristia",
+          "body": "/gemini review",
+          "created_at": "2026-04-14T01:25:53Z"
+        }
+      ],
+      "review_comments_count": 2,
+      "commits_count": 3,
+      "last_commit_date": "2026-04-17T06:02:48Z",
+      "last_review_date": "2026-04-14T01:26:59Z",
+      "author_pushed_after_review": false,
+      "last_activity": "2026-05-08T23:59:52Z",
+      "classified_status": "reviewed",
+      "analysis_notes": [
+        "Reviews present: COMMENTED",
+        "CI pending",
+        "Latest comment by: euxaristia"
+      ],
+      "days_since_update": 5
+    },
+    {
+      "number": 26280,
+      "title": "fix(build): detect Bun runtime in build scripts to avoid hardcoded npm",
+      "repo": "google-gemini/gemini-cli",
+      "url": "https://github.com/google-gemini/gemini-cli/pull/26280",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-04-30T19:29:27Z",
+      "updated_at": "2026-05-08T02:21:58Z",
+      "additions": 44,
+      "deletions": 8,
+      "changed_files": 3,
+      "mergeable": true,
+      "mergeable_state": "unstable",
+      "labels": [
+        "priority/p2",
+        "area/platform",
+        "status/pr-nudge-sent"
+      ],
+      "head_sha": "c9f63c7940876289a8dcfe5c4ee562ec0b6a1f1d",
+      "ci_state": "pending",
+      "ci_statuses": [],
+      "review_states": [
+        "COMMENTED",
+        "COMMENTED",
+        "COMMENTED",
+        "COMMENTED",
+        "COMMENTED",
+        "COMMENTED",
+        "COMMENTED"
+      ],
+      "has_changes_requested": false,
+      "has_approved": false,
+      "reviews": [
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request introduces support for the Bun runtime across the project's build and pre-commit scripts. Key changes include environment detection to switch between npm and bun for ",
+          "submitted_at": "2026-04-30T19:32:19Z"
+        },
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request introduces support for the Bun package manager across the project's build scripts and pre-commit hooks. The changes include dynamic package manager detection and opti",
+          "submitted_at": "2026-04-30T19:50:29Z"
+        },
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request introduces support for the Bun runtime across the project's build and pre-commit scripts. It includes logic to detect the package manager and adjust commands accordin",
+          "submitted_at": "2026-04-30T20:13:40Z"
+        },
+        {
+          "user": "euxaristia",
+          "state": "COMMENTED",
+          "body": "",
+          "submitted_at": "2026-04-30T20:36:04Z"
+        },
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request introduces support for the Bun runtime across the project's build scripts and pre-commit hooks. It adds logic to detect the environment and switch between npm and Bun",
+          "submitted_at": "2026-04-30T20:40:58Z"
+        },
+        {
+          "user": "euxaristia",
+          "state": "COMMENTED",
+          "body": "",
+          "submitted_at": "2026-04-30T20:57:07Z"
+        },
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request introduces support for the Bun runtime across the project's build and git hook scripts. It updates the pre-commit hook to detect and use Bun if available, and modifie",
+          "submitted_at": "2026-04-30T20:59:20Z"
+        }
+      ],
+      "comments": [
+        {
+          "user": "gemini-code-assist[bot]",
+          "body": "## Summary of Changes\n\nHello, I'm Gemini Code Assist[^1]! I'm currently reviewing this pull request and will post my feedback shortly. In the meantime, here's a summary to help you and other reviewers",
+          "created_at": "2026-04-30T19:29:37Z"
+        },
+        {
+          "user": "euxaristia",
+          "body": "/gemini review",
+          "created_at": "2026-04-30T19:46:46Z"
+        },
+        {
+          "user": "euxaristia",
+          "body": "/gemini review",
+          "created_at": "2026-04-30T20:11:28Z"
+        },
+        {
+          "user": "euxaristia",
+          "body": "/gemini review",
+          "created_at": "2026-04-30T20:36:05Z"
+        },
+        {
+          "user": "euxaristia",
+          "body": "/gemini review",
+          "created_at": "2026-04-30T20:57:08Z"
+        },
+        {
+          "user": "gemini-cli[bot]",
+          "body": "Hi there! Thank you for your interest in contributing to Gemini CLI. \n\nTo ensure we maintain high code quality and focus on our prioritized roadmap, we only guarantee review and consideration of pull ",
+          "created_at": "2026-05-08T02:21:58Z"
+        }
+      ],
+      "review_comments_count": 8,
+      "commits_count": 5,
+      "last_commit_date": "2026-04-30T20:56:51Z",
+      "last_review_date": "2026-04-30T20:59:20Z",
+      "author_pushed_after_review": false,
+      "last_activity": "2026-05-08T02:21:58Z",
+      "classified_status": "reviewed",
+      "analysis_notes": [
+        "Reviews present: COMMENTED",
+        "CI pending",
+        "Latest comment by: gemini-cli[bot]"
+      ],
+      "days_since_update": 6
+    }
+  ],
+  "in_review_cycle": [
+    {
+      "number": 2838,
+      "title": "feat: add bun runtime support",
+      "repo": "QwenLM/qwen-code",
+      "url": "https://github.com/QwenLM/qwen-code/pull/2838",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-04-02T20:40:44Z",
+      "updated_at": "2026-05-14T07:48:48Z",
+      "additions": 3434,
+      "deletions": 6,
+      "changed_files": 6,
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "labels": [],
+      "head_sha": "440ecd267793781ddd3a9cb0dec2ca8c4a89007c",
+      "ci_state": "pending",
+      "ci_statuses": [],
+      "review_states": [
+        "CHANGES_REQUESTED",
+        "CHANGES_REQUESTED"
+      ],
+      "has_changes_requested": true,
+      "has_approved": false,
+      "reviews": [
+        {
+          "user": "wenshao",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "submitted_at": "2026-04-24T06:11:26Z"
+        },
+        {
+          "user": "wenshao",
+          "state": "CHANGES_REQUESTED",
+          "body": "The added `bun.lock` appears to be generated from stale or incomplete manifests. For example, it records `@lydell/node-pty` packages as `1.1.0` while the current manifests and npm lock use `1.2.0-beta",
+          "submitted_at": "2026-04-24T23:31:33Z"
+        }
+      ],
+      "comments": [
+        {
+          "user": "DennisYu07",
+          "body": "Hi @euxaristia, thank you for your contribution! bun support is on our roadmap as a next-step feature. We'll conduct a thorough design review before merging this PR, so we'll need some additional time",
+          "created_at": "2026-04-03T03:18:00Z"
+        },
+        {
+          "user": "euxaristia",
+          "body": "Ok I will fix these issues soon, my CachyOS bricked itself so I need some time to reinstall. I should be able to address the requested changes in a week or less.",
+          "created_at": "2026-04-24T06:14:45Z"
+        },
+        {
+          "user": "euxaristia",
+          "body": "Thanks for the thorough review, @wenshao. My machine is finally back, so I just pushed a rebased version that addresses most of the comments. Summary:\n\n| Comment | Fix |\n|---|---|\n| Root `version` / `",
+          "created_at": "2026-04-24T23:10:45Z"
+        },
+        {
+          "user": "euxaristia",
+          "body": "Thanks for the thorough reviews, @wenshao. I've pushed a new commit that addresses all outstanding comments:\n\n**Round 2 fixes:**\n\n| Comment | Fix |\n|---|---|\n| `bun.lock` stale versions (`@lydell/node",
+          "created_at": "2026-05-14T07:48:48Z"
+        }
+      ],
+      "review_comments_count": 17,
+      "commits_count": 2,
+      "last_commit_date": "2026-05-14T07:47:54Z",
+      "last_review_date": "2026-04-24T23:31:33Z",
+      "author_pushed_after_review": true,
+      "last_activity": "2026-05-14T07:48:48Z",
+      "classified_status": "in_review_cycle",
+      "analysis_notes": [
+        "Changes requested, author pushed follow-up commits",
+        "CI pending",
+        "Latest comment by: euxaristia"
+      ],
+      "days_since_update": 0
+    }
+  ],
+  "awaiting_review": [
+    {
+      "number": 3,
+      "title": "fix(core): make shell tool work under Bun",
+      "repo": "euxaristia/gemini-cli",
+      "url": "https://github.com/euxaristia/gemini-cli/pull/3",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-05-12T20:05:43Z",
+      "updated_at": "2026-05-12T20:05:50Z",
+      "additions": 39,
+      "deletions": 5,
+      "changed_files": 3,
+      "mergeable": true,
+      "mergeable_state": "unstable",
+      "labels": [],
+      "head_sha": "44941d320986b8c4080b0d404e7aaf5a14facce4",
+      "ci_state": "pending",
+      "ci_statuses": [],
+      "review_states": [],
+      "has_changes_requested": false,
+      "has_approved": false,
+      "reviews": [],
+      "comments": [
+        {
+          "user": "gemini-code-assist[bot]",
+          "body": "> [!WARNING]\n> Gemini encountered an error creating the summary. You can try again by commenting `/gemini summary`.",
+          "created_at": "2026-05-12T20:05:50Z"
+        }
+      ],
+      "review_comments_count": 0,
+      "commits_count": 1,
+      "last_commit_date": "2026-05-12T20:05:24Z",
+      "last_review_date": "",
+      "author_pushed_after_review": false,
+      "last_activity": "2026-05-12T20:05:50Z",
+      "classified_status": "awaiting_review",
+      "analysis_notes": [
+        "CI pending",
+        "Latest comment by: gemini-code-assist[bot]"
+      ],
+      "days_since_update": 1
+    },
+    {
+      "number": 25355,
+      "title": "fix(tui): bind home/end to line start/end in input",
+      "repo": "anomalyco/opencode",
+      "url": "https://github.com/anomalyco/opencode/pull/25355",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-05-01T20:10:08Z",
+      "updated_at": "2026-05-11T01:39:11Z",
+      "additions": 192,
+      "deletions": 192,
+      "changed_files": 20,
+      "mergeable": null,
+      "mergeable_state": "unknown",
+      "labels": [],
+      "head_sha": "d3bda7e85b1b41c05e6d6e9f9754e7ccf4b76f17",
+      "ci_state": "pending",
+      "ci_statuses": [],
+      "review_states": [],
+      "has_changes_requested": false,
+      "has_approved": false,
+      "reviews": [],
+      "comments": [
+        {
+          "user": "github-actions[bot]",
+          "body": "<!-- pr-standards:issue -->\nThanks for your contribution!\n\nThis PR doesn't have a linked issue. All PRs must reference an existing issue.\n\nPlease:\n1. Open an issue describing the bug/feature (if one d",
+          "created_at": "2026-05-01T20:10:26Z"
+        },
+        {
+          "user": "github-actions[bot]",
+          "body": "_The following comment was made by an LLM, it may be inaccurate:_\n\nFound a potential duplicate:\n\n**PR #19135: \"fix(opencode): restore Home/End prompt navigation in TUI\"**\n- https://github.com/anomalyc",
+          "created_at": "2026-05-01T20:10:59Z"
+        },
+        {
+          "user": "github-actions[bot]",
+          "body": "Thanks for updating your PR! It now meets our contributing guidelines. :+1:",
+          "created_at": "2026-05-01T20:16:43Z"
+        }
+      ],
+      "review_comments_count": 0,
+      "commits_count": 2,
+      "last_commit_date": "2026-05-01T20:14:46Z",
+      "last_review_date": "",
+      "author_pushed_after_review": false,
+      "last_activity": "2026-05-11T01:39:11Z",
+      "classified_status": "awaiting_review",
+      "analysis_notes": [
+        "CI pending",
+        "Latest comment by: github-actions[bot]"
+      ],
+      "days_since_update": 3
+    }
+  ],
+  "stale": [
+    {
+      "number": 4,
+      "title": "Parallelize chunk generation across rayon worker pool",
+      "repo": "euxaristia/VoxelPopuli",
+      "url": "https://github.com/euxaristia/VoxelPopuli/pull/4",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-04-28T23:04:07Z",
+      "updated_at": "2026-04-28T23:40:17Z",
+      "additions": 127,
+      "deletions": 117,
+      "changed_files": 2,
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "labels": [],
+      "head_sha": "fbfddbe7548d4f71b9191307bed38727d8c07a20",
+      "ci_state": "pending",
+      "ci_statuses": [],
+      "review_states": [
+        "COMMENTED"
+      ],
+      "has_changes_requested": false,
+      "has_approved": false,
+      "reviews": [
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request refactors the chunk generation system to be asynchronous by offloading terrain generation to a Rayon worker pool. It introduces new state flags to manage the lifecycl",
+          "submitted_at": "2026-04-28T23:07:15Z"
+        }
+      ],
+      "comments": [],
+      "review_comments_count": 3,
+      "commits_count": 2,
+      "last_commit_date": "2026-04-28T23:40:06Z",
+      "last_review_date": "2026-04-28T23:07:15Z",
+      "author_pushed_after_review": false,
+      "last_activity": "2026-04-28T23:40:17Z",
+      "classified_status": "stale",
+      "analysis_notes": [
+        "Reviews present: COMMENTED",
+        "STALE: no activity for 15 days",
+        "CI pending"
+      ],
+      "days_since_update": 15
+    },
+    {
+      "number": 4773,
+      "title": "feat(bindings-cpp-ffi): add Rust FFI crate for WASM modules",
+      "repo": "clockworklabs/SpacetimeDB",
+      "url": "https://github.com/clockworklabs/SpacetimeDB/pull/4773",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-04-10T04:22:37Z",
+      "updated_at": "2026-04-28T05:33:51Z",
+      "additions": 2417,
+      "deletions": 0,
+      "changed_files": 6,
+      "mergeable": true,
+      "mergeable_state": "unstable",
+      "labels": [],
+      "head_sha": "45329dffd0cec25fb5c5cc21462770d827aaeb57",
+      "ci_state": "success",
+      "ci_statuses": [
+        {
+          "context": "license/cla",
+          "state": "success",
+          "description": "Contributor License Agreement is signed."
+        }
+      ],
+      "review_states": [
+        "COMMENTED"
+      ],
+      "has_changes_requested": false,
+      "has_approved": false,
+      "reviews": [
+        {
+          "user": "chatgpt-codex-connector[bot]",
+          "state": "COMMENTED",
+          "body": "\n### \ud83d\udca1 Codex Review\n\nHere are some automated review suggestions for this pull request.\n\n**Reviewed commit:** `bb1e667316`\n    \n\n<details> <summary>\u2139\ufe0f About Codex in GitHub</summary>\n<br/>\n\n[Your team ",
+          "submitted_at": "2026-04-10T04:29:31Z"
+        }
+      ],
+      "comments": [
+        {
+          "user": "euxaristia",
+          "body": "@codex review",
+          "created_at": "2026-04-10T05:28:08Z"
+        },
+        {
+          "user": "chatgpt-codex-connector[bot]",
+          "body": "You have reached your Codex usage limits for code reviews. You can see your limits in the [Codex usage dashboard](https://chatgpt.com/codex/cloud/settings/usage).",
+          "created_at": "2026-04-10T05:28:16Z"
+        },
+        {
+          "user": "bfops",
+          "body": "Hi @euxaristia, what's the goal of this PR? Why is this version preferable to what's there? Is it intended as a replacement?",
+          "created_at": "2026-04-27T17:45:00Z"
+        },
+        {
+          "user": "euxaristia",
+          "body": "@bfops rewrites the C++ binding layer in Rust. The C++ side has integration tests (type-isolation, client-comparison) but zero unit tests on the internal logic, so edge cases/errors aren't covered. Th",
+          "created_at": "2026-04-28T05:33:51Z"
+        }
+      ],
+      "review_comments_count": 2,
+      "commits_count": 2,
+      "last_commit_date": "2026-04-28T03:14:50Z",
+      "last_review_date": "2026-04-10T04:29:31Z",
+      "author_pushed_after_review": false,
+      "last_activity": "2026-04-28T05:33:51Z",
+      "classified_status": "stale",
+      "analysis_notes": [
+        "Reviews present: COMMENTED",
+        "STALE: no activity for 16 days",
+        "Latest comment by: euxaristia"
+      ],
+      "days_since_update": 16
+    },
+    {
+      "number": 937,
+      "title": "fix: ensure closing fence in WrapCodeBlock is on its own line",
+      "repo": "charmbracelet/glow",
+      "url": "https://github.com/charmbracelet/glow/pull/937",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-04-26T19:33:29Z",
+      "updated_at": "2026-04-26T19:33:29Z",
+      "additions": 3,
+      "deletions": 0,
+      "changed_files": 1,
+      "mergeable": true,
+      "mergeable_state": "unstable",
+      "labels": [],
+      "head_sha": "498648f59ee8e3d8adf574dcbfbcc85b988a97b3",
+      "ci_state": "pending",
+      "ci_statuses": [],
+      "review_states": [],
+      "has_changes_requested": false,
+      "has_approved": false,
+      "reviews": [],
+      "comments": [],
+      "review_comments_count": 0,
+      "commits_count": 1,
+      "last_commit_date": "2026-04-26T19:32:28Z",
+      "last_review_date": "",
+      "author_pushed_after_review": false,
+      "last_activity": "2026-04-26T19:33:29Z",
+      "classified_status": "stale",
+      "analysis_notes": [
+        "STALE: no activity for 17 days",
+        "CI pending"
+      ],
+      "days_since_update": 17
+    },
+    {
+      "number": 2,
+      "title": "chore(deps): replace image and rayon with smaller alternatives",
+      "repo": "euxaristia/VoxelPopuli",
+      "url": "https://github.com/euxaristia/VoxelPopuli/pull/2",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-04-22T04:03:20Z",
+      "updated_at": "2026-04-22T04:05:00Z",
+      "additions": 26,
+      "deletions": 8,
+      "changed_files": 4,
+      "mergeable": null,
+      "mergeable_state": "unknown",
+      "labels": [],
+      "head_sha": "c5ad37ef719aeb559d6176d572cca42ddceda941",
+      "ci_state": "pending",
+      "ci_statuses": [],
+      "review_states": [
+        "COMMENTED"
+      ],
+      "has_changes_requested": false,
+      "has_approved": false,
+      "reviews": [
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request removes the image and rayon dependencies, replacing them with the png crate for texture loading and std::thread::spawn for chunk meshing. However, the transition to s",
+          "submitted_at": "2026-04-22T04:05:00Z"
+        }
+      ],
+      "comments": [],
+      "review_comments_count": 2,
+      "commits_count": 1,
+      "last_commit_date": "2026-04-22T04:03:11Z",
+      "last_review_date": "2026-04-22T04:05:00Z",
+      "author_pushed_after_review": false,
+      "last_activity": "2026-04-22T04:05:00Z",
+      "classified_status": "stale",
+      "analysis_notes": [
+        "Reviews present: COMMENTED",
+        "STALE: no activity for 22 days",
+        "CI pending"
+      ],
+      "days_since_update": 22
+    },
+    {
+      "number": 1,
+      "title": "feat(runtime): pure-Rust runtime crate; port point.c",
+      "repo": "euxaristia/tree-sitter",
+      "url": "https://github.com/euxaristia/tree-sitter/pull/1",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-04-14T06:31:17Z",
+      "updated_at": "2026-04-14T06:41:38Z",
+      "additions": 241,
+      "deletions": 0,
+      "changed_files": 6,
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "labels": [],
+      "head_sha": "e6ca41cdfcfda18b476ffc0454580c088a540665",
+      "ci_state": "pending",
+      "ci_statuses": [],
+      "review_states": [
+        "COMMENTED"
+      ],
+      "has_changes_requested": false,
+      "has_approved": false,
+      "reviews": [
+        {
+          "user": "gemini-code-assist[bot]",
+          "state": "COMMENTED",
+          "body": "## Code Review\n\nThis pull request initiates the incremental port of the tree-sitter C runtime to Rust, starting with the point-related logic. It introduces a new `tree-sitter-runtime` crate, re-implem",
+          "submitted_at": "2026-04-14T06:33:01Z"
+        }
+      ],
+      "comments": [],
+      "review_comments_count": 4,
+      "commits_count": 2,
+      "last_commit_date": "2026-04-14T06:41:36Z",
+      "last_review_date": "2026-04-14T06:33:01Z",
+      "author_pushed_after_review": false,
+      "last_activity": "2026-04-14T06:41:38Z",
+      "classified_status": "stale",
+      "analysis_notes": [
+        "Reviews present: COMMENTED",
+        "STALE: no activity for 30 days",
+        "CI pending"
+      ],
+      "days_since_update": 30
+    },
+    {
+      "number": 901,
+      "title": "fix: swallow resize() errors after PTY exit on Windows and Unix",
+      "repo": "microsoft/node-pty",
+      "url": "https://github.com/microsoft/node-pty/pull/901",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-03-13T15:11:41Z",
+      "updated_at": "2026-03-13T15:21:49Z",
+      "additions": 8,
+      "deletions": 2,
+      "changed_files": 2,
+      "mergeable": true,
+      "mergeable_state": "unstable",
+      "labels": [],
+      "head_sha": "84f857c6de011b5fbae534e5ca820bc49b5f3d39",
+      "ci_state": "pending",
+      "ci_statuses": [],
+      "review_states": [],
+      "has_changes_requested": false,
+      "has_approved": false,
+      "reviews": [],
+      "comments": [
+        {
+          "user": "euxaristia",
+          "body": "> @euxaristia please read the following Contributor License Agreement(CLA). If you agree with the CLA, please reply with the following information.\r\n> \r\n> ```\r\n> @microsoft-github-policy-service agree",
+          "created_at": "2026-03-13T15:21:35Z"
+        }
+      ],
+      "review_comments_count": 0,
+      "commits_count": 2,
+      "last_commit_date": "2026-03-13T15:14:47Z",
+      "last_review_date": "",
+      "author_pushed_after_review": false,
+      "last_activity": "2026-03-13T15:21:49Z",
+      "classified_status": "stale",
+      "analysis_notes": [
+        "STALE: no activity for 61 days",
+        "CI pending",
+        "Latest comment by: euxaristia"
+      ],
+      "days_since_update": 61
+    }
+  ]
+}
