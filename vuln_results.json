@@ -1,0 +1,331 @@
+{
+  "checked_at": "2026-05-15T04:53:24Z",
+  "total_packages": 51,
+  "total_vulns": 36,
+  "vulnerabilities": [
+    {
+      "package": "marked",
+      "ghsa_id": "GHSA-6v9c-7cg6-27q7",
+      "cve_id": "CVE-2026-41680",
+      "severity": "high",
+      "summary": "Marked Vulnerable to OOM Denial of Service via Infinite Recursion in marked Tokenizer",
+      "published_at": "2026-04-29T22:12:20Z",
+      "url": "https://github.com/advisories/GHSA-6v9c-7cg6-27q7"
+    },
+    {
+      "package": "simple-git",
+      "ghsa_id": "GHSA-hffm-xvc3-vprc",
+      "cve_id": "CVE-2026-6951",
+      "severity": "high",
+      "summary": "simple-git is vulnerable to Remote Code Execution",
+      "published_at": "2026-04-25T06:30:23Z",
+      "url": "https://github.com/advisories/GHSA-hffm-xvc3-vprc"
+    },
+    {
+      "package": "simple-git",
+      "ghsa_id": "GHSA-jcxm-m3jx-f287",
+      "cve_id": "CVE-2026-28291",
+      "severity": "high",
+      "summary": "simple-git Affected by Command Execution via Option-Parsing Bypass",
+      "published_at": "2026-04-13T16:35:37Z",
+      "url": "https://github.com/advisories/GHSA-jcxm-m3jx-f287"
+    },
+    {
+      "package": "lodash-es",
+      "ghsa_id": "GHSA-r5fr-rjxr-66jc",
+      "cve_id": "CVE-2026-4800",
+      "severity": "high",
+      "summary": "lodash vulnerable to Code Injection via `_.template` imports key names",
+      "published_at": "2026-04-01T23:51:12Z",
+      "url": "https://github.com/advisories/GHSA-r5fr-rjxr-66jc"
+    },
+    {
+      "package": "undici",
+      "ghsa_id": "GHSA-vrm6-8vpv-qv8q",
+      "cve_id": "CVE-2026-1526",
+      "severity": "high",
+      "summary": "Undici has Unbounded Memory Consumption in WebSocket permessage-deflate Decompression",
+      "published_at": "2026-03-13T20:41:56Z",
+      "url": "https://github.com/advisories/GHSA-vrm6-8vpv-qv8q"
+    },
+    {
+      "package": "undici",
+      "ghsa_id": "GHSA-v9p9-hfj2-hcw8",
+      "cve_id": "CVE-2026-2229",
+      "severity": "high",
+      "summary": "Undici has Unhandled Exception in WebSocket Client Due to Invalid server_max_window_bits Validation",
+      "published_at": "2026-03-13T20:41:41Z",
+      "url": "https://github.com/advisories/GHSA-v9p9-hfj2-hcw8"
+    },
+    {
+      "package": "undici",
+      "ghsa_id": "GHSA-f269-vfmq-vjvj",
+      "cve_id": "CVE-2026-1528",
+      "severity": "high",
+      "summary": "Undici: Malicious WebSocket 64-bit length overflows parser and crashes the client",
+      "published_at": "2026-03-13T20:07:26Z",
+      "url": "https://github.com/advisories/GHSA-f269-vfmq-vjvj"
+    },
+    {
+      "package": "minimatch",
+      "ghsa_id": "GHSA-7r86-cg39-jmmj",
+      "cve_id": "CVE-2026-27903",
+      "severity": "high",
+      "summary": "minimatch has ReDoS: matchOne() combinatorial backtracking via multiple non-adjacent GLOBSTAR segments",
+      "published_at": "2026-02-26T22:10:18Z",
+      "url": "https://github.com/advisories/GHSA-7r86-cg39-jmmj"
+    },
+    {
+      "package": "minimatch",
+      "ghsa_id": "GHSA-23c5-xmqv-rm74",
+      "cve_id": "CVE-2026-27904",
+      "severity": "high",
+      "summary": "minimatch ReDoS: nested *() extglobs generate catastrophically backtracking regular expressions",
+      "published_at": "2026-02-26T22:07:15Z",
+      "url": "https://github.com/advisories/GHSA-23c5-xmqv-rm74"
+    },
+    {
+      "package": "minimatch",
+      "ghsa_id": "GHSA-3ppc-4f35-3m26",
+      "cve_id": "CVE-2026-26996",
+      "severity": "high",
+      "summary": "minimatch has a ReDoS via repeated wildcards with non-matching literal in pattern",
+      "published_at": "2026-02-18T22:38:11Z",
+      "url": "https://github.com/advisories/GHSA-3ppc-4f35-3m26"
+    },
+    {
+      "package": "@modelcontextprotocol/sdk",
+      "ghsa_id": "GHSA-345p-7cg4-v4c7",
+      "cve_id": "CVE-2026-25536",
+      "severity": "high",
+      "summary": "@modelcontextprotocol/sdk has cross-client data leak via shared server/transport instance reuse",
+      "published_at": "2026-02-04T20:04:16Z",
+      "url": "https://github.com/advisories/GHSA-345p-7cg4-v4c7"
+    },
+    {
+      "package": "@modelcontextprotocol/sdk",
+      "ghsa_id": "GHSA-8r9q-7v3j-jr4g",
+      "cve_id": "CVE-2026-0621",
+      "severity": "high",
+      "summary": "Anthropic's MCP TypeScript SDK has a ReDoS vulnerability",
+      "published_at": "2026-01-05T21:30:33Z",
+      "url": "https://github.com/advisories/GHSA-8r9q-7v3j-jr4g"
+    },
+    {
+      "package": "@modelcontextprotocol/sdk",
+      "ghsa_id": "GHSA-w48q-cv73-mx4w",
+      "cve_id": "CVE-2025-66414",
+      "severity": "high",
+      "summary": "Model Context Protocol (MCP) TypeScript SDK does not enable DNS rebinding protection by default",
+      "published_at": "2025-12-02T16:51:57Z",
+      "url": "https://github.com/advisories/GHSA-w48q-cv73-mx4w"
+    },
+    {
+      "package": "glob",
+      "ghsa_id": "GHSA-5j98-mcp5-4vw2",
+      "cve_id": "CVE-2025-64756",
+      "severity": "high",
+      "summary": "glob CLI: Command injection via -c/--cmd executes matches with shell:true",
+      "published_at": "2025-11-17T17:38:56Z",
+      "url": "https://github.com/advisories/GHSA-5j98-mcp5-4vw2"
+    },
+    {
+      "package": "cross-spawn",
+      "ghsa_id": "GHSA-3xgq-45jj-v275",
+      "cve_id": "CVE-2024-21538",
+      "severity": "high",
+      "summary": "Regular Expression Denial of Service (ReDoS) in cross-spawn",
+      "published_at": "2024-11-08T06:30:47Z",
+      "url": "https://github.com/advisories/GHSA-3xgq-45jj-v275"
+    },
+    {
+      "package": "ws",
+      "ghsa_id": "GHSA-3h5v-q93c-6h6q",
+      "cve_id": "CVE-2024-37890",
+      "severity": "high",
+      "summary": "ws affected by a DoS when handling a request with many HTTP headers",
+      "published_at": "2024-06-17T19:09:10Z",
+      "url": "https://github.com/advisories/GHSA-3h5v-q93c-6h6q"
+    },
+    {
+      "package": "sharp",
+      "ghsa_id": "GHSA-54xq-cgqr-rpm3",
+      "cve_id": null,
+      "severity": "high",
+      "summary": "sharp vulnerability in libwebp dependency CVE-2023-4863",
+      "published_at": "2023-11-16T17:14:15Z",
+      "url": "https://github.com/advisories/GHSA-54xq-cgqr-rpm3"
+    },
+    {
+      "package": "semver",
+      "ghsa_id": "GHSA-c2qf-rxjj-qqgw",
+      "cve_id": "CVE-2022-25883",
+      "severity": "high",
+      "summary": "semver vulnerable to Regular Expression Denial of Service",
+      "published_at": "2023-06-21T06:30:28Z",
+      "url": "https://github.com/advisories/GHSA-c2qf-rxjj-qqgw"
+    },
+    {
+      "package": "yaml",
+      "ghsa_id": "GHSA-f9xv-q969-pqx4",
+      "cve_id": "CVE-2023-2251",
+      "severity": "high",
+      "summary": "Uncaught Exception in yaml",
+      "published_at": "2023-04-24T15:30:34Z",
+      "url": "https://github.com/advisories/GHSA-f9xv-q969-pqx4"
+    },
+    {
+      "package": "simple-git",
+      "ghsa_id": "GHSA-9p95-fxvg-qgq2",
+      "cve_id": "CVE-2022-25912",
+      "severity": "high",
+      "summary": "simple-git vulnerable to Remote Code Execution when enabling the ext transport protocol",
+      "published_at": "2022-12-06T06:30:17Z",
+      "url": "https://github.com/advisories/GHSA-9p95-fxvg-qgq2"
+    },
+    {
+      "package": "minimatch",
+      "ghsa_id": "GHSA-f8q6-p94x-37v3",
+      "cve_id": "CVE-2022-3517",
+      "severity": "high",
+      "summary": "minimatch ReDoS vulnerability",
+      "published_at": "2022-10-18T12:00:32Z",
+      "url": "https://github.com/advisories/GHSA-f8q6-p94x-37v3"
+    },
+    {
+      "package": "marked",
+      "ghsa_id": "GHSA-5v2h-r2cx-5xgj",
+      "cve_id": "CVE-2022-21681",
+      "severity": "high",
+      "summary": "Inefficient Regular Expression Complexity in marked",
+      "published_at": "2022-01-14T21:04:46Z",
+      "url": "https://github.com/advisories/GHSA-5v2h-r2cx-5xgj"
+    },
+    {
+      "package": "marked",
+      "ghsa_id": "GHSA-rrrm-qjm4-v8hf",
+      "cve_id": "CVE-2022-21680",
+      "severity": "high",
+      "summary": "Inefficient Regular Expression Complexity in marked",
+      "published_at": "2022-01-14T21:04:41Z",
+      "url": "https://github.com/advisories/GHSA-rrrm-qjm4-v8hf"
+    },
+    {
+      "package": "@grpc/grpc-js",
+      "ghsa_id": "GHSA-pp75-xfpw-37g9",
+      "cve_id": "CVE-2020-7768",
+      "severity": "high",
+      "summary": "Prototype pollution in grpc and @grpc/grpc-js",
+      "published_at": "2021-05-10T19:16:14Z",
+      "url": "https://github.com/advisories/GHSA-pp75-xfpw-37g9"
+    },
+    {
+      "package": "lodash-es",
+      "ghsa_id": "GHSA-35jh-r3h4-6jhm",
+      "cve_id": "CVE-2021-23337",
+      "severity": "high",
+      "summary": "Command Injection in lodash",
+      "published_at": "2021-05-06T16:05:51Z",
+      "url": "https://github.com/advisories/GHSA-35jh-r3h4-6jhm"
+    },
+    {
+      "package": "react",
+      "ghsa_id": "GHSA-hg79-j56m-fxgv",
+      "cve_id": null,
+      "severity": "high",
+      "summary": "Cross-Site Scripting in react",
+      "published_at": "2020-09-04T15:26:04Z",
+      "url": "https://github.com/advisories/GHSA-hg79-j56m-fxgv"
+    },
+    {
+      "package": "https-proxy-agent",
+      "ghsa_id": "GHSA-qrg3-f6h6-vq8q",
+      "cve_id": null,
+      "severity": "high",
+      "summary": "Denial of Service in https-proxy-agent",
+      "published_at": "2020-08-19T22:15:57Z",
+      "url": "https://github.com/advisories/GHSA-qrg3-f6h6-vq8q"
+    },
+    {
+      "package": "ws",
+      "ghsa_id": "GHSA-5v72-xg48-5rpm",
+      "cve_id": null,
+      "severity": "high",
+      "summary": "Denial of Service in ws",
+      "published_at": "2019-06-04T19:37:52Z",
+      "url": "https://github.com/advisories/GHSA-5v72-xg48-5rpm"
+    },
+    {
+      "package": "ws",
+      "ghsa_id": "GHSA-6663-c963-2gqg",
+      "cve_id": "CVE-2016-10542",
+      "severity": "high",
+      "summary": "DoS due to excessively large websocket message in ws",
+      "published_at": "2019-02-18T23:58:35Z",
+      "url": "https://github.com/advisories/GHSA-6663-c963-2gqg"
+    },
+    {
+      "package": "minimatch",
+      "ghsa_id": "GHSA-hxm2-r34f-qmc5",
+      "cve_id": "CVE-2016-10540",
+      "severity": "high",
+      "summary": "Regular Expression Denial of Service in minimatch",
+      "published_at": "2018-10-09T00:40:41Z",
+      "url": "https://github.com/advisories/GHSA-hxm2-r34f-qmc5"
+    },
+    {
+      "package": "semver",
+      "ghsa_id": "GHSA-x6fg-f45m-jf5q",
+      "cve_id": "CVE-2015-8855",
+      "severity": "high",
+      "summary": "Regular Expression Denial of Service in semver",
+      "published_at": "2017-10-24T18:33:36Z",
+      "url": "https://github.com/advisories/GHSA-x6fg-f45m-jf5q"
+    },
+    {
+      "package": "simple-git",
+      "ghsa_id": "GHSA-r275-fr43-pm7q",
+      "cve_id": "CVE-2026-28292",
+      "severity": "critical",
+      "summary": "simple-git has blockUnsafeOperationsPlugin bypass via case-insensitive protocol.allow config key enables RCE",
+      "published_at": "2026-03-10T18:38:56Z",
+      "url": "https://github.com/advisories/GHSA-r275-fr43-pm7q"
+    },
+    {
+      "package": "simple-git",
+      "ghsa_id": "GHSA-9w5j-4mwv-2wj8",
+      "cve_id": "CVE-2022-25860",
+      "severity": "critical",
+      "summary": "Remote code execution in simple-git",
+      "published_at": "2023-01-26T21:30:25Z",
+      "url": "https://github.com/advisories/GHSA-9w5j-4mwv-2wj8"
+    },
+    {
+      "package": "shell-quote",
+      "ghsa_id": "GHSA-g4rg-993r-mgx7",
+      "cve_id": "CVE-2021-42740",
+      "severity": "critical",
+      "summary": "Improper Neutralization of Special Elements used in a Command in Shell-quote",
+      "published_at": "2022-05-24T19:18:27Z",
+      "url": "https://github.com/advisories/GHSA-g4rg-993r-mgx7"
+    },
+    {
+      "package": "shell-quote",
+      "ghsa_id": "GHSA-qg8p-v9q4-gh34",
+      "cve_id": "CVE-2016-10541",
+      "severity": "critical",
+      "summary": "Potential Command Injection in shell-quote",
+      "published_at": "2019-02-18T23:58:29Z",
+      "url": "https://github.com/advisories/GHSA-qg8p-v9q4-gh34"
+    },
+    {
+      "package": "https-proxy-agent",
+      "ghsa_id": "GHSA-8g7p-74h8-hg48",
+      "cve_id": "CVE-2018-3739",
+      "severity": "critical",
+      "summary": "Denial of Service in https-proxy-agent",
+      "published_at": "2018-07-27T17:04:52Z",
+      "url": "https://github.com/advisories/GHSA-8g7p-74h8-hg48"
+    }
+  ]
+}
