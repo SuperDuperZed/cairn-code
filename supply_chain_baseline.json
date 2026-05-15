@@ -1,0 +1,1527 @@
+{
+  "snapshot_time": "2026-05-15T05:04:21Z",
+  "packages": {
+    "@actions/artifact": {
+      "latest_version": "6.2.1",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 14,
+      "num_dev_deps": 5,
+      "top_deps": [
+        "archiver",
+        "jwt-decode",
+        "unzip-stream",
+        "@actions/core",
+        "@octokit/core",
+        "@actions/github",
+        "@octokit/request",
+        "@azure/storage-blob",
+        "@protobuf-ts/plugin",
+        "@actions/http-client",
+        "@protobuf-ts/runtime",
+        "@octokit/plugin-retry",
+        "@octokit/request-error",
+        "@octokit/plugin-request-log"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/artifact_6.2.1_1773237373664_0.771397555442628"
+    },
+    "@agentclientprotocol/sdk": {
+      "latest_version": "0.21.1",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 17,
+      "top_deps": [],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/sdk_0.21.1_1778751869819_0.7167335137431268"
+    },
+    "@alcalzone/ansi-tokenize": {
+      "latest_version": "0.3.0",
+      "has_install_script": false,
+      "scripts": {
+        "prepare": "tsc -p tsconfig.build.json"
+      },
+      "num_deps": 2,
+      "num_dev_deps": 12,
+      "top_deps": [
+        "ansi-styles",
+        "is-fullwidth-code-point"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/ansi-tokenize_0.3.0_1771593169099_0.005235340972747471"
+    },
+    "@anthropic-ai/bedrock-sdk": {
+      "latest_version": "0.29.1",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 11,
+      "num_dev_deps": 0,
+      "top_deps": [
+        "@anthropic-ai/sdk",
+        "@aws-crypto/sha256-js",
+        "@aws-sdk/client-bedrock-runtime",
+        "@aws-sdk/credential-providers",
+        "@smithy/eventstream-serde-node",
+        "@smithy/fetch-http-handler",
+        "@smithy/protocol-http",
+        "@smithy/signature-v4",
+        "@smithy/smithy-client",
+        "@smithy/types",
+        "@smithy/util-base64"
+      ],
+      "published_by": "packy-anthropic",
+      "last_published": "tmp/bedrock-sdk_0.29.1_1777578174667_0.5113668648036"
+    },
+    "@anthropic-ai/foundry-sdk": {
+      "latest_version": "0.2.3",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 1,
+      "num_dev_deps": 0,
+      "top_deps": [
+        "@anthropic-ai/sdk"
+      ],
+      "published_by": "packy-anthropic",
+      "last_published": "tmp/foundry-sdk_0.2.3_1770314042808_0.16639802521333924"
+    },
+    "@anthropic-ai/sandbox-runtime": {
+      "latest_version": "0.0.51",
+      "has_install_script": false,
+      "scripts": {
+        "prepare": "husky"
+      },
+      "num_deps": 5,
+      "num_dev_deps": 17,
+      "top_deps": [
+        "@pondwader/socks5-server",
+        "commander",
+        "node-forge",
+        "shell-quote",
+        "zod"
+      ],
+      "published_by": "dylanc-anthropic",
+      "last_published": "tmp/sandbox-runtime_0.0.51_1778524031706_0.744116276084748"
+    },
+    "@anthropic-ai/sdk": {
+      "latest_version": "0.96.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 2,
+      "num_dev_deps": 0,
+      "top_deps": [
+        "standardwebhooks",
+        "json-schema-to-ts"
+      ],
+      "published_by": "packy-anthropic",
+      "last_published": "tmp/sdk_0.96.0_1778696024500_0.7068474556694653"
+    },
+    "@anthropic-ai/vertex-sdk": {
+      "latest_version": "0.16.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 2,
+      "num_dev_deps": 0,
+      "top_deps": [
+        "@anthropic-ai/sdk",
+        "google-auth-library"
+      ],
+      "published_by": "packy-anthropic",
+      "last_published": "tmp/vertex-sdk_0.16.0_1775860114315_0.4245996319678771"
+    },
+    "@aws-sdk/client-s3": {
+      "latest_version": "3.1047.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 26,
+      "num_dev_deps": 9,
+      "top_deps": [
+        "@aws-crypto/sha1-browser",
+        "@aws-crypto/sha256-browser",
+        "@aws-crypto/sha256-js",
+        "@aws-sdk/core",
+        "@aws-sdk/credential-provider-node",
+        "@aws-sdk/middleware-bucket-endpoint",
+        "@aws-sdk/middleware-expect-continue",
+        "@aws-sdk/middleware-flexible-checksums",
+        "@aws-sdk/middleware-host-header",
+        "@aws-sdk/middleware-location-constraint",
+        "@aws-sdk/middleware-logger",
+        "@aws-sdk/middleware-recursion-detection",
+        "@aws-sdk/middleware-sdk-s3",
+        "@aws-sdk/middleware-ssec",
+        "@aws-sdk/middleware-user-agent",
+        "@aws-sdk/region-config-resolver",
+        "@aws-sdk/signature-v4-multi-region",
+        "@aws-sdk/types",
+        "@aws-sdk/util-endpoints",
+        "@aws-sdk/util-user-agent-browser"
+      ],
+      "published_by": "aws-sdk-bot",
+      "last_published": "tmp/client-s3_3.1047.0_1778784935655_0.9085030628973085"
+    },
+    "@commander-js/extra-typings": {
+      "latest_version": "14.0.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 13,
+      "top_deps": [],
+      "published_by": "shadowspawn",
+      "last_published": "tmp/extra-typings_14.0.0_1747553319616_0.07811272000522829"
+    },
+    "@eslint/js": {
+      "latest_version": "10.0.1",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 0,
+      "top_deps": [],
+      "published_by": "eslintbot",
+      "last_published": "tmp/js_10.0.1_1770417296141_0.21997168566501624"
+    },
+    "@github/keytar": {
+      "latest_version": "7.10.6",
+      "has_install_script": true,
+      "scripts": {
+        "install": "node script/install.js || npm run build"
+      },
+      "num_deps": 1,
+      "num_dev_deps": 5,
+      "top_deps": [
+        "node-addon-api"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/keytar_7.10.6_1770383921852_0.5394451076775368"
+    },
+    "@growthbook/growthbook": {
+      "latest_version": "1.6.5",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 1,
+      "num_dev_deps": 29,
+      "top_deps": [
+        "dom-mutator"
+      ],
+      "published_by": "bryce-fitzsimons",
+      "last_published": "tmp/growthbook_1.6.5_1771443556680_0.6042618833043005"
+    },
+    "@grpc/grpc-js": {
+      "latest_version": "1.14.3",
+      "has_install_script": false,
+      "scripts": {
+        "prepare": "npm run copy-protos && npm run generate-types && npm run generate-test-types && npm run compile"
+      },
+      "num_deps": 2,
+      "num_dev_deps": 30,
+      "top_deps": [
+        "@grpc/proto-loader",
+        "@js-sdsl/ordered-map"
+      ],
+      "published_by": "murgatroid99",
+      "last_published": "tmp/grpc-js_1.14.3_1765466161376_0.5189383172065998"
+    },
+    "@grpc/proto-loader": {
+      "latest_version": "0.8.1",
+      "has_install_script": false,
+      "scripts": {
+        "prepare": "npm run compile"
+      },
+      "num_deps": 4,
+      "num_dev_deps": 11,
+      "top_deps": [
+        "lodash.camelcase",
+        "long",
+        "protobufjs",
+        "yargs"
+      ],
+      "published_by": "murgatroid99",
+      "last_published": "tmp/proto-loader_0.8.1_1778192208039_0.1640024525368351"
+    },
+    "@lydell/node-pty": {
+      "latest_version": "1.2.0-beta.12",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 0,
+      "top_deps": [],
+      "published_by": "lydell",
+      "last_published": "tmp/node-pty_1.2.0-beta.12_1775375205954_0.03609464642051052"
+    },
+    "@lydell/node-pty-darwin-arm64": {
+      "latest_version": "1.2.0-beta.12",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 0,
+      "top_deps": [],
+      "published_by": "lydell",
+      "last_published": "tmp/node-pty-darwin-arm64_1.2.0-beta.12_1775375190346_0.23463980156760655"
+    },
+    "@lydell/node-pty-darwin-x64": {
+      "latest_version": "1.2.0-beta.12",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 0,
+      "top_deps": [],
+      "published_by": "lydell",
+      "last_published": "tmp/node-pty-darwin-x64_1.2.0-beta.12_1775375192039_0.25660862091875547"
+    },
+    "@lydell/node-pty-linux-x64": {
+      "latest_version": "1.2.0-beta.12",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 0,
+      "top_deps": [],
+      "published_by": "lydell",
+      "last_published": "tmp/node-pty-linux-x64_1.2.0-beta.12_1775375196260_0.8999967544163054"
+    },
+    "@lydell/node-pty-win32-arm64": {
+      "latest_version": "1.2.0-beta.12",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 0,
+      "top_deps": [],
+      "published_by": "lydell",
+      "last_published": "tmp/node-pty-win32-arm64_1.2.0-beta.12_1775375199911_0.5780142154197574"
+    },
+    "@lydell/node-pty-win32-x64": {
+      "latest_version": "1.2.0-beta.12",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 0,
+      "top_deps": [],
+      "published_by": "lydell",
+      "last_published": "tmp/node-pty-win32-x64_1.2.0-beta.12_1775375203105_0.2916161484075661"
+    },
+    "@mendable/firecrawl-js": {
+      "latest_version": "4.23.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 5,
+      "num_dev_deps": 12,
+      "top_deps": [
+        "axios",
+        "firecrawl",
+        "typescript-event-target",
+        "zod",
+        "zod-to-json-schema"
+      ],
+      "published_by": "hello_sideguide",
+      "last_published": "tmp/firecrawl-js_4.23.0_1778623831027_0.39138905531895785"
+    },
+    "@modelcontextprotocol/sdk": {
+      "latest_version": "1.29.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 17,
+      "num_dev_deps": 23,
+      "top_deps": [
+        "@hono/node-server",
+        "ajv",
+        "ajv-formats",
+        "content-type",
+        "cors",
+        "cross-spawn",
+        "eventsource",
+        "eventsource-parser",
+        "express",
+        "express-rate-limit",
+        "hono",
+        "jose",
+        "json-schema-typed",
+        "pkce-challenge",
+        "raw-body",
+        "zod",
+        "zod-to-json-schema"
+      ],
+      "published_by": "pcarleton",
+      "last_published": "tmp/sdk_1.29.0_1774889442475_0.051490286502161364"
+    },
+    "@octokit/rest": {
+      "latest_version": "22.0.1",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 4,
+      "num_dev_deps": 16,
+      "top_deps": [
+        "@octokit/core",
+        "@octokit/plugin-paginate-rest",
+        "@octokit/plugin-request-log",
+        "@octokit/plugin-rest-endpoint-methods"
+      ],
+      "published_by": "octokitbot",
+      "last_published": "tmp/rest_22.0.1_1761944376303_0.34438664325096013"
+    },
+    "@opencode-ai/plugin": {
+      "latest_version": "1.15.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 3,
+      "num_dev_deps": 7,
+      "top_deps": [
+        "zod",
+        "effect",
+        "@opencode-ai/sdk"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/plugin_1.15.0_1778817770564_0.16086802620149654"
+    },
+    "@opencode-ai/sdk": {
+      "latest_version": "1.15.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 1,
+      "num_dev_deps": 6,
+      "top_deps": [
+        "cross-spawn"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/sdk_1.15.0_1778817764059_0.12027330493925459"
+    },
+    "@opentelemetry/api": {
+      "latest_version": "1.9.1",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 22,
+      "top_deps": [],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/api_1.9.1_1774454033857_0.5982308268728329"
+    },
+    "@opentelemetry/api-logs": {
+      "latest_version": "0.218.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 1,
+      "num_dev_deps": 15,
+      "top_deps": [
+        "@opentelemetry/api"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/api-logs_0.218.0_1778662488411_0.010574606000821607"
+    },
+    "@opentelemetry/core": {
+      "latest_version": "2.7.1",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 1,
+      "num_dev_deps": 18,
+      "top_deps": [
+        "@opentelemetry/semantic-conventions"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/core_2.7.1_1777486890261_0.24864231864062636"
+    },
+    "@opentelemetry/exporter-logs-otlp-http": {
+      "latest_version": "0.218.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 5,
+      "num_dev_deps": 23,
+      "top_deps": [
+        "@opentelemetry/api-logs",
+        "@opentelemetry/core",
+        "@opentelemetry/otlp-exporter-base",
+        "@opentelemetry/otlp-transformer",
+        "@opentelemetry/sdk-logs"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/exporter-logs-otlp-http_0.218.0_1778662530688_0.3179133127997267"
+    },
+    "@opentelemetry/exporter-trace-otlp-grpc": {
+      "latest_version": "0.218.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 7,
+      "num_dev_deps": 10,
+      "top_deps": [
+        "@grpc/grpc-js",
+        "@opentelemetry/core",
+        "@opentelemetry/otlp-exporter-base",
+        "@opentelemetry/otlp-grpc-exporter-base",
+        "@opentelemetry/otlp-transformer",
+        "@opentelemetry/resources",
+        "@opentelemetry/sdk-trace-base"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/exporter-trace-otlp-grpc_0.218.0_1778662551865_0.37288921325474167"
+    },
+    "@opentelemetry/resources": {
+      "latest_version": "2.7.1",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 2,
+      "num_dev_deps": 19,
+      "top_deps": [
+        "@opentelemetry/core",
+        "@opentelemetry/semantic-conventions"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/resources_2.7.1_1777486905033_0.27301902432073666"
+    },
+    "@opentelemetry/sdk-logs": {
+      "latest_version": "0.218.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 4,
+      "num_dev_deps": 21,
+      "top_deps": [
+        "@opentelemetry/api-logs",
+        "@opentelemetry/core",
+        "@opentelemetry/resources",
+        "@opentelemetry/semantic-conventions"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/sdk-logs_0.218.0_1778662510296_0.39094339865190486"
+    },
+    "@opentelemetry/sdk-metrics": {
+      "latest_version": "2.7.1",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 2,
+      "num_dev_deps": 20,
+      "top_deps": [
+        "@opentelemetry/core",
+        "@opentelemetry/resources"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/sdk-metrics_2.7.1_1777486911481_0.5717778872779455"
+    },
+    "@opentelemetry/sdk-trace-base": {
+      "latest_version": "2.7.1",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 3,
+      "num_dev_deps": 21,
+      "top_deps": [
+        "@opentelemetry/core",
+        "@opentelemetry/resources",
+        "@opentelemetry/semantic-conventions"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/sdk-trace-base_2.7.1_1777486923221_0.8168861871999198"
+    },
+    "@opentelemetry/sdk-trace-node": {
+      "latest_version": "2.7.1",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 3,
+      "num_dev_deps": 10,
+      "top_deps": [
+        "@opentelemetry/core",
+        "@opentelemetry/sdk-trace-base",
+        "@opentelemetry/context-async-hooks"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/sdk-trace-node_2.7.1_1777486947115_0.2176751706797293"
+    },
+    "@opentelemetry/semantic-conventions": {
+      "latest_version": "1.41.1",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 13,
+      "top_deps": [],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/semantic-conventions_1.41.1_1778606073176_0.4298386653557267"
+    },
+    "@testing-library/dom": {
+      "latest_version": "10.4.1",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 8,
+      "num_dev_deps": 9,
+      "top_deps": [
+        "lz-string",
+        "aria-query",
+        "picocolors",
+        "pretty-format",
+        "@babel/runtime",
+        "@babel/code-frame",
+        "@types/aria-query",
+        "dom-accessibility-api"
+      ],
+      "published_by": "testing-library-bot",
+      "last_published": "tmp/dom_10.4.1_1753622616756_0.7885463347880444"
+    },
+    "@tsconfig/bun": {
+      "latest_version": "1.0.10",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 0,
+      "top_deps": [],
+      "published_by": "typescript-deploys",
+      "last_published": "tmp/bun_1.0.10_1763007581579_0.03051705943124383"
+    },
+    "@types/bun": {
+      "latest_version": "1.3.14",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 1,
+      "num_dev_deps": 0,
+      "top_deps": [
+        "bun-types"
+      ],
+      "published_by": "types",
+      "last_published": "tmp/bun_1.3.14_1778649333761_0.6029691850988452"
+    },
+    "@types/jest": {
+      "latest_version": "30.0.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 2,
+      "num_dev_deps": 0,
+      "top_deps": [
+        "expect",
+        "pretty-format"
+      ],
+      "published_by": "types",
+      "last_published": "tmp/jest_30.0.0_1750059350673_0.6987915115857766"
+    },
+    "@types/marked": {
+      "latest_version": "6.0.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 1,
+      "num_dev_deps": 0,
+      "top_deps": [
+        "marked"
+      ],
+      "published_by": "types",
+      "last_published": "tmp/marked_6.0.0_1696376127885_0.48363823643354853"
+    },
+    "@types/mime-types": {
+      "latest_version": "3.0.1",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 0,
+      "top_deps": [],
+      "published_by": "types",
+      "last_published": "tmp/mime-types_3.0.1_1749262670808_0.12173553438185047"
+    },
+    "@types/minimatch": {
+      "latest_version": "6.0.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 1,
+      "num_dev_deps": 0,
+      "top_deps": [
+        "minimatch"
+      ],
+      "published_by": "types",
+      "last_published": "tmp/minimatch_6.0.0_1751396596736_0.47638354662436155"
+    },
+    "@types/mocha": {
+      "latest_version": "10.0.10",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 0,
+      "top_deps": [],
+      "published_by": "types",
+      "last_published": "tmp/mocha_10.0.10_1732127905316_0.8406581902188561"
+    },
+    "@types/mock-fs": {
+      "latest_version": "4.13.4",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 1,
+      "num_dev_deps": 0,
+      "top_deps": [
+        "@types/node"
+      ],
+      "published_by": "types",
+      "last_published": "tmp/mock-fs_4.13.4_1699355699999_0.6104280282132664"
+    },
+    "@types/node": {
+      "latest_version": "25.8.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 1,
+      "num_dev_deps": 0,
+      "top_deps": [
+        "undici-types"
+      ],
+      "published_by": "types",
+      "last_published": "tmp/node_25.8.0_1778776791552_0.9567946465152721"
+    },
+    "@types/prompts": {
+      "latest_version": "2.4.9",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 2,
+      "num_dev_deps": 0,
+      "top_deps": [
+        "kleur",
+        "@types/node"
+      ],
+      "published_by": "types",
+      "last_published": "tmp/prompts_2.4.9_1700527777993_0.2081537268716902"
+    },
+    "@types/proper-lockfile": {
+      "latest_version": "4.1.4",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 1,
+      "num_dev_deps": 0,
+      "top_deps": [
+        "@types/retry"
+      ],
+      "published_by": "types",
+      "last_published": "tmp/proper-lockfile_4.1.4_1699363852654_0.7991387620987038"
+    },
+    "@types/react": {
+      "latest_version": "19.2.14",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 1,
+      "num_dev_deps": 0,
+      "top_deps": [
+        "csstype"
+      ],
+      "published_by": "types",
+      "last_published": "tmp/react_19.2.14_1770810298354_0.5585046111602676"
+    },
+    "@types/react-dom": {
+      "latest_version": "19.2.3",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 0,
+      "top_deps": [],
+      "published_by": "types",
+      "last_published": "tmp/react-dom_19.2.3_1762922259358_0.10695208723964966"
+    },
+    "@types/shell-quote": {
+      "latest_version": "1.7.5",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 0,
+      "top_deps": [],
+      "published_by": "types",
+      "last_published": "tmp/shell-quote_1.7.5_1700528621460_0.9900601495694501"
+    },
+    "@types/uuid": {
+      "latest_version": "11.0.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 1,
+      "num_dev_deps": 0,
+      "top_deps": [
+        "uuid"
+      ],
+      "published_by": "types",
+      "last_published": "tmp/uuid_11.0.0_1758058395653_0.5403673090596579"
+    },
+    "@types/ws": {
+      "latest_version": "8.18.1",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 1,
+      "num_dev_deps": 0,
+      "top_deps": [
+        "@types/node"
+      ],
+      "published_by": "types",
+      "last_published": "tmp/ws_8.18.1_1743476394492_0.26971306437321263"
+    },
+    "@typescript-eslint/eslint-plugin": {
+      "latest_version": "8.59.3",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 8,
+      "num_dev_deps": 22,
+      "top_deps": [
+        "ignore",
+        "ts-api-utils",
+        "natural-compare",
+        "@typescript-eslint/utils",
+        "@eslint-community/regexpp",
+        "@typescript-eslint/type-utils",
+        "@typescript-eslint/visitor-keys",
+        "@typescript-eslint/scope-manager"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/eslint-plugin_8.59.3_1778521274812_0.04642751957841451"
+    },
+    "@typescript-eslint/parser": {
+      "latest_version": "8.59.3",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 5,
+      "num_dev_deps": 6,
+      "top_deps": [
+        "debug",
+        "@typescript-eslint/types",
+        "@typescript-eslint/visitor-keys",
+        "@typescript-eslint/scope-manager",
+        "@typescript-eslint/typescript-estree"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/parser_8.59.3_1778521254012_0.8866519662784129"
+    },
+    "@typescript/native-preview": {
+      "latest_version": "7.0.0-dev.20260514.1",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 3,
+      "top_deps": [],
+      "published_by": "typescript-deploys",
+      "last_published": "tmp/native-preview_7.0.0-dev.20260514.1_1778745758206_0.4401493671040504"
+    },
+    "@vitest/coverage-v8": {
+      "latest_version": "4.1.6",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 10,
+      "num_dev_deps": 7,
+      "top_deps": [
+        "@bcoe/v8-coverage",
+        "ast-v8-to-istanbul",
+        "istanbul-lib-coverage",
+        "istanbul-lib-report",
+        "istanbul-reports",
+        "magicast",
+        "obug",
+        "std-env",
+        "tinyrainbow",
+        "@vitest/utils"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/coverage-v8_4.1.6_1778510292053_0.5101929603182289"
+    },
+    "@vitest/eslint-plugin": {
+      "latest_version": "1.6.17",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 2,
+      "num_dev_deps": 21,
+      "top_deps": [
+        "@typescript-eslint/scope-manager",
+        "@typescript-eslint/utils"
+      ],
+      "published_by": "veritemm",
+      "last_published": "tmp/eslint-plugin_1.6.17_1778202397077_0.888775788714443"
+    },
+    "@xterm/headless": {
+      "latest_version": "6.0.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 0,
+      "top_deps": [],
+      "published_by": "tyriar",
+      "last_published": "tmp/headless_6.0.0_1766411415019_0.7670382710402426"
+    },
+    "@xterm/xterm": {
+      "latest_version": "6.0.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 39,
+      "top_deps": [],
+      "published_by": "tyriar",
+      "last_published": "tmp/xterm_6.0.0_1766411412218_0.8330803740077357"
+    },
+    "axios": {
+      "latest_version": "1.16.1",
+      "has_install_script": false,
+      "scripts": {
+        "prepare": "husky"
+      },
+      "num_deps": 4,
+      "num_dev_deps": 39,
+      "top_deps": [
+        "follow-redirects",
+        "form-data",
+        "https-proxy-agent",
+        "proxy-from-env"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/axios_1.16.1_1778689365793_0.7245185402469494"
+    },
+    "chalk": {
+      "latest_version": "5.6.2",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 10,
+      "top_deps": [],
+      "published_by": "sindresorhus",
+      "last_published": "tmp/chalk_5.6.2_1757342874299_0.9496636300891743"
+    },
+    "commander": {
+      "latest_version": "14.0.3",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 13,
+      "top_deps": [],
+      "published_by": "abetomo",
+      "last_published": "tmp/commander_14.0.3_1769824037429_0.9295437438155574"
+    },
+    "cross-spawn": {
+      "latest_version": "7.0.6",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 3,
+      "num_dev_deps": 13,
+      "top_deps": [
+        "which",
+        "path-key",
+        "shebang-command"
+      ],
+      "published_by": "satazor",
+      "last_published": "tmp/cross-spawn_7.0.6_1731938391951_0.24409455021062265"
+    },
+    "esbuild": {
+      "latest_version": "0.28.0",
+      "has_install_script": true,
+      "scripts": {
+        "postinstall": "node install.js"
+      },
+      "num_deps": 0,
+      "num_dev_deps": 0,
+      "top_deps": [],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/esbuild_0.28.0_1775162326301_0.7885214804558021"
+    },
+    "eslint": {
+      "latest_version": "10.3.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 30,
+      "num_dev_deps": 59,
+      "top_deps": [
+        "@eslint-community/eslint-utils",
+        "@eslint-community/regexpp",
+        "@eslint/config-array",
+        "@eslint/config-helpers",
+        "@eslint/core",
+        "@eslint/plugin-kit",
+        "@humanfs/node",
+        "@humanwhocodes/module-importer",
+        "@humanwhocodes/retry",
+        "@types/estree",
+        "ajv",
+        "cross-spawn",
+        "debug",
+        "escape-string-regexp",
+        "eslint-scope",
+        "eslint-visitor-keys",
+        "espree",
+        "esquery",
+        "esutils",
+        "fast-deep-equal"
+      ],
+      "published_by": "eslintbot",
+      "last_published": "tmp/eslint_10.3.0_1777649980729_0.9652164633434162"
+    },
+    "execa": {
+      "latest_version": "9.6.1",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 12,
+      "num_dev_deps": 14,
+      "top_deps": [
+        "@sindresorhus/merge-streams",
+        "cross-spawn",
+        "figures",
+        "get-stream",
+        "human-signals",
+        "is-plain-obj",
+        "is-stream",
+        "npm-run-path",
+        "pretty-ms",
+        "signal-exit",
+        "strip-final-newline",
+        "yoctocolors"
+      ],
+      "published_by": "sindresorhus",
+      "last_published": "tmp/execa_9.6.1_1764449626680_0.7150858159207936"
+    },
+    "fflate": {
+      "latest_version": "0.8.2",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 20,
+      "top_deps": [],
+      "published_by": "101arrowz",
+      "last_published": "tmp/fflate_0.8.2_1707266215750_0.21121187264288954"
+    },
+    "glob": {
+      "latest_version": "13.0.6",
+      "has_install_script": false,
+      "scripts": {
+        "prepare": "tshy && bash scripts/build.sh"
+      },
+      "num_deps": 3,
+      "num_dev_deps": 9,
+      "top_deps": [
+        "minimatch",
+        "minipass",
+        "path-scurry"
+      ],
+      "published_by": "isaacs",
+      "last_published": "tmp/glob_13.0.6_1771521993050_0.34983536201125864"
+    },
+    "google-auth-library": {
+      "latest_version": "10.6.2",
+      "has_install_script": false,
+      "scripts": {
+        "prepare": "npm run compile"
+      },
+      "num_deps": 6,
+      "num_dev_deps": 34,
+      "top_deps": [
+        "base64-js",
+        "ecdsa-sig-formatter",
+        "gaxios",
+        "gcp-metadata",
+        "google-logging-utils",
+        "jws"
+      ],
+      "published_by": "google-wombot",
+      "last_published": "tmp/google-auth-library_10.6.2_1773680988901_0.7585443290238012"
+    },
+    "https-proxy-agent": {
+      "latest_version": "9.0.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 2,
+      "num_dev_deps": 8,
+      "top_deps": [
+        "debug",
+        "agent-base"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/https-proxy-agent_9.0.0_1775026672210_0.041903078238550995"
+    },
+    "ink": {
+      "latest_version": "7.0.3",
+      "has_install_script": false,
+      "scripts": {
+        "prepare": "npm run build"
+      },
+      "num_deps": 25,
+      "num_dev_deps": 29,
+      "top_deps": [
+        "@alcalzone/ansi-tokenize",
+        "ansi-escapes",
+        "ansi-styles",
+        "auto-bind",
+        "chalk",
+        "cli-boxes",
+        "cli-cursor",
+        "cli-truncate",
+        "code-excerpt",
+        "es-toolkit",
+        "indent-string",
+        "is-in-ci",
+        "patch-console",
+        "react-reconciler",
+        "scheduler",
+        "signal-exit",
+        "slice-ansi",
+        "stack-utils",
+        "string-width",
+        "terminal-size"
+      ],
+      "published_by": "sindresorhus",
+      "last_published": "tmp/ink_7.0.3_1778664348698_0.17352575250260127"
+    },
+    "lodash-es": {
+      "latest_version": "4.18.1",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 0,
+      "top_deps": [],
+      "published_by": "jdalton",
+      "last_published": "tmp/lodash-es_4.18.1_1775077455313_0.7976968516521139"
+    },
+    "marked": {
+      "latest_version": "18.0.3",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 25,
+      "top_deps": [],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/marked_18.0.3_1777645437841_0.5964352977669232"
+    },
+    "msw": {
+      "latest_version": "2.14.6",
+      "has_install_script": true,
+      "scripts": {
+        "postinstall": "node -e \"import('./config/scripts/postinstall.js').catch(() => void 0)\""
+      },
+      "num_deps": 18,
+      "num_dev_deps": 45,
+      "top_deps": [
+        "@inquirer/confirm",
+        "@mswjs/interceptors",
+        "@open-draft/deferred-promise",
+        "@types/statuses",
+        "cookie",
+        "graphql",
+        "headers-polyfill",
+        "is-node-process",
+        "outvariant",
+        "path-to-regexp",
+        "picocolors",
+        "rettime",
+        "statuses",
+        "strict-event-emitter",
+        "tough-cookie",
+        "type-fest",
+        "until-async",
+        "yargs"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/msw_2.14.6_1778492506426_0.13209331984084183"
+    },
+    "node-fetch-native": {
+      "latest_version": "1.6.7",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 16,
+      "top_deps": [],
+      "published_by": "pi0",
+      "last_published": "tmp/node-fetch-native_1.6.7_1754129736532_0.4090860759985553"
+    },
+    "node-gyp": {
+      "latest_version": "12.3.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 10,
+      "num_dev_deps": 7,
+      "top_deps": [
+        "env-paths",
+        "exponential-backoff",
+        "graceful-fs",
+        "nopt",
+        "proc-log",
+        "semver",
+        "tar",
+        "tinyglobby",
+        "undici",
+        "which"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/node-gyp_12.3.0_1776759597004_0.8660625196606577"
+    },
+    "node-pty": {
+      "latest_version": "1.1.0",
+      "has_install_script": true,
+      "scripts": {
+        "install": "node scripts/prebuild.js || node-gyp rebuild",
+        "prepare": "npm run build",
+        "postinstall": "node scripts/post-install.js"
+      },
+      "num_deps": 1,
+      "num_dev_deps": 10,
+      "top_deps": [
+        "node-addon-api"
+      ],
+      "published_by": "microsoft1es",
+      "last_published": "tmp/node-pty_1.1.0_1766411503352_0.30145463270436057"
+    },
+    "prettier": {
+      "latest_version": "3.8.3",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 0,
+      "top_deps": [],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/prettier_3.8.3_1776214525297_0.004350255430510153"
+    },
+    "qrcode": {
+      "latest_version": "1.5.4",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 3,
+      "num_dev_deps": 16,
+      "top_deps": [
+        "pngjs",
+        "yargs",
+        "dijkstrajs"
+      ],
+      "published_by": "soldair",
+      "last_published": "tmp/qrcode_1.5.4_1722894778347_0.7924294160216949"
+    },
+    "react": {
+      "latest_version": "19.2.6",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 0,
+      "top_deps": [],
+      "published_by": "react-bot",
+      "last_published": "tmp/react_19.2.6_1778084207499_0.693037532592125"
+    },
+    "react-dom": {
+      "latest_version": "19.2.6",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 1,
+      "num_dev_deps": 0,
+      "top_deps": [
+        "scheduler"
+      ],
+      "published_by": "react-bot",
+      "last_published": "tmp/react-dom_19.2.6_1778084215890_0.2241271998198946"
+    },
+    "semver": {
+      "latest_version": "7.8.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 4,
+      "top_deps": [],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/semver_7.8.0_1778272282532_0.46748519960749446"
+    },
+    "sharp": {
+      "latest_version": "0.34.5",
+      "has_install_script": true,
+      "scripts": {
+        "install": "node install/check.js || npm run build"
+      },
+      "num_deps": 3,
+      "num_dev_deps": 18,
+      "top_deps": [
+        "semver",
+        "@img/colour",
+        "detect-libc"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/sharp_0.34.5_1762438780769_0.9239214642411075"
+    },
+    "shell-quote": {
+      "latest_version": "1.8.3",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 11,
+      "top_deps": [],
+      "published_by": "ljharb",
+      "last_published": "tmp/shell-quote_1.8.3_1748840585688_0.8379361015771527"
+    },
+    "simple-git": {
+      "latest_version": "3.36.0",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 5,
+      "num_dev_deps": 0,
+      "top_deps": [
+        "@kwsites/file-exists",
+        "@kwsites/promise-deferred",
+        "@simple-git/args-pathspec",
+        "@simple-git/argv-parser",
+        "debug"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/simple-git_3.36.0_1775971985646_0.17589047163795724"
+    },
+    "sst": {
+      "latest_version": "4.14.1",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 4,
+      "num_dev_deps": 9,
+      "top_deps": [
+        "@aws/durable-execution-sdk-js",
+        "aws4fetch",
+        "jose",
+        "openid-client"
+      ],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/sst_4.14.1_1778604913749_0.5782745785848498"
+    },
+    "turndown": {
+      "latest_version": "7.2.4",
+      "has_install_script": false,
+      "scripts": {
+        "prepare": "npm run build"
+      },
+      "num_deps": 1,
+      "num_dev_deps": 11,
+      "top_deps": [
+        "@mixmark-io/domino"
+      ],
+      "published_by": "martincizek",
+      "last_published": "tmp/turndown_7.2.4_1775228383150_0.432544861321134"
+    },
+    "typescript": {
+      "latest_version": "6.0.3",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 42,
+      "top_deps": [],
+      "published_by": "typescript-bot",
+      "last_published": "tmp/typescript_6.0.3_1776382707642_0.31279279892453626"
+    },
+    "undici": {
+      "latest_version": "8.3.0",
+      "has_install_script": false,
+      "scripts": {
+        "prepare": "husky && node ./scripts/platform-shell.js"
+      },
+      "num_deps": 0,
+      "num_dev_deps": 22,
+      "top_deps": [],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/undici_8.3.0_1778778368991_0.9920700998247751"
+    },
+    "ws": {
+      "latest_version": "8.20.1",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 11,
+      "top_deps": [],
+      "published_by": "lpinca",
+      "last_published": "tmp/ws_8.20.1_1778601280009_0.7687896499459375"
+    },
+    "xss": {
+      "latest_version": "1.0.15",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 2,
+      "num_dev_deps": 7,
+      "top_deps": [
+        "commander",
+        "cssfilter"
+      ],
+      "published_by": "leizongmin",
+      "last_published": "tmp/xss_1.0.15_1709433234573_0.8602318010952705"
+    },
+    "yaml": {
+      "latest_version": "2.9.0",
+      "has_install_script": false,
+      "scripts": {
+        "prestart": "rollup --sourcemap -c config/rollup.node-config.mjs"
+      },
+      "num_deps": 0,
+      "num_dev_deps": 21,
+      "top_deps": [],
+      "published_by": "eemeli",
+      "last_published": "tmp/yaml_2.9.0_1778494583891_0.33680098687885596"
+    },
+    "yargs": {
+      "latest_version": "18.0.0",
+      "has_install_script": false,
+      "scripts": {
+        "prepare": "npm run compile"
+      },
+      "num_deps": 6,
+      "num_dev_deps": 22,
+      "top_deps": [
+        "cliui",
+        "escalade",
+        "get-caller-file",
+        "string-width",
+        "y18n",
+        "yargs-parser"
+      ],
+      "published_by": "oss-bot",
+      "last_published": "tmp/yargs_18.0.0_1748356039285_0.09120660341564735"
+    },
+    "zod": {
+      "latest_version": "4.4.3",
+      "has_install_script": false,
+      "scripts": {},
+      "num_deps": 0,
+      "num_dev_deps": 0,
+      "top_deps": [],
+      "published_by": "GitHub Actions",
+      "last_published": "tmp/zod_4.4.3_1777878400636_0.25225364254451854"
+    }
+  },
+  "all_tracked_packages": [
+    "@actions/artifact",
+    "@agentclientprotocol/sdk",
+    "@alcalzone/ansi-tokenize",
+    "@anthropic-ai/bedrock-sdk",
+    "@anthropic-ai/foundry-sdk",
+    "@anthropic-ai/sandbox-runtime",
+    "@anthropic-ai/sdk",
+    "@anthropic-ai/vertex-sdk",
+    "@aws-sdk/client-s3",
+    "@commander-js/extra-typings",
+    "@eslint/js",
+    "@github/keytar",
+    "@growthbook/growthbook",
+    "@grpc/grpc-js",
+    "@grpc/proto-loader",
+    "@lydell/node-pty",
+    "@lydell/node-pty-darwin-arm64",
+    "@lydell/node-pty-darwin-x64",
+    "@lydell/node-pty-linux-x64",
+    "@lydell/node-pty-win32-arm64",
+    "@lydell/node-pty-win32-x64",
+    "@mendable/firecrawl-js",
+    "@modelcontextprotocol/sdk",
+    "@octokit/rest",
+    "@opencode-ai/plugin",
+    "@opencode-ai/script",
+    "@opencode-ai/sdk",
+    "@opentelemetry/api",
+    "@opentelemetry/api-logs",
+    "@opentelemetry/core",
+    "@opentelemetry/exporter-logs-otlp-http",
+    "@opentelemetry/exporter-trace-otlp-grpc",
+    "@opentelemetry/resources",
+    "@opentelemetry/sdk-logs",
+    "@opentelemetry/sdk-metrics",
+    "@opentelemetry/sdk-trace-base",
+    "@opentelemetry/sdk-trace-node",
+    "@opentelemetry/semantic-conventions",
+    "@testing-library/dom",
+    "@tsconfig/bun",
+    "@types/bun",
+    "@types/jest",
+    "@types/marked",
+    "@types/mime-types",
+    "@types/minimatch",
+    "@types/mocha",
+    "@types/mock-fs",
+    "@types/node",
+    "@types/prompts",
+    "@types/proper-lockfile",
+    "@types/react",
+    "@types/react-dom",
+    "@types/shell-quote",
+    "@types/uuid",
+    "@types/ws",
+    "@typescript-eslint/eslint-plugin",
+    "@typescript-eslint/parser",
+    "@typescript/native-preview",
+    "@vitest/coverage-v8",
+    "@vitest/eslint-plugin",
+    "@xterm/headless",
+    "@xterm/xterm",
+    "ajv",
+    "asciichart",
+    "auto-bind",
+    "axios",
+    "bidi-js",
+    "chalk",
+    "chokidar",
+    "cli-boxes",
+    "cli-highlight",
+    "code-excerpt",
+    "commander",
+    "cross-env",
+    "cross-spawn",
+    "depcheck",
+    "diff",
+    "domexception",
+    "duck-duck-scrape",
+    "emoji-regex",
+    "env-paths",
+    "esbuild",
+    "esbuild-plugin-wasm",
+    "eslint",
+    "eslint-config-prettier",
+    "eslint-plugin-headers",
+    "eslint-plugin-import",
+    "eslint-plugin-jsdoc",
+    "eslint-plugin-license-header",
+    "eslint-plugin-react",
+    "eslint-plugin-react-hooks",
+    "eslint-plugin-react-refresh",
+    "execa",
+    "fflate",
+    "figures",
+    "fuse.js",
+    "get-east-asian-width",
+    "glob",
+    "globals",
+    "google-artifactregistry-auth",
+    "google-auth-library",
+    "heap-snapshot-toolkit",
+    "https-proxy-agent",
+    "husky",
+    "ignore",
+    "indent-string",
+    "ink",
+    "jest",
+    "json",
+    "jsonc-parser",
+    "latest-version",
+    "lint-staged",
+    "lodash-es",
+    "lru-cache",
+    "marked",
+    "memfs",
+    "mnemonist",
+    "mocha",
+    "mock-fs",
+    "msw",
+    "nan",
+    "node-addon-api",
+    "node-fetch-native",
+    "node-gyp",
+    "node-pty",
+    "npm-run-all",
+    "oxlint",
+    "oxlint-tsgolint",
+    "p-map",
+    "picomatch",
+    "prettier",
+    "proper-lockfile",
+    "ps-list",
+    "punycode",
+    "qrcode",
+    "react",
+    "react-compiler-runtime",
+    "react-devtools-core",
+    "react-dom",
+    "react-reconciler",
+    "read-package-up",
+    "rimraf",
+    "semver",
+    "sharp",
+    "shell-quote",
+    "signal-exit",
+    "simple-git",
+    "sst",
+    "stack-utils",
+    "strip-ansi",
+    "supports-hyperlinks",
+    "tree-kill",
+    "ts-jest",
+    "ts-prune",
+    "tsx",
+    "turbo",
+    "turndown",
+    "type-fest",
+    "typescript",
+    "typescript-eslint",
+    "undici",
+    "usehooks-ts",
+    "vitest",
+    "vscode-languageserver-protocol",
+    "wrap-ansi",
+    "ws",
+    "xss",
+    "yaml",
+    "yargs",
+    "zod"
+  ]
+}
