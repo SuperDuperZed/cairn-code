@@ -9,8 +9,9 @@ def api(url):
         return {"_error": str(e)}
 
 prs = [
+    ("euxaristia/videre", 4),
+    ("euxaristia/pcc", 8),
     ("euxaristia/colt", 6),
-    ("euxaristia/videre", 2),
     ("euxaristia/gemini-cli", 4),
     ("euxaristia/gemini-cli", 3),
     ("euxaristia/gitee-cli", 2),
@@ -19,7 +20,6 @@ prs = [
     ("euxaristia/colt", 4),
     ("google-gemini/gemini-cli", 26498),
     ("anomalyco/opencode", 25355),
-    ("google-gemini/gemini-cli", 26280),
     ("euxaristia/VoxelPopuli", 4),
     ("euxaristia/colt", 3),
     ("charmbracelet/glow", 937),
@@ -37,13 +37,11 @@ for repo, num in prs:
     key = f"{repo}#{num}"
     detail = api(f"https://api.github.com/repos/{repo}/pulls/{num}")
     if "_error" in detail:
-        print(f"ERROR fetching {key}: {detail['_error']}", file=sys.stderr)
+        print(f"ERROR {key}: {detail['_error']}", file=sys.stderr)
         time.sleep(2)
         continue
     
     sha = detail.get("head", {}).get("sha", "")
-    
-    # Parallel-ish: fetch all extra data
     reviews = api(f"https://api.github.com/repos/{repo}/pulls/{num}/reviews")
     comments = api(f"https://api.github.com/repos/{repo}/issues/{num}/comments")
     commits = api(f"https://api.github.com/repos/{repo}/pulls/{num}/commits")
@@ -51,9 +49,7 @@ for repo, num in prs:
     status = api(f"https://api.github.com/repos/{repo}/commits/{sha}/status") if sha else {}
     
     pr_data = {
-        "key": key,
-        "repo": repo,
-        "number": num,
+        "key": key, "repo": repo, "number": num,
         "title": detail.get("title", ""),
         "url": detail.get("html_url", ""),
         "state": detail.get("state", ""),
@@ -74,9 +70,9 @@ for repo, num in prs:
         "review_comments": rev_comments if isinstance(rev_comments, list) else [],
     }
     results.append(pr_data)
-    print(f"Fetched {key} (+{pr_data['additions']}/-{pr_data['deletions']}, {len(pr_data['reviews'])} reviews, {len(pr_data['issue_comments'])} issue comments)", file=sys.stderr)
-    time.sleep(1.5)  # rate limit
+    print(f"Fetched {key} (+{pr_data['additions']}/-{pr_data['deletions']}, {len(pr_data['reviews'])} rev, {len(pr_data['issue_comments'])} ic)", file=sys.stderr)
+    time.sleep(1.5)
 
 with open("/home/z/my-project/pr_data.json", "w") as f:
     json.dump(results, f, indent=2)
-print(f"\nDone. {len(results)} PRs saved to pr_data.json", file=sys.stderr)
+print(f"\nDone. {len(results)} PRs saved.", file=sys.stderr)
