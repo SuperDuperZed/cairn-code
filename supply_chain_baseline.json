@@ -1,5 +1,5 @@
 {
-  "snapshot_time": "2026-05-15T17:05:34Z",
+  "snapshot_time": "2026-05-15T23:05:22Z",
   "packages": {
     "@actions/artifact": {
       "latest_version": "6.2.1",
@@ -130,7 +130,7 @@
       "last_published": "tmp/vertex-sdk_0.16.0_1775860114315_0.4245996319678771"
     },
     "@aws-sdk/client-s3": {
-      "latest_version": "3.1047.0",
+      "latest_version": "3.1048.0",
       "has_install_script": false,
       "scripts": {},
       "num_deps": 26,

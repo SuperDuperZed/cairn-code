@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.trendmicro.com/en_us/research/26/c/axios-npm-package-compromised.html",
+    "name": "Axios NPM Package Compromised: Supply Chain Attack Hits",
+    "snippet": "A supply chain attack hit Axios when attackers used stolen npm credentials to publish malicious versions containing a phantom dependency.",
+    "host_name": "www.trendmicro.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.threatlocker.com/blog/axios-supply-chain-attack-how-a-compromised-npm-package-delivered-rat-malware",
+    "name": "Axios supply chain attack: How a compromised npm package",
+    "snippet": "A malicious Axios npm release compromised over 10000 systems in hours. Learn how the attack worked, the IoCs, and how to prevent supply ...",
+    "host_name": "www.threatlocker.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.huntress.com/blog/axios-npm-compromise",
+    "name": "Tradecraft Tuesday Recap: axios npm Supply Chain Compromise",
+    "snippet": "In March 2026, TeamPCP compromised Aqua Security's popular open-source Trivy vulnerability scanner, which then led to several downstream attacks ...",
+    "host_name": "www.huntress.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/security/blog/2026/04/01/mitigating-the-axios-npm-supply-chain-compromise",
+    "name": "Mitigating the Axios npm supply chain compromise - Microsoft",
+    "snippet": "On March 31, 2026, two malicious versions of Axios npm packages were released. These packages connected to a known malicious domain (C2) owned ...",
+    "host_name": "www.microsoft.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=eGSsoSEppNU",
+    "name": "the WORST hack of 2026 - YouTube",
+    "snippet": "... supply-chain-compromise-axios-npm-package John ... npm supply chain attack, axios hacked, axios npm compromised, supply chain attack ...",
+    "host_name": "www.youtube.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://unit42.paloaltonetworks.com/axios-supply-chain-attack",
+    "name": "Threat Brief: Widespread Impact of the Axios Supply Chain Attack",
+    "snippet": "Unit 42 researchers have observed widespread impact from the significant supply chain attack targeting the Axios JavaScript library. The attack occurred ...",
+    "host_name": "unit42.paloaltonetworks.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://industrialcyber.co/cisa/cisa-warns-organizations-of-supply-chain-compromise-in-axios-npm-package-delivering-remote-access-trojan",
+    "name": "CISA warns organizations of supply chain compromise in Axios npm",
+    "snippet": "CISA warns organizations of supply chain compromise in Axios npm package delivering remote access trojan. April 21, 2026. The U.S. CISA ( ...",
+    "host_name": "industrialcyber.co",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/hackerworkspace/comments/1tc8vb5/sans_stormcast_wednesday_may_13th_2026_microsoft",
+    "name": "SANS Stormcast Wednesday, May 13th, 2026: Microsoft Patch",
+    "snippet": "SANS Stormcast Wednesday, May 13th, 2026: Microsoft Patch Tuesday; Large npm/pypi Compromise; R… · Comments Section.",
+    "host_name": "www.reddit.com",
+    "rank": 7,
+    "date": "May 13, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://arcticwolf.com/resources/blog/supply-chain-attack-impacts-widely-used-axios-npm-package",
+    "name": "Supply Chain Attack Impacts Widely Used Axios npm Package",
+    "snippet": "... compromised in a supply chain attack on March 31, 2026 (UTC) ... Organizations that install npm packages in CI/CD pipelines may have ...",
+    "host_name": "arcticwolf.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.armorcode.com/blog/the-npm-supply-chain-attack-playbook-that-still-works-in-2026",
+    "name": "The NPM Supply Chain Attack Playbook That Still Works in 2026",
+    "snippet": "On March 31, 2026, the Axios NPM package, with over 100 million weekly downloads, was hijacked by a North Korean threat actor.",
+    "host_name": "www.armorcode.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]
