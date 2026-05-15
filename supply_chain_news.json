@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.armorcode.com/blog/the-npm-supply-chain-attack-playbook-that-still-works-in-2026",
+    "name": "The NPM Supply Chain Attack Playbook That Still Works in 2026",
+    "snippet": "On March 31, 2026, the Axios NPM package, with over 100 million weekly downloads, was hijacked by a North Korean threat actor.",
+    "host_name": "www.armorcode.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.trendmicro.com/en_us/research/26/c/axios-npm-package-compromised.html",
+    "name": "Axios NPM Package Compromised: Supply Chain Attack Hits",
+    "snippet": "A supply chain attack hit Axios when attackers used stolen npm credentials to publish malicious versions containing a phantom dependency.",
+    "host_name": "www.trendmicro.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.huntress.com/blog/axios-npm-compromise",
+    "name": "Tradecraft Tuesday Recap: axios npm Supply Chain Compromise",
+    "snippet": "In March 2026, TeamPCP compromised Aqua Security's popular open-source Trivy vulnerability scanner, which then led to several downstream attacks ...",
+    "host_name": "www.huntress.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://unit42.paloaltonetworks.com/axios-supply-chain-attack",
+    "name": "Threat Brief: Widespread Impact of the Axios Supply Chain Attack",
+    "snippet": "Unit 42 discusses the supply chain attack targeting Axios. Learn about the full attack chain, from the dropper to forensic cleanup.",
+    "host_name": "unit42.paloaltonetworks.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arcticwolf.com/resources/blog/supply-chain-attack-impacts-widely-used-axios-npm-package",
+    "name": "Supply Chain Attack Impacts Widely Used Axios npm Package",
+    "snippet": "... compromised in a supply chain attack on March 31, 2026 (UTC) ... CVE-2025-53521: F5 BIG-IP APM Vulnerability Reclassified as ...",
+    "host_name": "arcticwolf.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://access.redhat.com/security/supply-chain-attacks-NPM-packages",
+    "name": "Multiple Supply Chain Attacks against npm Packages",
+    "snippet": "This document details two significant supply chain attacks affecting Node.js (NPM) packages: the \"s1ngularity\" attack on the Nx package and a separate ...",
+    "host_name": "access.redhat.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/programming/comments/1nbqt4d/largest_npm_compromise_in_history_supply_chain",
+    "name": "Largest NPM Compromise in History - Supply Chain Attack - Reddit",
+    "snippet": "Hey Everyone. We just discovered that around 1 hour ago packages with a total of 2 billion weekly downloads on npm were compromised all ...",
+    "host_name": "www.reddit.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://industrialcyber.co/cisa/cisa-warns-organizations-of-supply-chain-compromise-in-axios-npm-package-delivering-remote-access-trojan",
+    "name": "CISA warns organizations of supply chain compromise in Axios npm",
+    "snippet": "CISA warns organizations of supply chain compromise in Axios npm package delivering remote access trojan. April 21, 2026. The U.S. CISA ( ...",
+    "host_name": "industrialcyber.co",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.picussecurity.com/resource/blog/axios-npm-supply-chain-attack-cross-platform-rat-delivery-via-compromised-maintainer-credentials",
+    "name": "Axios npm Supply Chain Attack: Cross-Platform RAT Delivery via",
+    "snippet": "On March 31, 2026, automated malware detection systems flagged a live supply chain compromise targeting Axios, the JavaScript ecosystem's ...",
+    "host_name": "www.picussecurity.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=yiLIZLPNEm8",
+    "name": "this is the biggest hack of 2026 - YouTube",
+    "snippet": "... supply-chain-compromise-axios-npm-package https://www.stepsecurity.io/blog/axios-compromised ... Open Source Is Under Attack ...",
+    "host_name": "www.youtube.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

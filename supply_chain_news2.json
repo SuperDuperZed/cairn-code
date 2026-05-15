@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://snyk.io/blog/tanstack-npm-packages-compromised",
+    "name": "TanStack npm Packages Hit by Mini Shai-Hulud | Snyk",
+    "snippet": "On May 11, 2026, the Mini Shai-Hulud worm compromised 84 npm package artifacts across 42 @tanstack/* packages (as well as @squawk/*, ...",
+    "host_name": "snyk.io",
+    "rank": 0,
+    "date": "May 12, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://cybernews.com/security/npm-packages-with-millions-downloads-compromised",
+    "name": "Hundreds of NPM packages compromised in a new supply chain",
+    "snippet": "A major supply chain attack has compromised hundreds of open-source packages on NPM and PyPI, stealing developer credentials and wiping data ...",
+    "host_name": "cybernews.com",
+    "rank": 1,
+    "date": "May 12, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.trendmicro.com/en_us/research/26/c/axios-npm-package-compromised.html",
+    "name": "Axios NPM Package Compromised: Supply Chain Attack Hits",
+    "snippet": "Key takeaways. Axios, a widely used JavaScript HTTP client with over 100 million weekly npm downloads, was compromised when an attacker hijacked ...",
+    "host_name": "www.trendmicro.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.huntress.com/blog/supply-chain-compromise-axios-npm-package",
+    "name": "Supply Chain Compromise of axios npm Package - Huntress",
+    "snippet": "An NPM supply chain attack struck the ubiquitous open-source axios library and Huntress has observed over a hundred affected devices.",
+    "host_name": "www.huntress.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=eGSsoSEppNU",
+    "name": "the WORST hack of 2026 - YouTube",
+    "snippet": "Axios, the most popular HTTP library with over 100 million weekly downloads, was just hijacked in one of the most sophisticated supply chain ...",
+    "host_name": "www.youtube.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://orca.security/resources/blog/tanstack-npm-supply-chain-worm",
+    "name": "TanStack & 160+ npm Packages Compromised - Orca Security",
+    "snippet": "Over 160 npm/PyPI packages like TanStack were compromised by the Mini Shai-Hulud worm. Orca helps prioritize remediation and immediate ...",
+    "host_name": "orca.security",
+    "rank": 5,
+    "date": "May 12, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sans.org/blog/axios-npm-supply-chain-compromise-malicious-packages-remote-access-trojan",
+    "name": "Axios NPM Supply Chain Compromise: Malicious Packages Deliver",
+    "snippet": "A widely used JavaScript library is at the center of a rapidly developing supply chain attack with potential for broad downstream impact.",
+    "host_name": "www.sans.org",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://unit42.paloaltonetworks.com/npm-supply-chain-attack",
+    "name": "\"Shai-Hulud\" Worm Compromises npm Ecosystem in Supply Chain",
+    "snippet": "Self-replicating worm “Shai-Hulud” has compromised hundreds of software packages in a supply chain attack targeting the npm ecosystem. We discuss scope and ...",
+    "host_name": "unit42.paloaltonetworks.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arcticwolf.com/resources/blog-uk/wormable-malware-cause-supply-chain-compromise-of-npm-code-packages",
+    "name": "Wormable Malware Causing Supply Chain Compromise of npm",
+    "snippet": "On 15 September 2025, reports surfaced that the widely used npm package @ctrl/tinycolor had been compromised by malware as part of a broader ...",
+    "host_name": "arcticwolf.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/security/blog/2026/04/01/mitigating-the-axios-npm-supply-chain-compromise",
+    "name": "Mitigating the Axios npm supply chain compromise - Microsoft",
+    "snippet": "On March 31, 2026, two new npm packages for updated versions of Axios, a popular HTTP client for JavaScript that simplifies making HTTP ...",
+    "host_name": "www.microsoft.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

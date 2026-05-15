@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://orca.security/resources/blog/tanstack-npm-supply-chain-worm",
+    "name": "TanStack & 160+ npm Packages Compromised - Orca Security",
+    "snippet": "Over 160 npm/PyPI packages like TanStack were compromised by the Mini Shai-Hulud worm. Orca helps prioritize remediation and immediate ...",
+    "host_name": "orca.security",
+    "rank": 0,
+    "date": "May 12, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://digital.nhs.uk/cyber-alerts/2026/cc-4781",
+    "name": "Supply Chain Attack Affecting Numerous npm and PyPI Packages",
+    "snippet": "Affected packages include: npm packages. @tanstack/react-router; @mistralai/mistralai; @opensearch-project/opensearch; @uipath/robot ...",
+    "host_name": "digital.nhs.uk",
+    "rank": 1,
+    "date": "May 12, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://cybernews.com/security/npm-packages-with-millions-downloads-compromised",
+    "name": "Hundreds of NPM packages compromised in a new supply chain",
+    "snippet": "A major supply chain attack has compromised hundreds of open-source packages on NPM and PyPI, stealing developer credentials and wiping data ...",
+    "host_name": "cybernews.com",
+    "rank": 2,
+    "date": "May 12, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://security.snyk.io/TanStack-npm-Supply-Chain-Compromise-May-2026",
+    "name": "Zero-Day Vulnerability Alert | Snyk",
+    "snippet": "This page summarizes the TanStack npm supply chain compromise associated with the ongoing “Mini Shai-Hulud” campaign. The incident involved compromised npm ...",
+    "host_name": "security.snyk.io",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.esentire.com/security-advisories/axios-npm-packages-compromised",
+    "name": "Axios npm Packages Compromised - eSentire",
+    "snippet": "THE THREAT On March 31st, 2026, threat actors compromised the Axios npm (Node Package Manager) package, publishing two malicious versions, 1.14.1 and 0.30.4 ...",
+    "host_name": "www.esentire.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
