@@ -1,5 +1,5 @@
 {
-  "snapshot_time": "2026-05-15T11:05:19Z",
+  "snapshot_time": "2026-05-15T17:05:34Z",
   "packages": {
     "@actions/artifact": {
       "latest_version": "6.2.1",
@@ -896,7 +896,7 @@
       "last_published": "tmp/esbuild_0.28.0_1775162326301_0.7885214804558021"
     },
     "eslint": {
-      "latest_version": "10.3.0",
+      "latest_version": "10.4.0",
       "has_install_script": false,
       "scripts": {},
       "num_deps": 30,
