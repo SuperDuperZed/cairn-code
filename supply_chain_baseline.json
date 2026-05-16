@@ -1,5 +1,5 @@
 {
-  "snapshot_time": "2026-05-15T23:05:22Z",
+  "snapshot_time": "2026-05-16T05:05:38Z",
   "packages": {
     "@actions/artifact": {
       "latest_version": "6.2.1",
@@ -358,7 +358,7 @@
       "last_published": "tmp/rest_22.0.1_1761944376303_0.34438664325096013"
     },
     "@opencode-ai/plugin": {
-      "latest_version": "1.15.0",
+      "latest_version": "1.15.1",
       "has_install_script": false,
       "scripts": {},
       "num_deps": 3,
@@ -372,7 +372,7 @@
       "last_published": "tmp/plugin_1.15.0_1778817770564_0.16086802620149654"
     },
     "@opencode-ai/sdk": {
-      "latest_version": "1.15.0",
+      "latest_version": "1.15.1",
       "has_install_script": false,
       "scripts": {},
       "num_deps": 1,
@@ -950,7 +950,7 @@
       "last_published": "tmp/execa_9.6.1_1764449626680_0.7150858159207936"
     },
     "fflate": {
-      "latest_version": "0.8.2",
+      "latest_version": "0.8.3",
       "has_install_script": false,
       "scripts": {},
       "num_deps": 0,

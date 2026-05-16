@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://www.trendmicro.com/en_us/research/26/c/axios-npm-package-compromised.html",
+    "name": "Axios NPM Package Compromised: Supply Chain Attack Hits",
+    "snippet": "Key takeaways. Axios, a widely used JavaScript HTTP client with over 100 million weekly npm downloads, was compromised when an attacker hijacked ...",
+    "host_name": "www.trendmicro.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.threatlocker.com/blog/axios-supply-chain-attack-how-a-compromised-npm-package-delivered-rat-malware",
+    "name": "Axios supply chain attack: How a compromised npm package",
+    "snippet": "A malicious Axios npm release compromised over 10000 systems in hours. Learn how the attack worked, the IoCs, and how to prevent supply ...",
+    "host_name": "www.threatlocker.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.huntress.com/blog/axios-npm-compromise",
+    "name": "Tradecraft Tuesday Recap: axios npm Supply Chain Compromise",
+    "snippet": "A few weeks after the major axios npm supply chain attack, a group of researchers from Huntress, Wiz, and Aikido Security debriefed on the ...",
+    "host_name": "www.huntress.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.microsoft.com/en-us/security/blog/2026/04/01/mitigating-the-axios-npm-supply-chain-compromise",
+    "name": "Mitigating the Axios npm supply chain compromise - Microsoft",
+    "snippet": "4) were injected with a malicious dependency to download payloads from known actor command and control (C2). Microsoft Threat Intelligence has ...",
+    "host_name": "www.microsoft.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=eGSsoSEppNU",
+    "name": "the WORST hack of 2026 - YouTube",
+    "snippet": "Axios, the most popular HTTP library with over 100 million weekly downloads, was just hijacked in one of the most sophisticated supply chain ...",
+    "host_name": "www.youtube.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
