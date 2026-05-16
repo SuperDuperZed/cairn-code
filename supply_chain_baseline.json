@@ -1,5 +1,5 @@
 {
-  "snapshot_time": "2026-05-16T05:05:38Z",
+  "snapshot_time": "2026-05-16T11:05:28Z",
   "packages": {
     "@actions/artifact": {
       "latest_version": "6.2.1",
@@ -769,7 +769,7 @@
       "last_published": "tmp/parser_8.59.3_1778521254012_0.8866519662784129"
     },
     "@typescript/native-preview": {
-      "latest_version": "7.0.0-dev.20260515.1",
+      "latest_version": "7.0.0-dev.20260516.1",
       "has_install_script": false,
       "scripts": {},
       "num_deps": 0,
