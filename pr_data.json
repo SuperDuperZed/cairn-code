@@ -703,7 +703,16 @@
         "position": 43,
         "subject_type": "line"
       }
-    ]
+    ],
+    "analysis_state": "Under Review",
+    "days_old": 4,
+    "days_stale": 4,
+    "cr": false,
+    "ap": false,
+    "pushed": false,
+    "nrev": 1,
+    "nic": 1,
+    "nrc": 2
   },
   {
     "key": "euxaristia/gemini-cli#3",
@@ -901,7 +910,16 @@
         ]
       }
     ],
-    "review_comments": []
+    "review_comments": [],
+    "analysis_state": "Has Discussion",
+    "days_old": 4,
+    "days_stale": 4,
+    "cr": false,
+    "ap": false,
+    "pushed": false,
+    "nrev": 0,
+    "nic": 1,
+    "nrc": 0
   },
   {
     "key": "euxaristia/gitee-cli#2",
@@ -1323,7 +1341,16 @@
         "position": 75,
         "subject_type": "line"
       }
-    ]
+    ],
+    "analysis_state": "Under Review",
+    "days_old": 7,
+    "days_stale": 7,
+    "cr": false,
+    "ap": false,
+    "pushed": false,
+    "nrev": 1,
+    "nic": 0,
+    "nrc": 4
   },
   {
     "key": "euxaristia/adapt#1",
@@ -1896,7 +1923,16 @@
         "position": 1,
         "subject_type": "line"
       }
-    ]
+    ],
+    "analysis_state": "In Review Cycle",
+    "days_old": 7,
+    "days_stale": 3,
+    "cr": false,
+    "ap": false,
+    "pushed": true,
+    "nrev": 1,
+    "nic": 0,
+    "nrc": 5
   },
   {
     "key": "euxaristia/colt#5",
@@ -2486,7 +2522,16 @@
         "position": 67,
         "subject_type": "line"
       }
-    ]
+    ],
+    "analysis_state": "Under Review",
+    "days_old": 7,
+    "days_stale": 7,
+    "cr": false,
+    "ap": false,
+    "pushed": false,
+    "nrev": 2,
+    "nic": 1,
+    "nrc": 4
   },
   {
     "key": "euxaristia/colt#4",
@@ -2938,7 +2983,16 @@
         "position": 1,
         "subject_type": "line"
       }
-    ]
+    ],
+    "analysis_state": "Under Review",
+    "days_old": 9,
+    "days_stale": 7,
+    "cr": false,
+    "ap": false,
+    "pushed": false,
+    "nrev": 2,
+    "nic": 1,
+    "nrc": 2
   },
   {
     "key": "google-gemini/gemini-cli#26498",
@@ -5333,7 +5387,16 @@
         "position": 25,
         "subject_type": "line"
       }
-    ]
+    ],
+    "analysis_state": "In Review Cycle",
+    "days_old": 11,
+    "days_stale": 3,
+    "cr": false,
+    "ap": false,
+    "pushed": true,
+    "nrev": 8,
+    "nic": 9,
+    "nrc": 13
   },
   {
     "key": "anomalyco/opencode#25355",
@@ -5919,7 +5982,16 @@
         ]
       }
     ],
-    "review_comments": []
+    "review_comments": [],
+    "analysis_state": "Has Discussion",
+    "days_old": 15,
+    "days_stale": 5,
+    "cr": false,
+    "ap": false,
+    "pushed": false,
+    "nrev": 0,
+    "nic": 3,
+    "nrc": 0
   },
   {
     "key": "euxaristia/VoxelPopuli#4",
@@ -6354,7 +6426,16 @@
         "position": 218,
         "subject_type": "line"
       }
-    ]
+    ],
+    "analysis_state": "In Review Cycle",
+    "days_old": 17,
+    "days_stale": 17,
+    "cr": false,
+    "ap": false,
+    "pushed": true,
+    "nrev": 1,
+    "nic": 0,
+    "nrc": 3
   },
   {
     "key": "euxaristia/colt#3",
@@ -6806,7 +6887,16 @@
         "position": 11,
         "subject_type": "line"
       }
-    ]
+    ],
+    "analysis_state": "Under Review",
+    "days_old": 18,
+    "days_stale": 7,
+    "cr": false,
+    "ap": false,
+    "pushed": false,
+    "nrev": 2,
+    "nic": 1,
+    "nrc": 2
   },
   {
     "key": "charmbracelet/glow#937",
@@ -6910,7 +7000,16 @@
         ]
       }
     ],
-    "review_comments": []
+    "review_comments": [],
+    "analysis_state": "Stale (No Activity)",
+    "days_old": 20,
+    "days_stale": 20,
+    "cr": false,
+    "ap": false,
+    "pushed": false,
+    "nrev": 0,
+    "nic": 0,
+    "nrc": 0
   },
   {
     "key": "euxaristia/VoxelPopuli#2",
@@ -7194,7 +7293,16 @@
         "position": 28,
         "subject_type": "line"
       }
-    ]
+    ],
+    "analysis_state": "Stale",
+    "days_old": 24,
+    "days_stale": 24,
+    "cr": false,
+    "ap": false,
+    "pushed": false,
+    "nrev": 1,
+    "nic": 0,
+    "nrc": 2
   },
   {
     "key": "euxaristia/colt#1",
@@ -8060,7 +8168,16 @@
         "position": 93,
         "subject_type": "line"
       }
-    ]
+    ],
+    "analysis_state": "Under Review",
+    "days_old": 32,
+    "days_stale": 7,
+    "cr": false,
+    "ap": false,
+    "pushed": false,
+    "nrev": 2,
+    "nic": 1,
+    "nrc": 8
   },
   {
     "key": "euxaristia/tree-sitter#1",
@@ -8564,7 +8681,16 @@
         "position": 1,
         "subject_type": "line"
       }
-    ]
+    ],
+    "analysis_state": "In Review Cycle",
+    "days_old": 32,
+    "days_stale": 32,
+    "cr": false,
+    "ap": false,
+    "pushed": true,
+    "nrev": 1,
+    "nic": 0,
+    "nrc": 4
   },
   {
     "key": "euxaristia/dotfiles#1",
@@ -9098,7 +9224,16 @@
         "position": 4,
         "subject_type": "line"
       }
-    ]
+    ],
+    "analysis_state": "In Review Cycle",
+    "days_old": 32,
+    "days_stale": 7,
+    "cr": false,
+    "ap": false,
+    "pushed": true,
+    "nrev": 2,
+    "nic": 1,
+    "nrc": 2
   },
   {
     "key": "clockworklabs/SpacetimeDB#4773",
@@ -9109,7 +9244,7 @@
     "draft": false,
     "created_at": "2026-04-10T04:22:37Z",
     "updated_at": "2026-04-28T05:33:51Z",
-    "mergeable": true,
+    "mergeable": null,
     "additions": 2417,
     "deletions": 0,
     "changed_files": 6,
@@ -9702,7 +9837,16 @@
         "position": 1,
         "subject_type": "line"
       }
-    ]
+    ],
+    "analysis_state": "In Review Cycle",
+    "days_old": 36,
+    "days_stale": 18,
+    "cr": false,
+    "ap": false,
+    "pushed": true,
+    "nrev": 1,
+    "nic": 4,
+    "nrc": 2
   },
   {
     "key": "QwenLM/qwen-code#2838",
@@ -11324,7 +11468,16 @@
         "position": 1,
         "subject_type": "line"
       }
-    ]
+    ],
+    "analysis_state": "In Review Cycle",
+    "days_old": 44,
+    "days_stale": 2,
+    "cr": true,
+    "ap": false,
+    "pushed": true,
+    "nrev": 2,
+    "nic": 4,
+    "nrc": 17
   },
   {
     "key": "microsoft/node-pty#901",
@@ -11556,6 +11709,15 @@
         ]
       }
     ],
-    "review_comments": []
+    "review_comments": [],
+    "analysis_state": "Has Discussion",
+    "days_old": 64,
+    "days_stale": 64,
+    "cr": false,
+    "ap": false,
+    "pushed": false,
+    "nrev": 0,
+    "nic": 1,
+    "nrc": 0
   }
 ]
