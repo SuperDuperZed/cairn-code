@@ -1,5 +1,5 @@
 {
-  "snapshot_time": "2026-05-17T17:05:39Z",
+  "snapshot_time": "2026-05-17T23:05:23Z",
   "packages": {
     "@actions/artifact": {
       "latest_version": "6.2.1",
@@ -299,7 +299,7 @@
       "last_published": "tmp/node-pty-win32-x64_1.2.0-beta.12_1775375203105_0.2916161484075661"
     },
     "@mendable/firecrawl-js": {
-      "latest_version": "4.24.0",
+      "latest_version": "4.24.1",
       "has_install_script": false,
       "scripts": {},
       "num_deps": 5,
@@ -358,7 +358,7 @@
       "last_published": "tmp/rest_22.0.1_1761944376303_0.34438664325096013"
     },
     "@opencode-ai/plugin": {
-      "latest_version": "1.15.3",
+      "latest_version": "1.15.4",
       "has_install_script": false,
       "scripts": {},
       "num_deps": 3,
@@ -372,7 +372,7 @@
       "last_published": "tmp/plugin_1.15.0_1778817770564_0.16086802620149654"
     },
     "@opencode-ai/sdk": {
-      "latest_version": "1.15.3",
+      "latest_version": "1.15.4",
       "has_install_script": false,
       "scripts": {},
       "num_deps": 1,
