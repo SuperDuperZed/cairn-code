@@ -1,5 +1,5 @@
 {
-  "snapshot_time": "2026-05-16T23:05:32Z",
+  "snapshot_time": "2026-05-17T17:05:39Z",
   "packages": {
     "@actions/artifact": {
       "latest_version": "6.2.1",
@@ -299,7 +299,7 @@
       "last_published": "tmp/node-pty-win32-x64_1.2.0-beta.12_1775375203105_0.2916161484075661"
     },
     "@mendable/firecrawl-js": {
-      "latest_version": "4.23.0",
+      "latest_version": "4.24.0",
       "has_install_script": false,
       "scripts": {},
       "num_deps": 5,
@@ -769,7 +769,7 @@
       "last_published": "tmp/parser_8.59.3_1778521254012_0.8866519662784129"
     },
     "@typescript/native-preview": {
-      "latest_version": "7.0.0-dev.20260516.1",
+      "latest_version": "7.0.0-dev.20260517.1",
       "has_install_script": false,
       "scripts": {},
       "num_deps": 0,
