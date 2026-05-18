@@ -1,5 +1,5 @@
 {
-  "snapshot_time": "2026-05-18T11:05:30Z",
+  "snapshot_time": "2026-05-18T17:05:37Z",
   "packages": {
     "@actions/artifact": {
       "latest_version": "6.2.1",
@@ -641,7 +641,7 @@
       "last_published": "tmp/mock-fs_4.13.4_1699355699999_0.6104280282132664"
     },
     "@types/node": {
-      "latest_version": "25.8.0",
+      "latest_version": "25.9.0",
       "has_install_script": false,
       "scripts": {},
       "num_deps": 1,
