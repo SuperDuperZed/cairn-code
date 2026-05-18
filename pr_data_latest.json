@@ -1,0 +1,1178 @@
+{
+  "euxaristia/adapt#4": {
+    "pr": {
+      "number": 4,
+      "title": "feat(flatpak): run flatpak update on all upgrade paths",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-05-17T21:52:34Z",
+      "updated_at": "2026-05-17T21:57:29Z",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "additions": 6,
+      "deletions": 1,
+      "changed_files": 1,
+      "head_sha": "5e043f1913ca3888b7c76f90863299346ea7fcee",
+      "user": "euxaristia",
+      "labels": [],
+      "html_url": "https://github.com/euxaristia/adapt/pull/4",
+      "base_repo": "euxaristia/adapt"
+    },
+    "reviews": [
+      {
+        "id": 4306355888,
+        "user": "gemini-code-assist[bot]",
+        "state": "COMMENTED",
+        "body": "## Code Review\n\nThis pull request integrates Flatpak updates into the system upgrade workflows. Specifically, flatpak::update is now called during both standard and full upgrades in handle_subcommand and handle_flags. Feedback suggests refactoring the Command::FullUpgrade logic to delegate to the Upgrade variant, which would reduce code duplication and simplify future maintenance.",
+        "submitted_at": "2026-05-17T21:57:29Z"
+      }
+    ],
+    "comments": [],
+    "review_comments": [
+      {
+        "id": 3255551029,
+        "user": "gemini-code-assist[bot]",
+        "body": "![medium](https://www.gstatic.com/codereviewagent/medium-priority.svg)\n\nThe logic for `Command::FullUpgrade` is now identical to the `full` path within `Command::Upgrade`. You can simplify this by delegating to the other variant to avoid code duplication and ensure that any future changes to the upgrade sequence (e.g., adding more package managers) only need to be made in one place.\n\n```rust\n        Command::FullUpgrade => handle_subcommand(Command::Upgrade { full: true }, noconfirm)?,\n```",
+        "created_at": "2026-05-17T21:57:29Z",
+        "path": "src/main.rs"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "5e043f19",
+        "message": "feat(flatpak): run flatpak update on all upgrade paths",
+        "date": "2026-05-17T21:52:32Z",
+        "author": "euxaristia"
+      }
+    ],
+    "ci": {
+      "state": "pending",
+      "statuses": []
+    }
+  },
+  "euxaristia/gemini-cli#4": {
+    "pr": {
+      "number": 4,
+      "title": "fix(build): detect Bun runtime in build scripts",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-05-12T20:35:46Z",
+      "updated_at": "2026-05-12T20:38:20Z",
+      "mergeable": true,
+      "mergeable_state": "unstable",
+      "additions": 44,
+      "deletions": 8,
+      "changed_files": 3,
+      "head_sha": "c9f63c7940876289a8dcfe5c4ee562ec0b6a1f1d",
+      "user": "euxaristia",
+      "labels": [],
+      "html_url": "https://github.com/euxaristia/gemini-cli/pull/4",
+      "base_repo": "euxaristia/gemini-cli"
+    },
+    "reviews": [
+      {
+        "id": 4276027796,
+        "user": "gemini-code-assist[bot]",
+        "state": "COMMENTED",
+        "body": "## Code Review\n\nThis pull request introduces support for the Bun runtime and package manager across the project's build infrastructure, including pre-commit hooks and build scripts. It adds a detection mechanism for Bun and optimizes the build process by handling workspace dependencies and parallelism specifically for the Bun environment. Review feedback recommends using double quotes for shell arguments to maintain cross-platform compatibility on Windows and suggests that the Bun build logic should respect the CI environment variable by defaulting to sequential builds in CI, consistent with the existing npm implementation.",
+        "submitted_at": "2026-05-12T20:38:19Z"
+      }
+    ],
+    "comments": [
+      {
+        "id": 4434569043,
+        "user": "gemini-code-assist[bot]",
+        "body": "## Summary of Changes\n\nHello, I'm Gemini Code Assist[^1]! I'm currently reviewing this pull request and will post my feedback shortly. In the meantime, here's a summary to help you and other reviewers quickly get up to speed!\n\nThis pull request introduces support for the Bun runtime in the project's build and pre-commit workflows. By detecting the active package manager, the build pipeline now gracefully switches between npm and Bun commands, resolving issues where the absence of npm on a system",
+        "created_at": "2026-05-12T20:36:02Z"
+      }
+    ],
+    "review_comments": [
+      {
+        "id": 3229649216,
+        "user": "gemini-code-assist[bot]",
+        "body": "![high](https://www.gstatic.com/codereviewagent/high-priority.svg)\n\nUse double quotes for the filter argument to ensure cross-platform compatibility. On Windows, single quotes are not recognized as quote characters by the default shell (`cmd.exe`), which can lead to command execution failures when special characters are present.\n\n```suggestion\n  execSync('bun run --filter \"@google/gemini-cli-core\" build', {\n```",
+        "created_at": "2026-05-12T20:38:19Z",
+        "path": "scripts/build.js"
+      },
+      {
+        "id": 3229649238,
+        "user": "gemini-code-assist[bot]",
+        "body": "![high](https://www.gstatic.com/codereviewagent/high-priority.svg)\n\nThe Bun build path should respect the `CI` environment variable by running workspaces sequentially when it is set, mirroring the behavior of the `npm` build path (lines 63-65). This is important for stability and resource management in CI environments. Additionally, use double quotes for the filter patterns to ensure compatibility with Windows shells.\n\n```javascript\n  if (process.env.CI) {\n    console.log('CI environment detecte",
+        "created_at": "2026-05-12T20:38:20Z",
+        "path": "scripts/build.js"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "01300269",
+        "message": "fix(build): detect Bun runtime in build scripts to avoid hardcoded npm",
+        "date": "2026-04-30T19:26:49Z",
+        "author": "euxaristia"
+      },
+      {
+        "sha": "5c78f08e",
+        "message": "fix(build): mirror npm path's core-first ordering on Bun branch",
+        "date": "2026-04-30T19:44:36Z",
+        "author": "euxaristia"
+      },
+      {
+        "sha": "a9b3a932",
+        "message": "fix(build): use npm_config_user_agent for Bun detection; add CI sequential path",
+        "date": "2026-04-30T20:09:25Z",
+        "author": "euxaristia"
+      },
+      {
+        "sha": "0e6823f3",
+        "message": "fix(build): build core first under Bun in both CI and non-CI paths",
+        "date": "2026-04-30T20:35:44Z",
+        "author": "euxaristia"
+      },
+      {
+        "sha": "c9f63c79",
+        "message": "fix(build): drop separate CI branch for Bun; always parallel after core",
+        "date": "2026-04-30T20:56:51Z",
+        "author": "euxaristia"
+      }
+    ],
+    "ci": {
+      "state": "pending",
+      "statuses": []
+    }
+  },
+  "euxaristia/gemini-cli#3": {
+    "pr": {
+      "number": 3,
+      "title": "fix(core): make shell tool work under Bun",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-05-12T20:05:43Z",
+      "updated_at": "2026-05-12T20:05:50Z",
+      "mergeable": true,
+      "mergeable_state": "unstable",
+      "additions": 39,
+      "deletions": 5,
+      "changed_files": 3,
+      "head_sha": "44941d320986b8c4080b0d404e7aaf5a14facce4",
+      "user": "euxaristia",
+      "labels": [],
+      "html_url": "https://github.com/euxaristia/gemini-cli/pull/3",
+      "base_repo": "euxaristia/gemini-cli"
+    },
+    "reviews": [],
+    "comments": [
+      {
+        "id": 4434334781,
+        "user": "gemini-code-assist[bot]",
+        "body": "> [!WARNING]\n> Gemini encountered an error creating the summary. You can try again by commenting `/gemini summary`.",
+        "created_at": "2026-05-12T20:05:50Z"
+      }
+    ],
+    "review_comments": [],
+    "commits": [
+      {
+        "sha": "44941d32",
+        "message": "fix(core): make shell tool work under Bun",
+        "date": "2026-05-12T20:05:24Z",
+        "author": "euxaristia"
+      }
+    ],
+    "ci": {
+      "state": "pending",
+      "statuses": []
+    }
+  },
+  "euxaristia/adapt#1": {
+    "pr": {
+      "number": 1,
+      "title": "Add shell completion for zsh and bash",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-05-09T00:27:04Z",
+      "updated_at": "2026-05-12T22:16:24Z",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "additions": 239,
+      "deletions": 0,
+      "changed_files": 3,
+      "head_sha": "1c903d99c4aab0849b672a9613e3a509f9d1e3e0",
+      "user": "euxaristia",
+      "labels": [],
+      "html_url": "https://github.com/euxaristia/adapt/pull/1",
+      "base_repo": "euxaristia/adapt"
+    },
+    "reviews": [
+      {
+        "id": 4256130588,
+        "user": "gemini-code-assist[bot]",
+        "state": "COMMENTED",
+        "body": "## Code Review\n\nThis pull request introduces shell completion support for both zsh and bash, including installation instructions in the README. The review feedback highlights several opportunities for improvement: adding support for pacman-style flags (e.g., -S, -R) to match the CLI definition, optimizing zsh package lookups by passing prefixes to dpkg-query, and refining argument completion for various subcommands like 'search' and 'upgrade' to ensure consistency with the tool's actual behavior.",
+        "submitted_at": "2026-05-09T00:28:35Z"
+      }
+    ],
+    "comments": [],
+    "review_comments": [
+      {
+        "id": 3211992955,
+        "user": "gemini-code-assist[bot]",
+        "body": "![high](https://www.gstatic.com/codereviewagent/high-priority.svg)\n\nThe `adapt` tool supports many pacman-style flags (e.g., `-S`, `-R`, `-Q`) as defined in `src/cli.rs`. These are currently missing from the completion script. Adding them to the `_arguments` call will allow users to complete these flags and their respective descriptions.\n\n```\n  _arguments -C \\\n    '--noconfirm[Assume yes for all apt prompts]' \\\n    '(- *)--help[Show help]' \\\n    '(- *)--version[Show version]' \\\n    '(-S --sync)'",
+        "created_at": "2026-05-09T00:28:35Z",
+        "path": "completions/_adapt"
+      },
+      {
+        "id": 3211992960,
+        "user": "gemini-code-assist[bot]",
+        "body": "![high](https://www.gstatic.com/codereviewagent/high-priority.svg)\n\nThe `adapt` tool supports many pacman-style flags (e.g., `-S`, `-R`, `-Q`). These should be added to the global options for completion to match the CLI definition.\n\n```\n    local global_opts=\"--noconfirm --help --version -S --sync -R --remove -Q --query -s --search -i --info -y --refresh -u --upgrade -c --clean --recursive\"\n```",
+        "created_at": "2026-05-09T00:28:36Z",
+        "path": "completions/adapt.bash"
+      },
+      {
+        "id": 3211992962,
+        "user": "gemini-code-assist[bot]",
+        "body": "![medium](https://www.gstatic.com/codereviewagent/medium-priority.svg)\n\nThe current implementation of `_adapt_installed_pkgs` fetches all installed packages and lets zsh filter them. For better performance, especially on systems with many packages, you can pass the current prefix to `dpkg-query` to limit the results.\n\n```\n  pkgs=(${(f)\"$(dpkg-query -W -f='${Package}\\n' \"${PREFIX}*\" 2>/dev/null)\"})\n```",
+        "created_at": "2026-05-09T00:28:36Z",
+        "path": "completions/_adapt"
+      },
+      {
+        "id": 3211992963,
+        "user": "gemini-code-assist[bot]",
+        "body": "![medium](https://www.gstatic.com/codereviewagent/medium-priority.svg)\n\nSeveral subcommands are missing from the argument completion logic, and some commands like `upgrade` have specific flags (e.g., `-f/--full`) that should be included. Additionally, `show` and `list` in your CLI implementation only accept a single argument, so the completion should reflect that by using `1: :` instead of `*: :`.\n\n```\n        install|search)\n          _arguments '*: :_adapt_installable_pkgs'\n          ;;\n      ",
+        "created_at": "2026-05-09T00:28:36Z",
+        "path": "completions/_adapt"
+      },
+      {
+        "id": 3211992967,
+        "user": "gemini-code-assist[bot]",
+        "body": "![medium](https://www.gstatic.com/codereviewagent/medium-priority.svg)\n\nThe `search` subcommand should also complete package names, similar to how `install` and `show` are handled.\n\n```\n        install|show|search)\n```",
+        "created_at": "2026-05-09T00:28:36Z",
+        "path": "completions/adapt.bash"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "505c6780",
+        "message": "Add shell completion for zsh and bash",
+        "date": "2026-05-09T00:26:17Z",
+        "author": "euxaristia"
+      },
+      {
+        "sha": "1c903d99",
+        "message": "Address review: pacman flags, prefix narrowing, subcommand arity",
+        "date": "2026-05-09T00:53:59Z",
+        "author": "euxaristia"
+      }
+    ],
+    "ci": {
+      "state": "pending",
+      "statuses": []
+    }
+  },
+  "google-gemini/gemini-cli#26498": {
+    "pr": {
+      "number": 26498,
+      "title": "feat(cli): show acknowledgment when user steering hint is processed",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-05-05T11:03:16Z",
+      "updated_at": "2026-05-13T02:22:30Z",
+      "mergeable": null,
+      "mergeable_state": "unknown",
+      "additions": 190,
+      "deletions": 6,
+      "changed_files": 4,
+      "head_sha": "85b5f0151d9fd880fd612fa03702bbf935006e82",
+      "user": "euxaristia",
+      "labels": [
+        {
+          "name": "priority/p2",
+          "color": "006b75"
+        },
+        {
+          "name": "area/agent",
+          "color": "0beb25"
+        },
+        {
+          "name": "status/pr-nudge-sent",
+          "color": "ededed"
+        }
+      ],
+      "html_url": "https://github.com/google-gemini/gemini-cli/pull/26498",
+      "base_repo": "google-gemini/gemini-cli"
+    },
+    "reviews": [
+      {
+        "id": 4227408978,
+        "user": "gemini-code-assist[bot]",
+        "state": "COMMENTED",
+        "body": "## Code Review\n\nThis pull request implements UI feedback for user steering hints by generating and displaying acknowledgment messages. Key changes include updating the `useGeminiStream` hook to trigger these acknowledgments, adding sanitization logic in `fastAckHelper` to escape XML tags and context-breaking characters, and improving `generateSteeringAckMessage` with `AbortSignal` support for better lifecycle management. Feedback was provided regarding the sanitization regex, noting that it could be bypassed by variations in tag structure and suggesting a more robust implementation to prevent prompt injection.",
+        "submitted_at": "2026-05-05T11:09:34Z"
+      },
+      {
+        "id": 4227426122,
+        "user": "gemini-code-assist[bot]",
+        "state": "COMMENTED",
+        "body": "## Code Review\n\nThis pull request introduces steering hint acknowledgments in the CLI UI and implements sanitization for user inputs and background outputs to mitigate prompt injection. Key changes include updating generateSteeringAckMessage to support AbortSignal propagation and adding logic to display acknowledgment messages in the message history. Feedback focuses on two critical areas: the sanitization regex for XML tags is currently too restrictive and should account for optional whitespace to prevent bypasses, and the AbortSignal used for acknowledgments in useGeminiStream may be tied to the wrong turn lifecycle, suggesting the use of queueMicrotask to capture the updated signal.",
+        "submitted_at": "2026-05-05T11:12:15Z"
+      },
+      {
+        "id": 4227620440,
+        "user": "gemini-code-assist[bot]",
+        "state": "COMMENTED",
+        "body": "## Code Review\n\nThis pull request introduces a steering acknowledgment mechanism for the Gemini CLI, allowing the UI to provide feedback when user steering hints are processed. It includes updates to `useGeminiStream` to trigger these acknowledgments, a new `sanitizeForWrapper` utility in `fastAckHelper` to prevent prompt injection by escaping XML tags and context-breaking characters, and comprehensive unit tests for both the acknowledgment flow and the sanitization logic. My feedback highlights that the current implementation of `sanitizeForWrapper` is ineffective due to how backslashes are handled in JavaScript string literals and provides a corrected implementation.",
+        "submitted_at": "2026-05-05T11:45:48Z"
+      },
+      {
+        "id": 4227663526,
+        "user": "gemini-code-assist[bot]",
+        "state": "COMMENTED",
+        "body": "## Code Review\n\nThis pull request introduces steering acknowledgment messages in the CLI UI and enhances prompt injection mitigation by sanitizing user input and background output. It also improves the robustness of steering acknowledgments by supporting AbortSignal for cancellation. Feedback suggests ensuring acknowledgments are only displayed if the query actually proceeds to avoid misleading feedback during quota errors, and refining the sanitization logic to remove rather than escape context-breaking characters to better align with security guidelines.",
+        "submitted_at": "2026-05-05T11:52:08Z"
+      },
+      {
+        "id": 4229451649,
+        "user": "gemini-code-assist[bot]",
+        "state": "COMMENTED",
+        "body": "## Code Review\n\nThis pull request introduces a mechanism for generating and displaying acknowledgment messages for user steering hints, including input sanitization to prevent prompt injection and improved cancellation handling via AbortSignal. The review feedback identified a potential UI race condition where acknowledgment messages could appear out of order in the history. It is recommended to capture the acknowledgment timestamp within a microtask after the query is submitted to ensure the acknowledgment is correctly rendered after the user hint.",
+        "submitted_at": "2026-05-05T15:26:19Z"
+      },
+      {
+        "id": 4229764563,
+        "user": "gemini-code-assist[bot]",
+        "state": "COMMENTED",
+        "body": "## Code Review\n\nThis pull request implements a mechanism for acknowledging user steering hints within the CLI. Key changes include the addition of logic in the `useGeminiStream` hook to trigger acknowledgement messages, support for `AbortSignal` in the acknowledgement generation process to handle cancellations, and new sanitization logic to mitigate prompt injection by escaping XML tags and context-breaking characters. Feedback was provided regarding the sanitization of the `]` character, suggesting it should be removed rather than escaped to more effectively prevent prompt injection.",
+        "submitted_at": "2026-05-05T16:11:37Z"
+      },
+      {
+        "id": 4241469201,
+        "user": "gemini-code-assist[bot]",
+        "state": "COMMENTED",
+        "body": "## Code Review\n\nThis pull request adds steering acknowledgement messages to the CLI UI and implements prompt injection sanitization in the core utility functions. Key changes include updating `useGeminiStream` to handle user hints asynchronously and introducing `sanitizeForWrapper` to escape XML tags and remove context-breaking characters. Feedback suggests that the centralized sanitization logic may cause functional regressions for certain data types like logs. It is recommended to move this logic to the tool or subagent level and refine how newlines and ANSI sequences are handled to preserve structural integrity.",
+        "submitted_at": "2026-05-07T06:04:45Z"
+      },
+      {
+        "id": 4241517430,
+        "user": "gemini-code-assist[bot]",
+        "state": "COMMENTED",
+        "body": "## Code Review\n\nThis pull request introduces steering acknowledgement messages in the CLI UI and enhances prompt injection mitigation by sanitizing inputs wrapped in XML tags. Key changes include updating `useGeminiStream` to display acknowledgements and modifying `fastAckHelper` to escape XML closing tags, remove context-breaking characters, and strip newlines. Feedback highlights that unconditional newline stripping in `sanitizeForWrapper` could break the formatting of multiline user hints, suggesting that this behavior be made optional to preserve list structures.",
+        "submitted_at": "2026-05-07T06:14:48Z"
+      }
+    ],
+    "comments": [
+      {
+        "id": 4378638433,
+        "user": "euxaristia",
+        "body": "/gemini review",
+        "created_at": "2026-05-05T11:04:35Z"
+      },
+      {
+        "id": 4378651211,
+        "user": "gemini-code-assist[bot]",
+        "body": "## Summary of Changes\n\nHello, I'm Gemini Code Assist[^1]! I'm currently reviewing this pull request and will post my feedback shortly. In the meantime, here's a summary to help you and other reviewers quickly get up to speed!\n\nThis pull request introduces a more responsive user experience for steering hints by providing immediate visual feedback in the CLI transcript. It addresses previous feedback regarding promise handling, signal propagation, and security by hardening the input sanitization l",
+        "created_at": "2026-05-05T11:06:42Z"
+      },
+      {
+        "id": 4378842654,
+        "user": "euxaristia",
+        "body": "Addressed in 0351b52a8:\n\n- Closing-tag regex now case-insensitive and accepts whitespace/attributes inside the tag (`<\\/([^>]+)>/gi`), so `</user_input >`, `</USER_INPUT>`, and `</user_input foo=\"bar\">` are all sanitized.\n- Newlines escaped to `\\n` literal inside the wrappers, per the repo prompt-injection rule. Steering paths already `normalizeSpace`, so this only changes behavior for multi-line `<background_output>` injection.\n- Tests added for each of those bypass cases.\n\nThe `]` context-brea",
+        "created_at": "2026-05-05T11:37:52Z"
+      },
+      {
+        "id": 4378865731,
+        "user": "euxaristia",
+        "body": "Two new items addressed:\n\n**Re: useGeminiStream.ts:2009 (signal captured for the wrong turn)** \u2014 fixed in e81028ad2. Wrapped the launch in `queueMicrotask` so the new turn's `AbortController` is installed before we capture the signal, and added a `turnCancelledRef.current` guard before `addItem` as belt-and-suspenders.\n\n**Re: fastAckHelper.ts XML close-tag regex** \u2014 I think the new suggestion may be regressing the regex that already shipped in 0351b52a8. Current code (line 60) is:\n```\nconst XML_",
+        "created_at": "2026-05-05T11:41:47Z"
+      },
+      {
+        "id": 4380672701,
+        "user": "euxaristia",
+        "body": "Both addressed in 698fcc885:\n\n**useGeminiStream.ts:2033** \u2014 good catch, real bug. The `queueMicrotask` block was scheduled before the `modelSwitchedFromQuotaError` early-return, so a hint that never got sent could still produce an \"Understood...\" line. Restructured to capture the pending ack as data inside the existing block, then dispatch it after the early-return so it only fires when `submitQuery` will actually run.\n\n**fastAckHelper.ts:69** \u2014 partial agreement. Newlines now stripped (replaced",
+        "created_at": "2026-05-05T15:23:05Z"
+      },
+      {
+        "id": 4380994349,
+        "user": "euxaristia",
+        "body": "Addressed in 1470105b2 \u2014 moved `ackTimestamp = Date.now()` inside the `queueMicrotask`. The microtask runs after `submitQuery`'s synchronous prefix (and its own `userMessageTimestamp` assignment), so the ack now lands strictly after the hint in any timestamp-ordered view, while still ahead of the model response chunks.\n\n/gemini review",
+        "created_at": "2026-05-05T16:08:48Z"
+      },
+      {
+        "id": 4394210575,
+        "user": "euxaristia",
+        "body": "Addressed in 1c5b1e3c3 \u2014 switched `]` from escape (`\\]`) to removal (empty string), per the repeated flag and the repo's sanitization rules. As I'd offered upthread, treating this as the stricter posture you'd prefer. Tests updated to assert the new removal semantics.\n\nThe other recent inline comments on `1470105b2` are stale relative to my replies above \u2014 happy to re-confirm any specific one if it's still actionable.\n\n/gemini review",
+        "created_at": "2026-05-07T04:42:58Z"
+      },
+      {
+        "id": 4394244835,
+        "user": "euxaristia",
+        "body": "/gemini review",
+        "created_at": "2026-05-07T04:53:25Z"
+      },
+      {
+        "id": 4436598872,
+        "user": "gemini-cli[bot]",
+        "body": "Hi there! Thank you for your interest in contributing to Gemini CLI. \n\nTo ensure we maintain high code quality and focus on our prioritized roadmap, we only guarantee review and consideration of pull requests for issues that are explicitly labeled as 'help wanted'. \n\nThis PR will be closed in 7 days if it remains without that designation. We encourage you to find and contribute to existing 'help wanted' issues in our backlog! Thank you for your understanding.",
+        "created_at": "2026-05-13T02:22:30Z"
+      }
+    ],
+    "review_comments": [
+      {
+        "id": 3187938844,
+        "user": "gemini-code-assist[bot]",
+        "body": "![security-high](https://www.gstatic.com/codereviewagent/security-high-priority.svg) ![high](https://www.gstatic.com/codereviewagent/high-priority.svg)\n\nThe regular expression `XML_TAG_REPLACE_RE` used for sanitizing untrusted input is incomplete and can be bypassed. It only matches closing XML tags that consist of word characters and are immediately followed by a `>`. An attacker can bypass this by including whitespace or attributes within the tag (e.g., `</user_input >`), which many LLMs will ",
+        "created_at": "2026-05-05T11:09:35Z",
+        "path": "packages/core/src/utils/fastAckHelper.ts"
+      },
+      {
+        "id": 3187954744,
+        "user": "gemini-code-assist[bot]",
+        "body": "![security-high](https://www.gstatic.com/codereviewagent/security-high-priority.svg) ![high](https://www.gstatic.com/codereviewagent/high-priority.svg)\n\nThe regular expression `XML_TAG_REPLACE_RE` used for sanitizing untrusted input is too restrictive. It only matches closing tags that contain word characters and no whitespace (e.g., `</user_input>`). An attacker can bypass this sanitization by using variations such as `</user_input >` or `</user_input\\n>`, which many LLMs may still interpret as",
+        "created_at": "2026-05-05T11:12:15Z",
+        "path": "packages/core/src/utils/fastAckHelper.ts"
+      },
+      {
+        "id": 3187954749,
+        "user": "gemini-code-assist[bot]",
+        "body": "![high](https://www.gstatic.com/codereviewagent/high-priority.svg)\n\nThe `AbortSignal` captured here belongs to the turn that is currently finishing, but the steering hint acknowledgment is intended for the subsequent continuation turn. Since `submitQuery` (called at line 2046) replaces `abortControllerRef.current` with a new controller, the signal used here will not be aborted if the user cancels the continuation turn. To ensure the acknowledgment is correctly tied to the new turn's lifecycle an",
+        "created_at": "2026-05-05T11:12:15Z",
+        "path": "packages/cli/src/ui/hooks/useGeminiStream.ts"
+      },
+      {
+        "id": 3188138487,
+        "user": "gemini-code-assist[bot]",
+        "body": "![high](https://www.gstatic.com/codereviewagent/high-priority.svg)\n\nThe sanitization logic for XML closing tags and context breakers is currently ineffective. In JavaScript string literals, the backslash is an escape character. For characters that do not have a special escape sequence (like `/` or `]`), the backslash is simply ignored by the parser. \n\nAs a result:\n- '\\u003c\\\\/$1\\u003e' evaluates to the string '\\u003c/$1\\u003e', which replaces the tag with itself.\n- '\\\\]' evaluates to the string ",
+        "created_at": "2026-05-05T11:45:49Z",
+        "path": "packages/core/src/utils/fastAckHelper.ts"
+      },
+      {
+        "id": 3188176416,
+        "user": "gemini-code-assist[bot]",
+        "body": "![high](https://www.gstatic.com/codereviewagent/high-priority.svg)\n\nThe steering acknowledgment is scheduled via `queueMicrotask` before the check for `modelSwitchedFromQuotaError`. If a quota error occurs and the model is switched, `submitQuery` is skipped (line 2049), but the acknowledgment will still be rendered in the UI. This provides misleading feedback to the user as the hint was never actually sent to the model. Consider moving this logic after the quota error check or using a flag to en",
+        "created_at": "2026-05-05T11:52:08Z",
+        "path": "packages/cli/src/ui/hooks/useGeminiStream.ts"
+      },
+      {
+        "id": 3188176417,
+        "user": "gemini-code-assist[bot]",
+        "body": "![security-high](https://www.gstatic.com/codereviewagent/security-high-priority.svg) ![high](https://www.gstatic.com/codereviewagent/high-priority.svg)\n\nThe `sanitizeForWrapper` function currently escapes context-breaking characters like `]` and newlines. However, the general rules for this repository specify that these characters should be removed rather than escaped to prevent prompt injection. Escaping might not be sufficient if the downstream LLM parser does not treat the backslash as an esc",
+        "created_at": "2026-05-05T11:52:08Z",
+        "path": "packages/core/src/utils/fastAckHelper.ts"
+      },
+      {
+        "id": 3189641184,
+        "user": "gemini-code-assist[bot]",
+        "body": "![high](https://www.gstatic.com/codereviewagent/high-priority.svg)\n\nThe `ackTimestamp` should be captured inside the `queueMicrotask` (line 2033) rather than here. Capturing it now results in a timestamp that is less than or equal to the one generated for the user hint inside `submitQuery` (line 1578). This can cause the acknowledgment to be rendered *above* the hint in the UI history if the history manager sorts by timestamp. Removing it from the `pendingSteeringAck` object simplifies the state",
+        "created_at": "2026-05-05T15:26:19Z",
+        "path": "packages/cli/src/ui/hooks/useGeminiStream.ts"
+      },
+      {
+        "id": 3189641203,
+        "user": "gemini-code-assist[bot]",
+        "body": "![high](https://www.gstatic.com/codereviewagent/high-priority.svg)\n\nCapturing the timestamp here is premature as it will likely be earlier than the timestamp assigned to the user hint in `submitQuery`.\n\n```suggestion\n          pendingSteeringAck = { hintText };\n```",
+        "created_at": "2026-05-05T15:26:20Z",
+        "path": "packages/cli/src/ui/hooks/useGeminiStream.ts"
+      },
+      {
+        "id": 3189641248,
+        "user": "gemini-code-assist[bot]",
+        "body": "![high](https://www.gstatic.com/codereviewagent/high-priority.svg)\n\nUpdate the destructuring to match the simplified `pendingSteeringAck` object.\n\n```suggestion\n        const { hintText } = pendingSteeringAck;\n```",
+        "created_at": "2026-05-05T15:26:20Z",
+        "path": "packages/cli/src/ui/hooks/useGeminiStream.ts"
+      },
+      {
+        "id": 3189641267,
+        "user": "gemini-code-assist[bot]",
+        "body": "![high](https://www.gstatic.com/codereviewagent/high-priority.svg)\n\nCapturing `ackTimestamp` here ensures it is recorded after `submitQuery` has executed and generated the hint's timestamp. This guarantees the acknowledgment appears after the hint in the UI history, while still appearing before the model's eventual response chunks.\n\n```typescript\n        queueMicrotask(() => {\n          const ackTimestamp = Date.now();\n          const signal = abortControllerRef.current?.signal;\n          void g",
+        "created_at": "2026-05-05T15:26:20Z",
+        "path": "packages/cli/src/ui/hooks/useGeminiStream.ts"
+      },
+      {
+        "id": 3189929922,
+        "user": "gemini-code-assist[bot]",
+        "body": "![security-high](https://www.gstatic.com/codereviewagent/security-high-priority.svg) ![high](https://www.gstatic.com/codereviewagent/high-priority.svg)\n\nThe implementation escapes the ] character instead of removing it. According to the repository rules, context-breaking characters like ] should be removed when sanitizing data from LLM-driven tools to prevent prompt injection. Escaping may not be sufficient depending on how the model parses the input.\n\n```suggestion\n.replace(CONTEXT_BREAKER_RE, ",
+        "created_at": "2026-05-05T16:11:37Z",
+        "path": "packages/core/src/utils/fastAckHelper.ts"
+      },
+      {
+        "id": 3199194062,
+        "user": "gemini-code-assist[bot]",
+        "body": "![high](https://www.gstatic.com/codereviewagent/high-priority.svg)\n\nThe `sanitizeForWrapper` function's current approach of stripping all newlines and `]` characters follows Rule 2 for system prompt injection but causes functional regressions in `formatUserHintsForModel` and `formatBackgroundCompletionForModel`. To address this:\n\n1. Move sanitization logic to the tool or subagent level rather than handling it in this utility, as required by Rule 1.\n2. For strings intended for list display or str",
+        "created_at": "2026-05-07T06:04:45Z",
+        "path": "packages/core/src/utils/fastAckHelper.ts"
+      },
+      {
+        "id": 3199239731,
+        "user": "gemini-code-assist[bot]",
+        "body": "![high](https://www.gstatic.com/codereviewagent/high-priority.svg)\n\nThe `sanitizeForWrapper` function unconditionally strips newlines, which is appropriate for tool-generated data per the 'secure by default' rule, but it breaks the formatting of multiline user inputs. Specifically, `formatUserHintsForModel` (which calls `wrapInput`) relies on newlines to present a list of hints to the model. When these newlines are replaced by spaces, the list structure is lost, potentially confusing the model.\n",
+        "created_at": "2026-05-07T06:14:48Z",
+        "path": "packages/core/src/utils/fastAckHelper.ts"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "c4d6009c",
+        "message": "feat(core): add abort-aware sanitized steering ack helper",
+        "date": "2026-05-05T11:00:31Z",
+        "author": "euxaristia"
+      },
+      {
+        "sha": "9e83545a",
+        "message": "feat(cli): show acknowledgment when user steering hint is processed",
+        "date": "2026-05-05T11:00:51Z",
+        "author": "euxaristia"
+      },
+      {
+        "sha": "0351b52a",
+        "message": "fix(core): harden wrapper sanitization against tag and newline bypasses",
+        "date": "2026-05-05T11:37:36Z",
+        "author": "euxaristia"
+      },
+      {
+        "sha": "e81028ad",
+        "message": "fix(cli): tie steering ack to continuation turn's AbortController",
+        "date": "2026-05-05T11:41:25Z",
+        "author": "euxaristia"
+      },
+      {
+        "sha": "698fcc88",
+        "message": "fix: skip steering ack on quota-error early-return; strip newlines",
+        "date": "2026-05-05T15:22:35Z",
+        "author": "euxaristia"
+      },
+      {
+        "sha": "1470105b",
+        "message": "fix(cli): capture steering ack timestamp inside the microtask",
+        "date": "2026-05-05T16:08:36Z",
+        "author": "euxaristia"
+      },
+      {
+        "sha": "1c5b1e3c",
+        "message": "fix(core): remove context-breaking ] characters instead of escaping",
+        "date": "2026-05-07T04:42:41Z",
+        "author": "euxaristia"
+      },
+      {
+        "sha": "85b5f015",
+        "message": "fix(core): address review comments on steering hint sanitization",
+        "date": "2026-05-11T05:50:30Z",
+        "author": "euxaristia"
+      }
+    ],
+    "ci": {
+      "state": "pending",
+      "statuses": []
+    }
+  },
+  "anomalyco/opencode#25355": {
+    "pr": {
+      "number": 25355,
+      "title": "fix(tui): bind home/end to line start/end in input",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-05-01T20:10:08Z",
+      "updated_at": "2026-05-11T01:39:11Z",
+      "mergeable": null,
+      "mergeable_state": "unknown",
+      "additions": 192,
+      "deletions": 192,
+      "changed_files": 20,
+      "head_sha": "d3bda7e85b1b41c05e6d6e9f9754e7ccf4b76f17",
+      "user": "euxaristia",
+      "labels": [],
+      "html_url": "https://github.com/anomalyco/opencode/pull/25355",
+      "base_repo": "anomalyco/opencode"
+    },
+    "reviews": [],
+    "comments": [
+      {
+        "id": 4361402321,
+        "user": "github-actions[bot]",
+        "body": "<!-- pr-standards:issue -->\nThanks for your contribution!\n\nThis PR doesn't have a linked issue. All PRs must reference an existing issue.\n\nPlease:\n1. Open an issue describing the bug/feature (if one doesn't exist)\n2. Add `Fixes #<number>` or `Closes #<number>` to this PR description\n\nSee [CONTRIBUTING.md](../blob/dev/CONTRIBUTING.md#issue-first-policy) for details.",
+        "created_at": "2026-05-01T20:10:26Z"
+      },
+      {
+        "id": 4361404500,
+        "user": "github-actions[bot]",
+        "body": "_The following comment was made by an LLM, it may be inaccurate:_\n\nFound a potential duplicate:\n\n**PR #19135: \"fix(opencode): restore Home/End prompt navigation in TUI\"**\n- https://github.com/anomalyco/opencode/pull/19135\n- This appears directly related to your PR #25355, as it also addresses Home/End key navigation in the TUI input area.\n\nBoth PRs seem to be addressing keybinding behavior for Home/End keys in the terminal UI. Check if #19135 is already merged or if it overlaps with your changes",
+        "created_at": "2026-05-01T20:10:59Z"
+      },
+      {
+        "id": 4361427958,
+        "user": "github-actions[bot]",
+        "body": "Thanks for updating your PR! It now meets our contributing guidelines. :+1:",
+        "created_at": "2026-05-01T20:16:43Z"
+      }
+    ],
+    "review_comments": [],
+    "commits": [
+      {
+        "sha": "31df0472",
+        "message": "fix(tui): bind home/end to line start/end in input",
+        "date": "2026-05-01T20:07:50Z",
+        "author": "euxaristia"
+      },
+      {
+        "sha": "d3bda7e8",
+        "message": "fix(tui): drop stale Home/End hints from tips view",
+        "date": "2026-05-01T20:14:46Z",
+        "author": "euxaristia"
+      }
+    ],
+    "ci": {
+      "state": "pending",
+      "statuses": []
+    }
+  },
+  "charmbracelet/glow#937": {
+    "pr": {
+      "number": 937,
+      "title": "fix: ensure closing fence in WrapCodeBlock is on its own line",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-04-26T19:33:29Z",
+      "updated_at": "2026-04-26T19:33:29Z",
+      "mergeable": true,
+      "mergeable_state": "unstable",
+      "additions": 3,
+      "deletions": 0,
+      "changed_files": 1,
+      "head_sha": "498648f59ee8e3d8adf574dcbfbcc85b988a97b3",
+      "user": "euxaristia",
+      "labels": [],
+      "html_url": "https://github.com/charmbracelet/glow/pull/937",
+      "base_repo": "charmbracelet/glow"
+    },
+    "reviews": [],
+    "comments": [],
+    "review_comments": [],
+    "commits": [
+      {
+        "sha": "498648f5",
+        "message": "fix: ensure closing fence in `WrapCodeBlock` is on its own line",
+        "date": "2026-04-26T19:32:28Z",
+        "author": "euxaristia"
+      }
+    ],
+    "ci": {
+      "state": "pending",
+      "statuses": []
+    }
+  },
+  "euxaristia/VoxelPopuli#2": {
+    "pr": {
+      "number": 2,
+      "title": "chore(deps): replace image and rayon with smaller alternatives",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-04-22T04:03:20Z",
+      "updated_at": "2026-04-22T04:05:00Z",
+      "mergeable": true,
+      "mergeable_state": "unstable",
+      "additions": 26,
+      "deletions": 8,
+      "changed_files": 4,
+      "head_sha": "c5ad37ef719aeb559d6176d572cca42ddceda941",
+      "user": "euxaristia",
+      "labels": [],
+      "html_url": "https://github.com/euxaristia/VoxelPopuli/pull/2",
+      "base_repo": "euxaristia/VoxelPopuli"
+    },
+    "reviews": [
+      {
+        "id": 4151978711,
+        "user": "gemini-code-assist[bot]",
+        "state": "COMMENTED",
+        "body": "## Code Review\n\nThis pull request removes the image and rayon dependencies, replacing them with the png crate for texture loading and std::thread::spawn for chunk meshing. However, the transition to std::thread::spawn introduces significant risks, including performance overhead from spawning OS threads, memory unsoundness due to raw pointer usage in a 'static context, and potential data races. Additionally, the new PNG decoding implementation is fragile as it lacks support for grayscale formats and 16-bit images, which may lead to panics or rendering artifacts.",
+        "submitted_at": "2026-04-22T04:05:00Z"
+      }
+    ],
+    "comments": [],
+    "review_comments": [
+      {
+        "id": 3121494079,
+        "user": "gemini-code-assist[bot]",
+        "body": "![security-critical](https://www.gstatic.com/codereviewagent/security-critical.svg) ![critical](https://www.gstatic.com/codereviewagent/critical.svg)\n\nReplacing `rayon::spawn` with `std::thread::spawn` in this context introduces critical performance and safety concerns:\n\n1. **Performance Regression**: `std::thread::spawn` creates a new OS thread every time it is called. Spawning up to 16 threads per frame (as limited by `dispatches_this_frame`) can lead to significant overhead and resource exhau",
+        "created_at": "2026-04-22T04:05:00Z",
+        "path": "src/world.rs"
+      },
+      {
+        "id": 3121494083,
+        "user": "gemini-code-assist[bot]",
+        "body": "![medium](https://www.gstatic.com/codereviewagent/medium-priority.svg)\n\nThe new PNG decoding implementation is significantly more fragile than the `image` crate it replaces. It currently panics on common color types like `Grayscale` and `GrayscaleAlpha`, and it does not handle 16-bit images correctly (which will result in corrupted textures or panics because the buffer size and pixel strides will differ from expectations).\n\nAdding the `STRIP_16` transformation and handling grayscale types by exp",
+        "created_at": "2026-04-22T04:05:00Z",
+        "path": "src/renderer.rs"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "c5ad37ef",
+        "message": "chore(deps): replace image and rayon with smaller alternatives",
+        "date": "2026-04-22T04:03:11Z",
+        "author": "euxaristia"
+      }
+    ],
+    "ci": {
+      "state": "pending",
+      "statuses": []
+    }
+  },
+  "euxaristia/tree-sitter#1": {
+    "pr": {
+      "number": 1,
+      "title": "feat(runtime): pure-Rust runtime crate; port point.c",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-04-14T06:31:17Z",
+      "updated_at": "2026-04-14T06:41:38Z",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "additions": 241,
+      "deletions": 0,
+      "changed_files": 6,
+      "head_sha": "e6ca41cdfcfda18b476ffc0454580c088a540665",
+      "user": "euxaristia",
+      "labels": [],
+      "html_url": "https://github.com/euxaristia/tree-sitter/pull/1",
+      "base_repo": "euxaristia/tree-sitter"
+    },
+    "reviews": [
+      {
+        "id": 4103759437,
+        "user": "gemini-code-assist[bot]",
+        "state": "COMMENTED",
+        "body": "## Code Review\n\nThis pull request initiates the incremental port of the tree-sitter C runtime to Rust, starting with the point-related logic. It introduces a new `tree-sitter-runtime` crate, re-implements point manipulation functions with C ABI compatibility, and updates the CMake build system to link this Rust static library. The review feedback highlights critical issues in the CMake configuration regarding cross-platform support, build type handling, and cross-compilation. Additionally, it is recommended to use wrapping arithmetic in the Rust implementation to ensure parity with C's overflow behavior and prevent runtime panics in debug builds.",
+        "submitted_at": "2026-04-14T06:33:01Z"
+      }
+    ],
+    "comments": [],
+    "review_comments": [
+      {
+        "id": 3077521030,
+        "user": "gemini-code-assist[bot]",
+        "body": "![high](https://www.gstatic.com/codereviewagent/high-priority.svg)\n\nThe paths for the Rust static library are hardcoded for Unix-like systems (`.a` extension and `lib` prefix) and only for `release` builds. This will fail on Windows (where the library extension is `.lib` and the `lib` prefix is absent for MSVC) and does not respect the `CMAKE_BUILD_TYPE` (e.g., `Debug`). Additionally, it doesn't account for Cargo's target-specific output directories during cross-compilation.",
+        "created_at": "2026-04-14T06:33:01Z",
+        "path": "CMakeLists.txt"
+      },
+      {
+        "id": 3077521037,
+        "user": "gemini-code-assist[bot]",
+        "body": "![high](https://www.gstatic.com/codereviewagent/high-priority.svg)\n\nThe `cargo build` command is hardcoded to `--release` and does not pass a `--target` flag. This breaks cross-compilation support, as Cargo will build for the host architecture instead of the target architecture specified in CMake. You should derive the target triple from CMake and pass it to Cargo via the `--target` flag.",
+        "created_at": "2026-04-14T06:33:01Z",
+        "path": "CMakeLists.txt"
+      },
+      {
+        "id": 3077521043,
+        "user": "gemini-code-assist[bot]",
+        "body": "![medium](https://www.gstatic.com/codereviewagent/medium-priority.svg)\n\nUse wrapping arithmetic (`wrapping_add`) to match C's unsigned overflow behavior. In C, `uint32_t` addition is defined to wrap, whereas in Rust, the `+` operator will panic in debug builds if an overflow occurs. This is important for maintaining identical behavior between the C and Rust implementations, especially in a low-level runtime library.\n\n```suggestion\npub const fn point_add(a: TSPoint, b: TSPoint) -> TSPoint {\n    i",
+        "created_at": "2026-04-14T06:33:01Z",
+        "path": "crates/runtime/src/point.rs"
+      },
+      {
+        "id": 3077521058,
+        "user": "gemini-code-assist[bot]",
+        "body": "![medium](https://www.gstatic.com/codereviewagent/medium-priority.svg)\n\nThe `start_byte` calculation should use wrapping addition to ensure parity with the C implementation and avoid potential panics in debug builds.\n\n```suggestion\n        start_byte = edit.new_end_byte.wrapping_add(start_byte - edit.old_end_byte);\n```",
+        "created_at": "2026-04-14T06:33:01Z",
+        "path": "crates/runtime/src/point.rs"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "223f723b",
+        "message": "feat(runtime): introduce pure-Rust runtime crate; port point.c",
+        "date": "2026-04-14T06:29:18Z",
+        "author": "euxaristia"
+      },
+      {
+        "sha": "e6ca41cd",
+        "message": "review(runtime): address gemini review on PR #1",
+        "date": "2026-04-14T06:41:36Z",
+        "author": "euxaristia"
+      }
+    ],
+    "ci": {
+      "state": "pending",
+      "statuses": []
+    }
+  },
+  "clockworklabs/SpacetimeDB#4773": {
+    "pr": {
+      "number": 4773,
+      "title": "feat(bindings-cpp-ffi): add Rust FFI crate for WASM modules",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-04-10T04:22:37Z",
+      "updated_at": "2026-04-28T05:33:51Z",
+      "mergeable": null,
+      "mergeable_state": "unknown",
+      "additions": 2417,
+      "deletions": 0,
+      "changed_files": 6,
+      "head_sha": "45329dffd0cec25fb5c5cc21462770d827aaeb57",
+      "user": "euxaristia",
+      "labels": [],
+      "html_url": "https://github.com/clockworklabs/SpacetimeDB/pull/4773",
+      "base_repo": "clockworklabs/SpacetimeDB"
+    },
+    "reviews": [
+      {
+        "id": 4087154174,
+        "user": "chatgpt-codex-connector[bot]",
+        "state": "COMMENTED",
+        "body": "\n### \ud83d\udca1 Codex Review\n\nHere are some automated review suggestions for this pull request.\n\n**Reviewed commit:** `bb1e667316`\n    \n\n<details> <summary>\u2139\ufe0f About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\".\n\nIf Codex has suggestions, it will comment; otherwise it will react with \ud83d\udc4d.\n\n\n\n\nCodex can also answer questions or update the PR. Try commenting \"@codex address that feedback\".\n            \n</details>",
+        "submitted_at": "2026-04-10T04:29:31Z"
+      }
+    ],
+    "comments": [
+      {
+        "id": 4220985198,
+        "user": "euxaristia",
+        "body": "@codex review",
+        "created_at": "2026-04-10T05:28:08Z"
+      },
+      {
+        "id": 4220986536,
+        "user": "chatgpt-codex-connector[bot]",
+        "body": "You have reached your Codex usage limits for code reviews. You can see your limits in the [Codex usage dashboard](https://chatgpt.com/codex/cloud/settings/usage).",
+        "created_at": "2026-04-10T05:28:16Z"
+      },
+      {
+        "id": 4329236323,
+        "user": "bfops",
+        "body": "Hi @euxaristia, what's the goal of this PR? Why is this version preferable to what's there? Is it intended as a replacement?",
+        "created_at": "2026-04-27T17:45:00Z"
+      },
+      {
+        "id": 4332615984,
+        "user": "euxaristia",
+        "body": "@bfops rewrites the C++ binding layer in Rust. The C++ side has integration tests (type-isolation, client-comparison) but zero unit tests on the internal logic, so edge cases/errors aren't covered. This adds 96 unit tests at 100% coverage, uses shared Rust types directly, and keeps everything in one toolchain.\n\nYes, intended as a replacement, but this PR only adds the crate \u2014 nothing removed. Follow-up would swap it in if the team's on board.",
+        "created_at": "2026-04-28T05:33:51Z"
+      }
+    ],
+    "review_comments": [
+      {
+        "id": 3062035473,
+        "user": "chatgpt-codex-connector[bot]",
+        "body": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Define byte handle types as u32 to match host ABI**\n\n`BytesSink` and `BytesSource` are declared as `u64`, but the host ABI in this repository passes byte-source/sink IDs as `u32` (for example, `CALL_REDUCER_SIG` expects `i32` handle arguments and the host shims accept `u32` IDs). This width mismatch changes the FFI contract for imported/exported functions and can cause module signature mismatch or incorrect h",
+        "created_at": "2026-04-10T04:29:31Z",
+        "path": "crates/bindings-cpp-ffi/src/ffi.rs"
+      },
+      {
+        "id": 3062035478,
+        "user": "chatgpt-codex-connector[bot]",
+        "body": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Advance buffer length only after successful source reads**\n\n`buf.set_len(buf.len() + buf_len)` is executed before validating `ret` from `bytes_source_read`. If the host returns an error code (for example `NO_SUCH_BYTES`) without updating `buf_len`, this marks uninitialized spare capacity as initialized bytes and then continues with corrupted data/error handling. That is memory-unsafe and can surface as garbag",
+        "created_at": "2026-04-10T04:29:32Z",
+        "path": "crates/bindings-cpp-ffi/src/ffi.rs"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "c07421e7",
+        "message": "feat(bindings-cpp-ffi): add Rust replacement for C++ bindings",
+        "date": "2026-04-10T04:21:21Z",
+        "author": "euxaristia"
+      },
+      {
+        "sha": "45329dff",
+        "message": "fix(bindings-cpp-ffi): track read cursor in test host stubs",
+        "date": "2026-04-28T03:14:50Z",
+        "author": "euxaristia"
+      }
+    ],
+    "ci": {
+      "state": "success",
+      "statuses": [
+        {
+          "context": "license/cla",
+          "state": "success",
+          "description": "Contributor License Agreement is signed."
+        }
+      ]
+    }
+  },
+  "QwenLM/qwen-code#2838": {
+    "pr": {
+      "number": 2838,
+      "title": "feat: add bun runtime support",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-04-02T20:40:44Z",
+      "updated_at": "2026-05-14T07:48:48Z",
+      "mergeable": null,
+      "mergeable_state": "unknown",
+      "additions": 3434,
+      "deletions": 6,
+      "changed_files": 6,
+      "head_sha": "440ecd267793781ddd3a9cb0dec2ca8c4a89007c",
+      "user": "euxaristia",
+      "labels": [],
+      "html_url": "https://github.com/QwenLM/qwen-code/pull/2838",
+      "base_repo": "QwenLM/qwen-code"
+    },
+    "reviews": [
+      {
+        "id": 4168270626,
+        "user": "wenshao",
+        "state": "CHANGES_REQUESTED",
+        "body": "",
+        "submitted_at": "2026-04-24T06:11:26Z"
+      },
+      {
+        "id": 4173993858,
+        "user": "wenshao",
+        "state": "CHANGES_REQUESTED",
+        "body": "The added `bun.lock` appears to be generated from stale or incomplete manifests. For example, it records `@lydell/node-pty` packages as `1.1.0` while the current manifests and npm lock use `1.2.0-beta.10`; workspace versions are also stale (`0.13.2` vs current `0.15.2`), channel workspace dependencies used by the CLI are missing, and `react-devtools-core` is locked to a different major than `package.json`. This makes Bun installs resolve a dependency graph that does not match the committed manifests, so Bun builds/tests are not reproducible from the PR as written. Please regenerate `bun.lock` from a clean checkout with the current workspace manifests and verify it matches the committed package metadata.\n\n_\u2014 gpt-5.5 via Qwen Code /review_",
+        "submitted_at": "2026-04-24T23:31:33Z"
+      }
+    ],
+    "comments": [
+      {
+        "id": 4181578831,
+        "user": "DennisYu07",
+        "body": "Hi @euxaristia, thank you for your contribution! bun support is on our roadmap as a next-step feature. We'll conduct a thorough design review before merging this PR, so we'll need some additional time to evaluate it properly.\r\n",
+        "created_at": "2026-04-03T03:18:00Z"
+      },
+      {
+        "id": 4311091341,
+        "user": "euxaristia",
+        "body": "Ok I will fix these issues soon, my CachyOS bricked itself so I need some time to reinstall. I should be able to address the requested changes in a week or less.",
+        "created_at": "2026-04-24T06:14:45Z"
+      },
+      {
+        "id": 4316945382,
+        "user": "euxaristia",
+        "body": "Thanks for the thorough review, @wenshao. My machine is finally back, so I just pushed a rebased version that addresses most of the comments. Summary:\n\n| Comment | Fix |\n|---|---|\n| Root `version` / `sandboxImageUri` rolled back | Rebased onto current `main` (0.15.2 preserved). |\n| `package-lock.json` mismatch (`cross-env`, `react-devtools-core`, `@lydell/node-pty`) | Reverted those dep changes \u2014 they were unintended collateral from the older base. Only `patchedDependencies.ink` is added now, wh",
+        "created_at": "2026-04-24T23:10:45Z"
+      },
+      {
+        "id": 4448763396,
+        "user": "euxaristia",
+        "body": "Thanks for the thorough reviews, @wenshao. I've pushed a new commit that addresses all outstanding comments:\n\n**Round 2 fixes:**\n\n| Comment | Fix |\n|---|---|\n| `bun.lock` stale versions (`@lydell/node-pty` 1.1.0, workspace 0.13.2, missing channels, wrong `react-devtools-core`) | Regenerated `bun.lock` from clean manifests \u2014 versions now match `package.json` (`@lydell/node-pty` 1.2.0-beta.10, workspaces 0.15.2, all channels included) |\n| `package.json` `bundle` script uses `bun run generate` | Re",
+        "created_at": "2026-05-14T07:48:48Z"
+      }
+    ],
+    "review_comments": [
+      {
+        "id": 3135791139,
+        "user": "wenshao",
+        "body": "**[Critical]** This rolls the root package version back to `0.13.2` while the base branch is already newer. The root version is used for `CLI_VERSION` and embedded into the bundle, so this would ship/report the wrong CLI version; the sandbox image tag below is rolled back for the same reason.\n\nSuggested fix: rebase/update the PR and preserve the current root `version` and `config.sandboxImageUri` values from the base branch.\n\n_\u2014 gpt-5.5 via Qwen Code /review_",
+        "created_at": "2026-04-24T06:11:25Z",
+        "path": "package.json"
+      },
+      {
+        "id": 3135791144,
+        "user": "wenshao",
+        "body": "**[Critical]** `package.json` changes dependency versions, but `package-lock.json` was not updated. `npm ci` fails with lockfile mismatch errors for changed dependencies such as `cross-env`, `react-devtools-core`, and `@lydell/node-pty`, so CI/release installs cannot proceed.\n\nSuggested fix: regenerate and commit `package-lock.json` so npm metadata stays consistent with this file.\n\n_\u2014 gpt-5.5 via Qwen Code /review_",
+        "created_at": "2026-04-24T06:11:26Z",
+        "path": "package.json"
+      },
+      {
+        "id": 3135791145,
+        "user": "wenshao",
+        "body": "**[Critical]** Changing the published CLI shebang to `#!/usr/bin/env bun` makes the installed `qwen` binary require Bun on `PATH`. That breaks existing Node-only installations even though the package still declares Node support and the PR describes Bun as opt-in.\n\n```suggestion\n#!/usr/bin/env node\n```\n\n_\u2014 gpt-5.5 via Qwen Code /review_",
+        "created_at": "2026-04-24T06:11:26Z",
+        "path": "packages/cli/index.ts"
+      },
+      {
+        "id": 3135791153,
+        "user": "wenshao",
+        "body": "**[Critical]** The standard `npm run build` path now unconditionally executes `bun install`, so users and CI environments without Bun fail before the build starts. I verified this by running `npm run build`, which exited with `/bin/sh: bun: command not found`.\n\nSuggested fix: keep the default build script Node/npm-compatible and add Bun as an opt-in path, or explicitly make Bun a required tool in engines/CI/release setup.\n\n_\u2014 gpt-5.5 via Qwen Code /review_",
+        "created_at": "2026-04-24T06:11:26Z",
+        "path": "scripts/build.js"
+      },
+      {
+        "id": 3135791155,
+        "user": "wenshao",
+        "body": "**[Critical]** `npm run start` still launches this wrapper with Node, but the wrapper now immediately shells out to `bun` for build-status checking, sandbox command resolution, and the child process. That breaks the existing Node start workflow on machines without Bun.\n\nSuggested fix: detect the active/available runtime and only use Bun when explicitly requested, with a Node fallback for the existing npm start path.\n\n_\u2014 gpt-5.5 via Qwen Code /review_",
+        "created_at": "2026-04-24T06:11:26Z",
+        "path": "scripts/start.js"
+      },
+      {
+        "id": 3135791160,
+        "user": "wenshao",
+        "body": "**[Critical]** Collapsing workspaces to only `packages/*` excludes nested channel packages under `packages/channels/*`, but `packages/cli/package.json` still depends on those channel packages. Workspace install/build/test/typecheck operations will skip packages that the CLI imports.\n\nSuggested fix: restore the nested channel workspace entries, or use a glob such as `packages/channels/*` in addition to `packages/*`.\n\n_\u2014 gpt-5.5 via Qwen Code /review_",
+        "created_at": "2026-04-24T06:11:26Z",
+        "path": "package.json"
+      },
+      {
+        "id": 3135791163,
+        "user": "wenshao",
+        "body": "**[Critical]** The build order no longer includes the channel packages before `packages/cli`, even though the CLI imports `@qwen-code/channel-base`, `@qwen-code/channel-telegram`, `@qwen-code/channel-weixin`, and `@qwen-code/channel-dingtalk`. A clean scripted build can therefore build the CLI before its channel dependency outputs exist.\n\nSuggested fix: restore the channel packages in `buildOrder` before `packages/cli`, or derive build order from project/workspace references so these dependencie",
+        "created_at": "2026-04-24T06:11:26Z",
+        "path": "scripts/build.js"
+      },
+      {
+        "id": 3135791167,
+        "user": "wenshao",
+        "body": "**[Critical]** Removing the `@qwen-code/web-templates` alias makes bundling resolve that dependency through built package output instead of workspace source. The CLI still imports `@qwen-code/web-templates`, so a clean or partially built tree can now fail to bundle or bundle stale generated template output.\n\nSuggested fix: restore the alias to `packages/web-templates/src/index.ts`, or make the bundle step explicitly depend on and verify a fresh web-templates build before resolving through packag",
+        "created_at": "2026-04-24T06:11:26Z",
+        "path": "esbuild.config.js"
+      },
+      {
+        "id": 3135791171,
+        "user": "wenshao",
+        "body": "**[Suggestion]** This narrows the main TypeScript lint override from all package source trees to only one-level packages, so nested packages such as `packages/channels/*` no longer receive these rules.\n\n```suggestion\n    files: ['packages/**/src/**/*.{ts,tsx}'], // Target TS/TSX in all packages (including nested)\n```\n\n_\u2014 gpt-5.5 via Qwen Code /review_",
+        "created_at": "2026-04-24T06:11:26Z",
+        "path": "eslint.config.js"
+      },
+      {
+        "id": 3140779924,
+        "user": "wenshao",
+        "body": "**[Critical]** `npm run bundle` now invokes `bun run generate`, which makes the documented Node/npm bundle path fail on systems without Bun even though the repository still declares only a Node engine and keeps npm workflows.\n\n```suggestion\n    \"bundle\": \"npm run generate && node esbuild.config.js && node scripts/copy_bundle_assets.js\",\n```\n\n_\u2014 gpt-5.5 via Qwen Code /review_",
+        "created_at": "2026-04-24T23:31:32Z",
+        "path": "package.json"
+      },
+      {
+        "id": 3140779933,
+        "user": "wenshao",
+        "body": "**[Critical]** `prepare` now requires Bun unconditionally. This lifecycle runs during npm installs from git and local setup, so Node/npm users can fail during install even though they satisfy the declared `node >=20.0.0` engine.\n\n```suggestion\n    \"prepare\": \"husky && npm run build && npm run bundle\",\n```\n\n_\u2014 gpt-5.5 via Qwen Code /review_",
+        "created_at": "2026-04-24T23:31:32Z",
+        "path": "package.json"
+      },
+      {
+        "id": 3140779940,
+        "user": "wenshao",
+        "body": "**[Critical]** `npm run build` still invokes `node scripts/build.js`, but this fallback now shells out to `bun install`. From a clean Node/npm checkout without Bun, the documented build path no longer self-recovers and fails before dependencies are installed.\n\n```suggestion\n  execSync('npm install', { stdio: 'inherit', cwd: root });\n```\n\n_\u2014 gpt-5.5 via Qwen Code /review_",
+        "created_at": "2026-04-24T23:31:32Z",
+        "path": "scripts/build.js"
+      },
+      {
+        "id": 3140779950,
+        "user": "wenshao",
+        "body": "**[Critical]** The default Node/npm build script now requires Bun for code generation. Because the root `build` entrypoint is still `node scripts/build.js`, this breaks `npm run build` anywhere Bun is not installed.\n\n```suggestion\nexecSync('npm run generate', { stdio: 'inherit', cwd: root });\n```\n\n_\u2014 gpt-5.5 via Qwen Code /review_",
+        "created_at": "2026-04-24T23:31:32Z",
+        "path": "scripts/build.js"
+      },
+      {
+        "id": 3140779953,
+        "user": "wenshao",
+        "body": "**[Critical]** The workspace build loop is still reached through the Node/npm `build` script, but it now requires `bun run --filter`. That makes the default npm build path depend on Bun for every workspace build.\n\n```suggestion\n  execSync(`npm run build --workspace=${workspace}`, {\n```\n\n_\u2014 gpt-5.5 via Qwen Code /review_",
+        "created_at": "2026-04-24T23:31:32Z",
+        "path": "scripts/build.js"
+      },
+      {
+        "id": 3140779956,
+        "user": "wenshao",
+        "body": "**[Critical]** The regenerated notices replace previously complete third-party license text with `License text not found.`. This is a compliance regression in a shipped notices artifact; the same pattern appears for other packages such as `destroy`, `methods`, and `utils-merge`.\n\nPlease regenerate NOTICES with the existing npm-based dependency tree/tooling, or fix the notice generator/Bun metadata handling before committing the regenerated output.\n\n_\u2014 gpt-5.5 via Qwen Code /review_",
+        "created_at": "2026-04-24T23:31:33Z",
+        "path": "packages/vscode-ide-companion/NOTICES.txt"
+      },
+      {
+        "id": 3140779959,
+        "user": "wenshao",
+        "body": "**[Critical]** The regenerated notices misattribute license text: `cookie-signature@1.0.6` now receives a LearnBoost copyright block that does not belong to it. This makes the shipped third-party notices misleading.\n\nPlease regenerate NOTICES from a correct dependency/license metadata source before merging.\n\n_\u2014 gpt-5.5 via Qwen Code /review_",
+        "created_at": "2026-04-24T23:31:33Z",
+        "path": "packages/vscode-ide-companion/NOTICES.txt"
+      },
+      {
+        "id": 3140779963,
+        "user": "wenshao",
+        "body": "**[Suggestion]** This patch suppresses every `DEV=true` Ink devtools import failure, not just the Bun-specific compatibility issue. Under Node, unrelated devtools runtime/import errors would now be hidden instead of surfaced, which makes local debugging failures harder to diagnose.\n\nConsider preserving the existing `ERR_MODULE_NOT_FOUND` handling and suppressing only the known Bun-specific failure, or avoiding a global Ink patch for Node execution paths.\n\n_\u2014 gpt-5.5 via Qwen Code /review_",
+        "created_at": "2026-04-24T23:31:33Z",
+        "path": "patches/ink@6.2.3.patch"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "084e2b22",
+        "message": "feat: add bun runtime support",
+        "date": "2026-04-02T20:39:07Z",
+        "author": "euxaristia"
+      },
+      {
+        "sha": "440ecd26",
+        "message": "fix: address PR review comments - make Bun opt-in via QWEN_RUNTIME env var, regenerate bun.lock, restore NOTICES.txt, fix ink patch",
+        "date": "2026-05-14T07:47:54Z",
+        "author": "euxaristia"
+      }
+    ],
+    "ci": {
+      "state": "pending",
+      "statuses": []
+    }
+  },
+  "microsoft/node-pty#901": {
+    "pr": {
+      "number": 901,
+      "title": "fix: swallow resize() errors after PTY exit on Windows and Unix",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-03-13T15:11:41Z",
+      "updated_at": "2026-03-13T15:21:49Z",
+      "mergeable": null,
+      "mergeable_state": "unknown",
+      "additions": 8,
+      "deletions": 2,
+      "changed_files": 2,
+      "head_sha": "84f857c6de011b5fbae534e5ca820bc49b5f3d39",
+      "user": "euxaristia",
+      "labels": [],
+      "html_url": "https://github.com/microsoft/node-pty/pull/901",
+      "base_repo": "microsoft/node-pty"
+    },
+    "reviews": [],
+    "comments": [
+      {
+        "id": 4055960785,
+        "user": "euxaristia",
+        "body": "> @euxaristia please read the following Contributor License Agreement(CLA). If you agree with the CLA, please reply with the following information.\r\n> \r\n> ```\r\n> @microsoft-github-policy-service agree [company=\"{your company}\"]\r\n> ```\r\n> \r\n> > Options:\r\n> > \r\n> > * (default - no company specified) I have sole ownership of intellectual property rights to my Submissions and I am not making Submissions in the course of work for my employer.\r\n> > \r\n> > ```\r\n> > @microsoft-github-policy-service agree",
+        "created_at": "2026-03-13T15:21:35Z"
+      }
+    ],
+    "review_comments": [],
+    "commits": [
+      {
+        "sha": "aeec16dc",
+        "message": "fix: swallow resize() error when conpty has already exited",
+        "date": "2026-03-13T15:00:31Z",
+        "author": "euxaristia"
+      },
+      {
+        "sha": "84f857c6",
+        "message": "fix: swallow EBADF on resize() when PTY fd is already closed",
+        "date": "2026-03-13T15:14:47Z",
+        "author": "euxaristia"
+      }
+    ],
+    "ci": {
+      "state": "pending",
+      "statuses": []
+    }
+  },
+  "euxaristia/openclaude#1": {
+    "pr": {
+      "number": 1,
+      "title": "chore(main): release 0.3.0",
+      "state": "open",
+      "draft": false,
+      "created_at": "2026-04-13T01:15:21Z",
+      "updated_at": "2026-04-13T02:26:36Z",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "additions": 258,
+      "deletions": 2,
+      "changed_files": 3,
+      "head_sha": "8621b34570331a452e899ba7d1007175df8b5c30",
+      "user": "github-actions[bot]",
+      "labels": [
+        {
+          "name": "autorelease: pending",
+          "color": "ededed"
+        }
+      ],
+      "html_url": "https://github.com/euxaristia/openclaude/pull/1",
+      "base_repo": "euxaristia/openclaude"
+    },
+    "reviews": [],
+    "comments": [],
+    "review_comments": [],
+    "commits": [
+      {
+        "sha": "8621b345",
+        "message": "chore(main): release 0.3.0",
+        "date": "2026-04-13T02:26:34Z",
+        "author": "github-actions[bot]"
+      }
+    ],
+    "ci": {
+      "state": "pending",
+      "statuses": []
+    }
+  }
+}
