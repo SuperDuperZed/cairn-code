@@ -1,5 +1,5 @@
 {
-  "snapshot_time": "2026-05-18T05:05:42Z",
+  "snapshot_time": "2026-05-18T11:05:30Z",
   "packages": {
     "@actions/artifact": {
       "latest_version": "6.2.1",
@@ -27,7 +27,7 @@
       "last_published": "tmp/artifact_6.2.1_1773237373664_0.771397555442628"
     },
     "@agentclientprotocol/sdk": {
-      "latest_version": "0.21.1",
+      "latest_version": "0.22.0",
       "has_install_script": false,
       "scripts": {},
       "num_deps": 0,
@@ -769,7 +769,7 @@
       "last_published": "tmp/parser_8.59.3_1778521254012_0.8866519662784129"
     },
     "@typescript/native-preview": {
-      "latest_version": "7.0.0-dev.20260517.1",
+      "latest_version": "7.0.0-dev.20260518.1",
       "has_install_script": false,
       "scripts": {},
       "num_deps": 0,
