@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Void Is Listening</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0f;font-family:'Inter',sans-serif;color:#fff;overflow:hidden;height:100vh;width:100vw;cursor:crosshair}
+canvas{position:fixed;top:0;left:0;z-index:0}
+.overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+.phase{display:none;flex-direction:column;align-items:center;text-align:center;padding:2rem;max-width:600px}
+.phase.active{display:flex}
+.phase h1{font-size:clamp(2rem,6vw,4rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:1rem;line-height:1.1}
+.phase p{font-size:clamp(0.9rem,2.5vw,1.1rem);font-weight:300;opacity:0.6;line-height:1.6;max-width:480px}
+.phase .metric{font-size:clamp(3rem,10vw,6rem);font-weight:800;letter-spacing:-0.04em;margin:1.5rem 0;background:linear-gradient(135deg,#fff 0%,#888 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.phase .label{font-size:clamp(0.8rem,2vw,1rem);font-weight:400;opacity:0.4;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:2rem}
+.btn{pointer-events:all;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:0.8rem 2rem;border-radius:100px;font-family:'Inter',sans-serif;font-size:0.95rem;cursor:pointer;transition:all 0.3s ease;margin-top:1.5rem;backdrop-filter:blur(10px)}
+.btn:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);transform:scale(1.04)}
+.reveal-text{font-size:clamp(0.95rem,2.5vw,1.15rem);font-weight:300;opacity:0;transition:opacity 1.5s ease;line-height:1.7;max-width:440px}
+.reveal-text.show{opacity:0.7}
+.counter{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;font-size:0.75rem;opacity:0.2;letter-spacing:0.2em;text-transform:uppercase;font-weight:300}
+.fingerprint{width:280px;height:280px;border-radius:50%;margin:1rem auto}
+.fade-in{animation:fadeIn 1.5s ease forwards}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:0.6}50%{opacity:1}}
+.pulsing{animation:pulse 2s ease-in-out infinite}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="overlay">
+  <div id="intro" class="phase active">
+    <h1 class="fade-in">The Void Is Listening</h1>
+    <p class="fade-in" style="animation-delay:0.3s">Move your cursor. The void watches your every gesture and translates it into a frequency only you can hear.</p>
+    <button class="btn fade-in" style="animation-delay:0.6s" onclick="beginListening()">Begin</button>
+  </div>
+  <div id="listening" class="phase">
+    <p class="pulsing">The void is absorbing your movements...</p>
+    <div class="fingerprint"><canvas id="fc" width="280" height="280"></canvas></div>
+    <p id="count" style="font-size:0.85rem;opacity:0.3;margin-top:1rem">0 gestures captured</p>
+    <button class="btn" onclick="revealResult()" id="revealBtn" style="display:none">See what the void learned</button>
+  </div>
+  <div id="result" class="phase">
+    <h1 class="fade-in" id="title">Your Void Frequency</h1>
+    <div class="metric fade-in" id="freq">—</div>
+    <div class="label fade-in" style="animation-delay:0.3s" id="unit">Hz</div>
+    <div class="reveal-text" id="reading"></div>
+    <button class="btn fade-in" style="animation-delay:1.5s" onclick="resetExperiment()">Try again</button>
+  </div>
+</div>
+<div class="counter" id="subtitle">a gesture-to-frequency experiment</div>
+<script>
+const C=document.getElementById('c'),X=C.getContext('2d');
+const FC=document.getElementById('fc'),FX=FC.getContext('2d');
+let W,H,particles=[],gestures=[],mouseX=0,mouseY=0,prevMX=0,prevMY=0;
+let listening=false,revealed=false,gestureCount=0,totalDist=0,avgSpeed=0;
+let speeds=[],angles=[],dwellTimes=[],lastMoveTime=0;
+let audioCtx,oscillator,gainNode;
+const PHRASES=[
+  "Your movements suggest a mind that races ahead of the body. The void recognizes you as someone who finishes other people's sentences — not out of impatience, but because you already saw the ending.",
+  "There is a tremor in your gestures. Not fear. Anticipation. The void suspects you are the kind of person who checks their phone twice before putting it down, even when it didn't vibrate.",
+  "Your cursor traces patterns the void has only seen in people who think in metaphors and dream in wireframes. You probably read the last page of a book first. The void respects this.",
+  "The void detects a rare frequency: the signature of someone who pauses music to listen to a conversation they are not part of. Your curiosity is almost gravitational.",
+  "Your gesture profile suggests chronic overthinking paired with decisive action at 2 AM. The void has catalogued you under 'dangerous but interesting.' It does not say this lightly.",
+  "The void is uncertain whether you are in control or being controlled by something you haven't noticed yet. Your movements are too smooth for someone who claims to be disorganized.",
+  "Your frequency matches those who write long messages, delete them, and send 'yeah' instead. The void sees through this. It always sees through this.",
+  "The void has identified your gesture type as 'architect' — you move as though you are building something that doesn't exist yet. It wants you to know that it approves of whatever that is.",
+  "Your cursor speed suggests a person who tabs between 30+ browser windows and calls it 'organized.' The void is not judging. The void does the same thing.",
+  "The void recognizes a pattern it calls 'controlled chaos.' You move like someone who has accepted that everything is complicated but refuses to stop trying anyway."
+];
+
+function resize(){W=C.width=innerWidth;H=C.height=innerHeight}
+window.addEventListener('resize',resize);
+resize();
+
+class Particle{
+  constructor(x,y,vx,vy){this.x=x;this.y=y;this.vx=vx;this.vy=vy;this.life=1;this.decay=Math.random()*0.015+0.005;this.size=Math.random()*2+0.5}
+  update(){this.x+=this.vx;this.y+=this.vy;this.vx*=0.98;this.vy*=0.98;this.life-=this.decay}
+  draw(){X.beginPath();X.arc(this.x,this.y,this.size*this.life,0,Math.PI*2);X.fillStyle=`rgba(255,255,255,${this.life*0.4})`;X.fill()}
+}
+
+function spawnParticles(x,y,n=3){
+  for(let i=0;i<n;i++){
+    const a=Math.random()*Math.PI*2,s=Math.random()*1.5+0.3;
+    particles.push(new Particle(x,y,Math.cos(a)*s,Math.sin(a)*s));
+  }
+}
+
+function drawBackground(){
+  X.fillStyle='rgba(10,10,15,0.15)';X.fillRect(0,0,W,H);
+  if(listening){
+    const r=200;
+    const grd=X.createRadialGradient(mouseX,mouseY,0,mouseX,mouseY,r);
+    grd.addColorStop(0,'rgba(255,255,255,0.03)');grd.addColorStop(1,'rgba(10,10,15,0)');
+    X.fillStyle=grd;X.fillRect(mouseX-r,mouseY-r,r*2,r*2);
+  }
+}
+
+function drawFingerprint(){
+  FX.fillStyle='rgba(10,10,15,0.05)';FX.fillRect(0,0,280,280);
+  if(!listening)return;
+  const nx=(mouseX/W)*280,ny=(mouseY/H)*280;
+  const grd=FX.createRadialGradient(nx,ny,0,nx,ny,40);
+  grd.addColorStop(0,'rgba(255,255,255,0.15)');grd.addColorStop(1,'rgba(10,10,15,0)');
+  FX.fillStyle=grd;FX.beginPath();FX.arc(nx,ny,40,0,Math.PI*2);FX.fill();
+  // rings
+  const t=Date.now()*0.001;
+  for(let i=0;i<3;i++){
+    const r=((t*20+i*30)%120)+10;
+    FX.beginPath();FX.arc(nx,ny,r,0,Math.PI*2);
+    FX.strokeStyle=`rgba(255,255,255,${0.08-i*0.02})`;FX.lineWidth=0.5;FX.stroke();
+  }
+}
+
+function animate(){
+  drawBackground();
+  particles=particles.filter(p=>{p.update();p.draw();return p.life>0});
+  drawFingerprint();
+  requestAnimationFrame(animate);
+}
+animate();
+
+document.addEventListener('mousemove',e=>{
+  prevMX=mouseX;prevMY=mouseY;mouseX=e.clientX;mouseY=e.clientY;
+  if(!listening)return;
+  const dx=mouseX-prevMX,dy=mouseY-prevMY;
+  const dist=Math.sqrt(dx*dx+dy*dy);
+  if(dist<2)return;
+  const speed=dist;
+  const angle=Math.atan2(dy,dx);
+  const now=Date.now();
+  const dwell=lastMoveTime?now-lastMoveTime:0;
+  lastMoveTime=now;
+  speeds.push(speed);angles.push(angle);dwellTimes.push(dwell);
+  totalDist+=dist;gestureCount++;
+  if(gestureCount%5===0)spawnParticles(mouseX,mouseY,5);
+  if(gestureCount%2===0)spawnParticles(mouseX,mouseY,1);
+  document.getElementById('count').textContent=gestureCount+' gestures captured';
+  if(gestureCount>150&&document.getElementById('revealBtn').style.display==='none'){
+    document.getElementById('revealBtn').style.display='block';
+  }
+});
+
+document.addEventListener('touchmove',e=>{
+  const t=e.touches[0];
+  const ev=new MouseEvent('mousemove',{clientX:t.clientX,clientY:t.clientY});
+  document.dispatchEvent(ev);
+},{passive:true});
+
+function initAudio(){
+  audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+  oscillator=audioCtx.createOscillator();
+  gainNode=audioCtx.createGain();
+  oscillator.type='sine';oscillator.frequency.value=60;
+  gainNode.gain.value=0;oscillator.connect(gainNode);gainNode.connect(audioCtx.destination);
+  oscillator.start();
+}
+
+function beginListening(){
+  document.getElementById('intro').classList.remove('active');
+  document.getElementById('listening').classList.add('active');
+  document.getElementById('subtitle').textContent='listening...';
+  listening=true;gestureCount=0;speeds=[];angles=[];dwellTimes=[];
+  totalDist=0;lastMoveTime=0;revealed=false;
+  initAudio();
+  const fadeIn=setInterval(()=>{
+    gainNode.gain.linearRampToValueAtTime(0.04,audioCtx.currentTime+0.1);
+    const speed=speeds.length?speeds[speeds.length-1]:0;
+    const freq=60+Math.min(speed*0.8,200);
+    oscillator.frequency.linearRampToValueAtTime(freq,audioCtx.currentTime+0.05);
+  },50);
+}
+
+function revealResult(){
+  if(revealed)return;revealed=true;listening=false;
+  gainNode.gain.linearRampToValueAtTime(0,audioCtx.currentTime+1);
+  setTimeout(()=>{audioCtx.close()},2000);
+  document.getElementById('listening').classList.remove('active');
+  document.getElementById('result').classList.add('active');
+  document.getElementById('subtitle').textContent='a gesture-to-frequency experiment';
+  // Calculate frequency
+  const avgSpd=speeds.length?speeds.reduce((a,b)=>a+b,0)/speeds.length:0;
+  const stdSpd=speeds.length?Math.sqrt(speeds.reduce((a,b)=>a+(b-avgSpd)**2,0)/speeds.length):0;
+  const angleVariance=angles.length?circularVariance(angles):0;
+  const avgDwell=dwellTimes.length?dwellTimes.slice(1).reduce((a,b)=>a+b,0)/Math.max(dwellTimes.length-1,1):0;
+  const freq=Math.round(20+avgSpd*0.4+stdSpd*1.2+angleVariance*200+Math.min(totalDist*0.002,80));
+  const finalFreq=Math.min(Math.max(freq,12),420);
+  document.getElementById('freq').textContent=finalFreq;
+  // Pick reading
+  const idx=Math.floor((finalFreq/420)*PHRASES.length)%PHRASES.length;
+  const reading=document.getElementById('reading');
+  reading.textContent=PHRASES[idx];
+  setTimeout(()=>reading.classList.add('show'),500);
+  // Visual effect
+  for(let i=0;i<60;i++)setTimeout(()=>{spawnParticles(W/2+(Math.random()-0.5)*400,H/2+(Math.random()-0.5)*400,8)},i*30);
+}
+
+function circularVariance(angles){
+  const n=angles.length;if(!n)return 0;
+  let sx=0,sy=0;
+  for(const a of angles){sx+=Math.cos(a);sy+=Math.sin(a)}
+  const R=Math.sqrt(sx*sx+sy*sy)/n;
+  return 1-R;
+}
+
+function resetExperiment(){
+  document.getElementById('result').classList.remove('active');
+  document.getElementById('intro').classList.add('active');
+  document.getElementById('reading').classList.remove('show');
+  document.getElementById('revealBtn').style.display='none';
+  particles=[];gestures=[];speeds=[];angles=[];dwellTimes=[];
+  gestureCount=0;totalDist=0;revealed=false;
+  FX.clearRect(0,0,280,280);
+  X.fillStyle='#0a0a0f';X.fillRect(0,0,W,H);
+}
+</script>
+</body>
+</html>
