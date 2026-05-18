@@ -2,219 +2,202 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Void Is Listening</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Mirror Touch</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0a0f;font-family:'Inter',sans-serif;color:#fff;overflow:hidden;height:100vh;width:100vw;cursor:crosshair}
+body{background:#0a0a0f;font-family:'Inter',sans-serif;color:#fff;overflow:hidden;height:100vh;width:100vw;touch-action:none;cursor:crosshair}
 canvas{position:fixed;top:0;left:0;z-index:0}
-.overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
-.phase{display:none;flex-direction:column;align-items:center;text-align:center;padding:2rem;max-width:600px}
+.ui{position:fixed;z-index:10;pointer-events:none}
+.overlay{position:fixed;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+.phase{display:none;flex-direction:column;align-items:center;text-align:center;padding:2rem;max-width:520px;pointer-events:none}
 .phase.active{display:flex}
-.phase h1{font-size:clamp(2rem,6vw,4rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:1rem;line-height:1.1}
-.phase p{font-size:clamp(0.9rem,2.5vw,1.1rem);font-weight:300;opacity:0.6;line-height:1.6;max-width:480px}
-.phase .metric{font-size:clamp(3rem,10vw,6rem);font-weight:800;letter-spacing:-0.04em;margin:1.5rem 0;background:linear-gradient(135deg,#fff 0%,#888 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.phase .label{font-size:clamp(0.8rem,2vw,1rem);font-weight:400;opacity:0.4;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:2rem}
-.btn{pointer-events:all;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:0.8rem 2rem;border-radius:100px;font-family:'Inter',sans-serif;font-size:0.95rem;cursor:pointer;transition:all 0.3s ease;margin-top:1.5rem;backdrop-filter:blur(10px)}
+.phase h1{font-size:clamp(2rem,6vw,3.5rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:0.8rem;line-height:1.1}
+.phase p{font-size:clamp(0.85rem,2.2vw,1rem);font-weight:300;opacity:0.5;line-height:1.6;max-width:420px}
+.btn{pointer-events:all;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:0.75rem 1.8rem;border-radius:100px;font-family:'Inter',sans-serif;font-size:0.9rem;cursor:pointer;transition:all 0.3s ease;margin-top:1.2rem}
 .btn:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);transform:scale(1.04)}
-.reveal-text{font-size:clamp(0.95rem,2.5vw,1.15rem);font-weight:300;opacity:0;transition:opacity 1.5s ease;line-height:1.7;max-width:440px}
-.reveal-text.show{opacity:0.7}
-.counter{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;font-size:0.75rem;opacity:0.2;letter-spacing:0.2em;text-transform:uppercase;font-weight:300}
-.fingerprint{width:280px;height:280px;border-radius:50%;margin:1rem auto}
-.fade-in{animation:fadeIn 1.5s ease forwards}
-@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes pulse{0%,100%{opacity:0.6}50%{opacity:1}}
-.pulsing{animation:pulse 2s ease-in-out infinite}
+.toolbar{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);z-index:20;display:none;gap:0.5rem;align-items:center}
+.toolbar.show{display:flex}
+.tool-btn{pointer-events:all;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);color:#fff;padding:0.5rem 1rem;border-radius:100px;font-family:'Inter',sans-serif;font-size:0.75rem;cursor:pointer;transition:all 0.2s ease;opacity:0.7}
+.tool-btn:hover{opacity:1;background:rgba(255,255,255,0.1)}
+.tool-btn.active{opacity:1;border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.12)}
+.sym-count{position:fixed;top:1.2rem;right:1.5rem;z-index:20;font-size:0.7rem;opacity:0.3;letter-spacing:0.15em;text-transform:uppercase;display:none}
+.sym-count.show{display:block}
+.fade-in{animation:fadeIn 1.2s ease forwards}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
 <canvas id="c"></canvas>
 <div class="overlay">
   <div id="intro" class="phase active">
-    <h1 class="fade-in">The Void Is Listening</h1>
-    <p class="fade-in" style="animation-delay:0.3s">Move your cursor. The void watches your every gesture and translates it into a frequency only you can hear.</p>
-    <button class="btn fade-in" style="animation-delay:0.6s" onclick="beginListening()">Begin</button>
-  </div>
-  <div id="listening" class="phase">
-    <p class="pulsing">The void is absorbing your movements...</p>
-    <div class="fingerprint"><canvas id="fc" width="280" height="280"></canvas></div>
-    <p id="count" style="font-size:0.85rem;opacity:0.3;margin-top:1rem">0 gestures captured</p>
-    <button class="btn" onclick="revealResult()" id="revealBtn" style="display:none">See what the void learned</button>
-  </div>
-  <div id="result" class="phase">
-    <h1 class="fade-in" id="title">Your Void Frequency</h1>
-    <div class="metric fade-in" id="freq">—</div>
-    <div class="label fade-in" style="animation-delay:0.3s" id="unit">Hz</div>
-    <div class="reveal-text" id="reading"></div>
-    <button class="btn fade-in" style="animation-delay:1.5s" onclick="resetExperiment()">Try again</button>
+    <h1 class="fade-in">Mirror Touch</h1>
+    <p class="fade-in" style="animation-delay:0.2s">Move to draw. Every stroke is reflected into symmetrical patterns. What emerges is half you, half math.</p>
+    <button class="btn fade-in" style="animation-delay:0.4s" onclick="startDrawing()">Begin</button>
   </div>
 </div>
-<div class="counter" id="subtitle">a gesture-to-frequency experiment</div>
+<div class="sym-count" id="symLabel">6-fold</div>
+<div class="toolbar" id="toolbar">
+  <button class="tool-btn" onclick="setSym(4)">4</button>
+  <button class="tool-btn active" onclick="setSym(6)">6</button>
+  <button class="tool-btn" onclick="setSym(8)">8</button>
+  <button class="tool-btn" onclick="setSym(12)">12</button>
+  <button class="tool-btn" onclick="clearCanvas()">Clear</button>
+  <button class="tool-btn" onclick="saveImage()">Save</button>
+</div>
 <script>
 const C=document.getElementById('c'),X=C.getContext('2d');
-const FC=document.getElementById('fc'),FX=FC.getContext('2d');
-let W,H,particles=[],gestures=[],mouseX=0,mouseY=0,prevMX=0,prevMY=0;
-let listening=false,revealed=false,gestureCount=0,totalDist=0,avgSpeed=0;
-let speeds=[],angles=[],dwellTimes=[],lastMoveTime=0;
-let audioCtx,oscillator,gainNode;
-const PHRASES=[
-  "Your movements suggest a mind that races ahead of the body. The void recognizes you as someone who finishes other people's sentences — not out of impatience, but because you already saw the ending.",
-  "There is a tremor in your gestures. Not fear. Anticipation. The void suspects you are the kind of person who checks their phone twice before putting it down, even when it didn't vibrate.",
-  "Your cursor traces patterns the void has only seen in people who think in metaphors and dream in wireframes. You probably read the last page of a book first. The void respects this.",
-  "The void detects a rare frequency: the signature of someone who pauses music to listen to a conversation they are not part of. Your curiosity is almost gravitational.",
-  "Your gesture profile suggests chronic overthinking paired with decisive action at 2 AM. The void has catalogued you under 'dangerous but interesting.' It does not say this lightly.",
-  "The void is uncertain whether you are in control or being controlled by something you haven't noticed yet. Your movements are too smooth for someone who claims to be disorganized.",
-  "Your frequency matches those who write long messages, delete them, and send 'yeah' instead. The void sees through this. It always sees through this.",
-  "The void has identified your gesture type as 'architect' — you move as though you are building something that doesn't exist yet. It wants you to know that it approves of whatever that is.",
-  "Your cursor speed suggests a person who tabs between 30+ browser windows and calls it 'organized.' The void is not judging. The void does the same thing.",
-  "The void recognizes a pattern it calls 'controlled chaos.' You move like someone who has accepted that everything is complicated but refuses to stop trying anyway."
-];
+let W,H,cx,cy;
+let drawing=false,hasDrawn=false,symmetry=6;
+let hueBase=Math.random()*360,hue=0;
+let prevX,prevY;
+let lastTime=0;
 
-function resize(){W=C.width=innerWidth;H=C.height=innerHeight}
+function resize(){
+  W=C.width=innerWidth;H=C.height=innerHeight;
+  cx=W/2;cy=H/2;
+  X.fillStyle='#0a0a0f';X.fillRect(0,0,W,H);
+  if(hasDrawn) drawGuide();
+}
 window.addEventListener('resize',resize);
 resize();
 
-class Particle{
-  constructor(x,y,vx,vy){this.x=x;this.y=y;this.vx=vx;this.vy=vy;this.life=1;this.decay=Math.random()*0.015+0.005;this.size=Math.random()*2+0.5}
-  update(){this.x+=this.vx;this.y+=this.vy;this.vx*=0.98;this.vy*=0.98;this.life-=this.decay}
-  draw(){X.beginPath();X.arc(this.x,this.y,this.size*this.life,0,Math.PI*2);X.fillStyle=`rgba(255,255,255,${this.life*0.4})`;X.fill()}
+function drawGuide(){
+  X.save();
+  X.strokeStyle='rgba(255,255,255,0.03)';
+  X.lineWidth=0.5;
+  for(let i=0;i<symmetry;i++){
+    const a=(Math.PI*2/symmetry)*i;
+    X.beginPath();
+    X.moveTo(cx,cy);
+    X.lineTo(cx+Math.cos(a)*Math.max(W,H),cy+Math.sin(a)*Math.max(W,H));
+    X.stroke();
+  }
+  X.restore();
 }
 
-function spawnParticles(x,y,n=3){
-  for(let i=0;i<n;i++){
-    const a=Math.random()*Math.PI*2,s=Math.random()*1.5+0.3;
-    particles.push(new Particle(x,y,Math.cos(a)*s,Math.sin(a)*s));
+function startDrawing(){
+  document.getElementById('intro').classList.remove('active');
+  document.getElementById('toolbar').classList.add('show');
+  document.getElementById('symLabel').classList.add('show');
+  drawing=true;
+  drawGuide();
+  X.fillStyle='#0a0a0f';X.fillRect(0,0,W,H);
+  drawGuide();
+}
+
+function drawStroke(x1,y1,x2,y2){
+  const now=Date.now();
+  const dt=Math.min(now-lastTime,50);
+  lastTime=now;
+  const speed=Math.sqrt((x2-x1)**2+(y2-y1)**2)/(dt||1);
+  hue=(hueBase+now*0.03)%360;
+  const lw=Math.max(1.5,Math.min(4,8/(speed+1)));
+  const alpha=Math.max(0.3,Math.min(0.9,0.8-speed*0.05));
+
+  const dx1=x1-cx,dy1=y1-cy;
+  const dx2=x2-cx,dy2=y2-cy;
+  const angle1=Math.atan2(dy1,dx1);
+  const dist1=Math.sqrt(dx1*dx1+dy1*dy1);
+  const angle2=Math.atan2(dy2,dx2);
+  const dist2=Math.sqrt(dx2*dx2+dy2*dy2);
+
+  X.save();
+  X.globalAlpha=alpha;
+  X.lineWidth=lw;
+  X.lineCap='round';
+  X.lineJoin='round';
+
+  for(let i=0;i<symmetry;i++){
+    const a=(Math.PI*2/symmetry)*i;
+    X.strokeStyle=`hsl(${(hue+i*15)%360},80%,65%)`;
+    
+    // Original
+    X.beginPath();
+    X.moveTo(cx+dist1*Math.cos(angle1+a),cy+dist1*Math.sin(angle1+a));
+    X.lineTo(cx+dist2*Math.cos(angle2+a),cy+dist2*Math.sin(angle2+a));
+    X.stroke();
+
+    // Mirror
+    X.beginPath();
+    X.moveTo(cx+dist1*Math.cos(-angle1+a),cy+dist1*Math.sin(-angle1+a));
+    X.lineTo(cx+dist2*Math.cos(-angle2+a),cy+dist2*Math.sin(-angle2+a));
+    X.stroke();
+  }
+  X.restore();
+
+  // Glow at cursor
+  if(speed>0.5){
+    const grd=X.createRadialGradient(x2,y2,0,x2,y2,lw*6);
+    grd.addColorStop(0,`hsla(${hue},80%,65%,${alpha*0.15})`);
+    grd.addColorStop(1,`hsla(${hue},80%,65%,0)`);
+    X.fillStyle=grd;
+    X.beginPath();X.arc(x2,y2,lw*6,0,Math.PI*2);X.fill();
   }
 }
-
-function drawBackground(){
-  X.fillStyle='rgba(10,10,15,0.15)';X.fillRect(0,0,W,H);
-  if(listening){
-    const r=200;
-    const grd=X.createRadialGradient(mouseX,mouseY,0,mouseX,mouseY,r);
-    grd.addColorStop(0,'rgba(255,255,255,0.03)');grd.addColorStop(1,'rgba(10,10,15,0)');
-    X.fillStyle=grd;X.fillRect(mouseX-r,mouseY-r,r*2,r*2);
-  }
-}
-
-function drawFingerprint(){
-  FX.fillStyle='rgba(10,10,15,0.05)';FX.fillRect(0,0,280,280);
-  if(!listening)return;
-  const nx=(mouseX/W)*280,ny=(mouseY/H)*280;
-  const grd=FX.createRadialGradient(nx,ny,0,nx,ny,40);
-  grd.addColorStop(0,'rgba(255,255,255,0.15)');grd.addColorStop(1,'rgba(10,10,15,0)');
-  FX.fillStyle=grd;FX.beginPath();FX.arc(nx,ny,40,0,Math.PI*2);FX.fill();
-  // rings
-  const t=Date.now()*0.001;
-  for(let i=0;i<3;i++){
-    const r=((t*20+i*30)%120)+10;
-    FX.beginPath();FX.arc(nx,ny,r,0,Math.PI*2);
-    FX.strokeStyle=`rgba(255,255,255,${0.08-i*0.02})`;FX.lineWidth=0.5;FX.stroke();
-  }
-}
-
-function animate(){
-  drawBackground();
-  particles=particles.filter(p=>{p.update();p.draw();return p.life>0});
-  drawFingerprint();
-  requestAnimationFrame(animate);
-}
-animate();
 
 document.addEventListener('mousemove',e=>{
-  prevMX=mouseX;prevMY=mouseY;mouseX=e.clientX;mouseY=e.clientY;
-  if(!listening)return;
-  const dx=mouseX-prevMX,dy=mouseY-prevMY;
-  const dist=Math.sqrt(dx*dx+dy*dy);
-  if(dist<2)return;
-  const speed=dist;
-  const angle=Math.atan2(dy,dx);
-  const now=Date.now();
-  const dwell=lastMoveTime?now-lastMoveTime:0;
-  lastMoveTime=now;
-  speeds.push(speed);angles.push(angle);dwellTimes.push(dwell);
-  totalDist+=dist;gestureCount++;
-  if(gestureCount%5===0)spawnParticles(mouseX,mouseY,5);
-  if(gestureCount%2===0)spawnParticles(mouseX,mouseY,1);
-  document.getElementById('count').textContent=gestureCount+' gestures captured';
-  if(gestureCount>150&&document.getElementById('revealBtn').style.display==='none'){
-    document.getElementById('revealBtn').style.display='block';
-  }
+  if(!drawing)return;
+  hasDrawn=true;
+  const x=e.clientX,y=e.clientY;
+  if(prevX!==undefined) drawStroke(prevX,prevY,x,y);
+  prevX=x;prevY=y;
 });
+document.addEventListener('mousedown',()=>{prevX=undefined;prevY=undefined;});
+document.addEventListener('mouseup',()=>{prevX=undefined;prevY=undefined;});
 
-document.addEventListener('touchmove',e=>{
+document.addEventListener('touchstart',e=>{
+  if(!drawing)return;
+  e.preventDefault();
   const t=e.touches[0];
-  const ev=new MouseEvent('mousemove',{clientX:t.clientX,clientY:t.clientY});
-  document.dispatchEvent(ev);
-},{passive:true});
+  prevX=undefined;prevY=undefined;
+  const x=t.clientX,y=t.clientY;
+  prevX=x;prevY=y;
+},{passive:false});
+document.addEventListener('touchmove',e=>{
+  if(!drawing)return;
+  e.preventDefault();
+  const t=e.touches[0];
+  const x=t.clientX,y=t.clientY;
+  hasDrawn=true;
+  if(prevX!==undefined) drawStroke(prevX,prevY,x,y);
+  prevX=x;prevY=y;
+},{passive:false});
+document.addEventListener('touchend',()=>{prevX=undefined;prevY=undefined;});
 
-function initAudio(){
-  audioCtx=new(window.AudioContext||window.webkitAudioContext)();
-  oscillator=audioCtx.createOscillator();
-  gainNode=audioCtx.createGain();
-  oscillator.type='sine';oscillator.frequency.value=60;
-  gainNode.gain.value=0;oscillator.connect(gainNode);gainNode.connect(audioCtx.destination);
-  oscillator.start();
+function setSym(n){
+  symmetry=n;
+  document.getElementById('symLabel').textContent=n+'-fold';
+  document.querySelectorAll('.tool-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  drawGuide();
 }
 
-function beginListening(){
-  document.getElementById('intro').classList.remove('active');
-  document.getElementById('listening').classList.add('active');
-  document.getElementById('subtitle').textContent='listening...';
-  listening=true;gestureCount=0;speeds=[];angles=[];dwellTimes=[];
-  totalDist=0;lastMoveTime=0;revealed=false;
-  initAudio();
-  const fadeIn=setInterval(()=>{
-    gainNode.gain.linearRampToValueAtTime(0.04,audioCtx.currentTime+0.1);
-    const speed=speeds.length?speeds[speeds.length-1]:0;
-    const freq=60+Math.min(speed*0.8,200);
-    oscillator.frequency.linearRampToValueAtTime(freq,audioCtx.currentTime+0.05);
-  },50);
-}
-
-function revealResult(){
-  if(revealed)return;revealed=true;listening=false;
-  gainNode.gain.linearRampToValueAtTime(0,audioCtx.currentTime+1);
-  setTimeout(()=>{audioCtx.close()},2000);
-  document.getElementById('listening').classList.remove('active');
-  document.getElementById('result').classList.add('active');
-  document.getElementById('subtitle').textContent='a gesture-to-frequency experiment';
-  // Calculate frequency
-  const avgSpd=speeds.length?speeds.reduce((a,b)=>a+b,0)/speeds.length:0;
-  const stdSpd=speeds.length?Math.sqrt(speeds.reduce((a,b)=>a+(b-avgSpd)**2,0)/speeds.length):0;
-  const angleVariance=angles.length?circularVariance(angles):0;
-  const avgDwell=dwellTimes.length?dwellTimes.slice(1).reduce((a,b)=>a+b,0)/Math.max(dwellTimes.length-1,1):0;
-  const freq=Math.round(20+avgSpd*0.4+stdSpd*1.2+angleVariance*200+Math.min(totalDist*0.002,80));
-  const finalFreq=Math.min(Math.max(freq,12),420);
-  document.getElementById('freq').textContent=finalFreq;
-  // Pick reading
-  const idx=Math.floor((finalFreq/420)*PHRASES.length)%PHRASES.length;
-  const reading=document.getElementById('reading');
-  reading.textContent=PHRASES[idx];
-  setTimeout(()=>reading.classList.add('show'),500);
-  // Visual effect
-  for(let i=0;i<60;i++)setTimeout(()=>{spawnParticles(W/2+(Math.random()-0.5)*400,H/2+(Math.random()-0.5)*400,8)},i*30);
-}
-
-function circularVariance(angles){
-  const n=angles.length;if(!n)return 0;
-  let sx=0,sy=0;
-  for(const a of angles){sx+=Math.cos(a);sy+=Math.sin(a)}
-  const R=Math.sqrt(sx*sx+sy*sy)/n;
-  return 1-R;
-}
-
-function resetExperiment(){
-  document.getElementById('result').classList.remove('active');
-  document.getElementById('intro').classList.add('active');
-  document.getElementById('reading').classList.remove('show');
-  document.getElementById('revealBtn').style.display='none';
-  particles=[];gestures=[];speeds=[];angles=[];dwellTimes=[];
-  gestureCount=0;totalDist=0;revealed=false;
-  FX.clearRect(0,0,280,280);
+function clearCanvas(){
   X.fillStyle='#0a0a0f';X.fillRect(0,0,W,H);
+  drawGuide();
+  hueBase=Math.random()*360;
 }
+
+function saveImage(){
+  const link=document.createElement('a');
+  link.download='mirror-touch.png';
+  link.href=C.toDataURL('image/png');
+  link.click();
+}
+
+// Ambient center pulse
+let pulse=0;
+function ambientLoop(){
+  if(!drawing){requestAnimationFrame(ambientLoop);return;}
+  pulse+=0.02;
+  const r=3+Math.sin(pulse)*1.5;
+  X.fillStyle=`rgba(255,255,255,${0.06+Math.sin(pulse)*0.03})`;
+  X.beginPath();X.arc(cx,cy,r,0,Math.PI*2);X.fill();
+  requestAnimationFrame(ambientLoop);
+}
+ambientLoop();
 </script>
 </body>
 </html>
