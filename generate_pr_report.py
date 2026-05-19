@@ -1,276 +1,356 @@
 #!/usr/bin/env python3
-"""Generate GitHub PR Report PDF for euxaristia."""
-import json
+"""Generate PR report PDF for euxaristia."""
+import json, os, sys
 from datetime import datetime, timezone
-from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.lib.colors import HexColor, white, black
-from reportlab.lib.units import mm
-from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT
-from reportlab.platypus import (
-    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, 
-    PageBreak, HRFlowable, KeepTogether
-)
-from reportlab.platypus.flowables import Flowable
-from reportlab.lib import colors
 
-# Load data
-with open("/home/z/my-project/pr_report_data.json") as f:
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.units import inch, mm
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_JUSTIFY
+from reportlab.lib import colors
+from reportlab.platypus import (
+    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle,
+    PageBreak, KeepTogether, HRFlowable
+)
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.pdfbase.pdfmetrics import registerFontFamily
+
+# ━━ Fonts ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+pdfmetrics.registerFont(TTFont('Times New Roman', '/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf'))
+pdfmetrics.registerFont(TTFont('Times New Roman Bold', '/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf'))
+pdfmetrics.registerFont(TTFont('Calibri', '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'))
+pdfmetrics.registerFont(TTFont('Calibri Bold', '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'))
+pdfmetrics.registerFont(TTFont('DejaVuSans', '/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf'))
+registerFontFamily('Times New Roman', normal='Times New Roman', bold='Times New Roman Bold')
+registerFontFamily('Calibri', normal='Calibri', bold='Calibri Bold')
+registerFontFamily('DejaVuSans', normal='DejaVuSans', bold='DejaVuSans')
+
+# ━━ Palette ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ACCENT       = colors.HexColor('#522cc5')
+TEXT_PRIMARY  = colors.HexColor('#232220')
+TEXT_MUTED    = colors.HexColor('#87827a')
+BG_SURFACE   = colors.HexColor('#e2ded8')
+BG_PAGE      = colors.HexColor('#f2f1ef')
+TABLE_HEADER_COLOR = ACCENT
+TABLE_HEADER_TEXT  = colors.white
+TABLE_ROW_EVEN     = colors.white
+TABLE_ROW_ODD      = BG_SURFACE
+
+# ━━ Styles ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+title_style = ParagraphStyle('Title', fontName='Times New Roman', fontSize=28, leading=34, textColor=TEXT_PRIMARY, spaceAfter=6)
+subtitle_style = ParagraphStyle('Subtitle', fontName='Calibri', fontSize=12, leading=16, textColor=TEXT_MUTED, spaceAfter=18)
+h1_style = ParagraphStyle('H1', fontName='Times New Roman', fontSize=18, leading=22, textColor=ACCENT, spaceBefore=18, spaceAfter=10)
+h2_style = ParagraphStyle('H2', fontName='Times New Roman', fontSize=14, leading=18, textColor=TEXT_PRIMARY, spaceBefore=14, spaceAfter=8)
+body_style = ParagraphStyle('Body', fontName='Times New Roman', fontSize=10.5, leading=16, textColor=TEXT_PRIMARY, alignment=TA_JUSTIFY, spaceAfter=6)
+small_style = ParagraphStyle('Small', fontName='Calibri', fontSize=9, leading=13, textColor=TEXT_MUTED)
+meta_style = ParagraphStyle('Meta', fontName='Calibri', fontSize=10, leading=14, textColor=TEXT_MUTED, alignment=TA_CENTER)
+
+header_cell = ParagraphStyle('HeaderCell', fontName='Times New Roman', fontSize=9.5, leading=13, textColor=colors.white, alignment=TA_CENTER)
+cell_style = ParagraphStyle('Cell', fontName='Times New Roman', fontSize=9, leading=13, textColor=TEXT_PRIMARY, alignment=TA_LEFT)
+cell_center = ParagraphStyle('CellCenter', fontName='Times New Roman', fontSize=9, leading=13, textColor=TEXT_PRIMARY, alignment=TA_CENTER)
+cell_bold = ParagraphStyle('CellBold', fontName='Times New Roman', fontSize=9, leading=13, textColor=TEXT_PRIMARY)
+status_style = ParagraphStyle('Status', fontName='Times New Roman', fontSize=9, leading=13, textColor=TEXT_PRIMARY, alignment=TA_CENTER)
+
+# ━━ Load data ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+with open('/home/z/my-project/pr_data.json') as f:
     prs = json.load(f)
 
-open_prs = [r for r in prs if r.get("state") == "open"]
-closed_prs = [r for r in prs if r.get("state") != "open"]
+with open('/home/z/my-project/pr_report_data.json') as f:
+    prev_prs = json.load(f)
+
+prev_keys = {p['key'] for p in prev_prs}
+curr_keys = {p['key'] for p in prs}
+merged_closed = prev_keys - curr_keys
+new_prs = curr_keys - prev_keys
 
 def fmt_date(iso):
     if not iso:
-        return "N/A"
+        return '--'
     try:
-        dt = datetime.fromisoformat(iso.replace("Z", "+00:00"))
-        return dt.strftime("%b %d, %Y")
+        dt = datetime.fromisoformat(iso.replace('Z', '+00:00'))
+        return dt.strftime('%b %d, %Y')
     except:
         return iso[:10]
 
-def days_ago(iso):
-    if not iso:
-        return "?"
-    try:
-        dt = datetime.fromisoformat(iso.replace("Z", "+00:00"))
-        days = (datetime.now(timezone.utc) - dt).days
-        return f"{days}d ago"
-    except:
-        return "?"
+def assess_pr(pr):
+    """Determine the actionable status of a PR."""
+    reviews = pr.get('reviews', [])
+    review_states = [r['state'] for r in reviews]
+    issue_comments = pr.get('issue_comments', [])
+    commits = pr.get('commits', [])
+    rev_comments = pr.get('review_comments', [])
+    labels = pr.get('labels', [])
 
-# Colors
-C_PRIMARY = HexColor("#1a1a2e")
-C_ACCENT = HexColor("#4361ee")
-C_ACCENT2 = HexColor("#3a86ff")
-C_MUTED = HexColor("#6b7280")
-C_BG = HexColor("#f8fafc")
-C_SUCCESS = HexColor("#06d6a0")
-C_WARNING = HexColor("#f59e0b")
-C_DANGER = HexColor("#ef4444")
-C_STALE = HexColor("#9ca3af")
-C_TABLE_HEAD = HexColor("#1e293b")
-C_TABLE_ALT = HexColor("#f1f5f9")
+    has_changes_requested = 'CHANGES_REQUESTED' in review_states
+    has_approved = 'APPROVED' in review_states
 
-output_path = "/home/z/my-project/download/GitHub_PR_Report_euxaristia_2026-05-18.pdf"
+    if not reviews and not issue_comments:
+        return 'Awaiting Review', 'No reviewer engagement yet'
+    if has_approved:
+        return 'Approved', 'Ready to merge'
+    if has_changes_requested:
+        # Check if author pushed after the review
+        latest_review_date = max((r['submitted_at'] for r in reviews if r['state'] == 'CHANGES_REQUESTED'), default='')
+        if latest_review_date and commits:
+            author_commits_after = [c for c in commits if c.get('date', '') > latest_review_date and c.get('author', '') == pr.get('author', '')]
+            if author_commits_after:
+                return 'In Review Cycle', 'Author addressed feedback, awaiting re-review'
+        return 'Changes Requested', 'Feedback not yet addressed'
+    if issue_comments and not reviews:
+        last_comment_date = max((c['created_at'] for c in issue_comments), default='')
+        # Check if a maintainer commented
+        maintainer_comments = [c for c in issue_comments if c.get('user', '') != pr.get('author', '')]
+        if maintainer_comments:
+            return 'Has Feedback', 'Maintainer commented, check conversation'
+    if reviews and not has_changes_requested:
+        return 'Under Review', 'Reviewer engaged, no changes requested yet'
+    if not reviews and len(issue_comments) >= 2:
+        return 'Stalled', 'Multiple comments but no formal review'
+    return 'Active', 'Open and in progress'
 
+def get_status_color(status):
+    colors_map = {
+        'Approved': colors.HexColor('#16a34a'),
+        'In Review Cycle': colors.HexColor('#2563eb'),
+        'Under Review': colors.HexColor('#2563eb'),
+        'Has Feedback': colors.HexColor('#d97706'),
+        'Changes Requested': colors.HexColor('#dc2626'),
+        'Stalled': colors.HexColor('#dc2626'),
+        'Awaiting Review': colors.HexColor('#87827a'),
+        'Active': colors.HexColor('#16a34a'),
+    }
+    return colors_map.get(status, TEXT_MUTED)
+
+# ━━ Build PDF ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+output_path = f'/home/z/my-project/download/GitHub_PR_Report_euxaristia_{datetime.now().strftime("%Y-%m-%d")}.pdf'
 doc = SimpleDocTemplate(
-    output_path,
-    pagesize=A4,
-    leftMargin=18*mm, rightMargin=18*mm,
-    topMargin=20*mm, bottomMargin=20*mm,
+    output_path, pagesize=A4,
+    leftMargin=0.8*inch, rightMargin=0.8*inch,
+    topMargin=0.7*inch, bottomMargin=0.7*inch,
 )
 
-styles = getSampleStyleSheet()
-
-# Custom styles
-s_title = ParagraphStyle("Title2", parent=styles["Title"], fontSize=22, leading=26, 
-    textColor=C_PRIMARY, spaceAfter=4, fontName="Helvetica-Bold")
-s_subtitle = ParagraphStyle("Sub2", parent=styles["Normal"], fontSize=10, 
-    textColor=C_MUTED, spaceAfter=16, fontName="Helvetica")
-s_h1 = ParagraphStyle("H1", parent=styles["Heading1"], fontSize=16, leading=20,
-    textColor=C_PRIMARY, spaceBefore=18, spaceAfter=8, fontName="Helvetica-Bold",
-    borderWidth=0, borderPadding=0)
-s_h2 = ParagraphStyle("H2", parent=styles["Heading2"], fontSize=12, leading=15,
-    textColor=C_PRIMARY, spaceBefore=14, spaceAfter=6, fontName="Helvetica-Bold")
-s_body = ParagraphStyle("Body2", parent=styles["Normal"], fontSize=9, leading=13,
-    textColor=HexColor("#374151"), spaceAfter=4, fontName="Helvetica")
-s_small = ParagraphStyle("Small", parent=styles["Normal"], fontSize=8, leading=11,
-    textColor=C_MUTED, fontName="Helvetica")
-s_pr_title = ParagraphStyle("PRTitle", parent=styles["Normal"], fontSize=9.5, leading=13,
-    textColor=C_PRIMARY, fontName="Helvetica-Bold")
-s_status = ParagraphStyle("Status", parent=styles["Normal"], fontSize=8, leading=11,
-    fontName="Helvetica-Bold", textColor=white)
-s_section_label = ParagraphStyle("SecLabel", parent=styles["Normal"], fontSize=8,
-    leading=10, textColor=C_ACCENT, fontName="Helvetica-Bold", 
-    spaceBefore=8, spaceAfter=2, leftIndent=4)
-
-class ColorDot(Flowable):
-    def __init__(self, color, size=6):
-        Flowable.__init__(self)
-        self.color = color
-        self.size = size
-        self.width = size
-        self.height = size
-    def draw(self):
-        self.canv.setFillColor(self.color)
-        self.canv.circle(self.size/2, self.size/2, self.size/2, fill=1, stroke=0)
-
+page_width = A4[0] - 1.6*inch
 story = []
 
-# === COVER ===
-story.append(Spacer(1, 60*mm))
-story.append(Paragraph("GitHub Pull Request", s_title))
-story.append(Paragraph("Status Report", s_title))
-story.append(Spacer(1, 8*mm))
+# ── Title ──
+story.append(Paragraph('<b>GitHub Pull Request Report</b>', title_style))
+story.append(Paragraph('euxaristia -- Open PRs and Review Status', subtitle_style))
+story.append(Paragraph(f'Generated: {datetime.now(timezone.utc).strftime("%B %d, %Y")} UTC', meta_style))
+story.append(Spacer(1, 12))
 
-cover_date = datetime.now(timezone.utc).strftime("%B %d, %Y")
-story.append(Paragraph(f"euxaristia  |  {cover_date}", s_subtitle))
-story.append(Spacer(1, 12*mm))
+# ── Summary stats ──
+story.append(Paragraph('<b>Summary</b>', h1_style))
 
-# Summary stats
+total_open = len(prs)
+total_add = sum(p['additions'] for p in prs)
+total_del = sum(p['deletions'] for p in prs)
+total_files = sum(p['changed_files'] for p in prs)
+need_action = sum(1 for p in prs if assess_pr(p)[0] in ('Changes Requested', 'Stalled'))
+
 summary_data = [
-    [Paragraph("<b>Open PRs</b>", ParagraphStyle("c", fontSize=10, textColor=C_ACCENT, alignment=TA_CENTER, fontName="Helvetica-Bold")),
-     Paragraph("<b>Merged Since Last</b>", ParagraphStyle("c", fontSize=10, textColor=C_SUCCESS, alignment=TA_CENTER, fontName="Helvetica-Bold")),
-     Paragraph("<b>Awaiting Action</b>", ParagraphStyle("c", fontSize=10, textColor=C_WARNING, alignment=TA_CENTER, fontName="Helvetica-Bold")),
-     Paragraph("<b>Stale</b>", ParagraphStyle("c", fontSize=10, textColor=C_STALE, alignment=TA_CENTER, fontName="Helvetica-Bold"))],
-    [Paragraph(f"{len(open_prs)}", ParagraphStyle("c", fontSize=24, textColor=C_PRIMARY, alignment=TA_CENTER, fontName="Helvetica-Bold")),
-     Paragraph(f"{len(closed_prs)}", ParagraphStyle("c", fontSize=24, textColor=C_PRIMARY, alignment=TA_CENTER, fontName="Helvetica-Bold")),
-     Paragraph(f"{sum(1 for p in open_prs if 'stale' in p.get('pr_status','').lower() or 'awaiting' in p.get('pr_status','').lower())}", ParagraphStyle("c", fontSize=24, textColor=C_PRIMARY, alignment=TA_CENTER, fontName="Helvetica-Bold")),
-     Paragraph(f"{sum(1 for p in open_prs if 'stale' in p.get('pr_status','').lower())}", ParagraphStyle("c", fontSize=24, textColor=C_PRIMARY, alignment=TA_CENTER, fontName="Helvetica-Bold"))],
+    [Paragraph('<b>Metric</b>', header_cell), Paragraph('<b>Value</b>', header_cell)],
+    [Paragraph('Open PRs', cell_style), Paragraph(str(total_open), cell_center)],
+    [Paragraph('New since last report', cell_style), Paragraph(str(len(new_prs)), cell_center)],
+    [Paragraph('Merged/Closed since last report', cell_style), Paragraph(str(len(merged_closed)), cell_center)],
+    [Paragraph('Total additions', cell_style), Paragraph(f'+{total_add:,}', cell_center)],
+    [Paragraph('Total deletions', cell_style), Paragraph(f'-{total_del:,}', cell_center)],
+    [Paragraph('Total changed files', cell_style), Paragraph(str(total_files), cell_center)],
+    [Paragraph('PRs needing action', cell_style), Paragraph(str(need_action), cell_center)],
 ]
-
-summary_table = Table(summary_data, colWidths=[38*mm]*4)
+avail = page_width
+col_w = [avail*0.6, avail*0.4]
+summary_table = Table(summary_data, colWidths=col_w, hAlign='CENTER')
+ts = []
+for i in range(1, len(summary_data)):
+    bg = TABLE_ROW_ODD if i % 2 == 0 else TABLE_ROW_EVEN
+    ts.append(('BACKGROUND', (0, i), (-1, i), bg))
 summary_table.setStyle(TableStyle([
-    ('ALIGN', (0,0), (-1,-1), 'CENTER'),
-    ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-    ('TOPPADDING', (0,0), (-1,0), 4),
-    ('BOTTOMPADDING', (0,0), (-1,0), 2),
-    ('TOPPADDING', (0,1), (-1,1), 8),
-    ('BOTTOMPADDING', (0,1), (-1,1), 12),
-    ('LINEBELOW', (0,0), (-1,0), 0.5, C_TABLE_ALT),
-]))
+    ('BACKGROUND', (0, 0), (-1, 0), TABLE_HEADER_COLOR),
+    ('TEXTCOLOR', (0, 0), (-1, 0), TABLE_HEADER_TEXT),
+    ('GRID', (0, 0), (-1, -1), 0.5, TEXT_MUTED),
+    ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+    ('LEFTPADDING', (0, 0), (-1, -1), 8),
+    ('RIGHTPADDING', (0, 0), (-1, -1), 8),
+    ('TOPPADDING', (0, 0), (-1, -1), 5),
+    ('BOTTOMPADDING', (0, 0), (-1, -1), 5),
+] + ts))
 story.append(summary_table)
+story.append(Spacer(1, 18))
 
-story.append(PageBreak())
+# ── Changes since last report ──
+if merged_closed:
+    story.append(Paragraph('<b>PRs Merged or Closed Since Last Report</b>', h1_style))
+    closed_items = [[
+        Paragraph('<b>PR</b>', header_cell),
+        Paragraph('<b>State</b>', header_cell),
+    ]]
+    for key in sorted(merged_closed):
+        prev = next((p for p in prev_prs if p['key'] == key), None)
+        if prev:
+            closed_items.append([
+                Paragraph(f'<b>{key}</b>', cell_bold),
+                Paragraph('Merged/Closed', cell_center),
+            ])
+    ct = Table(closed_items, colWidths=[avail*0.65, avail*0.35], hAlign='CENTER')
+    ct_styles = [
+        ('BACKGROUND', (0, 0), (-1, 0), TABLE_HEADER_COLOR),
+        ('TEXTCOLOR', (0, 0), (-1, 0), TABLE_HEADER_TEXT),
+        ('GRID', (0, 0), (-1, -1), 0.5, TEXT_MUTED),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('LEFTPADDING', (0, 0), (-1, -1), 8),
+        ('RIGHTPADDING', (0, 0), (-1, -1), 8),
+        ('TOPPADDING', (0, 0), (-1, -1), 5),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 5),
+    ]
+    for i in range(1, len(closed_items)):
+        bg = TABLE_ROW_ODD if i % 2 == 0 else TABLE_ROW_EVEN
+        ct_styles.append(('BACKGROUND', (0, i), (-1, i), bg))
+    ct.setStyle(TableStyle(ct_styles))
+    story.append(ct)
+    story.append(Spacer(1, 18))
 
-# === CHANGES SINCE LAST REPORT ===
-story.append(Paragraph("Changes Since Last Report", s_h1))
+# ── All Open PRs Table ──
+story.append(Paragraph('<b>All Open Pull Requests</b>', h1_style))
+story.append(Paragraph('Sorted by repository, with review status assessment.', body_style))
+story.append(Spacer(1, 10))
 
-if closed_prs:
-    for pr in closed_prs:
-        action = "MERGED" if pr.get("merged") else "CLOSED"
-        action_color = C_SUCCESS if pr.get("merged") else C_DANGER
-        status_text = f'<font color="{action_color.hexval()}">{action}</font>'
-        story.append(Paragraph(
-            f'{status_text}  <b>{pr["key"]}</b> - {pr["title"]}',
-            s_body
-        ))
-        if pr.get("merged_at"):
-            story.append(Paragraph(f'Merged on {fmt_date(pr["merged_at"])}', s_small))
-        story.append(Spacer(1, 2*mm))
+pr_table_data = [[
+    Paragraph('<b>PR</b>', header_cell),
+    Paragraph('<b>Title</b>', header_cell),
+    Paragraph('<b>Created</b>', header_cell),
+    Paragraph('<b>Status</b>', header_cell),
+    Paragraph('<b>+/-</b>', header_cell),
+]]
 
-# New PRs (not in previous report)
-new_prs = [p for p in open_prs if p.get("created_at", "")[:10] >= "2026-05-16"]
-if new_prs:
-    story.append(Paragraph("New PRs", s_section_label))
-    for pr in new_prs:
-        story.append(Paragraph(
-            f'NEW  <b>{pr["key"]}</b> - {pr["title"]}',
-            s_body
-        ))
-        story.append(Paragraph(f'Opened {fmt_date(pr["created_at"])}  |  {pr.get("pr_status","")}', s_small))
-        story.append(Spacer(1, 2*mm))
+# Sort by repo then number
+sorted_prs = sorted(prs, key=lambda p: (p['repo'], p['number']))
 
-# === OPEN PRs DETAIL ===
-story.append(Paragraph("Open Pull Requests", s_h1))
+for pr in sorted_prs:
+    key = pr['key']
+    status, detail = assess_pr(pr)
+    status_color = get_status_color(status)
+    title_short = pr['title'][:55] + ('...' if len(pr['title']) > 55 else '')
+    stats = f"+{pr['additions']}/-{pr['deletions']}"
 
-# Status legend
-legend_items = [
-    ("In Review", C_ACCENT), ("In Review Cycle", HexColor("#8b5cf6")),
-    ("Awaiting Review", C_WARNING), ("Awaiting Author", C_DANGER),
-    ("Approved", C_SUCCESS), ("Stale", C_STALE),
+    pr_table_data.append([
+        Paragraph(f'<b>{key}</b>', cell_bold),
+        Paragraph(title_short, cell_style),
+        Paragraph(fmt_date(pr['created_at']), cell_center),
+        Paragraph(f'<font color="{status_color.hexval()}">{status}</font>', status_style),
+        Paragraph(stats, cell_center),
+    ])
+
+cw = [avail*0.20, avail*0.35, avail*0.15, avail*0.17, avail*0.13]
+pr_table = Table(pr_table_data, colWidths=cw, hAlign='CENTER', repeatRows=1)
+pr_ts = [
+    ('BACKGROUND', (0, 0), (-1, 0), TABLE_HEADER_COLOR),
+    ('TEXTCOLOR', (0, 0), (-1, 0), TABLE_HEADER_TEXT),
+    ('GRID', (0, 0), (-1, -1), 0.5, TEXT_MUTED),
+    ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+    ('LEFTPADDING', (0, 0), (-1, -1), 6),
+    ('RIGHTPADDING', (0, 0), (-1, -1), 6),
+    ('TOPPADDING', (0, 0), (-1, -1), 5),
+    ('BOTTOMPADDING', (0, 0), (-1, -1), 5),
 ]
-legend_text = "  |  ".join([f'<font color="{c.hexval()}">{t}</font>' for t,c in legend_items])
-story.append(Paragraph(legend_text, s_small))
-story.append(Spacer(1, 4*mm))
+for i in range(1, len(pr_table_data)):
+    bg = TABLE_ROW_ODD if i % 2 == 0 else TABLE_ROW_EVEN
+    pr_ts.append(('BACKGROUND', (0, i), (-1, i), bg))
+pr_table.setStyle(TableStyle(pr_ts))
+story.append(pr_table)
+story.append(Spacer(1, 24))
 
-# Build table data
-def status_badge(status):
-    color_map = {
-        "In Review": C_ACCENT, "In Review Cycle": HexColor("#8b5cf6"),
-        "Awaiting Review": C_WARNING, "Awaiting Author": C_DANGER,
-        "Approved": C_SUCCESS, "Draft": C_STALE,
-    }
-    base = status.split(" (")[0]
-    color = color_map.get(base, C_MUTED)
-    is_stale = "(stale)" in status
-    if is_stale:
-        return f'<font color="{C_STALE.hexval()}">{status}</font>'
-    return f'<font color="{color.hexval()}">{status}</font>'
+# ── Detailed PR Analysis ──
+story.append(Paragraph('<b>Detailed PR Analysis</b>', h1_style))
+story.append(Paragraph('In-depth review of each open pull request, including review history, conversation summary, and recommended actions.', body_style))
+story.append(Spacer(1, 12))
 
-# Group PRs by target repo
-from collections import OrderedDict
-by_target = OrderedDict()
-for pr in open_prs:
-    target = pr.get("base_repo", pr["repo"])
-    if target not in by_target:
-        by_target[target] = []
-    by_target[target].append(pr)
+for pr in sorted_prs:
+    key = pr['key']
+    status, detail = assess_pr(pr)
+    status_color = get_status_color(status)
+    reviews = pr.get('reviews', [])
+    issue_comments = pr.get('issue_comments', [])
+    commits = pr.get('commits', [])
+    rev_comments = pr.get('review_comments', [])
+    labels = pr.get('labels', [])
 
-for target_repo, repo_prs in by_target.items():
-    story.append(Paragraph(f'{target_repo}', s_h2))
-    
-    for pr in repo_prs:
-        # PR header
-        title_text = pr["title"][:80]
-        status = pr.get("pr_status", "Unknown")
-        draft_tag = " [DRAFT]" if pr.get("draft") else ""
-        
-        pr_header = f'<b>{pr["key"]}{draft_tag}</b> - {title_text}'
-        story.append(Paragraph(pr_header, s_pr_title))
-        
-        # Meta line
-        meta_parts = [
-            status_badge(status),
-            f'+{pr["additions"]}/-{pr["deletions"]}',
-            f'{pr["changed_files"]} files',
-            f'{len(pr["reviews"])} reviews',
-            f'{len(pr.get("review_comments",[]))} review comments',
-            days_ago(pr["updated_at"]),
-        ]
-        if pr.get("ci_status") and pr["ci_status"] != "unknown":
-            ci = pr["ci_status"]
-            ci_color = C_SUCCESS if ci == "success" else (C_DANGER if ci == "failure" else C_WARNING)
-            meta_parts.append(f'<font color="{ci_color.hexval()}">CI: {ci}</font>')
-        
-        story.append(Paragraph("  |  ".join(meta_parts), s_small))
-        
-        # Labels
-        if pr.get("labels"):
-            story.append(Paragraph(f'Labels: {", ".join(pr["labels"])}', s_small))
-        
-        # Review summary
-        reviews = pr.get("reviews", [])
-        if reviews:
-            review_summary = []
-            for r in reviews[-3:]:  # Last 3 reviews
-                reviewer = r.get("user", {}).get("login", "?")
-                rstate = r.get("state", "?")
-                rdate = fmt_date(r.get("submitted_at", ""))
-                review_summary.append(f'{reviewer} ({rstate}, {rdate})')
-            story.append(Paragraph(f'Reviews: {"; ".join(review_summary)}', s_small))
-        
-        # Issue comments summary
-        ic = pr.get("issue_comments", [])
-        if ic:
-            comment_summary = []
-            for c in ic[-3:]:
-                author = c.get("user", {}).get("login", "?")
-                cdate = fmt_date(c.get("created_at", ""))
-                body = c.get("body", "")[:60].replace("<", "&lt;").replace(">", "&gt;")
-                comment_summary.append(f'{author} ({cdate}): {body}...')
-            story.append(Paragraph(f'Comments: {"; ".join(comment_summary)}', s_small))
-        
-        story.append(Spacer(1, 3*mm))
+    # Section header
+    story.append(HRFlowable(width='100%', thickness=0.5, color=BG_SURFACE, spaceAfter=8))
+    story.append(Paragraph(f'<b>{key}</b> -- {pr["title"]}', h2_style))
 
-# === ACTION ITEMS ===
-story.append(Paragraph("Action Items", s_h1))
+    # Meta line
+    meta_parts = [
+        f'Created: {fmt_date(pr["created_at"])}',
+        f'Updated: {fmt_date(pr["updated_at"])}',
+        f'Draft: {"Yes" if pr["draft"] else "No"}',
+        f'+{pr["additions"]}/-{pr["deletions"]}',
+        f'{pr["changed_files"]} files',
+    ]
+    if labels:
+        meta_parts.append(f'Labels: {", ".join(labels)}')
+    story.append(Paragraph(' | '.join(meta_parts), small_style))
 
-action_prs = [p for p in open_prs if "awaiting" in p.get("pr_status", "").lower() or "stale" in p.get("pr_status", "").lower()]
-if action_prs:
-    for pr in action_prs:
-        status = pr.get("pr_status", "")
+    # Status
+    story.append(Paragraph(
+        f'<font color="{status_color.hexval()}"><b>{status}</b></font> -- {detail}',
+        ParagraphStyle('StatusLine', parent=body_style, fontSize=10.5, spaceAfter=6)
+    ))
+
+    # Reviews
+    if reviews:
+        review_lines = []
+        for r in reviews:
+            ruser = r.get('user', 'unknown')
+            rstate = r.get('state', '')
+            rdate = fmt_date(r.get('submitted_at', ''))
+            review_lines.append(f'{ruser}: {rstate} ({rdate})')
+        story.append(Paragraph(f'<b>Reviews ({len(reviews)}):</b> {"; ".join(review_lines)}', small_style))
+
+    # Review comments summary
+    if rev_comments:
+        story.append(Paragraph(f'<b>Review Comments:</b> {len(rev_comments)} inline comments on code', small_style))
+
+    # Issue comments summary
+    if issue_comments:
+        last_ic = issue_comments[-1]
         story.append(Paragraph(
-            f'<font color="{C_WARNING.hexval()}">&#9654;</font> <b>{pr["key"]}</b> - {status}: {pr["title"][:70]}',
-            s_body
+            f'<b>Issue Comments ({len(issue_comments)}):</b> Latest by {last_ic.get("user", "?")} on {fmt_date(last_ic.get("created_at", ""))} -- "{last_ic.get("body", "")[:100]}"',
+            small_style
         ))
-        story.append(Paragraph(f'  Last updated {days_ago(pr["updated_at"])}. {len(pr["reviews"])} reviews, {len(pr.get("review_comments",[]))} review comments.', s_small))
-        story.append(Spacer(1, 2*mm))
-else:
-    story.append(Paragraph("No PRs currently require action.", s_body))
 
-# Build and save
+    # Commits
+    if commits:
+        story.append(Paragraph(f'<b>Commits:</b> {len(commits)} total. Latest: {commits[-1].get("message", "")[:80]}', small_style))
+
+    # CI status
+    ci = pr.get('ci_status')
+    ci_info = f'{pr.get("ci_total", 0)} checks'
+    if ci:
+        ci_info += f' ({ci})'
+    story.append(Paragraph(f'<b>CI:</b> {ci_info}', small_style))
+
+    story.append(Spacer(1, 10))
+
+# ── Action Items ──
+story.append(HRFlowable(width='100%', thickness=1, color=ACCENT, spaceAfter=10))
+story.append(Paragraph('<b>Action Items</b>', h1_style))
+
+action_prs = []
+for pr in sorted_prs:
+    status, detail = assess_pr(pr)
+    if status in ('Changes Requested', 'Stalled', 'Awaiting Review'):
+        action_prs.append((pr, status, detail))
+
+if action_prs:
+    for pr, status, detail in action_prs:
+        story.append(Paragraph(f'<b>{pr["key"]}</b> -- <font color="{get_status_color(status).hexval()}">{status}</font>', body_style))
+        story.append(Paragraph(f'{detail}', ParagraphStyle('ActionDetail', parent=body_style, leftIndent=12, textColor=TEXT_MUTED)))
+        story.append(Spacer(1, 6))
+else:
+    story.append(Paragraph('No PRs currently require immediate action.', body_style))
+
+# ── Build ──
 doc.build(story)
-print(f"PDF saved to {output_path}")
+print(f'PDF saved to: {output_path}')
+print(f'Pages: approx {len(story)} elements')
