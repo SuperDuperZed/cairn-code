@@ -3,201 +3,139 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Mirror Touch</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<title>Moiré</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0a0f;font-family:'Inter',sans-serif;color:#fff;overflow:hidden;height:100vh;width:100vw;touch-action:none;cursor:crosshair}
-canvas{position:fixed;top:0;left:0;z-index:0}
-.ui{position:fixed;z-index:10;pointer-events:none}
-.overlay{position:fixed;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
-.phase{display:none;flex-direction:column;align-items:center;text-align:center;padding:2rem;max-width:520px;pointer-events:none}
-.phase.active{display:flex}
-.phase h1{font-size:clamp(2rem,6vw,3.5rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:0.8rem;line-height:1.1}
-.phase p{font-size:clamp(0.85rem,2.2vw,1rem);font-weight:300;opacity:0.5;line-height:1.6;max-width:420px}
-.btn{pointer-events:all;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:0.75rem 1.8rem;border-radius:100px;font-family:'Inter',sans-serif;font-size:0.9rem;cursor:pointer;transition:all 0.3s ease;margin-top:1.2rem}
-.btn:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);transform:scale(1.04)}
-.toolbar{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);z-index:20;display:none;gap:0.5rem;align-items:center}
-.toolbar.show{display:flex}
-.tool-btn{pointer-events:all;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);color:#fff;padding:0.5rem 1rem;border-radius:100px;font-family:'Inter',sans-serif;font-size:0.75rem;cursor:pointer;transition:all 0.2s ease;opacity:0.7}
-.tool-btn:hover{opacity:1;background:rgba(255,255,255,0.1)}
-.tool-btn.active{opacity:1;border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.12)}
-.sym-count{position:fixed;top:1.2rem;right:1.5rem;z-index:20;font-size:0.7rem;opacity:0.3;letter-spacing:0.15em;text-transform:uppercase;display:none}
-.sym-count.show{display:block}
-.fade-in{animation:fadeIn 1.2s ease forwards}
-@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+body{background:#0a0a0f;overflow:hidden;font-family:'Inter',sans-serif;cursor:crosshair;-webkit-tap-highlight-color:transparent;user-select:none}
+canvas{display:block}
+.title{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);color:rgba(255,255,255,.55);font-size:clamp(1.4rem,4vw,2.4rem);font-weight:300;letter-spacing:.5em;text-transform:uppercase;z-index:10;transition:opacity 2s;pointer-events:none}
+.hint{position:fixed;top:calc(50% + 2.5rem);left:50%;transform:translateX(-50%);color:rgba(255,255,255,.2);font-size:.72rem;font-weight:300;letter-spacing:.18em;z-index:10;transition:opacity 2s;pointer-events:none}
+.mode-lbl{position:fixed;top:1.4rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.18);font-size:.6rem;font-weight:300;letter-spacing:.25em;text-transform:uppercase;z-index:10;pointer-events:none}
+.controls{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;gap:.5rem;z-index:10}
+.btn{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.35);padding:.4rem .9rem;font-family:'Inter',sans-serif;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .3s;border-radius:2px}
+.btn:hover{background:rgba(255,255,255,.08);color:rgba(255,255,255,.7)}
+.btn.on{background:rgba(255,255,255,.09);color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.18)}
+.speed-lbl{position:fixed;bottom:4.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.15);font-size:.55rem;letter-spacing:.15em;z-index:10;pointer-events:none}
 </style>
 </head>
 <body>
 <canvas id="c"></canvas>
-<div class="overlay">
-  <div id="intro" class="phase active">
-    <h1 class="fade-in">Mirror Touch</h1>
-    <p class="fade-in" style="animation-delay:0.2s">Move to draw. Every stroke is reflected into symmetrical patterns. What emerges is half you, half math.</p>
-    <button class="btn fade-in" style="animation-delay:0.4s" onclick="startDrawing()">Begin</button>
-  </div>
-</div>
-<div class="sym-count" id="symLabel">6-fold</div>
-<div class="toolbar" id="toolbar">
-  <button class="tool-btn" onclick="setSym(4)">4</button>
-  <button class="tool-btn active" onclick="setSym(6)">6</button>
-  <button class="tool-btn" onclick="setSym(8)">8</button>
-  <button class="tool-btn" onclick="setSym(12)">12</button>
-  <button class="tool-btn" onclick="clearCanvas()">Clear</button>
-  <button class="tool-btn" onclick="saveImage()">Save</button>
+<div class="title" id="title">Moiré</div>
+<div class="hint" id="hint">move to shift the pattern</div>
+<div class="mode-lbl" id="ml">circles</div>
+<div class="speed-lbl" id="sl">scroll to change density</div>
+<div class="controls">
+<button class="btn on" data-m="circles">circles</button>
+<button class="btn" data-m="lines">lines</button>
+<button class="btn" data-m="radial">radial</button>
+<button class="btn" data-m="grid">grid</button>
 </div>
 <script>
-const C=document.getElementById('c'),X=C.getContext('2d');
-let W,H,cx,cy;
-let drawing=false,hasDrawn=false,symmetry=6;
-let hueBase=Math.random()*360,hue=0;
-let prevX,prevY;
-let lastTime=0;
+const $=s=>document.querySelector(s);
+const C=$('#c'),X=C.getContext('2d');
+let w,h,mx,my,tx,ty,time=0,mode='circles',touched=false,spacing=6;
 
 function resize(){
-  W=C.width=innerWidth;H=C.height=innerHeight;
-  cx=W/2;cy=H/2;
-  X.fillStyle='#0a0a0f';X.fillRect(0,0,W,H);
-  if(hasDrawn) drawGuide();
+  w=C.width=innerWidth;h=C.height=innerHeight;
+  mx=tx=w/2;my=ty=h/2;
 }
-window.addEventListener('resize',resize);
-resize();
+addEventListener('resize',resize);resize();
 
-function drawGuide(){
-  X.save();
-  X.strokeStyle='rgba(255,255,255,0.03)';
-  X.lineWidth=0.5;
-  for(let i=0;i<symmetry;i++){
-    const a=(Math.PI*2/symmetry)*i;
-    X.beginPath();
-    X.moveTo(cx,cy);
-    X.lineTo(cx+Math.cos(a)*Math.max(W,H),cy+Math.sin(a)*Math.max(W,H));
-    X.stroke();
-  }
-  X.restore();
+function onInput(x,y){
+  tx=x;ty=y;
+  if(!touched){touched=true;$('#title').style.opacity='.06';$('#hint').style.opacity='0';$('#sl').style.opacity='0';}
 }
+addEventListener('mousemove',e=>onInput(e.clientX,e.clientY));
+addEventListener('touchmove',e=>{e.preventDefault();onInput(e.touches[0].clientX,e.touches[0].clientY)},{passive:false});
+addEventListener('touchstart',e=>{e.preventDefault();onInput(e.touches[0].clientX,e.touches[0].clientY)},{passive:false});
 
-function startDrawing(){
-  document.getElementById('intro').classList.remove('active');
-  document.getElementById('toolbar').classList.add('show');
-  document.getElementById('symLabel').classList.add('show');
-  drawing=true;
-  drawGuide();
-  X.fillStyle='#0a0a0f';X.fillRect(0,0,W,H);
-  drawGuide();
-}
+addEventListener('wheel',e=>{
+  e.preventDefault();
+  spacing=Math.max(3,Math.min(20,spacing+Math.sign(e.deltaY)));
+},{passive:false});
 
-function drawStroke(x1,y1,x2,y2){
-  const now=Date.now();
-  const dt=Math.min(now-lastTime,50);
-  lastTime=now;
-  const speed=Math.sqrt((x2-x1)**2+(y2-y1)**2)/(dt||1);
-  hue=(hueBase+now*0.03)%360;
-  const lw=Math.max(1.5,Math.min(4,8/(speed+1)));
-  const alpha=Math.max(0.3,Math.min(0.9,0.8-speed*0.05));
-
-  const dx1=x1-cx,dy1=y1-cy;
-  const dx2=x2-cx,dy2=y2-cy;
-  const angle1=Math.atan2(dy1,dx1);
-  const dist1=Math.sqrt(dx1*dx1+dy1*dy1);
-  const angle2=Math.atan2(dy2,dx2);
-  const dist2=Math.sqrt(dx2*dx2+dy2*dy2);
-
-  X.save();
-  X.globalAlpha=alpha;
-  X.lineWidth=lw;
-  X.lineCap='round';
-  X.lineJoin='round';
-
-  for(let i=0;i<symmetry;i++){
-    const a=(Math.PI*2/symmetry)*i;
-    X.strokeStyle=`hsl(${(hue+i*15)%360},80%,65%)`;
-    
-    // Original
-    X.beginPath();
-    X.moveTo(cx+dist1*Math.cos(angle1+a),cy+dist1*Math.sin(angle1+a));
-    X.lineTo(cx+dist2*Math.cos(angle2+a),cy+dist2*Math.sin(angle2+a));
-    X.stroke();
-
-    // Mirror
-    X.beginPath();
-    X.moveTo(cx+dist1*Math.cos(-angle1+a),cy+dist1*Math.sin(-angle1+a));
-    X.lineTo(cx+dist2*Math.cos(-angle2+a),cy+dist2*Math.sin(-angle2+a));
-    X.stroke();
-  }
-  X.restore();
-
-  // Glow at cursor
-  if(speed>0.5){
-    const grd=X.createRadialGradient(x2,y2,0,x2,y2,lw*6);
-    grd.addColorStop(0,`hsla(${hue},80%,65%,${alpha*0.15})`);
-    grd.addColorStop(1,`hsla(${hue},80%,65%,0)`);
-    X.fillStyle=grd;
-    X.beginPath();X.arc(x2,y2,lw*6,0,Math.PI*2);X.fill();
-  }
-}
-
-document.addEventListener('mousemove',e=>{
-  if(!drawing)return;
-  hasDrawn=true;
-  const x=e.clientX,y=e.clientY;
-  if(prevX!==undefined) drawStroke(prevX,prevY,x,y);
-  prevX=x;prevY=y;
+document.querySelectorAll('.btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.btn').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');mode=b.dataset.m;$('#ml').textContent=mode;
+  });
 });
-document.addEventListener('mousedown',()=>{prevX=undefined;prevY=undefined;});
-document.addEventListener('mouseup',()=>{prevX=undefined;prevY=undefined;});
 
-document.addEventListener('touchstart',e=>{
-  if(!drawing)return;
-  e.preventDefault();
-  const t=e.touches[0];
-  prevX=undefined;prevY=undefined;
-  const x=t.clientX,y=t.clientY;
-  prevX=x;prevY=y;
-},{passive:false});
-document.addEventListener('touchmove',e=>{
-  if(!drawing)return;
-  e.preventDefault();
-  const t=e.touches[0];
-  const x=t.clientX,y=t.clientY;
-  hasDrawn=true;
-  if(prevX!==undefined) drawStroke(prevX,prevY,x,y);
-  prevX=x;prevY=y;
-},{passive:false});
-document.addEventListener('touchend',()=>{prevX=undefined;prevY=undefined;});
-
-function setSym(n){
-  symmetry=n;
-  document.getElementById('symLabel').textContent=n+'-fold';
-  document.querySelectorAll('.tool-btn').forEach(b=>b.classList.remove('active'));
-  event.target.classList.add('active');
-  drawGuide();
+function circles(cx,cy,hue){
+  const mr=Math.sqrt(w*w+h*h);
+  for(let r=spacing;r<mr;r+=spacing){
+    X.beginPath();X.arc(cx,cy,r,0,Math.PI*2);
+    X.strokeStyle='hsla('+(r*.25+hue)%360+',55%,52%,.18)';
+    X.lineWidth=.7;X.stroke();
+  }
 }
 
-function clearCanvas(){
-  X.fillStyle='#0a0a0f';X.fillRect(0,0,W,H);
-  drawGuide();
-  hueBase=Math.random()*360;
+function lines(cx,cy,ang,hue){
+  X.save();X.translate(cx,cy);X.rotate(ang);
+  const n=Math.ceil(Math.sqrt(w*w+h*h)/spacing);
+  for(let i=-n;i<=n;i++){
+    X.beginPath();X.moveTo(i*spacing,-h);X.lineTo(i*spacing,h);
+    X.strokeStyle='hsla('+(Math.abs(i)*1.5+hue)%360+',55%,52%,.18)';
+    X.lineWidth=.7;X.stroke();
+  }
+  X.restore();
 }
 
-function saveImage(){
-  const link=document.createElement('a');
-  link.download='mirror-touch.png';
-  link.href=C.toDataURL('image/png');
-  link.click();
+function radial(cx,cy,hue,rot){
+  X.save();X.translate(cx,cy);X.rotate(rot);
+  const mr=Math.sqrt(w*w+h*h),n=90;
+  for(let i=0;i<n;i++){
+    const a=(i/n)*Math.PI*2;
+    X.beginPath();X.moveTo(0,0);
+    X.lineTo(Math.cos(a)*mr,Math.sin(a)*mr);
+    X.strokeStyle='hsla('+(i*4+hue)%360+',55%,52%,.14)';
+    X.lineWidth=.7;X.stroke();
+  }
+  X.restore();
 }
 
-// Ambient center pulse
-let pulse=0;
-function ambientLoop(){
-  if(!drawing){requestAnimationFrame(ambientLoop);return;}
-  pulse+=0.02;
-  const r=3+Math.sin(pulse)*1.5;
-  X.fillStyle=`rgba(255,255,255,${0.06+Math.sin(pulse)*0.03})`;
-  X.beginPath();X.arc(cx,cy,r,0,Math.PI*2);X.fill();
-  requestAnimationFrame(ambientLoop);
+function grid(cx,cy,hue){
+  const gap=spacing*2.5,sz=Math.max(1.5,gap*.2);
+  const cols=Math.ceil(w/gap)+4,rows=Math.ceil(h/gap)+4;
+  const sx=cx-(cols/2)*gap,sy=cy-(rows/2)*gap;
+  for(let r=0;r<rows;r++){
+    for(let c=0;c<cols;c++){
+      const x=sx+c*gap,y=sy+r*gap;
+      const d=Math.sqrt((c-cols/2)**2+(r-rows/2)**2);
+      X.fillStyle='hsla('+(d*6+hue)%360+',55%,52%,.45)';
+      X.fillRect(x-sz/2,y-sz/2,sz,sz);
+    }
+  }
 }
-ambientLoop();
+
+function frame(){
+  const cx=w/2,cy=h/2;
+
+  // auto-drift before interaction
+  if(!touched){tx=cx+Math.cos(time*.4)*60;ty=cy+Math.sin(time*.55)*60;}
+
+  // smooth follow
+  mx+=(tx-mx)*.045;my+=(ty-my)*.045;
+  const ox=cx+(mx-cx)*.55,oy=cy+(my-cy)*.55;
+
+  X.fillStyle='#0a0a0f';X.fillRect(0,0,w,h);
+  X.globalCompositeOperation='lighter';
+
+  const h1=(time*12)%360,h2=(h1+180)%360;
+
+  switch(mode){
+    case'circles':circles(cx,cy,h1);circles(ox,oy,h2);break;
+    case'lines':lines(cx,cy,0,h1);lines(ox,oy,.025+Math.sin(time*.4)*.018,h2);break;
+    case'radial':radial(cx,cy,h1,0);radial(ox,oy,h2,time*.08);break;
+    case'grid':grid(cx,cy,h1);grid(ox,oy,h2);break;
+  }
+
+  X.globalCompositeOperation='source-over';
+  time+=.007;
+  requestAnimationFrame(frame);
+}
+frame();
 </script>
 </body>
 </html>

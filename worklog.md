@@ -58,3 +58,24 @@ Stage Summary:
 - Project: "Mirror Touch" (repo slug: mirror-touch)
 - Status: Built and ready, deployment blocked by missing GitHub token
 - Queue: mirror-touch (pending deploy), void-gaze (pending deploy)
+
+---
+Task ID: viral-engine-20260519
+Agent: main (viral engine cron 155792)
+Task: Ship a new viral web experiment to GitHub Pages
+
+Work Log:
+- Checked worklog — previous: what-color-is-your-aura (deployed), void-gaze (built, undeployed), mirror-touch (built, undeployed)
+- Picked category 6: Visual illusions (new category)
+- Created new experiment: "Moiré" — interactive moiré interference patterns
+- Features: 4 modes (circles, lines, radial, grid), additive blending, smooth mouse follow, auto-drift, scroll-to-change density, HSL color cycling, touch support
+- 141 lines, single HTML file, dark theme (#0a0a0f), Inter font, mobile touch, canvas 2D
+- Saved to /home/z/my-project/viral-deploy/index.html
+- DEPLOYMENT FAILED: No GitHub PAT available (3rd consecutive failure)
+
+Stage Summary:
+- Project: "Moiré" (repo slug: moire-pattern)
+- Status: Built and ready, deployment blocked by missing GitHub token
+- Deploy queue: moire-pattern (new), mirror-touch (pending), void-gaze (pending)
+- Categories used so far: 1 (aura), 2 (generative art), 6 (visual illusions), 10 (browser magic)
+- BLOCKER: .github_creds.json empty/missing — all 3 recent builds cannot deploy
