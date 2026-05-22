@@ -3,221 +3,257 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Digital Oracle</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+<title>Drift</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0a0f;color:#e0e0e0;font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow-x:hidden;padding:20px}
-body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(88,28,135,0.15) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(30,58,138,0.1) 0%,transparent 50%);pointer-events:none;z-index:0;animation:bgPulse 8s ease-in-out infinite}
-@keyframes bgPulse{0%,100%{opacity:.6}50%{opacity:1}}
+body{background:#0a0a0f;overflow:hidden;font-family:'Inter',sans-serif;cursor:crosshair}
+canvas{display:block;position:fixed;inset:0}
 
-#app{position:relative;z-index:1;text-align:center;max-width:600px;width:100%}
-#intro h1{font-size:2.5rem;font-weight:700;letter-spacing:-.02em;margin-bottom:8px;background:linear-gradient(135deg,#c084fc,#818cf8,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-#intro p{font-size:1rem;color:#666;margin-bottom:32px;font-weight:300}
-#intro .sub{font-size:.75rem;color:#444;margin-top:-24px;margin-bottom:32px;font-style:italic}
+#ui{position:fixed;top:20px;left:20px;z-index:10;pointer-events:none}
+#ui h1{font-size:1.1rem;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:.04em}
+#ui p{font-size:.7rem;color:rgba(255,255,255,.3);margin-top:4px}
 
-button{font-family:'Inter',sans-serif;font-size:.9rem;font-weight:500;padding:12px 36px;border:1px solid rgba(168,85,247,.35);background:rgba(168,85,247,.08);color:#c084fc;border-radius:8px;cursor:pointer;transition:all .3s ease;letter-spacing:.02em}
-button:hover{background:rgba(168,85,247,.18);border-color:rgba(168,85,247,.6);box-shadow:0 0 24px rgba(168,85,247,.12)}
-button:active{transform:scale(.97)}
+#controls{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:10px;align-items:center}
+.btn{font-family:'Inter',sans-serif;font-size:.72rem;font-weight:400;padding:8px 18px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.08);border-radius:6px;cursor:pointer;transition:all .3s;pointer-events:all;backdrop-filter:blur(8px);letter-spacing:.03em}
+.btn:hover{background:rgba(255,255,255,.12);color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.15)}
+.btn:active{transform:scale(.96)}
 
-#card-table{display:flex;gap:24px;justify-content:center;margin:40px 0;opacity:0;transform:translateY(30px);transition:all .6s cubic-bezier(.4,0,.2,1);pointer-events:none}
-#card-table.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+#palette-indicator{position:fixed;top:20px;right:20px;z-index:10;display:flex;gap:5px;pointer-events:none}
+.swatch{width:12px;height:12px;border-radius:50%;border:1px solid rgba(255,255,255,.1);transition:all .5s}
 
-.card{width:150px;height:225px;perspective:900px;cursor:pointer;position:relative;opacity:0;transform:translateY(50px) scale(.9);transition:opacity .5s ease,transform .6s cubic-bezier(.4,0,.2,1)}
-.card.dealt{opacity:1;transform:translateY(0) scale(1)}
-.card:not(.flipped):hover .card-inner{transform:rotateY(10deg) scale(1.02)}
-.card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.4,0,.2,1)}
-.card.flipped .card-inner{transform:rotateY(180deg)}
+#stats{position:fixed;bottom:20px;right:20px;z-index:10;font-size:.65rem;color:rgba(255,255,255,.2);pointer-events:none;text-align:right}
 
-.card-face,.card-back{position:absolute;inset:0;border-radius:12px;backface-visibility:hidden;overflow:hidden}
-
-.card-back{background:linear-gradient(135deg,#13111c,#1a1630,#0f1b2e);border:1px solid rgba(168,85,247,.12);display:flex;align-items:center;justify-content:center}
-.card-back::before{content:'';position:absolute;inset:8px;border:1px solid rgba(168,85,247,.08);border-radius:8px;background-image:linear-gradient(45deg,rgba(255,255,255,.015) 25%,transparent 25%),linear-gradient(-45deg,rgba(255,255,255,.015) 25%,transparent 25%),linear-gradient(45deg,transparent 75%,rgba(255,255,255,.015) 75%),linear-gradient(-45deg,transparent 75%,rgba(255,255,255,.015) 75%);background-size:16px 16px}
-.card-back::after{content:'';width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(168,85,247,.25);display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(168,85,247,.1);animation:eyeGlow 3s ease-in-out infinite}
-@keyframes eyeGlow{0%,100%{box-shadow:0 0 12px rgba(168,85,247,.1)}50%{box-shadow:0 0 24px rgba(168,85,247,.2)}}
-
-.card-face{transform:rotateY(180deg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;gap:6px;border:1px solid rgba(255,255,255,.1);transition:box-shadow .5s ease}
-.card.flipped .card-face{box-shadow:0 0 40px rgba(168,85,247,.15)}
-.card-face .numeral{font-size:.7rem;font-weight:400;letter-spacing:.15em;text-transform:uppercase;opacity:.7;margin-bottom:4px}
-.card-face .symbol{font-size:3.2rem;line-height:1;margin:6px 0;filter:drop-shadow(0 0 16px currentColor)}
-.card-face .card-name{font-size:.6rem;font-weight:500;text-align:center;letter-spacing:.06em;text-transform:uppercase;line-height:1.4;max-width:120px;opacity:.9}
-
-.card-label{position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);font-size:.65rem;color:#555;white-space:nowrap;font-weight:400;letter-spacing:.08em;text-transform:uppercase;opacity:0;transition:opacity .6s ease}
-.card.flipped .card-label{opacity:1}
-
-#reading{margin-top:36px;opacity:0;transform:translateY(20px);transition:all .8s cubic-bezier(.4,0,.2,1);font-weight:300;line-height:1.7;font-size:.88rem;max-width:480px;margin-left:auto;margin-right:auto;pointer-events:none}
-#reading.visible{opacity:1;transform:translateY(0);pointer-events:auto}
-.reading-line{margin:10px 0;padding:12px 16px;border-left:2px solid rgba(168,85,247,.2);text-align:left;border-radius:0 6px 6px 0;background:rgba(168,85,247,.03);transition:border-color .3s ease}
-.reading-line:hover{border-color:rgba(168,85,247,.4)}
-.pos-label{font-size:.6rem;text-transform:uppercase;letter-spacing:.12em;color:#555;margin-bottom:3px;font-weight:500}
-.card-hl{color:#c084fc;font-weight:500}
-
-#reset-btn{margin-top:28px;opacity:0;transform:translateY(10px);transition:all .5s ease;pointer-events:none}
-#reset-btn.visible{opacity:1;transform:translateY(0);pointer-events:auto}
-
-@media(max-width:520px){
-  #intro h1{font-size:1.8rem}
-  .card{width:100px;height:155px}
-  .card-face .symbol{font-size:2.2rem}
-  .card-face .numeral{font-size:.55rem}
-  .card-face .card-name{font-size:.5rem;max-width:80px}
-  #card-table{gap:14px;margin:32px 0}
-  .card-label{bottom:-22px;font-size:.55rem}
-  #reading{font-size:.78rem}
-  .reading-line{padding:10px 12px;margin:8px 0}
-}
-@media(max-width:360px){
-  .card{width:85px;height:132px}
-  .card-face .symbol{font-size:1.8rem}
-  #card-table{gap:10px}
-}
 .hidden{display:none!important}
+
+@media(max-width:600px){
+  #ui h1{font-size:.9rem}
+  #controls{bottom:16px;gap:8px}
+  .btn{padding:7px 14px;font-size:.68rem}
+}
 </style>
 </head>
 <body>
-<div id="app">
-  <div id="intro">
-    <h1>The Digital Oracle</h1>
-    <p>Draw three cards to receive your reading</p>
-    <div class="sub">tap each card to reveal its message</div>
-    <button id="draw-btn">Draw Cards</button>
-  </div>
-  <div id="card-table">
-    <div class="card" id="card-0"><div class="card-inner"><div class="card-back"></div><div class="card-face"></div></div><div class="card-label">Past</div></div>
-    <div class="card" id="card-1"><div class="card-inner"><div class="card-back"></div><div class="card-face"></div></div><div class="card-label">Present</div></div>
-    <div class="card" id="card-2"><div class="card-inner"><div class="card-back"></div><div class="card-face"></div></div><div class="card-label">Future</div></div>
-  </div>
-  <div id="reading"></div>
-  <button id="reset-btn" class="hidden">Draw Again</button>
+<canvas id="c"></canvas>
+<div id="ui">
+  <h1>Drift</h1>
+  <p>click to seed the flow</p>
 </div>
+<div id="palette-indicator"></div>
+<div id="controls">
+  <button class="btn" id="btn-clear">Clear</button>
+  <button class="btn" id="btn-palette">Palette</button>
+  <button class="btn" id="btn-density">Density</button>
+  <button class="btn" id="btn-save">Save</button>
+</div>
+<div id="stats"></div>
 
 <script>
-const deck=[
-  {numeral:'I',name:'The Stack Overflow',symbol:'\u27C1',
-   gradient:'linear-gradient(135deg,#1a0f00,#3d1e00 40%,#ff6b35 100%)',
-   color:'#ff8c5a',
-   meaning:'The community holds the answer you have not yet found. Look to those who walked this path before you \u2014 their solutions carry the key to your current struggle.'},
-  {numeral:'II',name:'The Infinite Loop',symbol:'\u221E',
-   gradient:'linear-gradient(135deg,#1a0505,#3d0a0a 40%,#ef4444 100%)',
-   color:'#f87171',
-   meaning:'You are closer than you think to breaking free. What feels like endless repetition is actually the deep refinement that mastery demands.'},
-  {numeral:'III',name:'The Git Merge',symbol:'\u2142',
-   gradient:'linear-gradient(135deg,#0f051a,#1e0a3d 40%,#a855f7 100%)',
-   color:'#c084fc',
-   meaning:'Two paths converge. The conflict you anticipate will resolve in unexpected ways \u2014 embrace the merge and trust the process.'},
-  {numeral:'IV',name:'The 404',symbol:'\u2298',
-   gradient:'linear-gradient(135deg,#0a0f14,#141e28 40%,#64748b 100%)',
-   color:'#94a3b8',
-   meaning:'What you seek cannot be found on the current path. A redirect is not failure \u2014 it is the discovery of a route you never considered.'},
-  {numeral:'V',name:'The Hotfix',symbol:'\u26A1',
-   gradient:'linear-gradient(135deg,#1a1200,#3d2e00 40%,#fbbf24 100%)',
-   color:'#fcd34d',
-   meaning:'Urgent action brings unexpected rewards. Trust the instinct that says act now \u2014 hesitation will cost more than a bold first attempt.'},
-  {numeral:'VI',name:'The Rubber Duck',symbol:'\u2727',
-   gradient:'linear-gradient(135deg,#001a10,#003d1e 40%,#34d399 100%)',
-   color:'#6ee7b7',
-   meaning:'The answer already lives inside you. Articulate the problem aloud, without filter, and watch the solution surface from your own reasoning.'},
-  {numeral:'VII',name:'The Cache Clear',symbol:'\u27F2',
-   gradient:'linear-gradient(135deg,#000f1a,#001e3d 40%,#38bdf8 100%)',
-   color:'#7dd3fc',
-   meaning:'Release what you are holding onto. Old assumptions are caching stale data \u2014 a fresh perspective awaits on the other side of letting go.'},
-  {numeral:'VIII',name:'The Pull Request',symbol:'\u229E',
-   gradient:'linear-gradient(135deg,#1a0f00,#3d2000 40%,#fb923c 100%)',
-   color:'#fdba74',
-   meaning:'Your contributions carry more weight than you realize. Others recognize your value even in moments when you doubt your own impact.'},
-  {numeral:'IX',name:'The Edge Case',symbol:'\u25C7',
-   gradient:'linear-gradient(135deg,#1a0515,#3d0a28 40%,#f472b6 100%)',
-   color:'#f9a8d4',
-   meaning:'The exception reveals the nature of the rule. What breaks the pattern holds the most valuable insight \u2014 study the anomaly carefully.'},
-  {numeral:'X',name:'The Blue Screen',symbol:'\u25A3',
-   gradient:'linear-gradient(135deg,#00051a,#000a3d 40%,#60a5fa 100%)',
-   color:'#93c5fd',
-   meaning:'A complete reset opens doors you never knew existed. From stillness and a blank slate, everything becomes possible once more.'},
-  {numeral:'XI',name:'The Open Source',symbol:'\u2295',
-   gradient:'linear-gradient(135deg,#001a08,#003d15 40%,#4ade80 100%)',
-   color:'#86efac',
-   meaning:'Collaboration arrives from a direction you did not expect. Give freely of your knowledge and abundance will flow back to you in time.'},
-  {numeral:'XII',name:'The Undefined',symbol:'\u2205',
-   gradient:'linear-gradient(135deg,#0f0520,#1e0a3d 40%,#a78bfa 100%)',
-   color:'#c4b5fd',
-   meaning:'In the space of not-knowing, infinite possibilities bloom. The void is not emptiness \u2014 it is pure, unshaped potential awaiting your intent.'}
+const canvas=document.getElementById('c');
+const ctx=canvas.getContext('2d');
+let W,H;
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+resize();
+window.addEventListener('resize',resize);
+
+// Simplex-like noise (compact permutation-based)
+const P=new Uint8Array(512);
+for(let i=0;i<256;i++)P[i]=i;
+for(let i=255;i>0;i--){const j=Math.floor(Math.random()*(i+1));[P[i],P[j]]=[P[j],P[i]]}
+for(let i=0;i<256;i++)P[i+256]=P[i];
+
+function fade(t){return t*t*t*(t*(t*6-15)+10)}
+function lerp(a,b,t){return a+t*(b-a)}
+function grad2(h,x,y){const v=h&3;return((v&1)?-x:x)+((v&2)?-y:y)}
+function noise2(x,y){
+  const X=Math.floor(x)&255,Y=Math.floor(y)&255;
+  x-=Math.floor(x);y-=Math.floor(y);
+  const u=fade(x),v=fade(y);
+  const a=P[X]+Y,b=P[X+1]+Y;
+  return lerp(lerp(grad2(P[a],x,y),grad2(P[b],x-1,y),u),lerp(grad2(P[a+1],x,y-1),grad2(P[b+1],x-1,y-1),u),v)
+}
+
+// Color palettes
+const palettes=[
+  {name:'Ember',colors:['#ff6b35','#f7931e','#ffd700','#ff4500','#c41e3a']},
+  {name:'Ocean',colors:['#0077b6','#00b4d8','#48cae4','#90e0ef','#caf0f8']},
+  {name:'Aurora',colors:['#a855f7','#6366f1','#3b82f6','#06b6d4','#34d399']},
+  {name:'Sakura',colors:['#f472b6','#ec4899','#db2777','#f9a8d4','#fce7f3']},
+  {name:'Forest',colors:['#22c55e','#16a34a','#84cc16','#a3e635','#d9f99d']},
+  {name:'Midnight',colors:['#818cf8','#a78bfa','#c084fc','#e879f9','#f0abfc']},
 ];
+let paletteIdx=2;
+let palette=palettes[paletteIdx];
 
-const posText=['What shaped you','Where you stand','What approaches'];
-let drawn=[];
-let busy=false;
+// Flow field parameters
+let zOff=0;
+const SCALE=0.003;
+const PARTICLE_SPEED=1.2;
+const NOISE_STRENGTH=Math.PI*2;
+let density=1; // multiplier
+let seeds=[];
 
-document.getElementById('draw-btn').addEventListener('click',drawCards);
-document.getElementById('reset-btn').addEventListener('click',resetReading);
-
-function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
-
-function drawCards(){
-  if(busy)return;
-  busy=true;
-  drawn=shuffle(deck).slice(0,3);
-  document.getElementById('intro').classList.add('hidden');
-  const table=document.getElementById('card-table');
-  table.classList.add('visible');
-
-  drawn.forEach((card,i)=>{
-    const el=document.getElementById('card-'+i);
-    const face=el.querySelector('.card-face');
-    face.style.background=card.gradient;
-    face.style.color=card.color;
-    face.innerHTML='<div class="numeral">'+card.numeral+'</div><div class="symbol">'+card.symbol+'</div><div class="card-name">'+card.name+'</div>';
-    setTimeout(()=>el.classList.add('dealt'),250+i*220);
-    el.addEventListener('click',function(){flipCard(i)},{once:true});
+function updateSwatches(){
+  const el=document.getElementById('palette-indicator');
+  el.innerHTML='';
+  palette.colors.forEach(c=>{
+    const d=document.createElement('div');
+    d.className='swatch';
+    d.style.background=c;
+    el.appendChild(d);
   });
-  setTimeout(()=>{busy=false},250+3*220+100);
+}
+updateSwatches();
+
+// Particles
+class Particle{
+  constructor(){this.reset()}
+  reset(){
+    this.x=Math.random()*W;
+    this.y=Math.random()*H;
+    this.prevX=this.x;
+    this.prevY=this.y;
+    this.life=Math.random()*200+100;
+    this.maxLife=this.life;
+    const ci=Math.floor(Math.random()*palette.colors.length);
+    this.color=palette.colors[ci];
+    this.speed=PARTICLE_SPEED*(0.7+Math.random()*0.6);
+    this.width=Math.random()*1.5+0.3;
+  }
+  update(){
+    this.prevX=this.x;
+    this.prevY=this.y;
+    // Noise angle
+    let angle=noise2(this.x*SCALE,this.y*SCALE+zOff)*NOISE_STRENGTH;
+    // Seed attraction
+    for(const s of seeds){
+      const dx=s.x-this.x,dy=s.y-this.y;
+      const d=Math.sqrt(dx*dx+dy*dy);
+      if(d<200&&d>1){
+        const influence=(1-d/200)*s.strength;
+        angle+=Math.atan2(dy,dx)*influence*0.5;
+      }
+    }
+    this.x+=Math.cos(angle)*this.speed;
+    this.y+=Math.sin(angle)*this.speed;
+    this.life--;
+    if(this.life<=0||this.x<-10||this.x>W+10||this.y<-10||this.y>H+10)this.reset();
+  }
+  draw(){
+    const alpha=Math.min(1,this.life/this.maxLife,(this.maxLife-this.life)/20)*0.35;
+    ctx.beginPath();
+    ctx.moveTo(this.prevX,this.prevY);
+    ctx.lineTo(this.x,this.y);
+    ctx.strokeStyle=this.color+Math.round(alpha*255).toString(16).padStart(2,'0');
+    ctx.lineWidth=this.width;
+    ctx.lineCap='round';
+    ctx.stroke();
+  }
 }
 
-function flipCard(i){
-  if(busy)return;
-  const el=document.getElementById('card-'+i);
-  if(el.classList.contains('flipped'))return;
-  el.classList.add('flipped');
-  const allFlipped=drawn.every((_,j)=>document.getElementById('card-'+j).classList.contains('flipped'));
-  if(allFlipped)setTimeout(showReading,700);
+const BASE_COUNT=800;
+let particles=[];
+function initParticles(){
+  const count=Math.round(BASE_COUNT*density);
+  particles=[];
+  for(let i=0;i<count;i++)particles.push(new Particle());
+}
+initParticles();
+
+// Seed class
+class Seed{
+  constructor(x,y){this.x=x;this.y=y;this.strength=2;this.life=400}
+  update(){this.strength*=0.997;this.life--;return this.life>0&&this.strength>0.05}
 }
 
-function showReading(){
-  const el=document.getElementById('reading');
-  let html='';
-  drawn.forEach((card,i)=>{
-    html+='<div class="reading-line"><div class="pos-label">'+posText[i]+'</div><span class="card-hl">'+card.name+'</span> \u2014 '+card.meaning+'</div>';
+// Fade trail
+function fadeTrail(){
+  ctx.fillStyle='rgba(10,10,15,0.008)';
+  ctx.fillRect(0,0,W,H);
+}
+
+// Animation loop
+let running=true;
+let frameCount=0;
+function animate(){
+  if(!running)return;
+  fadeTrail();
+  zOff+=0.0003;
+  seeds=seeds.filter(s=>s.update());
+  for(const p of particles){
+    p.update();
+    p.draw();
+  }
+  frameCount++;
+  if(frameCount%60===0){
+    document.getElementById('stats').textContent=particles.length+' particles · '+seeds.length+' seeds';
+  }
+  requestAnimationFrame(animate);
+}
+animate();
+
+// Interaction
+canvas.addEventListener('click',e=>{
+  seeds.push(new Seed(e.clientX,e.clientY));
+});
+canvas.addEventListener('touchstart',e=>{
+  e.preventDefault();
+  for(const t of e.changedTouches)seeds.push(new Seed(t.clientX,t.clientY));
+},{passive:false});
+// Drag to paint seeds
+let isDown=false;
+canvas.addEventListener('mousedown',()=>isDown=true);
+window.addEventListener('mouseup',()=>isDown=false);
+canvas.addEventListener('mousemove',e=>{
+  if(isDown&&Math.random()<0.3)seeds.push(new Seed(e.clientX,e.clientY));
+});
+canvas.addEventListener('touchmove',e=>{
+  e.preventDefault();
+  for(const t of e.changedTouches){
+    if(Math.random()<0.3)seeds.push(new Seed(t.clientX,t.clientY));
+  }
+},{passive:false});
+
+// Controls
+document.getElementById('btn-clear').addEventListener('click',e=>{
+  e.stopPropagation();
+  ctx.fillStyle='#0a0a0f';
+  ctx.fillRect(0,0,W,H);
+  seeds=[];
+  initParticles();
+  zOff=0;
+});
+
+document.getElementById('btn-palette').addEventListener('click',e=>{
+  e.stopPropagation();
+  paletteIdx=(paletteIdx+1)%palettes.length;
+  palette=palettes[paletteIdx];
+  updateSwatches();
+  // Recolor existing particles gradually
+  particles.forEach(p=>{
+    const ci=Math.floor(Math.random()*palette.colors.length);
+    p.color=palette.colors[ci];
   });
-  el.innerHTML=html;
-  setTimeout(()=>el.classList.add('visible'),80);
-  const btn=document.getElementById('reset-btn');
-  btn.classList.remove('hidden');
-  setTimeout(()=>btn.classList.add('visible'),350);
-}
+});
 
-function resetReading(){
-  if(busy)return;
-  busy=true;
-  document.getElementById('intro').classList.remove('hidden');
-  const table=document.getElementById('card-table');
-  const reading=document.getElementById('reading');
-  const btn=document.getElementById('reset-btn');
-  reading.classList.remove('visible');
-  btn.classList.remove('visible');
-  setTimeout(()=>{
-    table.classList.remove('visible');
-    btn.classList.add('hidden');
-    reading.innerHTML='';
-    drawn.forEach((_,i)=>{
-      const el=document.getElementById('card-'+i);
-      el.classList.remove('dealt','flipped');
-      el.querySelector('.card-face').innerHTML='';
-      el.querySelector('.card-face').style.background='';
-      el.querySelector('.card-face').style.color='';
-    });
-    drawn=[];
-    setTimeout(()=>{busy=false},300);
-  },500);
-}
+const densities=[0.5,1,1.5,2];
+let densIdx=1;
+document.getElementById('btn-density').addEventListener('click',e=>{
+  e.stopPropagation();
+  densIdx=(densIdx+1)%densities.length;
+  density=densities[densIdx];
+  initParticles();
+  e.target.textContent='Density '+Math.round(density*100)+'%';
+});
+document.getElementById('btn-density').textContent='Density '+Math.round(density*100)+'%';
+
+document.getElementById('btn-save').addEventListener('click',e=>{
+  e.stopPropagation();
+  const link=document.createElement('a');
+  link.download='drift-'+Date.now()+'.png';
+  link.href=canvas.toDataURL();
+  link.click();
+});
 </script>
 </body>
 </html>
