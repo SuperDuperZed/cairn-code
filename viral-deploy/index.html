@@ -3,257 +3,236 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Drift</title>
+<title>Singularity</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0a0f;overflow:hidden;font-family:'Inter',sans-serif;cursor:crosshair}
-canvas{display:block;position:fixed;inset:0}
+body{background:#0a0a0f;overflow:hidden;font-family:'Inter',sans-serif}
+canvas{display:block;position:fixed;inset:0;cursor:crosshair}
 
-#ui{position:fixed;top:20px;left:20px;z-index:10;pointer-events:none}
-#ui h1{font-size:1.1rem;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:.04em}
-#ui p{font-size:.7rem;color:rgba(255,255,255,.3);margin-top:4px}
+#hud{position:fixed;top:16px;left:16px;z-index:10;pointer-events:none}
+#hud h1{font-size:1rem;font-weight:600;color:rgba(255,255,255,.6);letter-spacing:.06em}
+#hud p{font-size:.65rem;color:rgba(255,255,255,.25);margin-top:3px}
 
-#controls{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:10px;align-items:center}
-.btn{font-family:'Inter',sans-serif;font-size:.72rem;font-weight:400;padding:8px 18px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.08);border-radius:6px;cursor:pointer;transition:all .3s;pointer-events:all;backdrop-filter:blur(8px);letter-spacing:.03em}
-.btn:hover{background:rgba(255,255,255,.12);color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.15)}
-.btn:active{transform:scale(.96)}
+#bar{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:8px}
+.b{font-family:'Inter',sans-serif;font-size:.68rem;font-weight:400;padding:7px 16px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.07);border-radius:5px;cursor:pointer;transition:all .25s;backdrop-filter:blur(6px)}
+.b:hover{background:rgba(255,255,255,.1);color:rgba(255,255,255,.75)}
+.b:active{transform:scale(.95)}
 
-#palette-indicator{position:fixed;top:20px;right:20px;z-index:10;display:flex;gap:5px;pointer-events:none}
-.swatch{width:12px;height:12px;border-radius:50%;border:1px solid rgba(255,255,255,.1);transition:all .5s}
-
-#stats{position:fixed;bottom:20px;right:20px;z-index:10;font-size:.65rem;color:rgba(255,255,255,.2);pointer-events:none;text-align:right}
-
-.hidden{display:none!important}
+#info{position:fixed;bottom:16px;right:16px;z-index:10;font-size:.6rem;color:rgba(255,255,255,.18);pointer-events:none;text-align:right;line-height:1.5}
 
 @media(max-width:600px){
-  #ui h1{font-size:.9rem}
-  #controls{bottom:16px;gap:8px}
-  .btn{padding:7px 14px;font-size:.68rem}
+  #hud h1{font-size:.85rem}
+  .b{padding:6px 12px;font-size:.62rem}
 }
 </style>
 </head>
 <body>
 <canvas id="c"></canvas>
-<div id="ui">
-  <h1>Drift</h1>
-  <p>click to seed the flow</p>
+<div id="hud">
+  <h1>SINGULARITY</h1>
+  <p>click to place mass &middot; watch orbits emerge</p>
 </div>
-<div id="palette-indicator"></div>
-<div id="controls">
-  <button class="btn" id="btn-clear">Clear</button>
-  <button class="btn" id="btn-palette">Palette</button>
-  <button class="btn" id="btn-density">Density</button>
-  <button class="btn" id="btn-save">Save</button>
+<div id="bar">
+  <button class="b" id="bc">Clear</button>
+  <button class="b" id="bt">Trails</button>
+  <button class="b" id="bm">Mass</button>
+  <button class="b" id="bs">Save</button>
 </div>
-<div id="stats"></div>
+<div id="info"></div>
 
 <script>
-const canvas=document.getElementById('c');
-const ctx=canvas.getContext('2d');
+const cv=document.getElementById('c'),cx=cv.getContext('2d');
 let W,H;
-function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
-resize();
-window.addEventListener('resize',resize);
+const resize=()=>{W=cv.width=innerWidth;H=cv.height=innerHeight};
+resize();addEventListener('resize',resize);
 
-// Simplex-like noise (compact permutation-based)
-const P=new Uint8Array(512);
-for(let i=0;i<256;i++)P[i]=i;
-for(let i=255;i>0;i--){const j=Math.floor(Math.random()*(i+1));[P[i],P[j]]=[P[j],P[i]]}
-for(let i=0;i<256;i++)P[i+256]=P[i];
+const G=0.4,SOFT=20,MAX_P=600,DT=0.8;
+let masses=[],particles=[],showTrails=true,massLevel=0;
+const massPresets=[500,1500,4000];
+const massColors=['#a78bfa','#f472b6','#fbbf24'];
 
-function fade(t){return t*t*t*(t*(t*6-15)+10)}
-function lerp(a,b,t){return a+t*(b-a)}
-function grad2(h,x,y){const v=h&3;return((v&1)?-x:x)+((v&2)?-y:y)}
-function noise2(x,y){
-  const X=Math.floor(x)&255,Y=Math.floor(y)&255;
-  x-=Math.floor(x);y-=Math.floor(y);
-  const u=fade(x),v=fade(y);
-  const a=P[X]+Y,b=P[X+1]+Y;
-  return lerp(lerp(grad2(P[a],x,y),grad2(P[b],x-1,y),u),lerp(grad2(P[a+1],x,y-1),grad2(P[b+1],x-1,y-1),u),v)
-}
-
-// Color palettes
-const palettes=[
-  {name:'Ember',colors:['#ff6b35','#f7931e','#ffd700','#ff4500','#c41e3a']},
-  {name:'Ocean',colors:['#0077b6','#00b4d8','#48cae4','#90e0ef','#caf0f8']},
-  {name:'Aurora',colors:['#a855f7','#6366f1','#3b82f6','#06b6d4','#34d399']},
-  {name:'Sakura',colors:['#f472b6','#ec4899','#db2777','#f9a8d4','#fce7f3']},
-  {name:'Forest',colors:['#22c55e','#16a34a','#84cc16','#a3e635','#d9f99d']},
-  {name:'Midnight',colors:['#818cf8','#a78bfa','#c084fc','#e879f9','#f0abfc']},
-];
-let paletteIdx=2;
-let palette=palettes[paletteIdx];
-
-// Flow field parameters
-let zOff=0;
-const SCALE=0.003;
-const PARTICLE_SPEED=1.2;
-const NOISE_STRENGTH=Math.PI*2;
-let density=1; // multiplier
-let seeds=[];
-
-function updateSwatches(){
-  const el=document.getElementById('palette-indicator');
-  el.innerHTML='';
-  palette.colors.forEach(c=>{
-    const d=document.createElement('div');
-    d.className='swatch';
-    d.style.background=c;
-    el.appendChild(d);
-  });
-}
-updateSwatches();
-
-// Particles
-class Particle{
-  constructor(){this.reset()}
-  reset(){
-    this.x=Math.random()*W;
-    this.y=Math.random()*H;
-    this.prevX=this.x;
-    this.prevY=this.y;
-    this.life=Math.random()*200+100;
-    this.maxLife=this.life;
-    const ci=Math.floor(Math.random()*palette.colors.length);
-    this.color=palette.colors[ci];
-    this.speed=PARTICLE_SPEED*(0.7+Math.random()*0.6);
-    this.width=Math.random()*1.5+0.3;
+// Particle
+class P{
+  constructor(x,y,vx,vy){
+    this.x=x;this.y=y;this.vx=vx;this.vy=vy;
+    this.trail=[];this.maxTrail=40+Math.random()*30|0;
+    this.life=500+Math.random()*600|0;
+    this.hue=200+Math.random()*60;
+    this.alive=true;
   }
-  update(){
-    this.prevX=this.x;
-    this.prevY=this.y;
-    // Noise angle
-    let angle=noise2(this.x*SCALE,this.y*SCALE+zOff)*NOISE_STRENGTH;
-    // Seed attraction
-    for(const s of seeds){
-      const dx=s.x-this.x,dy=s.y-this.y;
-      const d=Math.sqrt(dx*dx+dy*dy);
-      if(d<200&&d>1){
-        const influence=(1-d/200)*s.strength;
-        angle+=Math.atan2(dy,dx)*influence*0.5;
-      }
+  step(){
+    this.trail.push({x:this.x,y:this.y});
+    if(this.trail.length>this.maxTrail)this.trail.shift();
+    for(const m of masses){
+      const dx=m.x-this.x,dy=m.y-this.y;
+      const d2=dx*dx+dy*dy+SOFT*SOFT;
+      const d=Math.sqrt(d2);
+      const f=G*m.m/d2;
+      this.vx+=dx/d*f*DT;
+      this.vy+=dy/d*f*DT;
     }
-    this.x+=Math.cos(angle)*this.speed;
-    this.y+=Math.sin(angle)*this.speed;
+    this.x+=this.vx*DT;
+    this.y+=this.vy*DT;
     this.life--;
-    if(this.life<=0||this.x<-10||this.x>W+10||this.y<-10||this.y>H+10)this.reset();
+    const spd=Math.sqrt(this.vx*this.vx+this.vy*this.vy);
+    if(this.life<=0||this.x<-100||this.x>W+100||this.y<-100||this.y>H+100||spd>15)this.alive=false;
+    // absorbed by mass
+    for(const m of masses){
+      const dx=m.x-this.x,dy=m.y-this.y;
+      if(dx*dx+dy*dy<m.r*m.r*0.5){this.alive=false;break}
+    }
   }
   draw(){
-    const alpha=Math.min(1,this.life/this.maxLife,(this.maxLife-this.life)/20)*0.35;
-    ctx.beginPath();
-    ctx.moveTo(this.prevX,this.prevY);
-    ctx.lineTo(this.x,this.y);
-    ctx.strokeStyle=this.color+Math.round(alpha*255).toString(16).padStart(2,'0');
-    ctx.lineWidth=this.width;
-    ctx.lineCap='round';
-    ctx.stroke();
+    if(showTrails&&this.trail.length>2){
+      cx.beginPath();
+      cx.moveTo(this.trail[0].x,this.trail[0].y);
+      for(let i=1;i<this.trail.length;i++){
+        cx.lineTo(this.trail[i].x,this.trail[i].y);
+      }
+      const alpha=Math.min(0.35,this.life/200);
+      cx.strokeStyle=`hsla(${this.hue},70%,65%,${alpha})`;
+      cx.lineWidth=0.8;
+      cx.stroke();
+    }
+    cx.beginPath();
+    cx.arc(this.x,this.y,1.2,0,Math.PI*2);
+    cx.fillStyle=`hsla(${this.hue},80%,75%,${Math.min(0.9,this.life/100)})`;
+    cx.fill();
   }
 }
 
-const BASE_COUNT=800;
-let particles=[];
-function initParticles(){
-  const count=Math.round(BASE_COUNT*density);
-  particles=[];
-  for(let i=0;i<count;i++)particles.push(new Particle());
-}
-initParticles();
-
-// Seed class
-class Seed{
-  constructor(x,y){this.x=x;this.y=y;this.strength=2;this.life=400}
-  update(){this.strength*=0.997;this.life--;return this.life>0&&this.strength>0.05}
-}
-
-// Fade trail
-function fadeTrail(){
-  ctx.fillStyle='rgba(10,10,15,0.008)';
-  ctx.fillRect(0,0,W,H);
-}
-
-// Animation loop
-let running=true;
-let frameCount=0;
-function animate(){
-  if(!running)return;
-  fadeTrail();
-  zOff+=0.0003;
-  seeds=seeds.filter(s=>s.update());
-  for(const p of particles){
-    p.update();
-    p.draw();
+// Mass
+class M{
+  constructor(x,y,level){
+    this.x=x;this.y=y;
+    this.level=level;
+    this.m=massPresets[level];
+    this.r=8+level*6;
+    this.color=massColors[level];
+    this.phase=Math.random()*Math.PI*2;
   }
-  frameCount++;
-  if(frameCount%60===0){
-    document.getElementById('stats').textContent=particles.length+' particles · '+seeds.length+' seeds';
+  draw(t){
+    const pulse=1+Math.sin(t*0.002+this.phase)*0.08;
+    // glow
+    const gr=cx.createRadialGradient(this.x,this.y,this.r*0.3,this.x,this.y,this.r*4*pulse);
+    gr.addColorStop(0,this.color+'40');
+    gr.addColorStop(0.5,this.color+'10');
+    gr.addColorStop(1,this.color+'00');
+    cx.beginPath();
+    cx.arc(this.x,this.y,this.r*4*pulse,0,Math.PI*2);
+    cx.fillStyle=gr;
+    cx.fill();
+    // core
+    const cr=cx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.r*pulse);
+    cr.addColorStop(0,'#ffffff');
+    cr.addColorStop(0.3,this.color);
+    cr.addColorStop(1,this.color+'00');
+    cx.beginPath();
+    cx.arc(this.x,this.y,this.r*pulse,0,Math.PI*2);
+    cx.fillStyle=cr;
+    cx.fill();
   }
-  requestAnimationFrame(animate);
 }
-animate();
+
+function spawnEdge(){
+  if(particles.length>=MAX_P)return;
+  const side=Math.random()*4|0;
+  let x,y,vx,vy;
+  const speed=0.5+Math.random()*0.8;
+  if(side===0){x=-5;y=Math.random()*H;vx=speed;vy=(Math.random()-0.5)*speed}
+  else if(side===1){x=W+5;y=Math.random()*H;vx=-speed;vy=(Math.random()-0.5)*speed}
+  else if(side===2){x=Math.random()*W;y=-5;vx=(Math.random()-0.5)*speed;vy=speed}
+  else{x=Math.random()*W;y=H+5;vx=(Math.random()-0.5)*speed;vy=-speed}
+  // bias toward center
+  if(masses.length>0){
+    const t=masses[Math.random()*masses.length|0];
+    const dx=t.x-x,dy=t.y-y,d=Math.sqrt(dx*dx+dy*dy);
+    if(d>0){vx+=dx/d*speed*0.3;vy+=dy/d*speed*0.3}
+  }
+  particles.push(new P(x,y,vx,vy));
+}
 
 // Interaction
-canvas.addEventListener('click',e=>{
-  seeds.push(new Seed(e.clientX,e.clientY));
+cv.addEventListener('click',e=>{
+  // don't place on UI
+  masses.push(new M(e.clientX,e.clientY,massLevel));
+  // burst of particles
+  for(let i=0;i<30;i++){
+    const a=Math.random()*Math.PI*2,s=0.3+Math.random()*1.5;
+    particles.push(new P(e.clientX,e.clientY,Math.cos(a)*s,Math.sin(a)*s));
+  }
 });
-canvas.addEventListener('touchstart',e=>{
+cv.addEventListener('dblclick',e=>{
   e.preventDefault();
-  for(const t of e.changedTouches)seeds.push(new Seed(t.clientX,t.clientY));
-},{passive:false});
-// Drag to paint seeds
-let isDown=false;
-canvas.addEventListener('mousedown',()=>isDown=true);
-window.addEventListener('mouseup',()=>isDown=false);
-canvas.addEventListener('mousemove',e=>{
-  if(isDown&&Math.random()<0.3)seeds.push(new Seed(e.clientX,e.clientY));
+  for(let i=masses.length-1;i>=0;i--){
+    const dx=masses[i].x-e.clientX,dy=masses[i].y-e.clientY;
+    if(dx*dx+dy*dy<masses[i].r*masses[i].r*4){masses.splice(i,1);break}
+  }
 });
-canvas.addEventListener('touchmove',e=>{
+// touch
+cv.addEventListener('touchstart',e=>{
   e.preventDefault();
-  for(const t of e.changedTouches){
-    if(Math.random()<0.3)seeds.push(new Seed(t.clientX,t.clientY));
+  const t=e.changedTouches[0];
+  masses.push(new M(t.clientX,t.clientY,massLevel));
+  for(let i=0;i<30;i++){
+    const a=Math.random()*Math.PI*2,s=0.3+Math.random()*1.5;
+    particles.push(new P(t.clientX,t.clientY,Math.cos(a)*s,Math.sin(a)*s));
   }
 },{passive:false});
 
-// Controls
-document.getElementById('btn-clear').addEventListener('click',e=>{
+// Buttons
+document.getElementById('bc').addEventListener('click',e=>{
+  e.stopPropagation();masses=[];particles=[];
+  cx.fillStyle='#0a0a0f';cx.fillRect(0,0,W,H);
+});
+document.getElementById('bt').addEventListener('click',e=>{
+  e.stopPropagation();showTrails=!showTrails;
+  e.target.textContent=showTrails?'Trails':'No Trails';
+});
+let mIdx=0;
+document.getElementById('bm').addEventListener('click',e=>{
+  e.stopPropagation();mIdx=(mIdx+1)%3;massLevel=mIdx;
+  e.target.textContent=['Small Mass','Medium Mass','Heavy Mass'][mIdx];
+});
+document.getElementById('bs').addEventListener('click',e=>{
   e.stopPropagation();
-  ctx.fillStyle='#0a0a0f';
-  ctx.fillRect(0,0,W,H);
-  seeds=[];
-  initParticles();
-  zOff=0;
+  const a=document.createElement('a');
+  a.download='singularity-'+Date.now()+'.png';
+  a.href=cv.toDataURL();a.click();
 });
 
-document.getElementById('btn-palette').addEventListener('click',e=>{
-  e.stopPropagation();
-  paletteIdx=(paletteIdx+1)%palettes.length;
-  palette=palettes[paletteIdx];
-  updateSwatches();
-  // Recolor existing particles gradually
-  particles.forEach(p=>{
-    const ci=Math.floor(Math.random()*palette.colors.length);
-    p.color=palette.colors[ci];
-  });
-});
+// Loop
+let frame=0;
+function loop(t){
+  requestAnimationFrame(loop);
+  // fade
+  if(showTrails){
+    cx.fillStyle='rgba(10,10,15,0.015)';
+  }else{
+    cx.fillStyle='rgba(10,10,15,0.2)';
+  }
+  cx.fillRect(0,0,W,H);
 
-const densities=[0.5,1,1.5,2];
-let densIdx=1;
-document.getElementById('btn-density').addEventListener('click',e=>{
-  e.stopPropagation();
-  densIdx=(densIdx+1)%densities.length;
-  density=densities[densIdx];
-  initParticles();
-  e.target.textContent='Density '+Math.round(density*100)+'%';
-});
-document.getElementById('btn-density').textContent='Density '+Math.round(density*100)+'%';
+  // spawn
+  if(masses.length>0&&frame%3===0)spawnEdge();
 
-document.getElementById('btn-save').addEventListener('click',e=>{
-  e.stopPropagation();
-  const link=document.createElement('a');
-  link.download='drift-'+Date.now()+'.png';
-  link.href=canvas.toDataURL();
-  link.click();
-});
+  // update particles
+  for(const p of particles)p.step();
+  particles=particles.filter(p=>p.alive);
+
+  // draw
+  for(const p of particles)p.draw();
+  for(const m of masses)m.draw(t);
+
+  if(frame%60===0){
+    document.getElementById('info').innerHTML=
+      particles.length+' bodies<br>'+masses.length+' masses';
+  }
+  frame++;
+}
+cx.fillStyle='#0a0a0f';cx.fillRect(0,0,W,H);
+requestAnimationFrame(loop);
 </script>
 </body>
 </html>

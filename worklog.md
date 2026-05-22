@@ -253,3 +253,24 @@ Stage Summary:
 - Categories used so far: 1, 2, 3, 5, 6, 7, 8, 9, 10
 - Only Category 4 (Interactive toys) remains unused
 - Differentiator: autonomous generative art vs user-driven drawing
+
+---
+Task ID: viral-engine-20260522-b
+Agent: main (viral engine cron 155792)
+Task: Ship a new viral web experiment to GitHub Pages
+
+Work Log:
+- Checked worklog — all 10 categories now used: 1, 2, 3, 5, 6, 7, 8, 9, 10
+- Picked Category 4: Interactive toys (last unused category) — physics simulation with emergent behavior
+- Created "Singularity" — a Newtonian gravity sandbox
+- Features: click to place gravity wells (3 mass sizes), particles stream from edges and get captured into orbital paths, real Newtonian gravity with softening, double-click to remove masses, trail toggle, save to PNG, glowing mass cores with pulsing halos, up to 600 particles
+- Interaction model: click-to-place (not continuous mouse tracking), physics simulation runs autonomously, emergent orbital patterns
+- Different from previous projects: real physics simulation, placement-based interaction, emergent behavior from simple rules, orbital trail visuals (not flowing lines or particles)
+- ~180 lines, single HTML file, dark theme (#0a0a0f), Inter font, canvas 2D, mobile touch
+- Deployed successfully to GitHub Pages
+
+Stage Summary:
+- Project: "Singularity" (repo slug: singularity)
+- Live: https://superduperzed.github.io/singularity/
+- All 10 categories now used: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+- Next runs will need to revisit categories with fundamentally different approaches
