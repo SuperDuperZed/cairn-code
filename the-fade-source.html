@@ -1,9 +1,8 @@
-<!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>The Fade</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&amp;display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden}
@@ -77,8 +76,8 @@ const phases=[
   {t:30,e:40,text:'You are still holding.',sub:'we noticed',bg:'#100a10'},
   {t:40,e:55,text:'Okay.',sub:'we see you',bg:'#0a0a0f'},
   {t:55,e:75,text:'This is devotion.',sub:'or stubbornness',bg:'#0a0f12'},
-  {t:75,e:120,text:'...',sub:'you have gone too far',bg:'#0a0a0f'},
-  {t:120,e:9999,text:'There is nothing left.',sub:'we are not sure what to say',bg:'#0a0a0f'}
+  {t:75,e:120,text:'...','you have gone too far',bg:'#0a0a0f'},
+  {t:120,e:9999,text:'There is nothing left.','we are not sure what to say',bg:'#0a0a0f'}
 ];
 
 const results=[
@@ -210,4 +209,6 @@ document.getElementById('again-btn').addEventListener('click',()=>{
   },400);
 });
 </script>
+
+
 </body></html>
