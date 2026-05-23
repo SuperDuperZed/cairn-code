@@ -297,3 +297,24 @@ Stage Summary:
 - PDF report: /home/z/my-project/download/GitHub_PR_Report_euxaristia_2026-05-23.pdf
 - Key change: pcc linker work replaced by default-compiler PR
 - Action items unchanged: qwen-code#2838, node-pty#901, SpacetimeDB#4773
+
+---
+Task ID: viral-engine-20260523
+Agent: main (viral engine cron 155792)
+Task: Ship a new viral web experiment to GitHub Pages
+
+Work Log:
+- Checked worklog — all 10 categories used, 12 projects total
+- Revisited Category 3: Absurd calculators with a completely different interaction model — a game of tag
+- Created "The Evasion" — a button that runs from your cursor
+- Features: physics-based flee behavior (button detects cursor proximity and evades with velocity + damping), near-miss detection with particle bursts, catch probability increases over time, 5 result tiers (Unstoppable Force through Transcendent) with personalized verdict text, absurd stats (virtual distance scrolled, brain cells recomputed, dignity preserved %)
+- Interaction model: chase-the-button game, not mouse tracking or drawing — fundamentally different from all previous projects
+- No canvas element — pure DOM manipulation with CSS transitions for particles
+- ~230 lines, single HTML file, dark theme (#0a0a0f), Inter font, mobile touch
+- Deployed successfully to GitHub Pages
+
+Stage Summary:
+- Project: "The Evasion" (repo slug: evasion)
+- Live: https://superduperzed.github.io/evasion/
+- Revisited category 3 (absurd calculators) with game-of-tag interaction
+- 13th viral project deployed

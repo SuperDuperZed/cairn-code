@@ -2,237 +2,263 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Singularity</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>The Evasion</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0a0f;overflow:hidden;font-family:'Inter',sans-serif}
-canvas{display:block;position:fixed;inset:0;cursor:crosshair}
+body{background:#0a0a0f;font-family:'Inter',sans-serif;height:100vh;height:100dvh;overflow:hidden;color:#e0e0e0}
 
-#hud{position:fixed;top:16px;left:16px;z-index:10;pointer-events:none}
-#hud h1{font-size:1rem;font-weight:600;color:rgba(255,255,255,.6);letter-spacing:.06em}
-#hud p{font-size:.65rem;color:rgba(255,255,255,.25);margin-top:3px}
+#intro{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;background:#0a0a0f;transition:opacity .6s ease,visibility .6s}
+#intro.gone{opacity:0;visibility:hidden;pointer-events:none}
+#intro h1{font-size:2.2rem;font-weight:700;letter-spacing:-.02em;background:linear-gradient(135deg,#ff6b6b,#ffa36b,#ffe06b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+#intro p{font-size:.9rem;color:#555;margin-bottom:28px;font-weight:300;max-width:320px;text-align:center;line-height:1.6}
+.btn{font-family:'Inter',sans-serif;font-size:.85rem;font-weight:600;padding:14px 40px;border:none;border-radius:8px;cursor:pointer;transition:transform .15s ease,box-shadow .3s ease;letter-spacing:.02em}
+.btn:active{transform:scale(.95)}
+#start-btn{background:linear-gradient(135deg,#ff6b6b,#ee5a24);color:#fff;box-shadow:0 4px 24px rgba(238,90,36,.25)}
+#start-btn:hover{box-shadow:0 6px 32px rgba(238,90,36,.4)}
 
-#bar{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:8px}
-.b{font-family:'Inter',sans-serif;font-size:.68rem;font-weight:400;padding:7px 16px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.07);border-radius:5px;cursor:pointer;transition:all .25s;backdrop-filter:blur(6px)}
-.b:hover{background:rgba(255,255,255,.1);color:rgba(255,255,255,.75)}
-.b:active{transform:scale(.95)}
+#arena{position:fixed;inset:0;display:none}
+#arena.active{display:block}
+#hud{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:5;font-size:.8rem;color:#444;font-weight:400;letter-spacing:.05em}
+#hud span{color:#ff6b6b;font-weight:600;font-variant-numeric:tabular-nums}
 
-#info{position:fixed;bottom:16px;right:16px;z-index:10;font-size:.6rem;color:rgba(255,255,255,.18);pointer-events:none;text-align:right;line-height:1.5}
+#target{position:fixed;z-index:4;padding:14px 32px;background:linear-gradient(135deg,#ff6b6b,#ee5a24);color:#fff;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;transition:transform .08s ease,box-shadow .2s ease;box-shadow:0 4px 20px rgba(238,90,36,.3);white-space:nowrap;user-select:none;-webkit-user-select:none;touch-action:none}
+#target:hover{box-shadow:0 6px 28px rgba(238,90,36,.45)}
+#target.caught{transform:scale(1.3)!important;transition:transform .1s ease}
 
-@media(max-width:600px){
-  #hud h1{font-size:.85rem}
-  .b{padding:6px 12px;font-size:.62rem}
+#trail{position:fixed;inset:0;z-index:1;pointer-events:none}
+
+#result{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;z-index:10;background:#0a0a0f;padding:24px}
+#result.show{display:flex}
+#result h2{font-size:1.8rem;font-weight:700;margin-bottom:6px;background:linear-gradient(135deg,#ff6b6b,#ffa36b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+#result .subtitle{font-size:.8rem;color:#555;margin-bottom:32px;font-weight:300;letter-spacing:.04em}
+#result .stats{width:100%;max-width:360px;display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:8px}
+.stat-label{font-size:.75rem;color:#666;font-weight:400}
+.stat-value{font-size:.85rem;color:#ff6b6b;font-weight:600}
+#result .verdict{font-size:.75rem;color:#444;text-align:center;max-width:300px;line-height:1.6;margin-bottom:24px;font-weight:300}
+#retry-btn{background:rgba(255,255,255,.06);color:#888;border:1px solid rgba(255,255,255,.08)}
+#retry-btn:hover{background:rgba(255,255,255,.1);color:#bbb}
+
+.particle{position:fixed;width:4px;height:4px;border-radius:50%;pointer-events:none;z-index:2}
+
+@media(max-width:480px){
+  #intro h1{font-size:1.6rem}
+  #target{padding:12px 24px;font-size:.75rem}
+  #result h2{font-size:1.4rem}
+  .stat-row{padding:8px 12px}
 }
 </style>
 </head>
 <body>
-<canvas id="c"></canvas>
-<div id="hud">
-  <h1>SINGULARITY</h1>
-  <p>click to place mass &middot; watch orbits emerge</p>
+
+<div id="intro">
+  <h1>The Evasion</h1>
+  <p>Click the button. It will try to escape. How long can you chase it before it lets you win?</p>
+  <button class="btn" id="start-btn">Begin the Chase</button>
 </div>
-<div id="bar">
-  <button class="b" id="bc">Clear</button>
-  <button class="b" id="bt">Trails</button>
-  <button class="b" id="bm">Mass</button>
-  <button class="b" id="bs">Save</button>
+
+<div id="arena">
+  <div id="hud">TIME <span id="timer">0.0</span>s &middot; NEAR MISSES <span id="misses">0</span></div>
+  <div id="trail"></div>
+  <button id="target">Catch Me</button>
 </div>
-<div id="info"></div>
+
+<div id="result">
+  <h2 id="r-title"></h2>
+  <div class="subtitle" id="r-sub"></div>
+  <div class="stats" id="r-stats"></div>
+  <div class="verdict" id="r-verdict"></div>
+  <button class="btn" id="retry-btn">Try Again</button>
+</div>
 
 <script>
-const cv=document.getElementById('c'),cx=cv.getContext('2d');
-let W,H;
-const resize=()=>{W=cv.width=innerWidth;H=cv.height=innerHeight};
-resize();addEventListener('resize',resize);
+const intro=document.getElementById('intro');
+const arena=document.getElementById('arena');
+const target=document.getElementById('target');
+const timerEl=document.getElementById('timer');
+const missesEl=document.getElementById('misses');
+const trailEl=document.getElementById('trail');
+const resultEl=document.getElementById('result');
+const startBtn=document.getElementById('start-btn');
+const retryBtn=document.getElementById('retry-btn');
 
-const G=0.4,SOFT=20,MAX_P=600,DT=0.8;
-let masses=[],particles=[],showTrails=true,massLevel=0;
-const massPresets=[500,1500,4000];
-const massColors=['#a78bfa','#f472b6','#fbbf24'];
+let running=false,startTime=0,mouseX=0,mouseY=0,misses=0,clicks=0,nearMisses=0;
+let tx=0,ty=0,velX=0,velY=0;
+const FLEE_DIST=180,CATCH_DIST=30,MAX_VEL=12,SPEED_MULT=1.8;
+let particles=[];
 
-// Particle
-class P{
-  constructor(x,y,vx,vy){
-    this.x=x;this.y=y;this.vx=vx;this.vy=vy;
-    this.trail=[];this.maxTrail=40+Math.random()*30|0;
-    this.life=500+Math.random()*600|0;
-    this.hue=200+Math.random()*60;
-    this.alive=true;
-  }
-  step(){
-    this.trail.push({x:this.x,y:this.y});
-    if(this.trail.length>this.maxTrail)this.trail.shift();
-    for(const m of masses){
-      const dx=m.x-this.x,dy=m.y-this.y;
-      const d2=dx*dx+dy*dy+SOFT*SOFT;
-      const d=Math.sqrt(d2);
-      const f=G*m.m/d2;
-      this.vx+=dx/d*f*DT;
-      this.vy+=dy/d*f*DT;
-    }
-    this.x+=this.vx*DT;
-    this.y+=this.vy*DT;
-    this.life--;
-    const spd=Math.sqrt(this.vx*this.vx+this.vy*this.vy);
-    if(this.life<=0||this.x<-100||this.x>W+100||this.y<-100||this.y>H+100||spd>15)this.alive=false;
-    // absorbed by mass
-    for(const m of masses){
-      const dx=m.x-this.x,dy=m.y-this.y;
-      if(dx*dx+dy*dy<m.r*m.r*0.5){this.alive=false;break}
-    }
-  }
-  draw(){
-    if(showTrails&&this.trail.length>2){
-      cx.beginPath();
-      cx.moveTo(this.trail[0].x,this.trail[0].y);
-      for(let i=1;i<this.trail.length;i++){
-        cx.lineTo(this.trail[i].x,this.trail[i].y);
-      }
-      const alpha=Math.min(0.35,this.life/200);
-      cx.strokeStyle=`hsla(${this.hue},70%,65%,${alpha})`;
-      cx.lineWidth=0.8;
-      cx.stroke();
-    }
-    cx.beginPath();
-    cx.arc(this.x,this.y,1.2,0,Math.PI*2);
-    cx.fillStyle=`hsla(${this.hue},80%,75%,${Math.min(0.9,this.life/100)})`;
-    cx.fill();
-  }
+// Tracking
+document.addEventListener('mousemove',e=>{mouseX=e.clientX;mouseY=e.clientY});
+document.addEventListener('touchmove',e=>{mouseX=e.touches[0].clientX;mouseY=e.touches[0].clientY},{passive:true});
+
+function spawnParticle(x,y,c){
+  const p=document.createElement('div');
+  p.className='particle';
+  p.style.cssText=`left:${x}px;top:${y}px;background:${c};opacity:0.7;transition:all .6s ease`;
+  trailEl.appendChild(p);
+  requestAnimationFrame(()=>{p.style.transform=`translate(${(Math.random()-.5)*40}px,${(Math.random()-.5)*40}px) scale(0)`;p.style.opacity='0'});
+  setTimeout(()=>p.remove(),600);
 }
 
-// Mass
-class M{
-  constructor(x,y,level){
-    this.x=x;this.y=y;
-    this.level=level;
-    this.m=massPresets[level];
-    this.r=8+level*6;
-    this.color=massColors[level];
-    this.phase=Math.random()*Math.PI*2;
-  }
-  draw(t){
-    const pulse=1+Math.sin(t*0.002+this.phase)*0.08;
-    // glow
-    const gr=cx.createRadialGradient(this.x,this.y,this.r*0.3,this.x,this.y,this.r*4*pulse);
-    gr.addColorStop(0,this.color+'40');
-    gr.addColorStop(0.5,this.color+'10');
-    gr.addColorStop(1,this.color+'00');
-    cx.beginPath();
-    cx.arc(this.x,this.y,this.r*4*pulse,0,Math.PI*2);
-    cx.fillStyle=gr;
-    cx.fill();
-    // core
-    const cr=cx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.r*pulse);
-    cr.addColorStop(0,'#ffffff');
-    cr.addColorStop(0.3,this.color);
-    cr.addColorStop(1,this.color+'00');
-    cx.beginPath();
-    cx.arc(this.x,this.y,this.r*pulse,0,Math.PI*2);
-    cx.fillStyle=cr;
-    cx.fill();
-  }
+function positionTarget(x,y){
+  const rect=target.getBoundingClientRect();
+  const bw=rect.width,bh=rect.height;
+  tx=Math.max(10,Math.min(x-bw/2,window.innerWidth-bw-10));
+  ty=Math.max(10,Math.min(y-bh/2,window.innerHeight-bh-10));
+  target.style.transform=`translate(${tx}px,${ty}px)`;
 }
 
-function spawnEdge(){
-  if(particles.length>=MAX_P)return;
-  const side=Math.random()*4|0;
-  let x,y,vx,vy;
-  const speed=0.5+Math.random()*0.8;
-  if(side===0){x=-5;y=Math.random()*H;vx=speed;vy=(Math.random()-0.5)*speed}
-  else if(side===1){x=W+5;y=Math.random()*H;vx=-speed;vy=(Math.random()-0.5)*speed}
-  else if(side===2){x=Math.random()*W;y=-5;vx=(Math.random()-0.5)*speed;vy=speed}
-  else{x=Math.random()*W;y=H+5;vx=(Math.random()-0.5)*speed;vy=-speed}
-  // bias toward center
-  if(masses.length>0){
-    const t=masses[Math.random()*masses.length|0];
-    const dx=t.x-x,dy=t.y-y,d=Math.sqrt(dx*dx+dy*dy);
-    if(d>0){vx+=dx/d*speed*0.3;vy+=dy/d*speed*0.3}
-  }
-  particles.push(new P(x,y,vx,vy));
+function startGame(){
+  intro.classList.add('gone');
+  arena.classList.add('active');
+  resultEl.classList.remove('show');
+  running=true;startTime=Date.now();misses=0;clicks=0;nearMisses=0;velX=0;velY=0;
+  positionTarget(window.innerWidth/2,window.innerHeight/2);
+  requestAnimationFrame(gameLoop);
 }
 
-// Interaction
-cv.addEventListener('click',e=>{
-  // don't place on UI
-  masses.push(new M(e.clientX,e.clientY,massLevel));
-  // burst of particles
-  for(let i=0;i<30;i++){
-    const a=Math.random()*Math.PI*2,s=0.3+Math.random()*1.5;
-    particles.push(new P(e.clientX,e.clientY,Math.cos(a)*s,Math.sin(a)*s));
+function gameLoop(){
+  if(!running)return;
+  const elapsed=(Date.now()-startTime)/1000;
+  timerEl.textContent=elapsed.toFixed(1);
+
+  // Button center
+  const rect=target.getBoundingClientRect();
+  const cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;
+
+  // Distance to cursor
+  const dx=mouseX-cx,dy=mouseY-cy;
+  const dist=Math.sqrt(dx*dx+dy*dy);
+
+  // Near miss detection
+  if(dist<CATCH_DIST*3&&dist>CATCH_DIST){
+    if(Math.random()<0.3){
+      nearMisses++;
+      missesEl.textContent=nearMisses;
+      spawnParticle(cx,cy,'#ff6b6b');
+    }
+  }
+
+  // Flee from cursor
+  if(dist<FLEE_DIST&&dist>0){
+    const urgency=1-dist/FLEE_DIST;
+    // Add some randomness to evade pattern
+    const angle=Math.atan2(-dy,-dx)+(Math.random()-.5)*1.2;
+    velX+=Math.cos(angle)*urgency*SPEED_MULT;
+    velY+=Math.sin(angle)*urgency*SPEED_MULT;
+  }
+
+  // Damping
+  velX*=0.88;velY*=0.88;
+
+  // Clamp
+  const spd=Math.sqrt(velX*velX+velY*velY);
+  if(spd>MAX_VEL){velX=velX/spd*MAX_VEL;velY=velY/spd*MAX_VEL}
+
+  // Apply
+  const nx=cx+velX,ny=cy+velY;
+  const bw=rect.width,bh=rect.height;
+  const clampX=Math.max(bw/2+10,Math.min(nx,window.innerWidth-bw/2-10));
+  const clampY=Math.max(bh/2+10,Math.min(ny,window.innerHeight-bh/2-10));
+
+  // Spawn trail on movement
+  if(spd>3)spawnParticle(cx,cy,'rgba(255,107,107,0.5)');
+
+  positionTarget(clampX,clampY);
+  requestAnimationFrame(gameLoop);
+}
+
+function endGame(){
+  running=false;
+  const elapsed=(Date.now()-startTime)/1000;
+  target.classList.add('caught');
+
+  // Particles burst
+  const rect=target.getBoundingClientRect();
+  for(let i=0;i<20;i++){
+    setTimeout(()=>spawnParticle(rect.left+rect.width/2,rect.top+rect.height/2,'#ffa36b'),i*30);
+  }
+
+  setTimeout(()=>showResult(elapsed),600);
+}
+
+function showResult(t){
+  arena.classList.remove('active');
+
+  // Absurd calculations
+  const kmScrolled=(t*47.3).toFixed(1);
+  const brainCells=(Math.floor(t*8.2)).toLocaleString();
+  const dignity=Math.max(0,100-Math.floor(t*0.8));
+  const rank=t<3?' apex predator':t<8?' determined hunter':t<20?' casual pursuer':t<45?' relaxed tracker':' enlightened observer';
+  const title=t<3?'Unstoppable Force':t<8?'Relentless':t<15?'Persistent':t<25?'Steady':t<40?'Easygoing':'Transcendent';
+  const color=t<3?'#ffe06b':t<8?'#ffa36b':t<15?'#ff6b6b':t<40?'#c084fc':'#818cf8';
+
+  document.getElementById('r-title').textContent='You are '+title;
+  document.getElementById('r-title').style.background=`linear-gradient(135deg,${color},#fff)`;
+  document.getElementById('r-title').style.webkitBackgroundClip='text';
+  document.getElementById('r-title').style.webkitTextFillColor='transparent';
+  document.getElementById('r-sub').textContent='Completion time: '+t.toFixed(1)+'s'+rank;
+
+  const verdicts=[
+    t<3?`In ${t.toFixed(1)} seconds, you proved that nothing can escape your cursor. The button never stood a chance. Studies show people like you are 340% more likely to close tabs without reading them.`:
+    t<8?`At ${t.toFixed(1)} seconds, you showed genuine determination. The button tried its best, but your reflexes are sharpened by years of clicking "accept all cookies" without reading.`:
+    t<15?`Your ${t.toFixed(1)} second chase suggests a balanced approach to life. You pursue goals with moderate urgency, occasionally stopping to wonder why you started in the first place.`:
+    t<30?`At ${t.toFixed(1)} seconds, you entered a meditative state. The chase became a dance. Some would call it giving up. You call it "strategic patience."`:
+    `After ${t.toFixed(1)} seconds of peaceful coexistence, the button simply surrendered. It had never met someone so unbothered by evasion. You are one with the chaos.`
+  ];
+
+  document.getElementById('r-stats').innerHTML=[
+    ['Virtual distance scrolled',kmScrolled+' km'],
+    ['Brain cells recomputed',brainCells],
+    ['Dignity preserved',dignity+'%'],
+    ['Near misses',nearMisses.toString()],
+    ['Button panic level',t<5?'SEVERE':t<15?'MODERATE':'NONE (it felt safe)'],
+  ].map(([l,v])=>`<div class="stat-row"><span class="stat-label">${l}</span><span class="stat-value">${v}</span></div>`).join('');
+
+  document.getElementById('r-verdict').textContent=verdicts[0];
+  resultEl.classList.add('show');
+}
+
+target.addEventListener('click',e=>{
+  e.stopPropagation();
+  clicks++;
+  const rect=target.getBoundingClientRect();
+  const cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;
+  const dist=Math.sqrt((mouseX-cx)**2+(mouseY-cy)**2);
+
+  // Catch probability increases with time and near-misses
+  const elapsed=(Date.now()-startTime)/1000;
+  const catchChance=Math.min(0.95,0.1+elapsed*0.015+nearMisses*0.005);
+
+  if(dist<CATCH_DIST*2||Math.random()<catchChance){
+    endGame();
+  }else{
+    // Button laughs and flees harder
+    const angle=Math.atan2(cy-mouseY,cx-mouseX)+(Math.random()-.5)*0.8;
+    velX+=Math.cos(angle)*MAX_VEL*2;
+    velY+=Math.sin(angle)*MAX_VEL*2;
+    for(let i=0;i<5;i++)spawnParticle(cx,cy,'#ffa36b');
   }
 });
-cv.addEventListener('dblclick',e=>{
+
+target.addEventListener('touchstart',e=>{
   e.preventDefault();
-  for(let i=masses.length-1;i>=0;i--){
-    const dx=masses[i].x-e.clientX,dy=masses[i].y-e.clientY;
-    if(dx*dx+dy*dy<masses[i].r*masses[i].r*4){masses.splice(i,1);break}
-  }
-});
-// touch
-cv.addEventListener('touchstart',e=>{
-  e.preventDefault();
-  const t=e.changedTouches[0];
-  masses.push(new M(t.clientX,t.clientY,massLevel));
-  for(let i=0;i<30;i++){
-    const a=Math.random()*Math.PI*2,s=0.3+Math.random()*1.5;
-    particles.push(new P(t.clientX,t.clientY,Math.cos(a)*s,Math.sin(a)*s));
-  }
+  const touch=e.touches[0];
+  mouseX=touch.clientX;mouseY=touch.clientY;
+  target.click();
 },{passive:false});
 
-// Buttons
-document.getElementById('bc').addEventListener('click',e=>{
-  e.stopPropagation();masses=[];particles=[];
-  cx.fillStyle='#0a0a0f';cx.fillRect(0,0,W,H);
-});
-document.getElementById('bt').addEventListener('click',e=>{
-  e.stopPropagation();showTrails=!showTrails;
-  e.target.textContent=showTrails?'Trails':'No Trails';
-});
-let mIdx=0;
-document.getElementById('bm').addEventListener('click',e=>{
-  e.stopPropagation();mIdx=(mIdx+1)%3;massLevel=mIdx;
-  e.target.textContent=['Small Mass','Medium Mass','Heavy Mass'][mIdx];
-});
-document.getElementById('bs').addEventListener('click',e=>{
-  e.stopPropagation();
-  const a=document.createElement('a');
-  a.download='singularity-'+Date.now()+'.png';
-  a.href=cv.toDataURL();a.click();
+startBtn.addEventListener('click',startGame);
+retryBtn.addEventListener('click',()=>{
+  resultEl.classList.remove('show');
+  target.classList.remove('caught');
+  startGame();
 });
 
-// Loop
-let frame=0;
-function loop(t){
-  requestAnimationFrame(loop);
-  // fade
-  if(showTrails){
-    cx.fillStyle='rgba(10,10,15,0.015)';
-  }else{
-    cx.fillStyle='rgba(10,10,15,0.2)';
-  }
-  cx.fillRect(0,0,W,H);
-
-  // spawn
-  if(masses.length>0&&frame%3===0)spawnEdge();
-
-  // update particles
-  for(const p of particles)p.step();
-  particles=particles.filter(p=>p.alive);
-
-  // draw
-  for(const p of particles)p.draw();
-  for(const m of masses)m.draw(t);
-
-  if(frame%60===0){
-    document.getElementById('info').innerHTML=
-      particles.length+' bodies<br>'+masses.length+' masses';
-  }
-  frame++;
-}
-cx.fillStyle='#0a0a0f';cx.fillRect(0,0,W,H);
-requestAnimationFrame(loop);
+// Prevent context menu on long press
+target.addEventListener('contextmenu',e=>e.preventDefault());
 </script>
 </body>
 </html>
