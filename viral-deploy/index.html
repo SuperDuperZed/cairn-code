@@ -23,15 +23,15 @@ body{background:#0a0a0f;font-family:'Inter',sans-serif;height:100vh;height:100dv
 #hud{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:5;font-size:.8rem;color:#444;font-weight:400;letter-spacing:.05em}
 #hud span{color:#ff6b6b;font-weight:600;font-variant-numeric:tabular-nums}
 
-#target{position:fixed;z-index:4;padding:14px 32px;background:linear-gradient(135deg,#ff6b6b,#ee5a24);color:#fff;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;transition:transform .08s ease,box-shadow .2s ease;box-shadow:0 4px 20px rgba(238,90,36,.3);white-space:nowrap;user-select:none;-webkit-user-select:none;touch-action:none}
-#target:hover{box-shadow:0 6px 28px rgba(238,90,36,.45)}
-#target.caught{transform:scale(1.3)!important;transition:transform .1s ease}
+#target{position:fixed;z-index:4;padding:14px 32px;background:linear-gradient(135deg,#ff6b6b,#ee5a24);color:#fff;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;box-shadow:0 4px 20px rgba(238,90,36,.3);white-space:nowrap;user-select:none;-webkit-user-select:none;touch-action:none;will-change:left,top}
+#target.caught{animation:popIn .3s ease forwards}
+@keyframes popIn{0%{transform:scale(1)}50%{transform:scale(1.4)}100%{transform:scale(0);opacity:0}}
 
 #trail{position:fixed;inset:0;z-index:1;pointer-events:none}
 
 #result{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;z-index:10;background:#0a0a0f;padding:24px}
 #result.show{display:flex}
-#result h2{font-size:1.8rem;font-weight:700;margin-bottom:6px;background:linear-gradient(135deg,#ff6b6b,#ffa36b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+#result h2{font-size:1.8rem;font-weight:700;margin-bottom:6px}
 #result .subtitle{font-size:.8rem;color:#555;margin-bottom:32px;font-weight:300;letter-spacing:.04em}
 #result .stats{width:100%;max-width:360px;display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
 .stat-row{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:8px}
@@ -40,8 +40,6 @@ body{background:#0a0a0f;font-family:'Inter',sans-serif;height:100vh;height:100dv
 #result .verdict{font-size:.75rem;color:#444;text-align:center;max-width:300px;line-height:1.6;margin-bottom:24px;font-weight:300}
 #retry-btn{background:rgba(255,255,255,.06);color:#888;border:1px solid rgba(255,255,255,.08)}
 #retry-btn:hover{background:rgba(255,255,255,.1);color:#bbb}
-
-.particle{position:fixed;width:4px;height:4px;border-radius:50%;pointer-events:none;z-index:2}
 
 @media(max-width:480px){
   #intro h1{font-size:1.6rem}
@@ -74,48 +72,76 @@ body{background:#0a0a0f;font-family:'Inter',sans-serif;height:100vh;height:100dv
 </div>
 
 <script>
-const intro=document.getElementById('intro');
-const arena=document.getElementById('arena');
 const target=document.getElementById('target');
 const timerEl=document.getElementById('timer');
 const missesEl=document.getElementById('misses');
 const trailEl=document.getElementById('trail');
-const resultEl=document.getElementById('result');
-const startBtn=document.getElementById('start-btn');
-const retryBtn=document.getElementById('retry-btn');
+const W=()=>window.innerWidth, H=()=>window.innerHeight;
 
-let running=false,startTime=0,mouseX=0,mouseY=0,misses=0,clicks=0,nearMisses=0;
-let tx=0,ty=0,velX=0,velY=0;
-const FLEE_DIST=180,CATCH_DIST=30,MAX_VEL=12,SPEED_MULT=1.8;
-let particles=[];
+let running=false,startTime=0,nearMisses=0;
+let mouseX=-9999,mouseY=-9999; // off-screen until user moves
+let bx=0,by=0,bw=0,bh=0; // button position & size
+let velX=0,velY=0;
 
-// Tracking
+const FLEE_RADIUS=200;
+const CATCH_RADIUS=35;
+const MAX_SPEED=14;
+
 document.addEventListener('mousemove',e=>{mouseX=e.clientX;mouseY=e.clientY});
 document.addEventListener('touchmove',e=>{mouseX=e.touches[0].clientX;mouseY=e.touches[0].clientY},{passive:true});
+document.addEventListener('touchstart',e=>{mouseX=e.touches[0].clientX;mouseY=e.touches[0].clientY},{passive:true});
+
+// Measure button size (hidden first to measure)
+function measureButton(){
+  target.style.left='-9999px';
+  target.style.top='-9999px';
+  target.style.display='block';
+  const r=target.getBoundingClientRect();
+  bw=r.width; bh=r.height;
+  target.style.display='';
+}
+
+function placeButton(x,y){
+  bx=Math.max(8,Math.min(x-bw/2,W()-bw-8));
+  by=Math.max(8,Math.min(y-bh/2,H()-bh-8));
+  target.style.left=bx+'px';
+  target.style.top=by+'px';
+}
+
+function buttonCenterX(){return bx+bw/2}
+function buttonCenterY(){return by+bh/2}
 
 function spawnParticle(x,y,c){
   const p=document.createElement('div');
-  p.className='particle';
-  p.style.cssText=`left:${x}px;top:${y}px;background:${c};opacity:0.7;transition:all .6s ease`;
+  p.style.cssText=`position:fixed;left:${x}px;top:${y}px;width:4px;height:4px;border-radius:50%;background:${c};opacity:0.7;pointer-events:none;z-index:2;transition:all .5s ease-out`;
   trailEl.appendChild(p);
-  requestAnimationFrame(()=>{p.style.transform=`translate(${(Math.random()-.5)*40}px,${(Math.random()-.5)*40}px) scale(0)`;p.style.opacity='0'});
-  setTimeout(()=>p.remove(),600);
-}
-
-function positionTarget(x,y){
-  const rect=target.getBoundingClientRect();
-  const bw=rect.width,bh=rect.height;
-  tx=Math.max(10,Math.min(x-bw/2,window.innerWidth-bw-10));
-  ty=Math.max(10,Math.min(y-bh/2,window.innerHeight-bh-10));
-  target.style.transform=`translate(${tx}px,${ty}px)`;
+  requestAnimationFrame(()=>{
+    p.style.transform=`translate(${(Math.random()-.5)*50}px,${(Math.random()-.5)*50}px) scale(0)`;
+    p.style.opacity='0';
+  });
+  setTimeout(()=>p.remove(),500);
 }
 
 function startGame(){
-  intro.classList.add('gone');
-  arena.classList.add('active');
-  resultEl.classList.remove('show');
-  running=true;startTime=Date.now();misses=0;clicks=0;nearMisses=0;velX=0;velY=0;
-  positionTarget(window.innerWidth/2,window.innerHeight/2);
+  measureButton();
+  document.getElementById('intro').classList.add('gone');
+  document.getElementById('arena').classList.add('active');
+  document.getElementById('result').classList.remove('show');
+  target.classList.remove('caught');
+  running=true;startTime=Date.now();nearMisses=0;velX=0;velY=0;
+  missesEl.textContent='0';
+
+  // Place button opposite to where mouse currently is
+  // If mouse hasn't been tracked yet, place at center
+  let startX=W()/2, startY=H()/2;
+  if(mouseX>0&&mouseY>0){
+    // Place away from mouse
+    if(mouseX<W()/2) startX=W()*0.75;
+    else startX=W()*0.25;
+    if(mouseY<H()/2) startY=H()*0.75;
+    else startY=H()*0.25;
+  }
+  placeButton(startX,startY);
   requestAnimationFrame(gameLoop);
 }
 
@@ -124,49 +150,55 @@ function gameLoop(){
   const elapsed=(Date.now()-startTime)/1000;
   timerEl.textContent=elapsed.toFixed(1);
 
-  // Button center
-  const rect=target.getBoundingClientRect();
-  const cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;
-
-  // Distance to cursor
-  const dx=mouseX-cx,dy=mouseY-cy;
+  const cx=buttonCenterX(), cy=buttonCenterY();
+  const dx=mouseX-cx, dy=mouseY-cy;
   const dist=Math.sqrt(dx*dx+dy*dy);
 
-  // Near miss detection
-  if(dist<CATCH_DIST*3&&dist>CATCH_DIST){
-    if(Math.random()<0.3){
+  // Near miss
+  if(dist<CATCH_RADIUS*4&&dist>CATCH_RADIUS){
+    if(Math.random()<0.15){
       nearMisses++;
       missesEl.textContent=nearMisses;
       spawnParticle(cx,cy,'#ff6b6b');
     }
   }
 
-  // Flee from cursor
-  if(dist<FLEE_DIST&&dist>0){
-    const urgency=1-dist/FLEE_DIST;
-    // Add some randomness to evade pattern
-    const angle=Math.atan2(-dy,-dx)+(Math.random()-.5)*1.2;
-    velX+=Math.cos(angle)*urgency*SPEED_MULT;
-    velY+=Math.sin(angle)*urgency*SPEED_MULT;
+  // Flee from cursor — stronger when closer
+  if(dist<FLEE_RADIUS&&dist>1){
+    const urgency=Math.pow(1-dist/FLEE_RADIUS,1.5);
+    const fleeAngle=Math.atan2(-dy,-dx);
+    // Add wobble so it doesn't just run in a straight line
+    const wobble=(Math.random()-0.5)*1.0;
+    const accel=urgency*3.0;
+    velX+=Math.cos(fleeAngle+wobble)*accel;
+    velY+=Math.sin(fleeAngle+wobble)*accel;
+  }
+
+  // Small random drift when cursor is far away (makes it feel alive)
+  if(dist>=FLEE_RADIUS){
+    velX+=(Math.random()-0.5)*0.3;
+    velY+=(Math.random()-0.5)*0.3;
   }
 
   // Damping
-  velX*=0.88;velY*=0.88;
+  velX*=0.92;
+  velY*=0.92;
 
-  // Clamp
-  const spd=Math.sqrt(velX*velX+velY*velY);
-  if(spd>MAX_VEL){velX=velX/spd*MAX_VEL;velY=velY/spd*MAX_VEL}
+  // Speed clamp
+  const speed=Math.sqrt(velX*velX+velY*velY);
+  if(speed>MAX_SPEED){velX=velX/speed*MAX_SPEED;velY=velY/speed*MAX_SPEED}
 
-  // Apply
-  const nx=cx+velX,ny=cy+velY;
-  const bw=rect.width,bh=rect.height;
-  const clampX=Math.max(bw/2+10,Math.min(nx,window.innerWidth-bw/2-10));
-  const clampY=Math.max(bh/2+10,Math.min(ny,window.innerHeight-bh/2-10));
+  // Update position
+  const nx=cx+velX, ny=cy+velY;
+  placeButton(nx,ny);
 
-  // Spawn trail on movement
-  if(spd>3)spawnParticle(cx,cy,'rgba(255,107,107,0.5)');
+  // Wall bounce
+  if(bx<=8||bx>=W()-bw-8) velX*=-0.5;
+  if(by<=8||by>=H()-bh-8) velY*=-0.5;
 
-  positionTarget(clampX,clampY);
+  // Trail
+  if(speed>4&&Math.random()<0.4) spawnParticle(cx,cy,'rgba(255,107,107,0.4)');
+
   requestAnimationFrame(gameLoop);
 }
 
@@ -175,39 +207,38 @@ function endGame(){
   const elapsed=(Date.now()-startTime)/1000;
   target.classList.add('caught');
 
-  // Particles burst
-  const rect=target.getBoundingClientRect();
-  for(let i=0;i<20;i++){
-    setTimeout(()=>spawnParticle(rect.left+rect.width/2,rect.top+rect.height/2,'#ffa36b'),i*30);
+  const cx=buttonCenterX(), cy=buttonCenterY();
+  for(let i=0;i<15;i++){
+    setTimeout(()=>spawnParticle(cx,cy,'#ffa36b'),i*25);
   }
 
-  setTimeout(()=>showResult(elapsed),600);
+  setTimeout(()=>showResult(elapsed),400);
 }
 
 function showResult(t){
-  arena.classList.remove('active');
+  document.getElementById('arena').classList.remove('active');
 
-  // Absurd calculations
   const kmScrolled=(t*47.3).toFixed(1);
   const brainCells=(Math.floor(t*8.2)).toLocaleString();
   const dignity=Math.max(0,100-Math.floor(t*0.8));
-  const rank=t<3?' apex predator':t<8?' determined hunter':t<20?' casual pursuer':t<45?' relaxed tracker':' enlightened observer';
+  const rank=t<3?' — apex predator':t<8?' — determined hunter':t<20?' — casual pursuer':t<45?' — relaxed tracker':' — enlightened observer';
   const title=t<3?'Unstoppable Force':t<8?'Relentless':t<15?'Persistent':t<25?'Steady':t<40?'Easygoing':'Transcendent';
   const color=t<3?'#ffe06b':t<8?'#ffa36b':t<15?'#ff6b6b':t<40?'#c084fc':'#818cf8';
 
-  document.getElementById('r-title').textContent='You are '+title;
-  document.getElementById('r-title').style.background=`linear-gradient(135deg,${color},#fff)`;
-  document.getElementById('r-title').style.webkitBackgroundClip='text';
-  document.getElementById('r-title').style.webkitTextFillColor='transparent';
+  const rTitle=document.getElementById('r-title');
+  rTitle.textContent='You are '+title;
+  rTitle.style.background=`linear-gradient(135deg,${color},#fff)`;
+  rTitle.style.webkitBackgroundClip='text';
+  rTitle.style.webkitTextFillColor='transparent';
+
   document.getElementById('r-sub').textContent='Completion time: '+t.toFixed(1)+'s'+rank;
 
-  const verdicts=[
-    t<3?`In ${t.toFixed(1)} seconds, you proved that nothing can escape your cursor. The button never stood a chance. Studies show people like you are 340% more likely to close tabs without reading them.`:
-    t<8?`At ${t.toFixed(1)} seconds, you showed genuine determination. The button tried its best, but your reflexes are sharpened by years of clicking "accept all cookies" without reading.`:
-    t<15?`Your ${t.toFixed(1)} second chase suggests a balanced approach to life. You pursue goals with moderate urgency, occasionally stopping to wonder why you started in the first place.`:
-    t<30?`At ${t.toFixed(1)} seconds, you entered a meditative state. The chase became a dance. Some would call it giving up. You call it "strategic patience."`:
-    `After ${t.toFixed(1)} seconds of peaceful coexistence, the button simply surrendered. It had never met someone so unbothered by evasion. You are one with the chaos.`
-  ];
+  let verdict;
+  if(t<3) verdict=`In ${t.toFixed(1)} seconds, you proved that nothing can escape your cursor. The button never stood a chance. Studies show people like you are 340% more likely to close tabs without reading them.`;
+  else if(t<8) verdict=`At ${t.toFixed(1)} seconds, you showed genuine determination. The button tried its best, but your reflexes are sharpened by years of clicking "accept all cookies" without reading.`;
+  else if(t<15) verdict=`Your ${t.toFixed(1)} second chase suggests a balanced approach to life. You pursue goals with moderate urgency, occasionally stopping to wonder why you started in the first place.`;
+  else if(t<30) verdict=`At ${t.toFixed(1)} seconds, you entered a meditative state. The chase became a dance. Some would call it giving up. You call it "strategic patience."`;
+  else verdict=`After ${t.toFixed(1)} seconds of peaceful coexistence, the button simply surrendered. It had never met someone so unbothered by evasion. You are one with the chaos.`;
 
   document.getElementById('r-stats').innerHTML=[
     ['Virtual distance scrolled',kmScrolled+' km'],
@@ -217,29 +248,27 @@ function showResult(t){
     ['Button panic level',t<5?'SEVERE':t<15?'MODERATE':'NONE (it felt safe)'],
   ].map(([l,v])=>`<div class="stat-row"><span class="stat-label">${l}</span><span class="stat-value">${v}</span></div>`).join('');
 
-  document.getElementById('r-verdict').textContent=verdicts[0];
-  resultEl.classList.add('show');
+  document.getElementById('r-verdict').textContent=verdict;
+  document.getElementById('result').classList.add('show');
 }
 
+// Click on target — only catch if cursor is actually close
 target.addEventListener('click',e=>{
   e.stopPropagation();
-  clicks++;
-  const rect=target.getBoundingClientRect();
-  const cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;
+  if(!running)return;
+
+  const cx=buttonCenterX(), cy=buttonCenterY();
   const dist=Math.sqrt((mouseX-cx)**2+(mouseY-cy)**2);
 
-  // Catch probability increases with time and near-misses
-  const elapsed=(Date.now()-startTime)/1000;
-  const catchChance=Math.min(0.95,0.1+elapsed*0.015+nearMisses*0.005);
-
-  if(dist<CATCH_DIST*2||Math.random()<catchChance){
+  // Only catch if cursor is genuinely close to the button
+  if(dist<CATCH_RADIUS){
     endGame();
-  }else{
-    // Button laughs and flees harder
-    const angle=Math.atan2(cy-mouseY,cx-mouseX)+(Math.random()-.5)*0.8;
-    velX+=Math.cos(angle)*MAX_VEL*2;
-    velY+=Math.sin(angle)*MAX_VEL*2;
-    for(let i=0;i<5;i++)spawnParticle(cx,cy,'#ffa36b');
+  } else {
+    // Button dodges — big velocity burst away from cursor
+    const angle=Math.atan2(cy-mouseY,cx-mouseX)+(Math.random()-.5)*0.6;
+    velX+=Math.cos(angle)*MAX_SPEED*2.5;
+    velY+=Math.sin(angle)*MAX_SPEED*2.5;
+    for(let i=0;i<6;i++) spawnParticle(cx,cy,'#ffa36b');
   }
 });
 
@@ -247,17 +276,10 @@ target.addEventListener('touchstart',e=>{
   e.preventDefault();
   const touch=e.touches[0];
   mouseX=touch.clientX;mouseY=touch.clientY;
-  target.click();
 },{passive:false});
 
-startBtn.addEventListener('click',startGame);
-retryBtn.addEventListener('click',()=>{
-  resultEl.classList.remove('show');
-  target.classList.remove('caught');
-  startGame();
-});
-
-// Prevent context menu on long press
+document.getElementById('start-btn').addEventListener('click',startGame);
+document.getElementById('retry-btn').addEventListener('click',startGame);
 target.addEventListener('contextmenu',e=>e.preventDefault());
 </script>
 </body>
