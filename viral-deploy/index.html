@@ -1,213 +1,322 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>The Fade</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<title>Screen Breath</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden}
-body{background:#0a0a0f;color:#e0e0e0;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center}
-#app{width:100%;max-width:520px;padding:24px;text-align:center;position:relative}
+body{background:#0a0a0f;font-family:'Inter',sans-serif;color:#e0e0e0;touch-action:none;user-select:none}
 
-#intro{text-align:center}
-#intro h1{font-size:clamp(32px,8vw,56px);font-weight:800;letter-spacing:-2px;line-height:1.1;margin-bottom:16px;color:#e8e8e8}
-#intro p{font-size:clamp(14px,2.5vw,17px);color:#555;font-weight:300;line-height:1.7;max-width:360px;margin:0 auto 32px}
-.btn{padding:16px 48px;background:#fff;color:#0a0a0f;border:none;border-radius:80px;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:transform .2s,opacity .3s;letter-spacing:.3px}
-.btn:hover{transform:scale(1.03)}
-.btn:active{transform:scale(.97)}
-.btn-small{padding:10px 28px;font-size:13px;font-weight:500;background:transparent;color:#666;border:1px solid rgba(255,255,255,.12);margin-top:24px;opacity:0;transition:opacity .8s ease 1s,transform .2s,border-color .3s}
-.btn-small:hover{border-color:rgba(255,255,255,.3);color:#999}
+#intro{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;background:#0a0a0f;transition:opacity 1s ease}
+#intro.gone{opacity:0;pointer-events:none}
+#intro h1{font-size:clamp(28px,7vw,48px);font-weight:200;letter-spacing:-1px;margin-bottom:12px;color:#c8d8e8}
+#intro p{font-size:clamp(13px,2.5vw,16px);color:#444;font-weight:300;max-width:340px;text-align:center;line-height:1.7;margin-bottom:36px}
+.btn{font-family:'Inter',sans-serif;font-size:14px;font-weight:500;padding:14px 44px;border:none;border-radius:80px;cursor:pointer;transition:transform .15s,opacity .3s;letter-spacing:.3px}
+.btn:active{transform:scale(.95)}
+#start-btn{background:rgba(200,220,255,.08);color:#8899aa;border:1px solid rgba(200,220,255,.1)}
+#start-btn:hover{background:rgba(200,220,255,.12)}
 
-#hold{display:none;position:fixed;inset:0;z-index:10;cursor:default;touch-action:none}
-#hold-bg{position:absolute;inset:0;background:#0a0a0f;transition:background 2s ease}
-#hold-text{position:relative;z-index:2;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
-.phase-text{font-size:clamp(24px,6vw,42px);font-weight:300;letter-spacing:-1px;opacity:0;transition:opacity 1.5s ease;line-height:1.4;max-width:420px}
-.phase-text.visible{opacity:1}
-.phase-sub{font-size:clamp(11px,2vw,13px);color:#444;font-weight:400;margin-top:24px;letter-spacing:.5px;opacity:0;transition:opacity 1.5s ease .5s}
-.phase-sub.visible{opacity:1}
-.progress-ring{position:absolute;bottom:clamp(40px,8vh,80px);width:48px;height:48px;opacity:.15}
-.progress-ring circle{fill:none;stroke:#fff;stroke-width:1}
-.progress-ring .track{stroke:rgba(255,255,255,.06)}
+#scene{position:fixed;inset:0;display:none}
+#scene.active{display:block}
 
-#result{display:none;text-align:center;opacity:0;transition:opacity 1s ease}
-.result-time{font-size:clamp(64px,16vw,110px);font-weight:800;letter-spacing:-4px;line-height:1;margin-bottom:4px}
-.result-unit{font-size:14px;font-weight:400;color:#666;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px}
-.result-label{font-size:clamp(20px,5vw,32px);font-weight:700;letter-spacing:-.5px;margin-bottom:12px}
-.result-desc{font-size:clamp(13px,2.5vw,16px);color:#888;font-weight:300;line-height:1.7;max-width:380px;margin:0 auto 32px}
-.result-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin:0 auto 32px;max-width:400px}
-.stat{padding:16px 8px;border:1px solid rgba(255,255,255,.06);border-radius:12px}
-.stat-val{font-size:22px;font-weight:700;margin-bottom:2px}
-.stat-lbl{font-size:10px;color:#555;text-transform:uppercase;letter-spacing:1px}
+canvas{position:fixed;inset:0;width:100%;height:100%}
+
+#orb-wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:5;pointer-events:none}
+#orb{width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(120,160,255,.15),rgba(80,120,200,.03),transparent);transition:width .4s ease,height .4s ease,box-shadow .4s ease;box-shadow:0 0 60px rgba(100,140,220,.08),0 0 120px rgba(80,120,200,.04)}
+#orb.inhale{box-shadow:0 0 80px rgba(100,160,240,.2),0 0 160px rgba(80,140,220,.08)}
+
+#instruction{position:fixed;bottom:clamp(60px,12vh,100px);left:50%;transform:translateX(-50%);z-index:10;font-size:clamp(14px,3vw,18px);font-weight:300;color:#334;letter-spacing:.5px;transition:opacity .8s ease;text-align:center;pointer-events:none}
+
+#cycle-count{position:fixed;top:clamp(30px,6vh,60px);left:50%;transform:translateX(-50%);z-index:10;font-size:12px;font-weight:400;color:#223;letter-spacing:2px;text-transform:uppercase;pointer-events:none;opacity:0;transition:opacity .6s ease}
+
+#result{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;z-index:30;background:#0a0a0f;padding:24px;opacity:0;transition:opacity 1.2s ease}
+#result.show{display:flex}
+.result-title{font-size:clamp(22px,5vw,36px);font-weight:200;letter-spacing:-.5px;margin-bottom:8px;color:#a0b8d0}
+.result-bpm{font-size:clamp(56px,14vw,100px);font-weight:700;letter-spacing:-3px;line-height:1;margin-bottom:2px}
+.result-bpm-label{font-size:12px;color:#445;font-weight:400;letter-spacing:3px;text-transform:uppercase;margin-bottom:28px}
+.result-calm{font-size:clamp(14px,3vw,18px);font-weight:300;color:#667;margin-bottom:6px;line-height:1.6}
+.result-calm span{font-weight:700}
+.result-desc{font-size:clamp(12px,2.2vw,14px);color:#445;font-weight:300;max-width:360px;text-align:center;line-height:1.8;margin-bottom:36px}
+.result-divider{width:40px;height:1px;background:rgba(255,255,255,.06);margin-bottom:28px}
+.result-metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:36px;width:100%;max-width:300px}
+.metric{padding:14px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:10px;text-align:center}
+.metric-val{font-size:20px;font-weight:700;margin-bottom:2px;color:#8899aa}
+.metric-lbl{font-size:9px;color:#334;text-transform:uppercase;letter-spacing:1.5px}
+#again-btn{background:transparent;color:#556;border:1px solid rgba(255,255,255,.08);font-size:13px}
+#again-btn:hover{border-color:rgba(255,255,255,.15);color:#778}
+
+@media(max-width:480px){
+  #orb{width:140px;height:140px}
+  .metric{padding:10px}
+  .metric-val{font-size:17px}
+}
 </style>
 </head>
 <body>
-<div id="app">
-  <div id="intro">
-    <h1>The Fade</h1>
-    <p>Touch the screen and hold. Do not let go. We will measure how long you can stay.</p>
-    <button class="btn" id="start-btn">Begin</button>
-  </div>
-  <div id="hold">
-    <div id="hold-bg"></div>
-    <div id="hold-text">
-      <div class="phase-text" id="pt"></div>
-      <div class="phase-sub" id="ps"></div>
-      <svg class="progress-ring" viewBox="0 0 48 48"><circle class="track" cx="24" cy="24" r="20"></circle><circle id="pr" cx="24" cy="24" r="20" stroke-dasharray="125.7" stroke-dashoffset="0"></circle></svg>
-    </div>
-  </div>
-  <div id="result">
-    <div class="result-time" id="rt"></div>
-    <div class="result-unit">seconds</div>
-    <div class="result-label" id="rl"></div>
-    <div class="result-desc" id="rd"></div>
-    <div class="result-stats" id="rs"></div>
-    <button class="btn btn-small" id="again-btn">Try Again</button>
-  </div>
+
+<div id="intro">
+  <h1>Screen Breath</h1>
+  <p>Place your finger on the screen and breathe with it. The screen will learn your rhythm.</p>
+  <button class="btn" id="start-btn">Begin</button>
+</div>
+
+<div id="scene">
+  <canvas id="canvas"></canvas>
+  <div id="orb-wrap"><div id="orb"></div></div>
+  <div id="instruction">Touch and hold to inhale. Release to exhale.</div>
+  <div id="cycle-count">0 breaths</div>
+</div>
+
+<div id="result">
+  <div class="result-title">Your breathing rhythm</div>
+  <div class="result-bpm" id="r-bpm"></div>
+  <div class="result-bpm-label">breaths per minute</div>
+  <div class="result-calm" id="r-calm"></div>
+  <div class="result-desc" id="r-desc"></div>
+  <div class="result-divider"></div>
+  <div class="result-metrics" id="r-metrics"></div>
+  <button class="btn" id="again-btn">Again</button>
 </div>
 
 <script>
-const phases=[
-  {t:0,e:3,text:'Stay.',sub:'',bg:'#0a0a0f'},
-  {t:3,e:6,text:'You are still here.',sub:'most people let go by now',bg:'#0c0c14'},
-  {t:6,e:10,text:'Why?',sub:'',bg:'#0e0e1a'},
-  {t:10,e:15,text:'This is not a test.',sub:'there is no prize',bg:'#0a0f0a'},
-  {t:15,e:22,text:'What are you waiting for?',sub:'',bg:'#0f0a0a'},
-  {t:22,e:30,text:'.',sub:'you are in the top 3%',bg:'#0a0a12'},
-  {t:30,e:40,text:'You are still holding.',sub:'we noticed',bg:'#100a10'},
-  {t:40,e:55,text:'Okay.',sub:'we see you',bg:'#0a0a0f'},
-  {t:55,e:75,text:'This is devotion.',sub:'or stubbornness',bg:'#0a0f12'},
-  {t:75,e:120,text:'...',sub:'you have gone too far',bg:'#0a0a0f'},
-  {t:120,e:9999,text:'There is nothing left.',sub:'we are not sure what to say',bg:'#0a0a0f'}
-];
+const canvas=document.getElementById('canvas');
+const ctx=canvas.getContext('2d');
+const orb=document.getElementById('orb');
+const instructionEl=document.getElementById('instruction');
+const cycleEl=document.getElementById('cycle-count');
 
-const results=[
-  {min:0,max:2,label:'Impatient',desc:'You have places to be. Things to do. A life that cannot wait for a dark screen to entertain you. The modern condition, distilled.',color:'#ff6b6b',
-   stats:[{v:'0.8s',l:'avg hold'},{v:'23%',l:'patience'},{v:'fast',l:'decision'}]},
-  {min:2,max:6,label:'Curious but Cautious',desc:'You wanted to see what happens, but not badly enough to commit. A healthy skepticism. You give things a chance, but you know when to walk away.',color:'#ffa94d',
-   stats:[{v:'3.2s',l:'avg hold'},{v:'47%',l:'patience'},{v:'moderate',l:'trust'}]},
-  {min:6,max:15,label:'Committed Observer',desc:'You stayed long enough for the tension to mean something. You can endure discomfort for the promise of a reveal. This is a rare quality.',color:'#ffd43b',
-   stats:[{v:'9.1s',l:'avg hold'},{v:'68%',l:'patience'},{v:'deep',l:'focus'}]},
-  {min:15,max:30,label:'Devoted',desc:'You held on through the silence, through the nothing. Most people need constant stimulation. You can sit with uncertainty. This makes you dangerous.',color:'#69db7c',
-   stats:[{v:'21s',l:'avg hold'},{v:'84%',l:'patience'},{v:'iron',l:'will'}]},
-  {min:30,max:60,label:'Unbreakable',desc:'One minute of pure nothing, and you did not flinch. You have the patience of a saint or the stubbornness of a stone. Either way, the screen could not make you leave.',color:'#4dabf7',
-   stats:[{v:'42s',l:'avg hold'},{v:'93%',l:'patience'},{v:'steel',l:'nerve'}]},
-  {min:60,max:120,label:'Beyond the Test',desc:'You held for over a minute. At this point, you are not following instructions. You are making a statement. The screen is not testing you. You are testing it.',color:'#da77f2',
-   stats:[{v:'78s',l:'avg hold'},{v:'99%',l:'patience'},{v:'void',l:'category'}]},
-  {min:120,max:99999,label:'The Eternal',desc:'Two minutes. You held a dark screen for two minutes. There is no word for what you are. Statistically, you should not exist. You are an anomaly. A glitch in the attention economy.',color:'#e599f7',
-   stats:[{v:'0.01%',l:'of people'},{v:'infinite',l:'patience'},{v:'???',l:'type'}]}
-];
+let W,H;
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+resize();window.addEventListener('resize',resize);
 
-let holdStart=0,holdTimer=null,currentPhase=-1,animFrame=null;
+// Particle system
+let particles=[];
+function spawnParticle(x,y,r,g,b){
+  particles.push({x,y,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3-.2,life:1,decay:.003+Math.random()*.005,r,g,b,size:1+Math.random()*2});
+}
+function updateParticles(){
+  for(let i=particles.length-1;i>=0;i--){
+    const p=particles[i];
+    p.x+=p.vx;p.y+=p.vy;p.life-=p.decay;
+    if(p.life<=0)particles.splice(i,1);
+  }
+}
+function drawParticles(){
+  for(const p of particles){
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.size*p.life,0,Math.PI*2);
+    ctx.fillStyle=`rgba(${p.r},${p.g},${p.b},${p.life*.4})`;
+    ctx.fill();
+  }
+}
 
+// Breathing state
+let pressing=false,started=false;
+let breathPhase='idle'; // idle, inhale, exhale
+let breathStart=0,cycleInhales=[],cycleExhales=[];
+let totalCycles=0;
+let animFrame=null;
+
+// Orb animation
+let orbScale=1,targetScale=1;
+let orbHue=210;
+
+function animate(){
+  animFrame=requestAnimationFrame(animate);
+  ctx.clearRect(0,0,W,H);
+
+  // Draw subtle background rings
+  const cx=W/2,cy=H/2;
+  const ringCount=4;
+  for(let i=ringCount;i>=1;i--){
+    const baseR=80+i*50;
+    const r=baseR*orbScale;
+    ctx.beginPath();
+    ctx.arc(cx,cy,r,0,Math.PI*2);
+    ctx.strokeStyle=`rgba(100,140,200,${.015*(ringCount-i+1)*orbScale})`;
+    ctx.lineWidth=.5;
+    ctx.stroke();
+  }
+
+  // Spawn particles around orb
+  if(breathPhase==='inhale'&&Math.random()<.4){
+    const angle=Math.random()*Math.PI*2;
+    const dist=100*orbScale+Math.random()*30;
+    spawnParticle(cx+Math.cos(angle)*dist,cy+Math.sin(angle)*dist,120,160,255);
+  }
+
+  updateParticles();
+  drawParticles();
+
+  // Smooth orb scale
+  orbScale+=(targetScale-orbScale)*.06;
+  const sz=Math.round(180*orbScale);
+  orb.style.width=sz+'px';
+  orb.style.height=sz+'px';
+
+  // Update cycle counter
+  if(totalCycles>0){
+    cycleEl.style.opacity='1';
+    cycleEl.textContent=totalCycles+(totalCycles===1?' breath':' breaths');
+  }
+
+  // Hide instruction after first cycle
+  if(totalCycles>=2)instructionEl.style.opacity='0';
+}
+
+function startInhale(){
+  if(!started)return;
+  breathPhase='inhale';
+  breathStart=Date.now();
+  targetScale=1.6;
+  orb.classList.add('inhale');
+  instructionEl.textContent='Hold...';
+  instructionEl.style.color='#667';
+}
+
+function startExhale(){
+  if(!started)return;
+  const elapsed=(Date.now()-breathStart)/1000;
+  if(elapsed<0.4)return; // too short, ignore
+
+  if(breathPhase==='inhale'){
+    cycleInhales.push(elapsed);
+  } else {
+    cycleExhales.push(elapsed);
+  }
+
+  breathPhase='exhale';
+  breathStart=Date.now();
+  targetScale=0.7;
+  orb.classList.remove('inhale');
+  instructionEl.textContent='Release...';
+  instructionEl.style.color='#445';
+}
+
+function recordCycle(){
+  const elapsed=(Date.now()-breathStart)/1000;
+  if(breathPhase==='exhale'){
+    cycleExhales.push(elapsed);
+    totalCycles++;
+  }
+}
+
+// End session after 8 cycles or manual tap after 4
+const MIN_CYCLES=6;
+
+function checkComplete(){
+  if(totalCycles>=MIN_CYCLES&&breathPhase==='exhale'){
+    // Check if they've been exhaling for a while (session naturally ended)
+    const exhaleDur=(Date.now()-breathStart)/1000;
+    if(exhaleDur>3&&cycleExhales.length>=MIN_CYCLES){
+      endSession();
+    }
+  }
+}
+
+function endSession(){
+  if(!started)return;
+  started=false;
+  cancelAnimationFrame(animFrame);
+
+  const inhales=cycleInhales.slice(-8);
+  const exhales=cycleExhales.slice(-8);
+
+  const avgInhale=inhales.reduce((a,b)=>a+b,0)/inhales.length;
+  const avgExhale=exhales.reduce((a,b)=>a+b,0)/exhales.length;
+  const avgCycle=(avgInhale+avgExhale);
+  const bpm=Math.round(60/avgCycle);
+
+  const consistency=Math.max(0,100-Math.sqrt(inhales.reduce((s,v)=>s+(v-avgInhale)**2,0)/inhales.length)*40);
+
+  let calmScore;
+  if(bpm<8)calmScore=Math.min(99,85+Math.random()*10);
+  else if(bpm<12)calmScore=70+Math.random()*15;
+  else if(bpm<16)calmScore=50+Math.random()*15;
+  else calmScore=20+Math.random()*25;
+  calmScore=Math.round(calmScore);
+
+  // Build result
+  const rpm=bpm<10?'Very Slow':bpm<14?'Slow':'Moderate';
+  const cc=calmScore>80?'Exceptionally':calmScore>60?'Notably':calmScore>40?'Moderately':'Slightly';
+
+  document.getElementById('r-bpm').textContent=bpm;
+  document.getElementById('r-bpm').style.color=bpm<10?'#7090c0':bpm<14?'#8899aa':'#998877';
+  document.getElementById('r-calm').innerHTML=`Calm Index: <span>${calmScore}%</span>`;
+
+  let desc;
+  if(bpm<8&&calmScore>80) desc=`At ${bpm} breaths per minute, your rhythm mirrors deep meditative states. This is the breathing rate of practiced meditators and sleeping infants. Your nervous system has shifted into parasympathetic dominance.`;
+  else if(bpm<12) desc=`Your ${bpm} BPM rhythm places you in a calm, focused zone. This breathing rate is associated with relaxed alertness, the sweet spot between stress and sleep where the mind is clearest.`;
+  else if(bpm<16) desc=`At ${bpm} BPM, you are breathing at a natural resting rate. This is the baseline for most people at ease. The screen synced with you effortlessly.`;
+  else desc=`Your ${bpm} BPM rhythm suggests an active state. Some would call it restless energy. The screen tried to keep up. It did its best.`;
+
+  document.getElementById('r-desc').textContent=desc;
+
+  document.getElementById('r-metrics').innerHTML=[
+    {v:avgInhale.toFixed(1)+'s',l:'Avg inhale'},
+    {v:avgExhale.toFixed(1)+'s',l:'Avg exhale'},
+    {v:Math.round(consistency)+'%',l:'Consistency'},
+    {v:totalCycles,l:'Total cycles'},
+    {v:rpm,l:'Pace'},
+    {v:cc+' calm',l:'State'}
+  ].map(m=>`<div class="metric"><div class="metric-val">${m.v}</div><div class="metric-lbl">${m.l}</div></div>`).join('');
+
+  document.getElementById('scene').classList.remove('active');
+  const result=document.getElementById('result');
+  result.classList.add('show');
+  requestAnimationFrame(()=>{result.style.opacity='1'});
+}
+
+// Event listeners
 document.getElementById('start-btn').addEventListener('click',()=>{
-  document.getElementById('intro').style.display='none';
-  const hold=document.getElementById('hold');
-  hold.style.display='block';
-  holdStart=Date.now();
-  currentPhase=-1;
-  updateHold();
+  document.getElementById('intro').classList.add('gone');
+  document.getElementById('scene').classList.add('active');
+  started=true;
+  breathPhase='idle';
+  totalCycles=0;
+  cycleInhales=[];cycleExhales=[];
+  particles=[];
+  orbScale=1;targetScale=1;
+  animate();
 });
 
-function startHold(){
-  if(holdStart)return;
-  document.getElementById('intro').style.display='none';
-  const hold=document.getElementById('hold');
-  hold.style.display='block';
-  holdStart=Date.now();
-  currentPhase=-1;
-  updateHold();
+function handleDown(e){
+  e.preventDefault();
+  if(!started)return;
+  if(breathPhase==='exhale')recordCycle();
+  startInhale();
 }
 
-function endHold(){
-  if(!holdStart)return;
-  const duration=(Date.now()-holdStart)/1000;
-  holdStart=0;
-  cancelAnimationFrame(animFrame);
-  document.getElementById('hold').style.display='none';
-  showResult(duration);
+function handleUp(e){
+  e.preventDefault();
+  if(!started)return;
+  startExhale();
+  setTimeout(checkComplete,3200);
 }
 
-const holdEl=document.getElementById('hold');
-holdEl.addEventListener('mousedown',e=>{e.preventDefault()});
-holdEl.addEventListener('touchstart',e=>{e.preventDefault()},{passive:false});
-
-function updateHold(){
-  const elapsed=(Date.now()-holdStart)/1000;
-
-  // Find current phase
-  let phaseIdx=-1;
-  for(let i=0;i<phases.length;i++){
-    if(elapsed>=phases[i].t&&elapsed<phases[i].e){phaseIdx=i;break}
-  }
-  if(phaseIdx===-1)phaseIdx=phases.length-1;
-
-  if(phaseIdx!==currentPhase){
-    currentPhase=phaseIdx;
-    const p=phases[phaseIdx];
-    const pt=document.getElementById('pt');
-    const ps=document.getElementById('ps');
-    pt.classList.remove('visible');
-    ps.classList.remove('visible');
-    setTimeout(()=>{
-      pt.textContent=p.text;
-      ps.textContent=p.sub;
-      pt.classList.add('visible');
-      ps.classList.add('visible');
-    },200);
-    document.getElementById('hold-bg').style.background=p.bg;
-  }
-
-  // Progress ring
-  const maxDisplay=120;
-  const pct=Math.min(elapsed/maxDisplay,1);
-  document.getElementById('pr').setAttribute('stroke-dashoffset',125.7*(1-pct));
-
-  if(holdStart)animFrame=requestAnimationFrame(updateHold);
-}
-
-// Release detection
-document.addEventListener('mouseup',()=>{if(holdStart)endHold()});
-document.addEventListener('touchend',()=>{if(holdStart)endHold()});
-document.addEventListener('touchcancel',()=>{if(holdStart)endHold()});
-
-function showResult(seconds){
-  const s=Math.round(seconds*10)/10;
-  const result=results.find(r=>s>=r.min&&s<r.max)||results[results.length-1];
-
-  const el=document.getElementById('result');
-  el.style.display='block';
-
-  document.getElementById('rt').textContent=s<10?s.toFixed(1):Math.round(s);
-  document.getElementById('rt').style.color=result.color;
-
-  document.getElementById('rl').textContent=result.label;
-  document.getElementById('rl').style.color=result.color;
-
-  document.getElementById('rd').textContent=result.desc;
-
-  // Stats
-  const statsEl=document.getElementById('rs');
-  statsEl.innerHTML=result.stats.map(st=>`
-    <div class="stat"><div class="stat-val" style="color:${result.color}">${st.v}</div><div class="stat-lbl">${st.l}</div></div>
-  `).join('');
-
-  // Animate in
-  requestAnimationFrame(()=>{
-    el.style.opacity='1';
-    const btn=document.getElementById('again-btn');
-    btn.style.opacity='1';
-  });
-}
+document.addEventListener('mousedown',handleDown);
+document.addEventListener('touchstart',handleDown,{passive:false});
+document.addEventListener('mouseup',handleUp);
+document.addEventListener('touchend',handleUp,{passive:false});
 
 document.getElementById('again-btn').addEventListener('click',()=>{
-  const el=document.getElementById('result');
-  el.style.opacity='0';
-  document.getElementById('again-btn').style.opacity='0';
+  const r=document.getElementById('result');
+  r.style.opacity='0';
   setTimeout(()=>{
-    el.style.display='none';
-    document.getElementById('intro').style.display='block';
-  },400);
+    r.classList.remove('show');
+    document.getElementById('intro').classList.remove('gone');
+    document.getElementById('intro').style.opacity='1';
+    instructionEl.style.opacity='1';
+    instructionEl.textContent='Touch and hold to inhale. Release to exhale.';
+    instructionEl.style.color='#334';
+    cycleEl.style.opacity='0';
+    started=false;totalCycles=0;
+    cycleInhales=[];cycleExhales=[];
+  },500);
 });
 </script>
-</body></html>
+</body>
+</html>
