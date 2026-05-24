@@ -3,320 +3,298 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-<title>Screen Breath</title>
+<title>Chromatic</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden}
 body{background:#0a0a0f;font-family:'Inter',sans-serif;color:#e0e0e0;touch-action:none;user-select:none}
 
-#intro{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;background:#0a0a0f;transition:opacity 1s ease}
+#intro{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;background:#0a0a0f;transition:opacity .8s ease}
 #intro.gone{opacity:0;pointer-events:none}
-#intro h1{font-size:clamp(28px,7vw,48px);font-weight:200;letter-spacing:-1px;margin-bottom:12px;color:#c8d8e8}
-#intro p{font-size:clamp(13px,2.5vw,16px);color:#444;font-weight:300;max-width:340px;text-align:center;line-height:1.7;margin-bottom:36px}
+#intro h1{font-size:clamp(28px,7vw,52px);font-weight:700;letter-spacing:-1.5px;margin-bottom:12px;background:linear-gradient(135deg,#ff7070,#70a0ff,#c070ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+#intro p{font-size:clamp(13px,2.5vw,16px);color:#555;font-weight:300;max-width:360px;text-align:center;line-height:1.7;margin-bottom:36px}
 .btn{font-family:'Inter',sans-serif;font-size:14px;font-weight:500;padding:14px 44px;border:none;border-radius:80px;cursor:pointer;transition:transform .15s,opacity .3s;letter-spacing:.3px}
 .btn:active{transform:scale(.95)}
-#start-btn{background:rgba(200,220,255,.08);color:#8899aa;border:1px solid rgba(200,220,255,.1)}
-#start-btn:hover{background:rgba(200,220,255,.12)}
+#start-btn{background:#fff;color:#0a0a0f}
 
 #scene{position:fixed;inset:0;display:none}
 #scene.active{display:block}
+canvas.layer{position:fixed;inset:0;width:100%;height:100%}
+#false-layer{filter:hue-rotate(180deg);z-index:1;transition:filter 2s ease}
+#true-layer{z-index:2;pointer-events:none;transition:clip-path .04s linear,opacity 1s ease}
+#lens-ring{position:fixed;width:180px;height:180px;border-radius:50%;border:1.5px solid rgba(255,255,255,.1);pointer-events:none;transform:translate(-50%,-50%);z-index:3;box-shadow:0 0 60px rgba(255,255,255,.02),inset 0 0 30px rgba(255,255,255,.015);transition:width .5s ease,height .5s ease,opacity .6s ease}
 
-canvas{position:fixed;inset:0;width:100%;height:100%}
+#hud{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:20px 24px;pointer-events:none}
+.hud-item{font-size:12px;font-weight:400;letter-spacing:1.5px;color:rgba(255,255,255,.7);text-transform:uppercase;background:rgba(0,0,0,.3);padding:6px 14px;border-radius:20px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 
-#orb-wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:5;pointer-events:none}
-#orb{width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(120,160,255,.15),rgba(80,120,200,.03),transparent);transition:width .4s ease,height .4s ease,box-shadow .4s ease;box-shadow:0 0 60px rgba(100,140,220,.08),0 0 120px rgba(80,120,200,.04)}
-#orb.inhale{box-shadow:0 0 80px rgba(100,160,240,.2),0 0 160px rgba(80,140,220,.08)}
-
-#instruction{position:fixed;bottom:clamp(60px,12vh,100px);left:50%;transform:translateX(-50%);z-index:10;font-size:clamp(14px,3vw,18px);font-weight:300;color:#334;letter-spacing:.5px;transition:opacity .8s ease;text-align:center;pointer-events:none}
-
-#cycle-count{position:fixed;top:clamp(30px,6vh,60px);left:50%;transform:translateX(-50%);z-index:10;font-size:12px;font-weight:400;color:#223;letter-spacing:2px;text-transform:uppercase;pointer-events:none;opacity:0;transition:opacity .6s ease}
-
-#result{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;z-index:30;background:#0a0a0f;padding:24px;opacity:0;transition:opacity 1.2s ease}
+#result{position:fixed;inset:0;z-index:20;display:none;flex-direction:column;align-items:center;justify-content:center;background:#0a0a0f;padding:24px}
 #result.show{display:flex}
-.result-title{font-size:clamp(22px,5vw,36px);font-weight:200;letter-spacing:-.5px;margin-bottom:8px;color:#a0b8d0}
-.result-bpm{font-size:clamp(56px,14vw,100px);font-weight:700;letter-spacing:-3px;line-height:1;margin-bottom:2px}
-.result-bpm-label{font-size:12px;color:#445;font-weight:400;letter-spacing:3px;text-transform:uppercase;margin-bottom:28px}
-.result-calm{font-size:clamp(14px,3vw,18px);font-weight:300;color:#667;margin-bottom:6px;line-height:1.6}
-.result-calm span{font-weight:700}
-.result-desc{font-size:clamp(12px,2.2vw,14px);color:#445;font-weight:300;max-width:360px;text-align:center;line-height:1.8;margin-bottom:36px}
-.result-divider{width:40px;height:1px;background:rgba(255,255,255,.06);margin-bottom:28px}
-.result-metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:36px;width:100%;max-width:300px}
-.metric{padding:14px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:10px;text-align:center}
-.metric-val{font-size:20px;font-weight:700;margin-bottom:2px;color:#8899aa}
-.metric-lbl{font-size:9px;color:#334;text-transform:uppercase;letter-spacing:1.5px}
-#again-btn{background:transparent;color:#556;border:1px solid rgba(255,255,255,.08);font-size:13px}
-#again-btn:hover{border-color:rgba(255,255,255,.15);color:#778}
+#result-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:0;transition:opacity 2s ease}
+#result-canvas.visible{opacity:1}
+#result-overlay{position:relative;z-index:1;text-align:center}
+.r-title{font-size:clamp(16px,3.5vw,22px);font-weight:300;color:#556;margin-bottom:8px;letter-spacing:.5px}
+.r-pct{font-size:clamp(72px,18vw,130px);font-weight:800;letter-spacing:-4px;line-height:1;margin-bottom:4px;background:linear-gradient(135deg,#ff7070,#70a0ff,#c070ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.r-label{font-size:12px;color:#445;font-weight:400;letter-spacing:4px;text-transform:uppercase;margin-bottom:36px}
+.r-desc{font-size:clamp(12px,2.2vw,14px);color:#556;font-weight:300;max-width:340px;text-align:center;line-height:1.9;margin-bottom:40px}
+.r-divider{width:36px;height:1px;background:rgba(255,255,255,.06);margin:0 auto 40px}
+#again-btn{background:rgba(255,255,255,.05);color:#667;border:1px solid rgba(255,255,255,.07);font-size:13px}
+#again-btn:hover{border-color:rgba(255,255,255,.14);color:#889}
 
 @media(max-width:480px){
-  #orb{width:140px;height:140px}
-  .metric{padding:10px}
-  .metric-val{font-size:17px}
+  .hud-item{font-size:11px;padding:5px 10px;letter-spacing:1px}
 }
 </style>
 </head>
 <body>
 
 <div id="intro">
-  <h1>Screen Breath</h1>
-  <p>Place your finger on the screen and breathe with it. The screen will learn your rhythm.</p>
-  <button class="btn" id="start-btn">Begin</button>
+  <h1>Chromatic</h1>
+  <p>The colors you see are wrong. Move the lens to find the truth before it closes.</p>
+  <button class="btn" id="start-btn">Look Through</button>
 </div>
 
 <div id="scene">
-  <canvas id="canvas"></canvas>
-  <div id="orb-wrap"><div id="orb"></div></div>
-  <div id="instruction">Touch and hold to inhale. Release to exhale.</div>
-  <div id="cycle-count">0 breaths</div>
+  <canvas id="false-layer" class="layer"></canvas>
+  <canvas id="true-layer" class="layer"></canvas>
+  <div id="lens-ring"></div>
+  <div id="hud">
+    <div class="hud-item" id="timer-display">30s</div>
+    <div class="hud-item" id="reveal-display">0% found</div>
+  </div>
 </div>
 
 <div id="result">
-  <div class="result-title">Your breathing rhythm</div>
-  <div class="result-bpm" id="r-bpm"></div>
-  <div class="result-bpm-label">breaths per minute</div>
-  <div class="result-calm" id="r-calm"></div>
-  <div class="result-desc" id="r-desc"></div>
-  <div class="result-divider"></div>
-  <div class="result-metrics" id="r-metrics"></div>
-  <button class="btn" id="again-btn">Again</button>
+  <canvas id="result-canvas"></canvas>
+  <div id="result-overlay">
+    <div class="r-title">You discovered</div>
+    <div class="r-pct" id="r-pct"></div>
+    <div class="r-label">of the truth</div>
+    <div class="r-divider"></div>
+    <div class="r-desc" id="r-desc"></div>
+    <button class="btn" id="again-btn">Try Again</button>
+  </div>
 </div>
 
 <script>
-const canvas=document.getElementById('canvas');
-const ctx=canvas.getContext('2d');
-const orb=document.getElementById('orb');
-const instructionEl=document.getElementById('instruction');
-const cycleEl=document.getElementById('cycle-count');
+const DURATION=30;
+const GRID=24;
+const LENS_START=95;
+const LENS_END=30;
 
+let fC,tC,rC; // canvases
+let artBuf; // offscreen art
 let W,H;
-function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
-resize();window.addEventListener('resize',resize);
+let mx=-999,my=-999;
+let lensR=LENS_START;
+let running=false,started=false;
+let startTime=0,timerID=null;
+let grid=[],pct=0;
 
-// Particle system
-let particles=[];
-function spawnParticle(x,y,r,g,b){
-  particles.push({x,y,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3-.2,life:1,decay:.003+Math.random()*.005,r,g,b,size:1+Math.random()*2});
+function resize(){
+  W=window.innerWidth;H=window.innerHeight;
+  [fC,tC,rC].forEach(c=>{c.width=W;c.height=H});
 }
-function updateParticles(){
-  for(let i=particles.length-1;i>=0;i--){
-    const p=particles[i];
-    p.x+=p.vx;p.y+=p.vy;p.life-=p.decay;
-    if(p.life<=0)particles.splice(i,1);
+
+function init(){
+  fC=document.getElementById('false-layer');
+  tC=document.getElementById('true-layer');
+  rC=document.getElementById('result-canvas');
+  resize();
+}
+
+function genArt(ctx,w,h){
+  ctx.fillStyle='#0a0a0f';
+  ctx.fillRect(0,0,w,h);
+
+  const blobs=[
+    {x:.22,y:.32,r:.42,c:'rgba(255,70,90,0.22)'},
+    {x:.72,y:.22,r:.36,c:'rgba(50,150,255,0.18)'},
+    {x:.5,y:.72,r:.46,c:'rgba(150,50,255,0.16)'},
+    {x:.12,y:.78,r:.26,c:'rgba(255,175,35,0.14)'},
+    {x:.88,y:.52,r:.32,c:'rgba(35,255,170,0.14)'},
+    {x:.52,y:.38,r:.22,c:'rgba(255,90,190,0.18)'},
+    {x:.38,y:.58,r:.28,c:'rgba(90,190,255,0.10)'},
+    {x:.65,y:.82,r:.2,c:'rgba(255,130,70,0.12)'},
+  ];
+  const s=Math.min(w,h);
+  for(const b of blobs){
+    const bx=b.x*w,by=b.y*h,br=b.r*s;
+    const g=ctx.createRadialGradient(bx,by,0,bx,by,br);
+    g.addColorStop(0,b.c);
+    g.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=g;
+    ctx.fillRect(0,0,w,h);
   }
-}
-function drawParticles(){
-  for(const p of particles){
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.size*p.life,0,Math.PI*2);
-    ctx.fillStyle=`rgba(${p.r},${p.g},${p.b},${p.life*.4})`;
+
+  // Secondary layer for depth
+  const blobs2=[
+    {x:.4,y:.45,r:.5,c:'rgba(255,120,200,0.06)'},
+    {x:.6,y:.55,r:.45,c:'rgba(100,180,255,0.05)'},
+  ];
+  for(const b of blobs2){
+    const bx=b.x*w,by=b.y*h,br=b.r*s;
+    const g=ctx.createRadialGradient(bx,by,0,bx,by,br);
+    g.addColorStop(0,b.c);
+    g.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=g;
+    ctx.fillRect(0,0,w,h);
+  }
+
+  // Stars
+  for(let i=0;i<350;i++){
+    const sx=Math.random()*w,sy=Math.random()*h;
+    const sr=Math.random()*1.6+0.3;
+    ctx.beginPath();ctx.arc(sx,sy,sr,0,Math.PI*2);
+    ctx.fillStyle=`rgba(255,255,255,${Math.random()*.55+.08})`;
     ctx.fill();
   }
-}
 
-// Breathing state
-let pressing=false,started=false;
-let breathPhase='idle'; // idle, inhale, exhale
-let breathStart=0,cycleInhales=[],cycleExhales=[];
-let totalCycles=0;
-let animFrame=null;
+  // Bright accent stars
+  for(let i=0;i<12;i++){
+    const sx=Math.random()*w,sy=Math.random()*h;
+    const sg=ctx.createRadialGradient(sx,sy,0,sx,sy,3+Math.random()*4);
+    sg.addColorStop(0,'rgba(255,255,255,0.6)');
+    sg.addColorStop(1,'rgba(255,255,255,0)');
+    ctx.fillStyle=sg;ctx.fillRect(sx-6,sy-6,12,12);
+  }
 
-// Orb animation
-let orbScale=1,targetScale=1;
-let orbHue=210;
-
-function animate(){
-  animFrame=requestAnimationFrame(animate);
-  ctx.clearRect(0,0,W,H);
-
-  // Draw subtle background rings
-  const cx=W/2,cy=H/2;
-  const ringCount=4;
-  for(let i=ringCount;i>=1;i--){
-    const baseR=80+i*50;
-    const r=baseR*orbScale;
-    ctx.beginPath();
-    ctx.arc(cx,cy,r,0,Math.PI*2);
-    ctx.strokeStyle=`rgba(100,140,200,${.015*(ringCount-i+1)*orbScale})`;
-    ctx.lineWidth=.5;
+  // Geometric rings
+  ctx.lineWidth=.5;
+  for(let i=0;i<6;i++){
+    const cx=w*(.15+Math.random()*.7),cy=h*(.15+Math.random()*.7);
+    const cr=40+Math.random()*140;
+    ctx.beginPath();ctx.arc(cx,cy,cr,0,Math.PI*2);
+    ctx.strokeStyle=`rgba(255,255,255,${.015+Math.random()*.03})`;
     ctx.stroke();
   }
-
-  // Spawn particles around orb
-  if(breathPhase==='inhale'&&Math.random()<.4){
-    const angle=Math.random()*Math.PI*2;
-    const dist=100*orbScale+Math.random()*30;
-    spawnParticle(cx+Math.cos(angle)*dist,cy+Math.sin(angle)*dist,120,160,255);
-  }
-
-  updateParticles();
-  drawParticles();
-
-  // Smooth orb scale
-  orbScale+=(targetScale-orbScale)*.06;
-  const sz=Math.round(180*orbScale);
-  orb.style.width=sz+'px';
-  orb.style.height=sz+'px';
-
-  // Update cycle counter
-  if(totalCycles>0){
-    cycleEl.style.opacity='1';
-    cycleEl.textContent=totalCycles+(totalCycles===1?' breath':' breaths');
-  }
-
-  // Hide instruction after first cycle
-  if(totalCycles>=2)instructionEl.style.opacity='0';
 }
 
-function startInhale(){
-  if(!started)return;
-  breathPhase='inhale';
-  breathStart=Date.now();
-  targetScale=1.6;
-  orb.classList.add('inhale');
-  instructionEl.textContent='Hold...';
-  instructionEl.style.color='#667';
+function copyArt(){
+  fC.getContext('2d').drawImage(artBuf,0,0);
+  tC.getContext('2d').drawImage(artBuf,0,0);
+  rC.getContext('2d').drawImage(artBuf,0,0);
 }
 
-function startExhale(){
-  if(!started)return;
-  const elapsed=(Date.now()-breathStart)/1000;
-  if(elapsed<0.4)return; // too short, ignore
+function updateLens(x,y){
+  mx=x;my=y;
+  const ring=document.getElementById('lens-ring');
+  ring.style.left=x+'px';ring.style.top=y+'px';
+  ring.style.width=lensR*2+'px';ring.style.height=lensR*2+'px';
+  tC.style.clipPath=`circle(${lensR}px at ${x}px ${y}px)`;
 
-  if(breathPhase==='inhale'){
-    cycleInhales.push(elapsed);
-  } else {
-    cycleExhales.push(elapsed);
-  }
-
-  breathPhase='exhale';
-  breathStart=Date.now();
-  targetScale=0.7;
-  orb.classList.remove('inhale');
-  instructionEl.textContent='Release...';
-  instructionEl.style.color='#445';
-}
-
-function recordCycle(){
-  const elapsed=(Date.now()-breathStart)/1000;
-  if(breathPhase==='exhale'){
-    cycleExhales.push(elapsed);
-    totalCycles++;
-  }
-}
-
-// End session after 8 cycles or manual tap after 4
-const MIN_CYCLES=6;
-
-function checkComplete(){
-  if(totalCycles>=MIN_CYCLES&&breathPhase==='exhale'){
-    // Check if they've been exhaling for a while (session naturally ended)
-    const exhaleDur=(Date.now()-breathStart)/1000;
-    if(exhaleDur>3&&cycleExhales.length>=MIN_CYCLES){
-      endSession();
+  const cw=W/GRID,ch=H/GRID;
+  const gx=Math.floor(x/cw),gy=Math.floor(y/ch);
+  const rCells=Math.ceil(lensR/Math.max(cw,ch));
+  for(let dy=-rCells;dy<=rCells;dy++){
+    for(let dx=-rCells;dx<=rCells;dx++){
+      const cx=gx+dx,cy=gy+dy;
+      if(cx>=0&&cx<GRID&&cy>=0&&cy<GRID){
+        const d=Math.sqrt(dx*dx+dy*dy)*Math.max(cw,ch);
+        if(d<=lensR)grid[cy][cx]=true;
+      }
     }
   }
+  let tot=0;
+  for(let y=0;y<GRID;y++)for(let x=0;x<GRID;x++)if(grid[y][x])tot++;
+  pct=Math.round(tot/(GRID*GRID)*100);
+  document.getElementById('reveal-display').textContent=pct+'% found';
 }
 
-function endSession(){
-  if(!started)return;
-  started=false;
-  cancelAnimationFrame(animFrame);
-
-  const inhales=cycleInhales.slice(-8);
-  const exhales=cycleExhales.slice(-8);
-
-  const avgInhale=inhales.reduce((a,b)=>a+b,0)/inhales.length;
-  const avgExhale=exhales.reduce((a,b)=>a+b,0)/exhales.length;
-  const avgCycle=(avgInhale+avgExhale);
-  const bpm=Math.round(60/avgCycle);
-
-  const consistency=Math.max(0,100-Math.sqrt(inhales.reduce((s,v)=>s+(v-avgInhale)**2,0)/inhales.length)*40);
-
-  let calmScore;
-  if(bpm<8)calmScore=Math.min(99,85+Math.random()*10);
-  else if(bpm<12)calmScore=70+Math.random()*15;
-  else if(bpm<16)calmScore=50+Math.random()*15;
-  else calmScore=20+Math.random()*25;
-  calmScore=Math.round(calmScore);
-
-  // Build result
-  const rpm=bpm<10?'Very Slow':bpm<14?'Slow':'Moderate';
-  const cc=calmScore>80?'Exceptionally':calmScore>60?'Notably':calmScore>40?'Moderately':'Slightly';
-
-  document.getElementById('r-bpm').textContent=bpm;
-  document.getElementById('r-bpm').style.color=bpm<10?'#7090c0':bpm<14?'#8899aa':'#998877';
-  document.getElementById('r-calm').innerHTML=`Calm Index: <span>${calmScore}%</span>`;
-
-  let desc;
-  if(bpm<8&&calmScore>80) desc=`At ${bpm} breaths per minute, your rhythm mirrors deep meditative states. This is the breathing rate of practiced meditators and sleeping infants. Your nervous system has shifted into parasympathetic dominance.`;
-  else if(bpm<12) desc=`Your ${bpm} BPM rhythm places you in a calm, focused zone. This breathing rate is associated with relaxed alertness, the sweet spot between stress and sleep where the mind is clearest.`;
-  else if(bpm<16) desc=`At ${bpm} BPM, you are breathing at a natural resting rate. This is the baseline for most people at ease. The screen synced with you effortlessly.`;
-  else desc=`Your ${bpm} BPM rhythm suggests an active state. Some would call it restless energy. The screen tried to keep up. It did its best.`;
-
-  document.getElementById('r-desc').textContent=desc;
-
-  document.getElementById('r-metrics').innerHTML=[
-    {v:avgInhale.toFixed(1)+'s',l:'Avg inhale'},
-    {v:avgExhale.toFixed(1)+'s',l:'Avg exhale'},
-    {v:Math.round(consistency)+'%',l:'Consistency'},
-    {v:totalCycles,l:'Total cycles'},
-    {v:rpm,l:'Pace'},
-    {v:cc+' calm',l:'State'}
-  ].map(m=>`<div class="metric"><div class="metric-val">${m.v}</div><div class="metric-lbl">${m.l}</div></div>`).join('');
-
-  document.getElementById('scene').classList.remove('active');
-  const result=document.getElementById('result');
-  result.classList.add('show');
-  requestAnimationFrame(()=>{result.style.opacity='1'});
-}
-
-// Event listeners
-document.getElementById('start-btn').addEventListener('click',()=>{
+function startGame(){
   document.getElementById('intro').classList.add('gone');
-  document.getElementById('scene').classList.add('active');
-  started=true;
-  breathPhase='idle';
-  totalCycles=0;
-  cycleInhales=[];cycleExhales=[];
-  particles=[];
-  orbScale=1;targetScale=1;
-  animate();
-});
+  const scene=document.getElementById('scene');
+  scene.classList.add('active');
+  window.addEventListener('resize',onResize);
 
-function handleDown(e){
-  e.preventDefault();
-  if(!started)return;
-  if(breathPhase==='exhale')recordCycle();
-  startInhale();
+  artBuf=document.createElement('canvas');
+  artBuf.width=W;artBuf.height=H;
+  genArt(artBuf.getContext('2d'),W,H);
+
+  grid=[];for(let y=0;y<GRID;y++){grid[y]=[];for(let x=0;x<GRID;x++)grid[y][x]=false;}
+  pct=0;lensR=LENS_START;
+  copyArt();
+
+  fC.style.filter='hue-rotate(180deg)';fC.style.transition='none';
+  tC.style.opacity='1';tC.style.transition='clip-path .04s linear';
+  document.getElementById('lens-ring').style.opacity='1';
+
+  // Start lens at center
+  updateLens(W/2,H/2);
+
+  running=true;started=true;
+  startTime=Date.now();
+  timerID=setInterval(tick,80);
 }
 
-function handleUp(e){
-  e.preventDefault();
-  if(!started)return;
-  startExhale();
-  setTimeout(checkComplete,3200);
+function onResize(){
+  resize();
+  if(artBuf){
+    artBuf.width=W;artBuf.height=H;
+    genArt(artBuf.getContext('2d'),W,H);
+    copyArt();
+  }
 }
 
-document.addEventListener('mousedown',handleDown);
-document.addEventListener('touchstart',handleDown,{passive:false});
-document.addEventListener('mouseup',handleUp);
-document.addEventListener('touchend',handleUp,{passive:false});
+function tick(){
+  if(!running)return;
+  const elapsed=(Date.now()-startTime)/1000;
+  const rem=Math.max(0,DURATION-elapsed);
+  document.getElementById('timer-display').textContent=Math.ceil(rem)+'s';
+  lensR=LENS_START-(LENS_START-LENS_END)*(elapsed/DURATION);
+  if(rem<=0){clearInterval(timerID);endGame();}
+}
+
+function endGame(){
+  running=false;
+
+  // Dramatic reveal: remove hue-rotate
+  fC.style.transition='filter 2s ease';
+  fC.style.filter='hue-rotate(0deg)';
+  tC.style.transition='opacity 1.5s ease';
+  tC.style.opacity='0';
+  const ring=document.getElementById('lens-ring');
+  ring.style.opacity='0';
+  document.getElementById('hud').style.transition='opacity .5s ease';
+  document.getElementById('hud').style.opacity='0';
+
+  setTimeout(()=>{
+    document.getElementById('scene').classList.remove('active');
+    const r=document.getElementById('result');
+    r.classList.add('show');
+    rC.classList.add('visible');
+
+    document.getElementById('r-pct').textContent=pct+'%';
+
+    let desc;
+    if(pct>85) desc='You searched relentlessly. Almost nothing escaped your lens. The truth was always there, hidden beneath a lie of complementary colors. You simply refused to look away.';
+    else if(pct>65) desc='A thorough explorer. You moved with purpose, tracing the canvas with dedication. The hues that fool most people could not hold you for long.';
+    else if(pct>45) desc='You found the truth in fragments, like sunlight through half-closed blinds. Some corners of the canvas remain untouched, but what you saw was real. That is enough for most.';
+    else if(pct>25) desc='Glimpses of reality, scattered across the screen. You saw enough to know something was wrong with the colors. Whether that knowledge is a gift or a burden is unclear.';
+    else desc='Barely a scratch on the surface of the illusion. The false colors remain mostly intact, undisturbed. Perhaps you were content with the lie. Perhaps the lens simply closed too fast.';
+    document.getElementById('r-desc').textContent=desc;
+  },2200);
+}
+
+// Input handlers
+document.addEventListener('mousemove',e=>{if(running)updateLens(e.clientX,e.clientY)});
+document.addEventListener('touchstart',e=>{if(!running)return;e.preventDefault();updateLens(e.touches[0].clientX,e.touches[0].clientY)},{passive:false});
+document.addEventListener('touchmove',e=>{if(!running)return;e.preventDefault();updateLens(e.touches[0].clientX,e.touches[0].clientY)},{passive:false});
+
+document.getElementById('start-btn').addEventListener('click',startGame);
 
 document.getElementById('again-btn').addEventListener('click',()=>{
   const r=document.getElementById('result');
-  r.style.opacity='0';
-  setTimeout(()=>{
-    r.classList.remove('show');
-    document.getElementById('intro').classList.remove('gone');
-    document.getElementById('intro').style.opacity='1';
-    instructionEl.style.opacity='1';
-    instructionEl.textContent='Touch and hold to inhale. Release to exhale.';
-    instructionEl.style.color='#334';
-    cycleEl.style.opacity='0';
-    started=false;totalCycles=0;
-    cycleInhales=[];cycleExhales=[];
-  },500);
+  r.classList.remove('show');
+  rC.classList.remove('visible');
+  document.getElementById('hud').style.opacity='1';
+  document.getElementById('intro').classList.remove('gone');
+  document.getElementById('intro').style.opacity='1';
+  started=false;running=false;
+  window.removeEventListener('resize',onResize);
 });
+
+init();
 </script>
 </body>
 </html>

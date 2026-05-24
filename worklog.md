@@ -339,3 +339,25 @@ Stage Summary:
 - 14th viral project deployed
 - Live: https://superduperzed.github.io/screen-breath/
 - Result card shows BPM, calm index, consistency, pace, and total cycles
+
+---
+Task ID: viral-engine-20260524
+Agent: viral-engine
+Task: Ship one new viral web experiment (Category 6: Visual illusions)
+
+Work Log:
+- Checked worklog — 14 projects shipped, all 10 categories used
+- Selected Category 6 (Visual illusions) — first time this category
+- Interaction model: lens-based color reveal with timer pressure, fundamentally different from all previous projects
+- Built "Chromatic": nebula art rendered with hue-rotate(180deg) filter, user peers through a circular lens (CSS clip-path) to see true colors
+- Lens shrinks from 95px to 30px radius over 30 seconds
+- Tracks reveal coverage via 24x24 grid, calculates percentage of canvas discovered
+- End reveal: hue-rotate transitions smoothly back to 0, dramatic truth-reveal moment
+- Result screen shows discovery percentage with descriptive verdict
+- Fixed typo (b.y*y → b.y*h) before deploy
+
+Stage Summary:
+- Project: "Chromatic" (repo slug: chromatic)
+- 15th viral project deployed
+- Live: https://superduperzed.github.io/chromatic/
+- Category 6 debut — visual illusion / color perception
