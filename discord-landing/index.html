@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary SEO -->
+    <title>Join Our Community — SuperDuperZed Discord Server</title>
+    <meta name="description" content="Join the SuperDuperZed Discord community. Connect with developers, creative coders, and tech enthusiasts. Share ideas, collaborate on projects, and hang out.">
+    <meta name="keywords" content="Discord community, developer server, creative coding, tech community, programming chat, SuperDuperZed, web development, open source">
+    <meta name="author" content="SuperDuperZed">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://superduperzed.github.io/join/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://superduperzed.github.io/join/">
+    <meta property="og:title" content="Join Our Community — SuperDuperZed Discord Server">
+    <meta property="og:description" content="Connect with developers, creative coders, and tech enthusiasts. Share ideas, collaborate on projects, and hang out.">
+    <meta property="og:site_name" content="SuperDuperZed">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://superduperzed.github.io/join/og-image.png">
+    <meta property="og:image:width" content="1344">
+    <meta property="og:image:height" content="768">
+    <meta property="og:image:alt" content="SuperDuperZed Discord Community">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Join Our Community — SuperDuperZed Discord Server">
+    <meta name="twitter:description" content="Connect with developers, creative coders, and tech enthusiasts. Share ideas, collaborate on projects, and hang out.">
+    <meta name="twitter:image" content="https://superduperzed.github.io/join/og-image.png">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "SuperDuperZed Community",
+        "url": "https://superduperzed.github.io/join/",
+        "description": "Join the SuperDuperZed Discord community for developers, creative coders, and tech enthusiasts.",
+        "author": {
+            "@type": "Organization",
+            "name": "SuperDuperZed",
+            "url": "https://github.com/SuperDuperZed"
+        },
+        "potentialAction": {
+            "@type": "JoinAction",
+            "name": "Join Discord Server",
+            "target": "https://discord.gg/ztjmA7VWY"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "SuperDuperZed",
+        "url": "https://github.com/SuperDuperZed",
+        "sameAs": [
+            "https://github.com/SuperDuperZed",
+            "https://discord.gg/ztjmA7VWY"
+        ]
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x26A1;</text></svg>">
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-card-hover: rgba(255, 255, 255, 0.06);
+            --text: #e0e0e0;
+            --text-dim: #888;
+            --accent: #5865F2;
+            --accent-glow: rgba(88, 101, 242, 0.3);
+            --border: rgba(255, 255, 255, 0.06);
+            --radius: 16px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Ambient background */
+        .bg-glow {
+            position: fixed;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(1); }
+            50% { opacity: 0.5; transform: translateX(-50%) scale(1.1); }
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 80px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 56px;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .hero-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #5865F2, #7289DA);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 8px 32px var(--accent-glow);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        h1 {
+            font-size: clamp(28px, 6vw, 48px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            color: #fff;
+        }
+
+        .hero p {
+            font-size: clamp(15px, 2.5vw, 18px);
+            color: var(--text-dim);
+            max-width: 500px;
+        }
+
+        /* CTA Button */
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background: var(--accent);
+            color: #fff;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 600;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 24px var(--accent-glow);
+        }
+
+        .cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 40px var(--accent-glow);
+            background: #4752C4;
+        }
+
+        .cta:active {
+            transform: translateY(0);
+        }
+
+        .cta svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .feature-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .feature-card p {
+            font-size: 13px;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        /* Stats bar */
+        .stats {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-num {
+            font-size: 28px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 4px;
+        }
+
+        /* FAQ section for SEO content depth */
+        .faq {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .faq h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .faq-q {
+            padding: 16px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: background 0.2s;
+        }
+
+        .faq-q:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .faq-q::after {
+            content: '+';
+            font-size: 20px;
+            color: var(--text-dim);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.open .faq-q::after {
+            content: '\2212';
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+
+        .faq-item.open .faq-a {
+            max-height: 200px;
+            padding: 0 20px 16px;
+        }
+
+        .faq-a p {
+            font-size: 13px;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            font-size: 12px;
+            color: var(--text-dim);
+            position: relative;
+            z-index: 1;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            main { padding: 48px 16px; gap: 40px; }
+            .features { grid-template-columns: 1fr; }
+            .stats { gap: 24px; }
+            .cta { padding: 14px 28px; font-size: 15px; }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        .cta:focus-visible, .faq-q:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-glow" aria-hidden="true"></div>
+
+    <main>
+        <section class="hero">
+            <div class="hero-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="42" height="42" fill="white"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            </div>
+            <h1>Join the Community</h1>
+            <p>A space for developers, creative coders, and tech enthusiasts to connect, share ideas, and build cool things together.</p>
+            <a href="https://discord.gg/ztjmA7VWY" class="cta" aria-label="Join the Discord server">
+                <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+                Join on Discord
+            </a>
+        </section>
+
+        <section class="stats" aria-label="Community statistics">
+            <div class="stat">
+                <div class="stat-num">Open</div>
+                <div class="stat-label">Community</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">Dev</div>
+                <div class="stat-label">Focus</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">24/7</div>
+                <div class="stat-label">Active</div>
+            </div>
+        </section>
+
+        <section class="features" aria-label="What you will find">
+            <article class="feature-card">
+                <span class="feature-icon" aria-hidden="true">&#128640;</span>
+                <h3>Projects &amp; Builds</h3>
+                <p>Share what you're working on, get feedback, and find collaborators for your next idea.</p>
+            </article>
+            <article class="feature-card">
+                <span class="feature-icon" aria-hidden="true">&#128172;</span>
+                <h3>Real-Time Chat</h3>
+                <p>Hang out in voice channels or text chat. Casual conversation, tech deep-dives, or both.</p>
+            </article>
+            <article class="feature-card">
+                <span class="feature-icon" aria-hidden="true">&#127912;</span>
+                <h3>Creative Coding</h3>
+                <p>Generative art, interactive experiments, visual effects. If it runs in a browser, we want to see it.</p>
+            </article>
+            <article class="feature-card">
+                <span class="feature-icon" aria-hidden="true">&#128736;</span>
+                <h3>Open Source</h3>
+                <p>Discuss tooling, contribute to projects, and stay up to date with the ecosystem.</p>
+            </article>
+        </section>
+
+        <section class="faq" aria-label="Frequently asked questions">
+            <h2>FAQ</h2>
+            <div class="faq-item">
+                <div class="faq-q" tabindex="0" role="button" aria-expanded="false">Who is this server for?</div>
+                <div class="faq-a"><p>Anyone interested in software development, creative coding, or technology in general. Whether you're a seasoned engineer or just getting started, you're welcome.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q" tabindex="0" role="button" aria-expanded="false">Is the server free to join?</div>
+                <div class="faq-a"><p>Yes, completely free. Just click the join button above and you're in. No applications or approvals needed.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q" tabindex="0" role="button" aria-expanded="false">What kind of projects get shared?</div>
+                <div class="faq-a"><p>Web apps, creative experiments, open-source tools, visual effects, generative art, and anything else that runs on the web. If you built something cool, bring it.</p></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Built by <a href="https://github.com/SuperDuperZed">SuperDuperZed</a> &middot; Powered by <a href="https://discord.com">Discord</a></p>
+    </footer>
+
+    <script>
+        // FAQ accordion
+        document.querySelectorAll('.faq-q').forEach(function(q) {
+            var toggle = function() {
+                var item = q.parentElement;
+                var isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+                document.querySelectorAll('.faq-q').forEach(function(i) { i.setAttribute('aria-expanded', 'false'); });
+                if (!isOpen) {
+                    item.classList.add('open');
+                    q.setAttribute('aria-expanded', 'true');
+                }
+            };
+            q.addEventListener('click', toggle);
+            q.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+        });
+    </script>
+</body>
+</html>
