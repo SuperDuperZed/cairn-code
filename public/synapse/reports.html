@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Synapse CRM — Reports &amp; Analytics</title>
+<style>
+:root{--color-primary:#6366f1;--color-primary-hover:#4f46e5;--color-primary-light:#e0e7ff;--color-primary-50:#eef2ff;--color-primary-100:#e0e7ff;--color-primary-600:#4f46e5;--color-primary-700:#4338ca;--color-success:#10b981;--color-success-light:#d1fae5;--color-warning:#f59e0b;--color-warning-light:#fef3c7;--color-danger:#ef4444;--color-danger-hover:#dc2626;--color-danger-light:#fee2e2;--color-info:#3b82f6;--color-info-light:#dbeafe;--color-gray-50:#f9fafb;--color-gray-100:#f3f4f6;--color-gray-200:#e5e7eb;--color-gray-300:#d1d5db;--color-gray-400:#9ca3af;--color-gray-500:#6b7280;--color-gray-600:#4b5563;--color-gray-700:#374151;--color-gray-800:#1f2937;--color-gray-900:#111827;--color-gray-950:#030712;--color-bg:#f9fafb;--color-bg-white:#fff;--color-text:#111827;--color-text-secondary:#6b7280;--color-text-muted:#9ca3af;--color-border:#e5e7eb;--color-border-focus:#6366f1;--sidebar-bg:#111827;--sidebar-text:#e5e7eb;--sidebar-text-muted:#9ca3af;--sidebar-hover:#1f2937;--sidebar-active:#6366f1;--sidebar-width:240px;--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;--space-8:32px;--space-10:40px;--space-12:48px;--font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;--font-mono:"SF Mono",Monaco,"Cascadia Mono","Courier New",monospace;--text-xs:.75rem;--text-sm:.8125rem;--text-base:.875rem;--text-lg:1rem;--text-xl:1.125rem;--text-2xl:1.5rem;--text-3xl:1.875rem;--radius-sm:4px;--radius-md:6px;--radius-lg:8px;--radius-xl:12px;--radius-full:9999px;--shadow-sm:0 1px 2px 0 #0000000d;--shadow-md:0 4px 6px -1px #0000001a,0 2px 4px -2px #0000001a;--shadow-lg:0 10px 15px -3px #0000001a,0 4px 6px -4px #0000001a;--shadow-xl:0 20px 25px -5px #0000001a,0 8px 10px -6px #0000001a;--transition-fast:.15s ease;--transition-normal:.2s ease;--transition-slow:.3s ease;--z-sidebar:40;--z-overlay:50;--z-slide-over:60;--z-modal:70;--z-toast:80}*,:before,:after{box-sizing:border-box;margin:0;padding:0}html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:16px}body{font-family:var(--font-sans);font-size:var(--text-base);color:var(--color-text);background-color:var(--color-bg);line-height:1.5}a{color:var(--color-primary);text-decoration:none}button{cursor:pointer;font-family:inherit;font-size:inherit}input,select,textarea{font-family:inherit;font-size:inherit}table{border-collapse:collapse;width:100%}::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-track{background:0 0}::-webkit-scrollbar-thumb{background:var(--color-gray-300);border-radius:var(--radius-full)}
+
+.layout{display:flex;min-height:100vh}
+.sidebar{width:var(--sidebar-width);background:var(--sidebar-bg);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:var(--z-sidebar);overflow-y:auto}
+.sidebarBrand{padding:var(--space-5) var(--space-6);border-bottom:1px solid rgba(255,255,255,.08)}
+.sidebarBrand h1{font-size:var(--text-xl);font-weight:700;color:#fff;letter-spacing:-.025em}
+.sidebarBrand span{font-size:var(--text-xs);color:var(--sidebar-text-muted)}
+.sidebarNav{flex:1;padding:var(--space-3) var(--space-3)}
+.navItem{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-2) var(--space-3);border-radius:var(--radius-md);color:var(--sidebar-text-muted);text-decoration:none;font-size:var(--text-sm);font-weight:450;transition:all var(--transition-fast);margin-bottom:2px}
+.navItem:hover{background:var(--sidebar-hover);color:var(--sidebar-text);text-decoration:none}
+.navItemActive{background:var(--sidebar-active);color:#fff}
+.navItemActive:hover{background:var(--sidebar-active);color:#fff}
+.navSection{font-size:var(--text-xs);color:var(--sidebar-text-muted);text-transform:uppercase;letter-spacing:.05em;padding:var(--space-4) var(--space-3) var(--space-1);font-weight:600}
+.sidebarFooter{padding:var(--space-4);border-top:1px solid rgba(255,255,255,.08)}
+.userInfo{display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-3)}
+.userAvatar{width:32px;height:32px;border-radius:var(--radius-full);background:var(--color-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:var(--text-sm);font-weight:600;flex-shrink:0}
+.userDetails{flex:1;min-width:0}
+.userName{font-size:var(--text-sm);color:var(--sidebar-text);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.userEmail{font-size:var(--text-xs);color:var(--sidebar-text-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.logoutButton{display:flex;align-items:center;gap:var(--space-2);width:100%;padding:var(--space-2) var(--space-3);border:none;background:0 0;color:var(--sidebar-text-muted);border-radius:var(--radius-md);font-size:var(--text-sm);cursor:pointer;transition:all var(--transition-fast)}
+.logoutButton:hover{background:var(--sidebar-hover);color:var(--sidebar-text)}
+.main{flex:1;margin-left:var(--sidebar-width);display:flex;flex-direction:column;min-height:100vh}
+.header{display:flex;align-items:center;gap:var(--space-4);padding:var(--space-4) var(--space-6);background:var(--color-bg-white);border-bottom:1px solid var(--color-border);position:sticky;top:0;z-index:30}
+.headerTitle{font-size:var(--text-xl);font-weight:600;color:var(--color-text);white-space:nowrap}
+.searchWrapper{flex:1;max-width:480px;margin-left:auto;position:relative}
+.searchIcon{position:absolute;left:var(--space-3);top:50%;transform:translateY(-50%);color:var(--color-text-muted);display:flex;pointer-events:none}
+.searchInput{width:100%;padding:var(--space-2) var(--space-3) var(--space-2) 36px;border:1px solid var(--color-gray-300);border-radius:var(--radius-full);font-size:var(--text-sm);color:var(--color-text);background:var(--color-gray-50);outline:none;transition:all var(--transition-fast)}
+.searchInput:focus{border-color:var(--color-primary);background:var(--color-bg-white);box-shadow:0 0 0 3px var(--color-primary-100)}
+.searchInput::placeholder{color:var(--color-text-muted)}
+.content{flex:1;padding:var(--space-6)}
+
+/* Summary grid (shared) */
+.summaryGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-4);margin-bottom:var(--space-6)}
+.summaryCard{background:var(--color-bg-white);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-5);transition:box-shadow var(--transition-fast)}
+.summaryCard:hover{box-shadow:var(--shadow-md)}
+.summaryCardLabel{font-size:var(--text-sm);color:var(--color-text-secondary);margin-bottom:var(--space-1)}
+.summaryCardValue{font-size:var(--text-3xl);font-weight:700;color:var(--color-text)}
+.summaryCardDelta{font-size:var(--text-xs);margin-top:var(--space-1)}
+.deltaUp{color:var(--color-success)}
+.deltaDown{color:var(--color-danger)}
+
+/* Section card */
+.sectionCard{background:var(--color-bg-white);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-6);margin-bottom:var(--space-6)}
+.sectionTitle{font-size:var(--text-lg);font-weight:600;color:var(--color-text);margin-bottom:var(--space-4)}
+
+/* Bar chart */
+.barChart{display:flex;align-items:flex-end;gap:var(--space-4);height:200px;padding-top:var(--space-4)}
+.barGroup{flex:1;display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end}
+.bar{width:100%;border-radius:var(--radius-md) var(--radius-md) 0 0;transition:height var(--transition-slow);min-height:4px;position:relative}
+.bar:hover{opacity:.85}
+.barValue{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:var(--text-xs);font-weight:600;color:var(--color-text-secondary);white-space:nowrap}
+.barLabel{margin-top:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted);font-weight:500}
+
+/* Funnel */
+.funnel{display:flex;flex-direction:column;gap:0}
+.funnelStage{display:flex;align-items:center;justify-content:center;padding:var(--space-3) var(--space-4);color:#fff;font-size:var(--text-sm);font-weight:600;margin:0 auto;border-radius:var(--radius-sm);transition:all var(--transition-fast)}
+.funnelStage:first-child{border-radius:var(--radius-lg) var(--radius-lg) 0 0}
+.funnelStage:last-child{border-radius:0 0 var(--radius-lg) var(--radius-lg)}
+.funnelStageLabel{display:flex;align-items:center;justify-content:space-between;width:100%}
+.funnelStageCount{font-size:var(--text-xs);opacity:.85;margin-left:var(--space-4)}
+</style>
+</head>
+<body>
+<div class="layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebarBrand">
+      <h1>Synapse</h1>
+      <span>CRM v0.2.0</span>
+    </div>
+    <nav class="sidebarNav">
+      <div class="navSection">Main</div>
+      <a class="navItem" href="dashboard.html">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>
+        Dashboard
+      </a>
+      <a class="navItem" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/><path d="M1 6h14"/></svg>
+        Contacts
+      </a>
+      <a class="navItem" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l5-5 5 5"/><path d="M3 13l5-5 5 5"/></svg>
+        Companies
+      </a>
+      <a class="navItem" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg>
+        Deals
+      </a>
+      <a class="navItem" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h12M2 8h12M2 13h12"/></svg>
+        Activities
+      </a>
+      <a class="navItem" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l4 4-4 4"/><line x1="10" y1="4" x2="10" y2="12"/></svg>
+        AI Assistant
+      </a>
+      <a class="navItem navItemActive" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12V8l4-4 4 4v4H4z"/></svg>
+        Reports
+      </a>
+      <div class="navSection">Admin</div>
+      <a class="navItem" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4l3 3"/><circle cx="8" cy="8" r="6"/></svg>
+        Workflows
+      </a>
+      <a class="navItem" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="14" height="10" rx="2"/><path d="M1 6h14"/></svg>
+        Email
+      </a>
+      <a class="navItem" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8a4 4 0 0 1 8 0"/><circle cx="8" cy="12" r="1"/><path d="M7 15h2"/></svg>
+        Webhooks
+      </a>
+      <a class="navItem" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="5" r="3"/><path d="M2 16v-1a6 6 0 0 1 12 0v1"/></svg>
+        Users
+      </a>
+    </nav>
+    <div class="sidebarFooter">
+      <div class="userInfo">
+        <div class="userAvatar">A</div>
+        <div class="userDetails">
+          <div class="userName">Admin</div>
+          <div class="userEmail">admin@synapse.local</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <div class="main">
+    <header class="header">
+      <h2 class="headerTitle">Reports &amp; Analytics</h2>
+      <div class="searchWrapper">
+        <span class="searchIcon">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="5"/><path d="M10 10l3 3"/></svg>
+        </span>
+        <input class="searchInput" type="text" placeholder="Search reports..."/>
+      </div>
+    </header>
+
+    <div class="content">
+      <!-- Summary KPIs -->
+      <div class="summaryGrid">
+        <div class="summaryCard">
+          <div class="summaryCardLabel">Total Revenue</div>
+          <div class="summaryCardValue">$2.4M</div>
+          <div class="summaryCardDelta deltaUp">+12.5% from last quarter</div>
+        </div>
+        <div class="summaryCard">
+          <div class="summaryCardLabel">Avg Deal Size</div>
+          <div class="summaryCardValue">$48K</div>
+          <div class="summaryCardDelta deltaUp">+8.3% from last quarter</div>
+        </div>
+        <div class="summaryCard">
+          <div class="summaryCardLabel">Sales Cycle</div>
+          <div class="summaryCardValue">32 days</div>
+          <div class="summaryCardDelta deltaUp">-5 days from last quarter</div>
+        </div>
+        <div class="summaryCard">
+          <div class="summaryCardLabel">Conversion Rate</div>
+          <div class="summaryCardValue">68%</div>
+          <div class="summaryCardDelta deltaUp">+4.2% from last quarter</div>
+        </div>
+      </div>
+
+      <!-- Monthly Revenue Bar Chart -->
+      <div class="sectionCard">
+        <div class="sectionTitle">Monthly Revenue</div>
+        <div class="barChart">
+          <div class="barGroup">
+            <div class="bar" style="height:55%;background:var(--color-primary)">
+              <span class="barValue">$320K</span>
+            </div>
+            <span class="barLabel">Jan</span>
+          </div>
+          <div class="barGroup">
+            <div class="bar" style="height:72%;background:var(--color-primary)">
+              <span class="barValue">$415K</span>
+            </div>
+            <span class="barLabel">Feb</span>
+          </div>
+          <div class="barGroup">
+            <div class="bar" style="height:48%;background:var(--color-primary)">
+              <span class="barValue">$280K</span>
+            </div>
+            <span class="barLabel">Mar</span>
+          </div>
+          <div class="barGroup">
+            <div class="bar" style="height:88%;background:var(--color-primary)">
+              <span class="barValue">$510K</span>
+            </div>
+            <span class="barLabel">Apr</span>
+          </div>
+          <div class="barGroup">
+            <div class="bar" style="height:95%;background:var(--color-primary)">
+              <span class="barValue">$550K</span>
+            </div>
+            <span class="barLabel">May</span>
+          </div>
+          <div class="barGroup">
+            <div class="bar" style="height:100%;background:var(--color-primary)">
+              <span class="barValue">$580K</span>
+            </div>
+            <span class="barLabel">Jun</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pipeline Funnel -->
+      <div class="sectionCard">
+        <div class="sectionTitle">Pipeline Funnel</div>
+        <div class="funnel">
+          <div class="funnelStage" style="width:100%;background:var(--color-info)">
+            <div class="funnelStageLabel">
+              <span>Leads</span>
+              <span class="funnelStageCount">48</span>
+            </div>
+          </div>
+          <div class="funnelStage" style="width:82%;background:var(--color-primary)">
+            <div class="funnelStageLabel">
+              <span>Qualified</span>
+              <span class="funnelStageCount">32</span>
+            </div>
+          </div>
+          <div class="funnelStage" style="width:64%;background:var(--color-primary-600,#4f46e5)">
+            <div class="funnelStageLabel">
+              <span>Proposal Sent</span>
+              <span class="funnelStageCount">21</span>
+            </div>
+          </div>
+          <div class="funnelStage" style="width:46%;background:var(--color-warning)">
+            <div class="funnelStageLabel">
+              <span>Negotiation</span>
+              <span class="funnelStageCount">14</span>
+            </div>
+          </div>
+          <div class="funnelStage" style="width:32%;background:var(--color-success)">
+            <div class="funnelStageLabel">
+              <span>Closed Won</span>
+              <span class="funnelStageCount">8</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

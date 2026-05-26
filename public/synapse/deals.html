@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Synapse CRM — Deals</title>
+<style>
+:root{--color-primary:#6366f1;--color-primary-hover:#4f46e5;--color-primary-light:#e0e7ff;--color-primary-50:#eef2ff;--color-primary-100:#e0e7ff;--color-primary-600:#4f46e5;--color-primary-700:#4338ca;--color-success:#10b981;--color-success-light:#d1fae5;--color-warning:#f59e0b;--color-warning-light:#fef3c7;--color-danger:#ef4444;--color-danger-hover:#dc2626;--color-danger-light:#fee2e2;--color-info:#3b82f6;--color-info-light:#dbeafe;--color-gray-50:#f9fafb;--color-gray-100:#f3f4f6;--color-gray-200:#e5e7eb;--color-gray-300:#d1d5db;--color-gray-400:#9ca3af;--color-gray-500:#6b7280;--color-gray-600:#4b5563;--color-gray-700:#374151;--color-gray-800:#1f2937;--color-gray-900:#111827;--color-gray-950:#030712;--color-bg:#f9fafb;--color-bg-white:#fff;--color-text:#111827;--color-text-secondary:#6b7280;--color-text-muted:#9ca3af;--color-border:#e5e7eb;--color-border-focus:#6366f1;--sidebar-bg:#111827;--sidebar-text:#e5e7eb;--sidebar-text-muted:#9ca3af;--sidebar-hover:#1f2937;--sidebar-active:#6366f1;--sidebar-width:240px;--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;--space-8:32px;--space-10:40px;--space-12:48px;--font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;--font-mono:"SF Mono",Monaco,"Cascadia Mono","Courier New",monospace;--text-xs:.75rem;--text-sm:.8125rem;--text-base:.875rem;--text-lg:1rem;--text-xl:1.125rem;--text-2xl:1.5rem;--text-3xl:1.875rem;--radius-sm:4px;--radius-md:6px;--radius-lg:8px;--radius-xl:12px;--radius-full:9999px;--shadow-sm:0 1px 2px 0 #0000000d;--shadow-md:0 4px 6px -1px #0000001a,0 2px 4px -2px #0000001a;--shadow-lg:0 10px 15px -3px #0000001a,0 4px 6px -4px #0000001a;--shadow-xl:0 20px 25px -5px #0000001a,0 8px 10px -6px #0000001a;--transition-fast:.15s ease;--transition-normal:.2s ease;--transition-slow:.3s ease;--z-sidebar:40;--z-overlay:50;--z-slide-over:60;--z-modal:70;--z-toast:80}*,:before,:after{box-sizing:border-box;margin:0;padding:0}html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:16px}body{font-family:var(--font-sans);font-size:var(--text-base);color:var(--color-text);background-color:var(--color-bg);line-height:1.5}a{color:var(--color-primary);text-decoration:none}button{cursor:pointer;font-family:inherit;font-size:inherit}input,select,textarea{font-family:inherit;font-size:inherit}table{border-collapse:collapse;width:100%}::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-track{background:0 0}::-webkit-scrollbar-thumb{background:var(--color-gray-300);border-radius:var(--radius-full)}
+
+.layout{display:flex;min-height:100vh}
+.sidebar{width:var(--sidebar-width);background:var(--sidebar-bg);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:var(--z-sidebar);overflow-y:auto}
+.sidebarBrand{padding:var(--space-5) var(--space-6);border-bottom:1px solid rgba(255,255,255,.08)}
+.sidebarBrand h1{font-size:var(--text-xl);font-weight:700;color:#fff;letter-spacing:-.025em}
+.sidebarBrand span{font-size:var(--text-xs);color:var(--sidebar-text-muted)}
+.sidebarNav{flex:1;padding:var(--space-3) var(--space-3)}
+.navItem{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-2) var(--space-3);border-radius:var(--radius-md);color:var(--sidebar-text-muted);text-decoration:none;font-size:var(--text-sm);font-weight:450;transition:all var(--transition-fast);margin-bottom:2px}
+.navItem:hover{background:var(--sidebar-hover);color:var(--sidebar-text);text-decoration:none}
+.navItemActive{background:var(--sidebar-active);color:#fff}
+.navItemActive:hover{background:var(--sidebar-active);color:#fff}
+.navSection{font-size:var(--text-xs);color:var(--sidebar-text-muted);text-transform:uppercase;letter-spacing:.05em;padding:var(--space-4) var(--space-3) var(--space-1);font-weight:600}
+.sidebarFooter{padding:var(--space-4);border-top:1px solid rgba(255,255,255,.08)}
+.userInfo{display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-3)}
+.userAvatar{width:32px;height:32px;border-radius:var(--radius-full);background:var(--color-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:var(--text-sm);font-weight:600;flex-shrink:0}
+.userDetails{flex:1;min-width:0}
+.userName{font-size:var(--text-sm);color:var(--sidebar-text);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.userEmail{font-size:var(--text-xs);color:var(--sidebar-text-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.logoutButton{display:flex;align-items:center;gap:var(--space-2);width:100%;padding:var(--space-2) var(--space-3);border:none;background:0 0;color:var(--sidebar-text-muted);border-radius:var(--radius-md);font-size:var(--text-sm);cursor:pointer;transition:all var(--transition-fast)}
+.logoutButton:hover{background:var(--sidebar-hover);color:var(--sidebar-text)}
+.main{flex:1;margin-left:var(--sidebar-width);display:flex;flex-direction:column;min-height:100vh}
+.header{display:flex;align-items:center;gap:var(--space-4);padding:var(--space-4) var(--space-6);background:var(--color-bg-white);border-bottom:1px solid var(--color-border);position:sticky;top:0;z-index:30}
+.headerTitle{font-size:var(--text-xl);font-weight:600;color:var(--color-text);white-space:nowrap}
+.content{flex:1;padding:var(--space-6)}
+
+/* Toolbar */
+.toolbar{display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-4);flex-wrap:wrap}
+.toolbarSearchWrapper{position:relative}
+.toolbarSearchWrapper svg{position:absolute;left:var(--space-3);top:50%;transform:translateY(-50%);color:var(--color-text-muted);pointer-events:none}
+.toolbarSearchInput{padding:var(--space-2) var(--space-3);padding-left:36px;border:1px solid var(--color-gray-300);border-radius:var(--radius-md);font-size:var(--text-sm);color:var(--color-text);background:var(--color-bg-white);outline:none;transition:border-color var(--transition-fast),box-shadow var(--transition-fast);width:280px}
+.toolbarSearchInput:focus{border-color:var(--color-primary);box-shadow:0 0 0 3px var(--color-primary-100)}
+.toolbarSearchInput::placeholder{color:var(--color-text-muted)}
+.toolbarSpacer{flex:1}
+.createButton{display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-4);border:none;background:var(--color-primary);color:#fff;border-radius:var(--radius-md);font-size:var(--text-sm);font-weight:500;cursor:pointer;transition:background var(--transition-fast)}
+.createButton:hover{background:var(--color-primary-hover)}
+.viewToggle{display:flex;border:1px solid var(--color-border);border-radius:var(--radius-md);overflow:hidden}
+.viewToggleBtn{display:flex;align-items:center;gap:var(--space-1);padding:var(--space-2) var(--space-3);border:none;background:var(--color-bg-white);color:var(--color-text-secondary);font-size:var(--text-sm);cursor:pointer;transition:all var(--transition-fast)}
+.viewToggleBtn:not(:last-child){border-right:1px solid var(--color-border)}
+.viewToggleBtnActive{background:var(--color-primary);color:#fff}
+.viewToggleBtnActive:hover{background:var(--color-primary-hover);color:#fff}
+
+/* Pipeline view */
+.pipeline{display:flex;gap:var(--space-4);overflow-x:auto;padding-bottom:var(--space-4);min-height:400px}
+.pipelineColumn{min-width:240px;width:240px;background:var(--color-gray-50);border:1px solid var(--color-gray-200);border-radius:var(--radius-lg);display:flex;flex-direction:column;flex-shrink:0}
+.pipelineColumnHeader{padding:var(--space-3) var(--space-4);border-bottom:1px solid var(--color-gray-200);display:flex;align-items:center;justify-content:space-between}
+.pipelineColumnTitle{font-size:var(--text-sm);font-weight:600;color:var(--color-text)}
+.pipelineColumnCount{font-size:var(--text-xs);color:var(--color-text-muted);background:var(--color-gray-200);padding:2px 8px;border-radius:var(--radius-full)}
+.pipelineColumnValue{font-size:var(--text-xs);color:var(--color-text-secondary);font-weight:500}
+.pipelineCards{padding:var(--space-3);display:flex;flex-direction:column;gap:var(--space-2);flex:1;min-height:60px}
+.dealCard{background:var(--color-bg-white);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-3);cursor:pointer;transition:all var(--transition-fast);box-shadow:var(--shadow-sm)}
+.dealCard:hover{box-shadow:var(--shadow-md);border-color:var(--color-gray-300)}
+.dealCardTitle{font-size:var(--text-sm);font-weight:500;color:var(--color-text);margin-bottom:var(--space-1)}
+.dealCardValue{font-size:var(--text-sm);color:var(--color-success);font-weight:600}
+.dealCardContact{font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-2)}
+
+@media(max-width:768px){.pipeline{flex-direction:column}.pipelineColumn{min-width:100%;width:100%}}
+</style>
+</head>
+<body>
+<div class="layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebarBrand">
+      <h1>Synapse</h1>
+      <span>CRM v0.2.0</span>
+    </div>
+    <nav class="sidebarNav">
+      <div class="navSection">Main</div>
+      <a class="navItem" href="dashboard.html">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>
+        Dashboard
+      </a>
+      <a class="navItem" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/><path d="M1 6h14"/></svg>
+        Contacts
+      </a>
+      <a class="navItem" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l5-5 5 5"/><path d="M3 13l5-5 5 5"/></svg>
+        Companies
+      </a>
+      <a class="navItem navItemActive" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg>
+        Deals
+      </a>
+      <a class="navItem" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h12M2 8h12M2 13h12"/></svg>
+        Activities
+      </a>
+      <a class="navItem" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l4 4-4 4"/><line x1="10" y1="4" x2="10" y2="12"/></svg>
+        AI Assistant
+      </a>
+      <a class="navItem" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12V8l4-4 4 4v4H4z"/></svg>
+        Reports
+      </a>
+      <div class="navSection">Admin</div>
+      <a class="navItem" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4l3 3"/><circle cx="8" cy="8" r="6"/></svg>
+        Workflows
+      </a>
+      <a class="navItem" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="14" height="10" rx="2"/><path d="M1 6h14"/></svg>
+        Email
+      </a>
+      <a class="navItem" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8a4 4 0 0 1 8 0"/><circle cx="8" cy="12" r="1"/><path d="M7 15h2"/></svg>
+        Webhooks
+      </a>
+      <a class="navItem" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="5" r="3"/><path d="M2 16v-1a6 6 0 0 1 12 0v1"/></svg>
+        Users
+      </a>
+    </nav>
+    <div class="sidebarFooter">
+      <div class="userInfo">
+        <div class="userAvatar">A</div>
+        <div class="userDetails">
+          <div class="userName">Admin</div>
+          <div class="userEmail">admin@synapse.local</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <div class="main">
+    <header class="header">
+      <h2 class="headerTitle">Deals</h2>
+    </header>
+
+    <div class="content">
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <div class="toolbarSearchWrapper">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="5"/><path d="M10 10l3 3"/></svg>
+          <input class="toolbarSearchInput" type="text" placeholder="Search deals..."/>
+        </div>
+        <div class="toolbarSpacer"></div>
+        <button class="createButton">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 1v12M1 7h12"/></svg>
+          New Deal
+        </button>
+        <div class="viewToggle">
+          <button class="viewToggleBtn viewToggleBtnActive">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="1" width="5" height="5" rx="1"/><rect x="8" y="1" width="5" height="5" rx="1"/><rect x="1" y="8" width="5" height="5" rx="1"/><rect x="8" y="8" width="5" height="5" rx="1"/></svg>
+            Kanban
+          </button>
+          <button class="viewToggleBtn">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h12M1 7h12M1 11h12"/></svg>
+            List
+          </button>
+        </div>
+      </div>
+
+      <!-- Pipeline Kanban -->
+      <div class="pipeline">
+        <!-- Qualification -->
+        <div class="pipelineColumn">
+          <div class="pipelineColumnHeader">
+            <div class="pipelineColumnTitle">Qualification</div>
+            <span class="pipelineColumnCount">2</span>
+          </div>
+          <div class="pipelineColumnHeader" style="border-top:none;border-bottom:none;padding-top:0;">
+            <span class="pipelineColumnValue">$85K</span>
+          </div>
+          <div class="pipelineCards">
+            <div class="dealCard">
+              <div class="dealCardTitle">Enterprise Platform License</div>
+              <div class="dealCardValue">$52,000</div>
+              <div class="dealCardContact">Alice Chen — Acme Corp</div>
+            </div>
+            <div class="dealCard">
+              <div class="dealCardTitle">Data Migration Project</div>
+              <div class="dealCardValue">$33,000</div>
+              <div class="dealCardContact">Bob Martinez — Globex</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proposal -->
+        <div class="pipelineColumn">
+          <div class="pipelineColumnHeader">
+            <div class="pipelineColumnTitle">Proposal</div>
+            <span class="pipelineColumnCount">2</span>
+          </div>
+          <div class="pipelineColumnHeader" style="border-top:none;border-bottom:none;padding-top:0;">
+            <span class="pipelineColumnValue">$142K</span>
+          </div>
+          <div class="pipelineCards">
+            <div class="dealCard">
+              <div class="dealCardTitle">CRM Integration Suite</div>
+              <div class="dealCardValue">$78,000</div>
+              <div class="dealCardContact">Carol Smith — Initech</div>
+            </div>
+            <div class="dealCard">
+              <div class="dealCardTitle">Analytics Dashboard Build</div>
+              <div class="dealCardValue">$64,000</div>
+              <div class="dealCardContact">Dave Wilson — Stark Industries</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Negotiation -->
+        <div class="pipelineColumn">
+          <div class="pipelineColumnHeader">
+            <div class="pipelineColumnTitle">Negotiation</div>
+            <span class="pipelineColumnCount">1</span>
+          </div>
+          <div class="pipelineColumnHeader" style="border-top:none;border-bottom:none;padding-top:0;">
+            <span class="pipelineColumnValue">$96K</span>
+          </div>
+          <div class="pipelineCards">
+            <div class="dealCard">
+              <div class="dealCardTitle">Cloud Infrastructure Overhaul</div>
+              <div class="dealCardValue">$96,000</div>
+              <div class="dealCardContact">Eve Johnson — Wayne Enterprises</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Closed Won -->
+        <div class="pipelineColumn">
+          <div class="pipelineColumnHeader">
+            <div class="pipelineColumnTitle">Closed Won</div>
+            <span class="pipelineColumnCount">3</span>
+          </div>
+          <div class="pipelineColumnHeader" style="border-top:none;border-bottom:none;padding-top:0;">
+            <span class="pipelineColumnValue">$207K</span>
+          </div>
+          <div class="pipelineCards">
+            <div class="dealCard">
+              <div class="dealCardTitle">API Gateway Setup</div>
+              <div class="dealCardValue">$45,000</div>
+              <div class="dealCardContact">Frank Lee — Umbrella Corp</div>
+            </div>
+            <div class="dealCard">
+              <div class="dealCardTitle">Security Audit Engagement</div>
+              <div class="dealCardValue">$72,000</div>
+              <div class="dealCardContact">Grace Kim — Oscorp</div>
+            </div>
+            <div class="dealCard">
+              <div class="dealCardTitle">Mobile App Development</div>
+              <div class="dealCardValue">$90,000</div>
+              <div class="dealCardContact">Henry Park — Cyberdyne</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
