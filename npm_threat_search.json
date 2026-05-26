@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.armorcode.com/blog/inside-the-september-2025-npm-supply-chain-attack",
+    "name": "Inside the September 2025 NPM Supply Chain Attack - ArmorCode",
+    "snippet": "The September 2025 NPM supply chain attack compromised 200+ packages and counting. See the timeline, impact, and how to secure your ...",
+    "host_name": "www.armorcode.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://unit42.paloaltonetworks.com/monitoring-npm-supply-chain-attacks",
+    "name": "The npm Threat Landscape: Attack Surface and Mitigations",
+    "snippet": "As of April 29, 2026, a new supply chain attack wave (dubbed Mini Shai-Hulud) is actively targeting the SAP developer ecosystem via four compromised npm ...",
+    "host_name": "unit42.paloaltonetworks.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://access.redhat.com/security/supply-chain-attacks-NPM-packages",
+    "name": "Multiple Supply Chain Attacks against npm Packages",
+    "snippet": "This document details two significant supply chain attacks affecting Node.js (NPM) packages: the \"s1ngularity\" attack on the Nx package and a separate ...",
+    "host_name": "access.redhat.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arcticwolf.com/resources/blog/supply-chain-attack-impacts-widely-used-axios-npm-package",
+    "name": "Supply Chain Attack Impacts Widely Used Axios npm Package",
+    "snippet": "... compromised in a supply chain attack on March 31, 2026 (UTC) ... CVE-2025-53521: F5 BIG-IP APM Vulnerability Reclassified as ...",
+    "host_name": "arcticwolf.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/programming/comments/1nbqt4d/largest_npm_compromise_in_history_supply_chain",
+    "name": "Largest NPM Compromise in History - Supply Chain Attack - Reddit",
+    "snippet": "Hey Everyone. We just discovered that around 1 hour ago packages with a total of 2 billion weekly downloads on npm were compromised all ...",
+    "host_name": "www.reddit.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.huntress.com/blog/axios-npm-compromise",
+    "name": "Tradecraft Tuesday Recap: axios npm Supply Chain Compromise",
+    "snippet": "In March 2026, TeamPCP compromised Aqua Security's popular open-source Trivy vulnerability scanner, which then led to several downstream attacks ...",
+    "host_name": "www.huntress.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.trendmicro.com/en_us/research/25/i/npm-supply-chain-attack.html",
+    "name": "What We Know About the NPM Supply Chain Attack | Trend Micro (US)",
+    "snippet": "The attackers hijacked web APIs and manipulated network traffic as a means of covertly diverting funds from legitimate channels to wallets they ...",
+    "host_name": "www.trendmicro.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.picussecurity.com/resource/blog/axios-npm-supply-chain-attack-cross-platform-rat-delivery-via-compromised-maintainer-credentials",
+    "name": "Axios npm Supply Chain Attack: Cross-Platform RAT Delivery via",
+    "snippet": "On March 31, 2026, automated malware detection systems flagged a live supply chain compromise targeting Axios, the JavaScript ecosystem's ...",
+    "host_name": "www.picussecurity.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=eGSsoSEppNU",
+    "name": "the WORST hack of 2026 - YouTube",
+    "snippet": "... supply-chain-compromise-axios-npm-package John ... npm supply chain attack, axios hacked, axios npm compromised, supply chain attack ...",
+    "host_name": "www.youtube.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://orca.security/resources/blog/axios-npm-supply-chain-attack-remediation",
+    "name": "Axios Supply Chain Attack: Analysis & Fix - Orca Security",
+    "snippet": "The axios npm package was compromised on March 31, 2026. Learn how the RAT works, why Trusted Publishing was bypassed, and how to secure ...",
+    "host_name": "orca.security",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

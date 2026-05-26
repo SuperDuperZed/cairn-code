@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>The Void Is Listening</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0f;overflow:hidden;font-family:'Inter',sans-serif;color:#fff;cursor:none;-webkit-tap-highlight-color:transparent;user-select:none}
+canvas{position:fixed;top:0;left:0;z-index:1}
+.overlay{position:fixed;z-index:10;pointer-events:none}
+.title{top:8%;left:50%;transform:translateX(-50%);font-size:clamp(1.1rem,3vw,1.6rem);font-weight:300;letter-spacing:.4em;text-transform:uppercase;opacity:.5;white-space:nowrap}
+.prompt{bottom:12%;left:50%;transform:translateX(-50%);font-size:.7rem;font-weight:300;letter-spacing:.15em;opacity:.25;text-align:center;transition:opacity 1.5s}
+.result{top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;opacity:0;transition:opacity 2s}
+.result.show{opacity:1}
+.result .label{font-size:.6rem;font-weight:300;letter-spacing:.3em;text-transform:uppercase;opacity:.4;margin-bottom:.6rem}
+.result .value{font-size:clamp(1.8rem,5vw,3rem);font-weight:600;letter-spacing:.05em}
+.result .sub{font-size:.7rem;font-weight:300;opacity:.35;margin-top:.8rem;letter-spacing:.1em}
+.cursor{position:fixed;width:12px;height:12px;border-radius:50%;border:1px solid rgba(255,255,255,.3);pointer-events:none;z-index:20;transform:translate(-50%,-50%);transition:width .3s,height .3s}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="overlay title">The Void Is Listening</div>
+<div class="overlay prompt" id="prompt">move your cursor to speak</div>
+<div class="overlay result" id="result">
+  <div class="label">your frequency is</div>
+  <div class="value" id="freq">--</div>
+  <div class="sub" id="sub"> Hz</div>
+</div>
+<div class="cursor" id="cursor"></div>
+<script>
+const C=document.getElementById('c'),X=C.getContext('2d');
+const prompt=document.getElementById('prompt'),result=document.getElementById('result');
+const freqEl=document.getElementById('freq'),subEl=document.getElementById('sub');
+const cursorEl=document.getElementById('cursor');
+let w,h,particles=[],trail=[],mx=0,my=0,time=0,started=false,ctx;
+let audioCtx,osc,gain,analyser,dataArr;
+
+const readings=[
+  {freq:432,name:"cosmic resonance"},{freq:528,name:"DNA repair frequency"},
+  {freq:639,name:"heart coherence"},{freq:741,name:"intuitive awakening"},
+  {freq:852,name:"spiritual awareness"},{freq:963,name:"pineal activation"},
+  {freq:174,name:"security grounding"},{freq:285,name:"energy field repair"},
+  {freq:396,name:"liberation from fear"},{freq:2107,name:"quantum entanglement"}
+];
+
+function resize(){w=C.width=innerWidth;h=C.height=innerHeight}
+addEventListener('resize',resize);resize();
+
+function initAudio(){
+  if(audioCtx)return;
+  audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+  osc=audioCtx.createOscillator();gain=audioCtx.createGain();
+  analyser=audioCtx.createAnalyser();analyser.fftSize=256;
+  osc.type='sine';osc.frequency.value=0;
+  gain.gain.value=0;osc.connect(gain);gain.connect(analyser);analyser.connect(audioCtx.destination);
+  osc.start();dataArr=new Uint8Array(analyser.frequencyBinCount);
+}
+
+function onMove(x,y){
+  mx=x;my=y;cursorEl.style.left=x+'px';cursorEl.style.top=y+'px';
+  if(!started){started=true;initAudio();prompt.style.opacity='0'}
+}
+addEventListener('mousemove',e=>onMove(e.clientX,e.clientY));
+addEventListener('touchmove',e=>{e.preventDefault();onMove(e.touches[0].clientX,e.touches[0].clientY)},{passive:false});
+addEventListener('touchstart',e=>{e.preventDefault();onMove(e.touches[0].clientX,e.touches[0].clientY)},{passive:false});
+
+let velX=0,velY=0,pmx=0,pmy=0,energy=0,lastReading=0;
+
+function frame(){
+  requestAnimationFrame(frame);
+  time+=.016;
+  velX=mx-pmx;velY=my-pmy;
+  const speed=Math.sqrt(velX*velX+velY*velY);
+  energy+=(speed*.01-energy)*.05;
+  pmx=mx;pmy=my;
+
+  X.fillStyle='rgba(10,10,15,.15)';X.fillRect(0,0,w,h);
+
+  if(started){
+    const f=100+energy*800;
+    if(osc)osc.frequency.setTargetAtTime(f,audioCtx.currentTime,.1);
+    if(gain)gain.gain.setTargetAtTime(Math.min(energy*.15,.08),audioCtx.currentTime,.1);
+
+    if(speed>2)particles.push({x:mx,y:my,vx:velX*.3+Math.random()*2-1,vy:velY*.3+Math.random()*2-1,life:1,hue:(time*50)%360});
+    for(let i=particles.length-1;i>=0;i--){
+      const p=particles[i];p.x+=p.vx;p.y+=p.vy;p.life-=.015;p.vx*=.98;p.vy*=.98;
+      if(p.life<=0){particles.splice(i,1);continue}
+      X.beginPath();X.arc(p.x,p.y,2*p.life,0,Math.PI*2);
+      X.fillStyle=`hsla(${p.hue},70%,60%,${p.life*.6})`;X.fill();
+    }
+
+    trail.push({x:mx,y:my});if(trail.length>60)trail.shift();
+    if(trail.length>1){
+      X.beginPath();X.moveTo(trail[0].x,trail[0].y);
+      for(let i=1;i<trail.length;i++)X.lineTo(trail[i].x,trail[i].y);
+      X.strokeStyle=`hsla(${(time*30)%360},50%,50%,.12)`;X.lineWidth=1.5;X.stroke();
+    }
+
+    if(time-lastReading>5&&energy>.02){
+      lastReading=time;const r=readings[Math.floor(Math.random()*readings.length)];
+      freqEl.textContent=r.freq;subEl.textContent='Hz - '+r.name;
+      freqEl.style.color=`hsl(${(time*40)%360},60%,65%)`;
+      result.classList.add('show');
+      setTimeout(()=>result.classList.remove('show'),4000);
+    }
+
+    if(analyser){analyser.getByteTimeDomainData(dataArr);
+      X.beginPath();const sw=w/dataArr.length;
+      for(let i=0;i<dataArr.length;i++){const v=dataArr[i]/128,y2=v*h/2;i===0?X.moveTo(0,y2):X.lineTo(i*sw,y2)}
+      X.strokeStyle=`hsla(${(time*20)%360},40%,50%,.06)`;X.lineWidth=1;X.stroke();
+    }
+  }else{
+    const cx=w/2,cy=h/2,t=time*.5;
+    X.beginPath();X.arc(cx+Math.cos(t)*80,cy+Math.sin(t*.7)*60,3+Math.sin(t*2),0,Math.PI*2);
+    X.fillStyle=`hsla(${(t*20)%360},50%,50%,.3)`;X.fill();
+  }
+}
+frame();
+</script>
+</body>
+</html>

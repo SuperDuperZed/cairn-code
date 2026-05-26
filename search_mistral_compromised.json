@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://safedep.io/mass-npm-supply-chain-attack-tanstack-mistral",
+    "name": "Mass Supply Chain Attack Hits TanStack, Mistral AI npm and PyPI",
+    "snippet": "Over 400 compromised npm package versions and at least 2 PyPI packages published in a coordinated supply chain attack targeting TanStack, ...",
+    "host_name": "safedep.io",
+    "rank": 0,
+    "date": "May 12, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://docs.mistral.ai/resources/security-advisories",
+    "name": "Security advisories | Mistral Docs",
+    "snippet": "This page lists security advisories that may affect Mistral SDKs, packages, or developer tooling. TanStack supply chain attack affecting Mistral ...",
+    "host_name": "docs.mistral.ai",
+    "rank": 1,
+    "date": "May 12, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/MistralAI/comments/1tat85t/major_npm_supply_chain_attack_hits_mistral_ai_sdk",
+    "name": "Major npm Supply Chain Attack Hits Mistral AI SDK: Multiple  - Reddit",
+    "snippet": "134 votes, 21 comments. Worth hardening your npm config adding these to your .npmrc: ignore-scripts=true min-release-age=7 ...",
+    "host_name": "www.reddit.com",
+    "rank": 2,
+    "date": "May 12, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.bankinfosecurity.com/mass-supply-chain-attack-slams-npm-pypi-hits-mistral-ai-a-31672",
+    "name": "Mass Supply-Chain Attack Slams npm and PyPi, Hits Mistral AI",
+    "snippet": "A new Shai-Hulud variant has infected multiple npm repositories and jumped to other widely used JavaScript and Python packages.",
+    "host_name": "www.bankinfosecurity.com",
+    "rank": 3,
+    "date": "May 13, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://securitylabs.datadoghq.com/articles/backdoored-cemu-release-teampcp-supply-chain-campaign",
+    "name": "Backdoored Cemu release linked to TanStack and Mistral supply",
+    "snippet": "We investigate how a coordinated supply chain campaign that compromised npm and PyPI packages also backdoored the official Cemu Nintendo Wii ...",
+    "host_name": "securitylabs.datadoghq.com",
+    "rank": 4,
+    "date": "May 14, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.threads.com/@codeforreal/post/DYO8H7goKBn/mistral-ai-python-client-has-been-compromised-by-a-supply-chain-attack",
+    "name": "MistralAI Python client has been compromised by a supply chain",
+    "snippet": "OCR mistralai client- client-python python Code Issues 17 ዴኔ Pull requests Projects Type ta search Security and quality Insights በጌ Open ...",
+    "host_name": "www.threads.com",
+    "rank": 5,
+    "date": "May 12, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.securityweek.com/tanstack-mistral-ai-uipath-hit-in-fresh-supply-chain-attack",
+    "name": "TanStack, Mistral AI, UiPath Hit in Fresh Supply Chain Attack",
+    "snippet": "Over 170 TanStack, Mistral AI, OpenSearch, UiPath, and other packages were affected in a new Mini Shai-Hulud supply chain attack.",
+    "host_name": "www.securityweek.com",
+    "rank": 6,
+    "date": "May 12, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.instagram.com/p/DYRReLzldoY",
+    "name": "May 13, 2026 – A sophisticated software supply chain attack has",
+    "snippet": "... 2026 – A sophisticated software supply chain attack has compromised the official Mistral AI Python package on PyPI, delivering malware that ...",
+    "host_name": "www.instagram.com",
+    "rank": 7,
+    "date": "May 13, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.csoonline.com/article/4170284/mistral-ai-sdk-tanstack-router-hit-in-npm-software-supply-chain-attack.html",
+    "name": "Mistral AI SDK, TanStack Router hit in npm software supply chain",
+    "snippet": "Hundreds of software packages are affected, once again threatening enterprise credentials on coders' machines.",
+    "host_name": "www.csoonline.com",
+    "rank": 8,
+    "date": "May 12, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://slowmist.medium.com/threat-intelligence-analysis-of-the-supply-chain-poisoning-attack-on-the-official-mistral-ai-sdk-98803747a5fa",
+    "name": "Threat Intelligence | Analysis of the Supply Chain Poisoning Attack",
+    "snippet": "Background. Recently, during continuous threat hunting across the PyPI ecosystem, the MistEye security monitoring system captured a ...",
+    "host_name": "slowmist.medium.com",
+    "rank": 9,
+    "date": "May 16, 2026",
+    "favicon": ""
+  }
+]

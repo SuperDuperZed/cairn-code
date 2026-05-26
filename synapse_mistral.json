@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://safedep.io/mass-npm-supply-chain-attack-tanstack-mistral",
+    "name": "Mass Supply Chain Attack Hits TanStack, Mistral AI npm and PyPI",
+    "snippet": "The attacker compromised two PyPI packages as part of the same attack: mistralai==2.4.6 : Malicious version of the official Mistral AI Python ...",
+    "host_name": "safedep.io",
+    "rank": 0,
+    "date": "May 12, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/mistralai/client-python/issues/523",
+    "name": "[SECURITY] Supply chain compromise in mistralai 2.4.6  - GitHub",
+    "snippet": "Unfortunately, the mistralai package on Pypi is still quarantined but I hope it's fixed soon. I've also did some reverse engineering and posted ...",
+    "host_name": "github.com",
+    "rank": 1,
+    "date": "May 12, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://docs.mistral.ai/resources/security-advisories",
+    "name": "Security advisories | Mistral Docs",
+    "snippet": "The compromised PyPI package runs on a malicious script on import. ... Check common Python dependency files and lockfiles: grep -n -E ...",
+    "host_name": "docs.mistral.ai",
+    "rank": 2,
+    "date": "May 12, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://news.ycombinator.com/item?id=48104081",
+    "name": "Supply chain compromise in mistralai Python package - Hacker News",
+    "snippet": "I use mistralai and their API is quite good. Luckily I like to pin the versions and upgrade manually a little bit later just in case of this ...",
+    "host_name": "news.ycombinator.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/MistralAI/comments/1tat85t/major_npm_supply_chain_attack_hits_mistral_ai_sdk",
+    "name": "Major npm Supply Chain Attack Hits Mistral AI SDK: Multiple  - Reddit",
+    "snippet": "Major npm Supply Chain Attack Hits Mistral AI SDK: Multiple Versions Compromised Rotate All Credentials Now.",
+    "host_name": "www.reddit.com",
+    "rank": 4,
+    "date": "May 12, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.bankinfosecurity.com/mass-supply-chain-attack-slams-npm-pypi-hits-mistral-ai-a-31672",
+    "name": "Mass Supply-Chain Attack Slams npm and PyPi, Hits Mistral AI",
+    "snippet": "On Tuesday, French AI company Mistral reported that due to the TanStack compromise, \"an automated worm associated with the attack led to compromised npm and ...",
+    "host_name": "www.bankinfosecurity.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.thestack.technology/mini-shai-hulud-mistral-ai-tanstack",
+    "name": "Mistral AI among npm, PyPI packages hit by Mini Shai Hulud",
+    "snippet": "A compromised package in that part of the dependency tree can land in a lot of places quickly.\" The malicious package primarily activates a ...",
+    "host_name": "www.thestack.technology",
+    "rank": 6,
+    "date": "May 12, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.threads.com/@codeforreal/post/DYO8H7goKBn/mistral-ai-python-client-has-been-compromised-by-a-supply-chain-attack",
+    "name": "MistralAI Python client has been compromised by a supply chain",
+    "snippet": "MistralAI Python client has been compromised by a supply chain attack. ... Dependencies: malicious npm packages AI agents auto-install.",
+    "host_name": "www.threads.com",
+    "rank": 7,
+    "date": "May 12, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.tomshardware.com/tech-industry/cyber-security/compromised-mistral-ai-and-tanstack-packages-may-have-exposed-github-cloud-and-ci-cd-credentials-in-mini-shai-hulud-malware-infection-supply-chain-campaign-spreads-across-npm-and-ai-developer-ecosystems-like-wildfire",
+    "name": "Compromised Mistral AI and TanStack packages may have exposed",
+    "snippet": "Compromised Mistral AI and TanStack packages may have exposed GitHub, cloud and CI/CD credentials in 'mini Shai Hulud' malware infection — ...",
+    "host_name": "www.tomshardware.com",
+    "rank": 8,
+    "date": "May 12, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://deps.dev/pypi/matrix-synapse",
+    "name": "matrix-synapse | PyPI | Open Source Insights",
+    "snippet": "Dependency licenses. MIT28 · Apache-2.012 · non ... element-hq/synapse. GitHub. Synapse: Matrix homeserver written in Python/Twisted + Rust.",
+    "host_name": "deps.dev",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

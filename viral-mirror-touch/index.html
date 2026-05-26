@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Mirror Touch</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0f;overflow:hidden;font-family:'Inter',sans-serif;color:#fff;-webkit-tap-highlight-color:transparent;user-select:none}
+canvas{display:block;cursor:crosshair}
+.controls{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);display:flex;gap:.5rem;z-index:10}
+.btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.4);padding:.35rem .8rem;font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s;border-radius:2px}
+.btn:hover{background:rgba(255,255,255,.08);color:rgba(255,255,255,.7)}
+.btn.on{background:rgba(255,255,255,.1);color:rgba(255,255,255,.9);border-color:rgba(255,255,255,.2)}
+.hint{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);color:rgba(255,255,255,.15);font-size:.7rem;letter-spacing:.15em;pointer-events:none;transition:opacity 2s}
+.sym-lbl{position:fixed;top:1.2rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.12);font-size:.55rem;letter-spacing:.2em;pointer-events:none;z-index:10}
+.save-btn{position:fixed;top:1.2rem;right:1.5rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.35);padding:.3rem .7rem;font-family:'Inter',sans-serif;font-size:.55rem;letter-spacing:.1em;cursor:pointer;z-index:10;border-radius:2px;transition:all .3s}
+.save-btn:hover{background:rgba(255,255,255,.08);color:rgba(255,255,255,.7)}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="hint" id="hint">draw to create</div>
+<div class="sym-lbl" id="sl">4-fold</div>
+<button class="save-btn" id="save">save png</button>
+<div class="controls">
+<button class="btn on" data-f="4">4</button>
+<button class="btn" data-f="6">6</button>
+<button class="btn" data-f="8">8</button>
+<button class="btn" data-f="12">12</button>
+<button class="btn" data-f="c" id="clearBtn">clear</button>
+</div>
+<script>
+const C=document.getElementById('c'),X=C.getContext('2d');
+let w,h,folds=4,drawing=false,lastX,lastY,hue=0,touched=false;
+
+function resize(){w=C.width=innerWidth;h=C.height=innerHeight}
+addEventListener('resize',resize);resize();
+
+const cx=()=>w/2,cy=()=>h/2;
+
+function draw(x,y){
+  const speed=Math.sqrt((x-lastX)**2+(y-lastY)**2);
+  const lw=Math.max(.5,Math.min(6,3-speed*.02));
+  hue=(hue+speed*.5)%360;
+
+  const dx=x-cx(),dy=y-cy(),angle=Math.atan2(dy,dx),dist=Math.sqrt(dx*dx+dy*dy);
+  const segments=folds%2===0?folds/2:folds;
+
+  X.lineWidth=lw;X.lineCap='round';X.lineJoin='round';
+
+  for(let i=0;i<folds;i++){
+    const a=(i/folds)*Math.PI*2;
+    X.save();X.translate(cx(),cy());X.rotate(a);
+    X.strokeStyle=`hsla(${hue},65%,58%,.7)`;
+    X.shadowColor=`hsla(${hue},70%,50%,.4)`;X.shadowBlur=8;
+
+    // original stroke
+    const ox=x-cx(),oy=y-cy(),olx=lastX-cx(),oly=lastY-cy();
+    X.beginPath();X.moveTo(olx,oly);X.lineTo(ox,oy);X.stroke();
+
+    // mirrored stroke
+    if(segments>0){
+      X.beginPath();X.moveTo(-olx,oly);X.lineTo(-ox,oy);X.stroke();
+    }
+    X.restore();
+  }
+  lastX=x;lastY=y;
+}
+
+function startDraw(x,y){
+  drawing=true;lastX=x;lastY=y;
+  if(!touched){touched=true;document.getElementById('hint').style.opacity='0'}
+}
+function endDraw(){drawing=false}
+
+addEventListener('mousedown',e=>startDraw(e.clientX,e.clientY));
+addEventListener('mousemove',e=>{if(drawing)draw(e.clientX,e.clientY)});
+addEventListener('mouseup',endDraw);
+addEventListener('mouseleave',endDraw);
+addEventListener('touchstart',e=>{e.preventDefault();startDraw(e.touches[0].clientX,e.touches[0].clientY)},{passive:false});
+addEventListener('touchmove',e=>{e.preventDefault();if(drawing)draw(e.touches[0].clientX,e.touches[0].clientY)},{passive:false});
+addEventListener('touchend',e=>{e.preventDefault();endDraw()},{passive:false});
+
+document.querySelectorAll('.btn[data-f]').forEach(b=>{
+  b.addEventListener('click',()=>{
+    if(b.dataset.f==='c'){X.fillStyle='#0a0a0f';X.fillRect(0,0,w,h);return}
+    document.querySelectorAll('.btn[data-f]').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');folds=parseInt(b.dataset.f);
+    document.getElementById('sl').textContent=folds+'-fold';
+  });
+});
+
+document.getElementById('save').addEventListener('click',()=>{
+  const a=document.createElement('a');a.download='mirror-touch.png';
+  a.href=C.toDataURL('image/png');a.click();
+});
+</script>
+</body>
+</html>

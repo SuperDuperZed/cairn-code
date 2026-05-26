@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Color Is Your Aura?</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    min-height: 100vh;
+    background: #0a0a0f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    overflow: hidden;
+    cursor: crosshair;
+  }
+  
+  .canvas-layer {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    max-width: 600px;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  
+  .result {
+    opacity: 0;
+    transition: all 1.5s ease;
+    transform: translateY(20px);
+  }
+  
+  .result.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .aura-name {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    transition: color 0.5s ease;
+  }
+  
+  .aura-desc {
+    font-size: 1.1rem;
+    color: #999;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+  
+  .share-prompt {
+    font-size: 0.8rem;
+    color: #444;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  
+  .tracker {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    color: #333;
+    z-index: 2;
+  }
+  
+  .tracker span {
+    transition: color 0.3s;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="trail" class="canvas-layer"></canvas>
+<canvas id="glow" class="canvas-layer" style="z-index:0;opacity:0.3"></canvas>
+
+<div class="content">
+  <h1>What Color Is Your Aura?</h1>
+  <p class="subtitle">Move your mouse. Don't think. Just feel.</p>
+  
+  <div class="result" id="result">
+    <div class="aura-name" id="auraName"></div>
+    <div class="aura-desc" id="auraDesc"></div>
+    <div class="share-prompt">screenshot this</div>
+  </div>
+</div>
+
+<div class="tracker">
+  reading <span id="pct">0</span>% of your energy field
+</div>
+
+<script>
+const auras = [
+  { name: "Violet Storm", color: "#8b5cf6", desc: "You operate on a frequency most people can't perceive. Your intuition isn't gut feeling — it's pattern recognition at the speed of light. People are drawn to you but can't explain why." },
+  { name: "Electric Teal", color: "#06d6a0", desc: "You're calibrating. Constantly. Your mind runs parallel simulations of every conversation before it happens. Rest isn't laziness to you — it's data consolidation." },
+  { name: "Molten Gold", color: "#f59e0b", desc: "You burn hot and fast. People either love you or find you intense. You've been told to 'calm down' your entire life. Don't. The fire is the point." },
+  { name: "Void Rose", color: "#e11d48", desc: "You've seen behind the curtain and decided the show must go on anyway. There's a gentleness in you that surprises people, given how sharp your edges are." },
+  { name: "Phantom Indigo", color: "#6366f1", desc: "You think in systems. While everyone else is looking at the dots, you're looking at the space between them. You feel like you're running 3 seconds ahead of reality." },
+  { name: "Solar Fog", color: "#f97316", desc: "You collect experiences like others collect things. Your brain is a library where nothing gets thrown away. Sometimes it's too much. Most of the time it's exactly enough." },
+  { name: "Arctic Mint", color: "#2dd4bf", desc: "You're the calm in other people's chaos. Not because you don't feel things — because you've learned that holding space is its own form of strength." },
+  { name: "Neon Orchid", color: "#c084fc", desc: "You exist in the tension between what is and what could be. It's uncomfortable. You've made it your home. The world needs more people who can live there." },
+  { name: "Obsidian Ember", color: "#ef4444", desc: "You've been through something that rewired you. Not broke — rewired. The depth you carry isn't trauma, it's bandwidth. You process things others can't even receive." },
+  { name: "Cosmic Sage", color: "#84cc16", desc: "You're quietly building something nobody can see yet. That's fine. You've always been a long game player. The people who matter will show up when it's time." },
+];
+
+let moves = 0;
+let revealed = false;
+const trailCanvas = document.getElementById('trail');
+const trailCtx = trailCanvas.getContext('2d');
+const glowCanvas = document.getElementById('glow');
+const glowCtx = glowCanvas.getContext('2d');
+
+let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+let points = [];
+
+function resize() {
+  trailCanvas.width = glowCanvas.width = window.innerWidth;
+  trailCanvas.height = glowCanvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  moves++;
+  
+  const pct = Math.min(100, Math.floor(moves / 3));
+  document.getElementById('pct').textContent = pct;
+  
+  points.push({ x: e.clientX, y: e.clientY, life: 1, hue: (moves * 2) % 360 });
+  
+  if (moves === 60 && !revealed) {
+    revealed = true;
+    reveal();
+  }
+});
+
+document.addEventListener('touchmove', (e) => {
+  const t = e.touches[0];
+  mouseX = t.clientX;
+  mouseY = t.clientY;
+  moves++;
+  const pct = Math.min(100, Math.floor(moves / 3));
+  document.getElementById('pct').textContent = pct;
+  points.push({ x: t.clientX, y: t.clientY, life: 1, hue: (moves * 2) % 360 });
+  if (moves === 60 && !revealed) { revealed = true; reveal(); }
+}, { passive: true });
+
+function reveal() {
+  const aura = auras[Math.floor((mouseX * mouseY * Date.now()) % auras.length)];
+  
+  document.getElementById('auraName').textContent = aura.name;
+  document.getElementById('auraName').style.color = aura.color;
+  document.getElementById('auraDesc').textContent = aura.desc;
+  
+  setTimeout(() => {
+    document.getElementById('result').classList.add('visible');
+    document.querySelector('.subtitle').style.opacity = '0';
+    document.querySelector('h1').style.fontSize = '1.5rem';
+  }, 500);
+}
+
+function animate() {
+  trailCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+  
+  // Draw glow background
+  glowCtx.fillStyle = 'rgba(10,10,15,0.05)';
+  glowCtx.fillRect(0, 0, glowCanvas.width, glowCanvas.height);
+  
+  if (revealed) {
+    const aura = auras.find(a => a.name === document.getElementById('auraName').textContent) || auras[0];
+    const grad = glowCtx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, 300);
+    grad.addColorStop(0, aura.color + '33');
+    grad.addColorStop(1, 'transparent');
+    glowCtx.fillStyle = grad;
+    glowCtx.fillRect(0, 0, glowCanvas.width, glowCanvas.height);
+  }
+  
+  // Draw trail
+  points = points.filter(p => p.life > 0);
+  for (const p of points) {
+    p.life -= 0.015;
+    const alpha = p.life * 0.8;
+    const size = p.life * 4;
+    trailCtx.beginPath();
+    trailCtx.arc(p.x, p.y, size, 0, Math.PI * 2);
+    trailCtx.fillStyle = `hsla(${p.hue}, 80%, 65%, ${alpha})`;
+    trailCtx.fill();
+  }
+  
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+</body>
+</html>

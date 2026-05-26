@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://github.com/mistralai/client-python",
+    "name": "mistralai/client-python: Python client library for Mistral AI platform",
+    "snippet": "Agents extra dependencies ... Note: These features require Python 3.10+ (the SDK minimum). Additional packages. Additional mistralai-* packages (e.g. mistralai- ...",
+    "host_name": "github.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://docs.mistral.ai/resources/sdks",
+    "name": "SDKs | Mistral Docs",
+    "snippet": "We provide official SDK clients in both Python and Typescript, you can also find third-party non-official SDKs in other languages. Python SDK.",
+    "host_name": "docs.mistral.ai",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://matrix-org.github.io/matrix-python-sdk/_modules/matrix_client/api.html",
+    "name": "matrix_client.api — Matrix Python SDK v0.3.2",
+    "snippet": "[docs]class MatrixHttpApi(object): \"\"\"Contains all raw Matrix HTTP Client-Server API calls. For room and sync handling, consider using MatrixClient.",
+    "host_name": "matrix-org.github.io",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=uIzk9mrrK1M",
+    "name": "Calling Synapse's admin API with Python (and OIDC fun) - YouTube",
+    "snippet": "This week we're learning how to perform API calls to the Synapse Admin API! Why for? To do a reconciliation of accounts and finally close ...",
+    "host_name": "www.youtube.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pypi.org/project/matrix-synapse/1.60.0",
+    "name": "matrix-synapse - PyPI",
+    "snippet": "Synapse uses a number of platform dependencies such as Python and PostgreSQL, and aims to follow supported upstream versions. See the docs/deprecation_policy.md ...",
+    "host_name": "pypi.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://matrix.org/category/tech/page/2",
+    "name": "Tech - Matrix.org",
+    "snippet": "Matrix's reference homeserver, Synapse, is written in Python and uses the Twisted networking framework to power its bitslinging across the Internet.",
+    "host_name": "matrix.org",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://docs.element.io/latest/element-support/advanced-administration/using-python-with-the-admin-client-server-apis",
+    "name": "Using Python with the Admin + Client-Server APIs - element docs.",
+    "snippet": "You can use Python to make consume and utilise APIs, including those available with Matrix - such as the Synapse Admin API, and the Matrix Client-Server API.",
+    "host_name": "docs.element.io",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=SD3jFjZx0Ic",
+    "name": "Integrating AI On Matrix Synapse Server With Langchain & OpenAI",
+    "snippet": "used for routing the messages users are sending to OpenAI API ... Python Data Engineering Playlist https://www.youtube.com/playlist ...",
+    "host_name": "www.youtube.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/matrix-org/matrix-python-sdk",
+    "name": "Matrix Client-Server SDK for Python 2 and 3 · GitHub",
+    "snippet": "Stable release. Install with pip from pypi. This will install all necessary dependencies as well. pip install matrix_client ...",
+    "host_name": "github.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://deps.dev/pypi/matrix-synapse",
+    "name": "matrix-synapse | PyPI | Open Source Insights",
+    "snippet": "Dependency licenses. MIT28 · Apache-2.012 · non ... element-hq/synapse. GitHub. Synapse: Matrix homeserver written in Python/Twisted + Rust.",
+    "host_name": "deps.dev",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

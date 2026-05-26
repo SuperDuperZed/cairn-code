@@ -1,0 +1,16 @@
+{
+  "found": 1,
+  "alerts": [
+    {
+      "type": "CRITICAL",
+      "package": "@anthropic-ai/sandbox-runtime",
+      "old_version": "0.0.51",
+      "new_version": "0.0.52",
+      "detail": "NEW install scripts appeared: ['prepare']",
+      "script_content": {
+        "prepare": "husky"
+      }
+    }
+  ],
+  "checked_at": "2026-05-19T11:05:29Z"
+}
