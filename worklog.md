@@ -391,3 +391,26 @@ Stage Summary:
 - Repo: SuperDuperZed/join
 - OG image: https://superduperzed.github.io/join/og-image.png
 - SEO checklist: title ✓, description ✓, canonical ✓, OG ✓, Twitter ✓, JSON-LD ✓, robots ✓, semantic HTML ✓, FAQ ✓
+
+---
+Task ID: synapse-crm-frontend-extensions
+Agent: main
+Task: Add workflow automation, email, webhooks, and settings pages to Synapse CRM frontend
+
+Work Log:
+- Added new TypeScript types to web/lib/types.ts: WorkflowTriggerType, WorkflowAction, WorkflowRule, EmailTemplate, EmailCampaign, EmailLogEntry, CampaignStatus, Webhook, WebhookDelivery, Notification, plus label constants (WORKFLOW_TRIGGER_LABELS, CAMPAIGN_STATUS_LABELS)
+- Added 5 new API client modules to web/lib/api.ts: workflowsApi, emailApi, webhooksApi, notificationsApi, importExportApi — all with full CRUD + specialized endpoints
+- Added 3 new icon components to web/components/Icons.tsx: IconBolt (lightning bolt), IconWebhook (circular arrows)
+- Updated web/app/dashboard/layout.tsx sidebar navigation: added Automations, Email, Webhooks nav items under admin section
+- Created workflows page (web/app/dashboard/workflows/page.tsx + page.module.css): workflow list with trigger type filter, active/inactive toggle, execute/edit/delete actions, SlideOver form with JSON fields for conditions and actions
+- Created email page (web/app/dashboard/email/page.tsx + page.module.css): tabbed Templates/Campaigns view, template CRUD with system template protection, campaign stats row, launch/pause campaign actions, email log section
+- Created webhooks page (web/app/dashboard/webhooks/page.tsx + page.module.css): card-based webhook list, event checkboxes for selection, active/inactive toggle, test webhook button, expandable recent deliveries section
+- Created settings page (web/app/dashboard/settings/page.tsx + page.module.css): Import/Export section with entity selector, CSV download, file upload + import with result display; Notifications section with unread badge, mark-as-read, mark-all-as-read, paginated notification list
+- All pages follow "Liquid Glass" design conventions with CSS modules, responsive layouts, loading/error states, and consistent use of existing components (Spinner, SlideOver, ConfirmDialog, Pagination)
+
+Stage Summary:
+- 4 new dashboard pages created: /dashboard/workflows, /dashboard/email, /dashboard/webhooks, /dashboard/settings
+- 3 new icons added to the component library
+- 2 files extended with types and API clients
+- 1 file updated for sidebar navigation
+- All pages are fully client-side with "use client" directive, React hooks for state management, and proper error handling
