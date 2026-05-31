@@ -1,0 +1,59 @@
+[Unit]
+Description=XProtect Linux Anti-Malware Daemon
+Documentation=https://github.com/Cairn/xprotect-linux
+After=local-fs.target systemd-tmpfiles-setup.service
+ConditionPathExists=/etc/xprotect-linux/rules
+ConditionPathIsDirectory=/etc/xprotect-linux/rules
+
+[Service]
+Type=simple
+ExecStartPre=/bin/mkdir -p /run/xprotect-linux
+ExecStart=/usr/local/bin/xprotect-linux -rules /etc/xprotect-linux/rules -v
+Restart=on-failure
+RestartSec=5
+StartLimitBurst=5
+StartLimitIntervalSec=60
+
+# ── Privilege ──────────────────────────────────────────────────────────
+# fanotify FAN_OPEN_EXEC_PERM requires CAP_SYS_ADMIN.
+# SIGKILL delivery requires appropriate signal permissions.
+User=root
+Group=root
+
+# ── Capability bounding ─────────────────────────────────────────────────
+# Strip everything except what fanotify and signal delivery require.
+AmbientCapabilities=
+CapabilityBoundingSet=CAP_SYS_ADMIN CAP_KILL CAP_DAC_OVERRIDE CAP_DAC_READ_SEARCH
+
+# ── Filesystem isolation ──────────────────────────────────────────────
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/run/xprotect-linux /var/log
+PrivateTmp=false
+PrivateDevices=false
+
+# ── Process isolation ──────────────────────────────────────────────────
+NoNewPrivileges=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+ProtectProc=invisible
+
+# ── Network ────────────────────────────────────────────────────────────
+# Daemon is fully air-gapped. No inbound or outbound connections.
+RestrictAddressFamilies=AF_UNIX AF_NETLINK
+DenySockets=socketpair accept4 connect
+
+# ── Resource limits ───────────────────────────────────────────────────
+LimitNOFILE=65536
+MemoryMax=256M
+CPUQuota=25%
+
+# ── Logging ────────────────────────────────────────────────────────────
+StandardError=journal+console
+StandardOutput=journal
+SyslogIdentifier=xprotect-linux
+
+[Install]
+WantedBy=multi-user.target
+Also=xprotect-linux.socket

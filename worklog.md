@@ -461,3 +461,26 @@ Stage Summary:
 - 78 files of completed feature work committed and pushed
 - All 42 existing tests pass under bun:test
 - Commit: 412d8a0 "feat: comprehensive feature batch"
+
+---
+Task ID: xprotect-linux
+Agent: main
+Task: Build production-grade anti-malware daemon (fanotify + libyara) for Ubuntu
+
+Work Log:
+- Created /home/z/my-project/xprotect-linux/ project structure
+- Wrote main.go (543 lines): fanotify FAN_CLASS_PRE_CONTENT + FAN_OPEN_EXEC_PERM interception, libyara scanning, FAN_DENY + SIGKILL remediation
+- Error containment: defer/recover on every event handler, unhandled paths default to FAN_ALLOW
+- Trusted path exemptions for /usr/bin, /bin, /snap, etc.
+- SIGHUP rule hot-reload, SIGTERM/SIGINT graceful shutdown
+- PID file management, binary.LittleEndian response serialization (no unsafe write)
+- Wrote xprotect-linux.service: hardened systemd unit (ProtectSystem=strict, capability bounding, network denial, resource limits)
+- Wrote rules/linux_malware.yar: 7 detection rules (bash/python/perl reverse shells, XMRig miner, generic backdoor, ephemeral drop, modified loader)
+- Wrote rules/test_detection.yar: 2 test signatures for automated verification
+- Wrote test/detection_test.sh: full automated test script (prereq check → build → daemon start → clean binary exec → malicious binary block → report)
+- Verified code integrity: 89 braces balanced, 196 parens balanced, all imports used
+
+Stage Summary:
+- Deliverables: main.go, xprotect-linux.service, test/detection_test.sh + go.mod + YARA rules
+- Key design: unsafe.Pointer cast only on read (fanotify event metadata), writes use binary.LittleEndian
+- Build requirements: Go 1.23+, CGO, libyara-dev, root/CAP_SYS_ADMIN
