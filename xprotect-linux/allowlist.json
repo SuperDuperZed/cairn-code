@@ -1,0 +1,6 @@
+{
+  "sha256": [
+    "REPLACE_WITH_SHA256_HASHES_OF_TRUSTED_BINARIES",
+    "e.g. run: sha256sum /usr/bin/python3 /usr/local/bin/myapp >> allowlist.json"
+  ]
+}

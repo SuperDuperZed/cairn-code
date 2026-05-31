@@ -8,14 +8,15 @@ ConditionPathIsDirectory=/etc/xprotect-linux/rules
 [Service]
 Type=simple
 ExecStartPre=/bin/mkdir -p /run/xprotect-linux
-ExecStart=/usr/local/bin/xprotect-linux -rules /etc/xprotect-linux/rules -v
+ExecStart=/usr/local/bin/xprotect-linux -rules /etc/xprotect-linux/rules -allowlist /etc/xprotect-linux/allowlist.json -strict -v
 Restart=on-failure
 RestartSec=5
 StartLimitBurst=5
 StartLimitIntervalSec=60
 
 # ── Privilege ──────────────────────────────────────────────────────────
-# fanotify FAN_OPEN_EXEC_PERM requires CAP_SYS_ADMIN.
+# fanotify FAN_OPEN_EXEC_PERM + FAN_ACCESS_PERM requires CAP_SYS_ADMIN.
+# FAN_ACCESS_PERM enables shared library (LD_PRELOAD) interception.
 # SIGKILL delivery requires appropriate signal permissions.
 User=root
 Group=root
