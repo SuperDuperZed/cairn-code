@@ -79,19 +79,22 @@ sudo journalctl -u xprotect-linux -f
 
 ## Rules
 
-YARA rule files go in `/etc/xprotect-linux/rules/`. Any `.yar` or `.yara` file is loaded recursively on startup.
+134 YARA signatures across 12 rule files in `/etc/xprotect-linux/rules/`. Any `.yar` or `.yara` file is loaded recursively on startup. Hot-reload with `SIGHUP`.
 
-Included signatures:
-
-| Rule | Target |
-|------|--------|
-| `XPL_Bash_ReverseShell` | `/dev/tcp/` bash reverse shells |
-| `XPL_Python_ReverseShell` | Python `socket.connect` + `os.dup2` |
-| `XPL_Perl_ReverseShell` | Perl `SOCK_STREAM` backdoors |
-| `XPL_XMRig_Miner` | XMRig/monero cryptominer |
-| `XPL_Generic_Backdoor` | `ptmx` + `SOCK_STREAM` implants |
-| `XPL_Ephemeral_Drop` | ELF binaries executed from `/tmp`, `/dev/shm` |
-| `XPL_Modified_Loader` | `LD_PRELOAD` + `dlopen` injection |
+| File | Rules | Targets |
+|------|-------|---------|
+| `reverse_shell.yar` | 15 | netcat, socat, PHP, Ruby, Go, Dart, Perl, awk, telnet, pwsh, mkfifo, C implant |
+| `cryptominers.yar` | 11 | XMRig, xmrig-proxy, CNRig, SRBMiner, T-Rex, NBMiner, lolMiner, PhoenixMiner, wallet stealer |
+| `implant_c2.yar` | 14 | Metasploit, Sliver, Havoc, Covenant, Empire, PoshC2, Shad0w, Cobalt Strike, Brute Ratel, Mythic |
+| `rootkits.yar` | 9 | LD_PRELOAD hooks, LKM rootkits, process hiding, kernel keyloggers, anti-forensics |
+| `privilege_escalation.yar` | 14 | LinPEAS, LinEnum, sudo abuse, SUID shell, kernel exploits, PwnKit, Docker socket privesc |
+| `credential_stealers.yar` | 11 | Mimipy, LaZagne, SSH key scrapers, browser creds, GPG, AWS/GCP tokens, Kerberos tickets |
+| `ransomware.yar` | 7 | AES/RSA file encryptors, ransom notes, ChaCha20, DB targeting, backup wipe |
+| `network_tools.yar` | 12 | chisel, ligolo, gost tunnels, DNS/ICMP exfil, SSH reverse tunnels, base64 payloads |
+| `container_escape.yar` | 9 | Docker socket abuse, cgroups escape, K8s API, kubeconfig theft, etcd dump, cloud metadata |
+| `persistence.yar` | 10 | systemd backdoors, cron implants, SSH key injection, init.d, bash profile, autostart |
+| `supply_chain.yar` | 10 | npm/pip trojans, GPG strip, deb/rpm repackage, apt modification, curl-pipe-sh downloads |
+| `linux_malware.yar` | 12 | memfd fileless exec, ELF hollowing, anti-debug/VM, Mirai, Mozi, Kinsing, D-Bus privesc |
 
 **Hot-reload rules without restart:**
 ```bash
