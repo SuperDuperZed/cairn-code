@@ -3,298 +3,271 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-<title>Chromatic</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+<title>Void Hum</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600;800&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+*{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;overflow:hidden}
 body{background:#0a0a0f;font-family:'Inter',sans-serif;color:#e0e0e0;touch-action:none;user-select:none}
+canvas{position:fixed;inset:0;width:100%;height:100%}
 
-#intro{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;background:#0a0a0f;transition:opacity .8s ease}
-#intro.gone{opacity:0;pointer-events:none}
-#intro h1{font-size:clamp(28px,7vw,52px);font-weight:700;letter-spacing:-1.5px;margin-bottom:12px;background:linear-gradient(135deg,#ff7070,#70a0ff,#c070ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-#intro p{font-size:clamp(13px,2.5vw,16px);color:#555;font-weight:300;max-width:360px;text-align:center;line-height:1.7;margin-bottom:36px}
-.btn{font-family:'Inter',sans-serif;font-size:14px;font-weight:500;padding:14px 44px;border:none;border-radius:80px;cursor:pointer;transition:transform .15s,opacity .3s;letter-spacing:.3px}
-.btn:active{transform:scale(.95)}
-#start-btn{background:#fff;color:#0a0a0f}
+#tuner{position:fixed;bottom:48px;left:12%;right:12%;height:2px;background:rgba(255,255,255,.06);border-radius:1px;z-index:10;cursor:pointer}
+#tuner::before{content:'';position:absolute;top:-14px;left:0;right:0;height:30px}
+.tick{position:absolute;top:-5px;width:1px;height:12px;background:rgba(255,255,255,.08);transform:translateX(-50%);pointer-events:none;transition:background .6s}
+.tick.found{background:rgba(255,255,255,.25)}
 
-#scene{position:fixed;inset:0;display:none}
-#scene.active{display:block}
-canvas.layer{position:fixed;inset:0;width:100%;height:100%}
-#false-layer{filter:hue-rotate(180deg);z-index:1;transition:filter 2s ease}
-#true-layer{z-index:2;pointer-events:none;transition:clip-path .04s linear,opacity 1s ease}
-#lens-ring{position:fixed;width:180px;height:180px;border-radius:50%;border:1.5px solid rgba(255,255,255,.1);pointer-events:none;transform:translate(-50%,-50%);z-index:3;box-shadow:0 0 60px rgba(255,255,255,.02),inset 0 0 30px rgba(255,255,255,.015);transition:width .5s ease,height .5s ease,opacity .6s ease}
+#knob{position:absolute;top:50%;width:18px;height:18px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);cursor:grab;box-shadow:0 0 20px rgba(255,255,255,.25),0 0 60px rgba(255,255,255,.08);transition:box-shadow .2s;z-index:11}
+#knob.active{cursor:grabbing;box-shadow:0 0 30px rgba(255,255,255,.4),0 0 80px rgba(255,255,255,.15)}
 
-#hud{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:20px 24px;pointer-events:none}
-.hud-item{font-size:12px;font-weight:400;letter-spacing:1.5px;color:rgba(255,255,255,.7);text-transform:uppercase;background:rgba(0,0,0,.3);padding:6px 14px;border-radius:20px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+#freq-display{position:fixed;bottom:66px;left:50%;transform:translateX(-50%);font-size:12px;font-weight:300;letter-spacing:4px;color:rgba(255,255,255,.18);z-index:10;text-align:center;pointer-events:none;font-variant-numeric:tabular-nums}
 
-#result{position:fixed;inset:0;z-index:20;display:none;flex-direction:column;align-items:center;justify-content:center;background:#0a0a0f;padding:24px}
-#result.show{display:flex}
-#result-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:0;transition:opacity 2s ease}
-#result-canvas.visible{opacity:1}
-#result-overlay{position:relative;z-index:1;text-align:center}
-.r-title{font-size:clamp(16px,3.5vw,22px);font-weight:300;color:#556;margin-bottom:8px;letter-spacing:.5px}
-.r-pct{font-size:clamp(72px,18vw,130px);font-weight:800;letter-spacing:-4px;line-height:1;margin-bottom:4px;background:linear-gradient(135deg,#ff7070,#70a0ff,#c070ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.r-label{font-size:12px;color:#445;font-weight:400;letter-spacing:4px;text-transform:uppercase;margin-bottom:36px}
-.r-desc{font-size:clamp(12px,2.2vw,14px);color:#556;font-weight:300;max-width:340px;text-align:center;line-height:1.9;margin-bottom:40px}
-.r-divider{width:36px;height:1px;background:rgba(255,255,255,.06);margin:0 auto 40px}
-#again-btn{background:rgba(255,255,255,.05);color:#667;border:1px solid rgba(255,255,255,.07);font-size:13px}
-#again-btn:hover{border-color:rgba(255,255,255,.14);color:#889}
+#transmission{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:clamp(14px,3vw,21px);font-weight:200;letter-spacing:.5px;color:rgba(255,255,255,0);text-align:center;max-width:460px;line-height:2.1;z-index:5;pointer-events:none;transition:color 2s ease;padding:0 24px}
+#transmission.visible{color:rgba(255,255,255,.6)}
+
+#found{position:fixed;top:20px;right:20px;font-size:11px;font-weight:300;letter-spacing:2px;color:rgba(255,255,255,.12);z-index:10;pointer-events:none}
+#title{position:fixed;top:20px;left:20px;font-size:11px;font-weight:600;letter-spacing:3px;color:rgba(255,255,255,.1);z-index:10;pointer-events:none;text-transform:uppercase}
+#hint{position:fixed;bottom:78px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:300;letter-spacing:1.5px;color:rgba(255,255,255,.1);z-index:10;pointer-events:none;transition:opacity 1.5s ease}
+#decoded{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:300;letter-spacing:3px;color:rgba(255,255,255,0);z-index:10;pointer-events:none;transition:color 3s ease;text-transform:uppercase}
+#decoded.visible{color:rgba(255,255,255,.15)}
 
 @media(max-width:480px){
-  .hud-item{font-size:11px;padding:5px 10px;letter-spacing:1px}
+  #tuner{left:6%;right:6%}
+  #found,#title{font-size:10px;letter-spacing:1.5px}
 }
 </style>
 </head>
 <body>
 
-<div id="intro">
-  <h1>Chromatic</h1>
-  <p>The colors you see are wrong. Move the lens to find the truth before it closes.</p>
-  <button class="btn" id="start-btn">Look Through</button>
-</div>
-
-<div id="scene">
-  <canvas id="false-layer" class="layer"></canvas>
-  <canvas id="true-layer" class="layer"></canvas>
-  <div id="lens-ring"></div>
-  <div id="hud">
-    <div class="hud-item" id="timer-display">30s</div>
-    <div class="hud-item" id="reveal-display">0% found</div>
-  </div>
-</div>
-
-<div id="result">
-  <canvas id="result-canvas"></canvas>
-  <div id="result-overlay">
-    <div class="r-title">You discovered</div>
-    <div class="r-pct" id="r-pct"></div>
-    <div class="r-label">of the truth</div>
-    <div class="r-divider"></div>
-    <div class="r-desc" id="r-desc"></div>
-    <button class="btn" id="again-btn">Try Again</button>
-  </div>
-</div>
+<canvas id="c"></canvas>
+<div id="title">Void Hum</div>
+<div id="found">0 / 5</div>
+<div id="freq-display">97.5 MHz</div>
+<div id="hint">drag to tune</div>
+<div id="decoded">all signals decoded</div>
+<div id="transmission"></div>
+<div id="tuner"><div id="knob"></div></div>
 
 <script>
-const DURATION=30;
-const GRID=24;
-const LENS_START=95;
-const LENS_END=30;
+const C = document.getElementById('c');
+const X = C.getContext('2d');
+const knob = document.getElementById('knob');
+const tuner = document.getElementById('tuner');
+const freqEl = document.getElementById('freq-display');
+const transEl = document.getElementById('transmission');
+const foundEl = document.getElementById('found');
+const hintEl = document.getElementById('hint');
+const decEl = document.getElementById('decoded');
 
-let fC,tC,rC; // canvases
-let artBuf; // offscreen art
-let W,H;
-let mx=-999,my=-999;
-let lensR=LENS_START;
-let running=false,started=false;
-let startTime=0,timerID=null;
-let grid=[],pct=0;
+let W, H, freq = 0.5, t = 0, drag = false, hintOn = true;
+const foundSet = new Set();
 
-function resize(){
-  W=window.innerWidth;H=window.innerHeight;
-  [fC,tC,rC].forEach(c=>{c.width=W;c.height=H});
+const signals = [
+  { f: 0.08, msg: "A garden grows in the space between heartbeats." },
+  { f: 0.28, msg: "The last lighthouse keeper forgot to turn off the light." },
+  { f: 0.50, msg: "Somewhere, a version of you just put down their phone." },
+  { f: 0.72, msg: "The ocean remembers every raindrop that ever touched it." },
+  { f: 0.91, msg: "You have been here before. You just do not remember yet." },
+];
+
+// Color palette: frequency -> hue stops with smooth transitions
+const stops = [[240,45,55],[280,55,55],[165,50,50],[35,60,55],[5,55,50]];
+
+function lerpH(a, b, t) {
+  let dh = b[0] - a[0];
+  if (dh > 180) dh -= 360;
+  if (dh < -180) dh += 360;
+  return [a[0]+dh*t, a[1]+(b[1]-a[1])*t, a[2]+(b[2]-a[2])*t];
 }
 
-function init(){
-  fC=document.getElementById('false-layer');
-  tC=document.getElementById('true-layer');
-  rC=document.getElementById('result-canvas');
-  resize();
+function col(f) {
+  f = Math.max(0, Math.min(1, f));
+  const s = f * (stops.length - 1);
+  const i = Math.min(Math.floor(s), stops.length - 2);
+  return lerpH(stops[i], stops[i+1], s - i);
 }
 
-function genArt(ctx,w,h){
-  ctx.fillStyle='#0a0a0f';
-  ctx.fillRect(0,0,w,h);
+// Particles
+const N = 160;
+const P = [];
 
-  const blobs=[
-    {x:.22,y:.32,r:.42,c:'rgba(255,70,90,0.22)'},
-    {x:.72,y:.22,r:.36,c:'rgba(50,150,255,0.18)'},
-    {x:.5,y:.72,r:.46,c:'rgba(150,50,255,0.16)'},
-    {x:.12,y:.78,r:.26,c:'rgba(255,175,35,0.14)'},
-    {x:.88,y:.52,r:.32,c:'rgba(35,255,170,0.14)'},
-    {x:.52,y:.38,r:.22,c:'rgba(255,90,190,0.18)'},
-    {x:.38,y:.58,r:.28,c:'rgba(90,190,255,0.10)'},
-    {x:.65,y:.82,r:.2,c:'rgba(255,130,70,0.12)'},
-  ];
-  const s=Math.min(w,h);
-  for(const b of blobs){
-    const bx=b.x*w,by=b.y*h,br=b.r*s;
-    const g=ctx.createRadialGradient(bx,by,0,bx,by,br);
-    g.addColorStop(0,b.c);
-    g.addColorStop(1,'rgba(0,0,0,0)');
-    ctx.fillStyle=g;
-    ctx.fillRect(0,0,w,h);
-  }
-
-  // Secondary layer for depth
-  const blobs2=[
-    {x:.4,y:.45,r:.5,c:'rgba(255,120,200,0.06)'},
-    {x:.6,y:.55,r:.45,c:'rgba(100,180,255,0.05)'},
-  ];
-  for(const b of blobs2){
-    const bx=b.x*w,by=b.y*h,br=b.r*s;
-    const g=ctx.createRadialGradient(bx,by,0,bx,by,br);
-    g.addColorStop(0,b.c);
-    g.addColorStop(1,'rgba(0,0,0,0)');
-    ctx.fillStyle=g;
-    ctx.fillRect(0,0,w,h);
-  }
-
-  // Stars
-  for(let i=0;i<350;i++){
-    const sx=Math.random()*w,sy=Math.random()*h;
-    const sr=Math.random()*1.6+0.3;
-    ctx.beginPath();ctx.arc(sx,sy,sr,0,Math.PI*2);
-    ctx.fillStyle=`rgba(255,255,255,${Math.random()*.55+.08})`;
-    ctx.fill();
-  }
-
-  // Bright accent stars
-  for(let i=0;i<12;i++){
-    const sx=Math.random()*w,sy=Math.random()*h;
-    const sg=ctx.createRadialGradient(sx,sy,0,sx,sy,3+Math.random()*4);
-    sg.addColorStop(0,'rgba(255,255,255,0.6)');
-    sg.addColorStop(1,'rgba(255,255,255,0)');
-    ctx.fillStyle=sg;ctx.fillRect(sx-6,sy-6,12,12);
-  }
-
-  // Geometric rings
-  ctx.lineWidth=.5;
-  for(let i=0;i<6;i++){
-    const cx=w*(.15+Math.random()*.7),cy=h*(.15+Math.random()*.7);
-    const cr=40+Math.random()*140;
-    ctx.beginPath();ctx.arc(cx,cy,cr,0,Math.PI*2);
-    ctx.strokeStyle=`rgba(255,255,255,${.015+Math.random()*.03})`;
-    ctx.stroke();
+function resize() {
+  W = C.width = innerWidth;
+  H = C.height = innerHeight;
+  P.length = 0;
+  for (let i = 0; i < N; i++) {
+    P.push({
+      bx: Math.random() * W, by: Math.random() * H,
+      x: 0, y: 0,
+      ph: Math.random() * Math.PI * 2,
+      sz: Math.random() * 1.4 + 0.5,
+      sp: Math.random() * 0.5 + 0.75,
+    });
   }
 }
 
-function copyArt(){
-  fC.getContext('2d').drawImage(artBuf,0,0);
-  tC.getContext('2d').drawImage(artBuf,0,0);
-  rC.getContext('2d').drawImage(artBuf,0,0);
-}
+function toMHz(f) { return (87.5 + f * 20.5).toFixed(1); }
 
-function updateLens(x,y){
-  mx=x;my=y;
-  const ring=document.getElementById('lens-ring');
-  ring.style.left=x+'px';ring.style.top=y+'px';
-  ring.style.width=lensR*2+'px';ring.style.height=lensR*2+'px';
-  tC.style.clipPath=`circle(${lensR}px at ${x}px ${y}px)`;
+function setFreq(f) {
+  freq = Math.max(0, Math.min(1, f));
+  knob.style.left = freq * 100 + '%';
+  freqEl.textContent = toMHz(freq) + ' MHz';
 
-  const cw=W/GRID,ch=H/GRID;
-  const gx=Math.floor(x/cw),gy=Math.floor(y/ch);
-  const rCells=Math.ceil(lensR/Math.max(cw,ch));
-  for(let dy=-rCells;dy<=rCells;dy++){
-    for(let dx=-rCells;dx<=rCells;dx++){
-      const cx=gx+dx,cy=gy+dy;
-      if(cx>=0&&cx<GRID&&cy>=0&&cy<GRID){
-        const d=Math.sqrt(dx*dx+dy*dy)*Math.max(cw,ch);
-        if(d<=lensR)grid[cy][cx]=true;
+  let near = null, nearD = 1;
+  for (const s of signals) {
+    const d = Math.abs(freq - s.f);
+    if (d < 0.04) {
+      foundSet.add(s.f);
+      if (d < nearD) { near = s; nearD = d; }
+      // Mark tick as found
+      const ticks = tuner.querySelectorAll('.tick');
+      for (const tk of ticks) {
+        if (Math.abs(parseFloat(tk.style.left) / 100 - s.f) < 0.015)
+          tk.classList.add('found');
       }
     }
   }
-  let tot=0;
-  for(let y=0;y<GRID;y++)for(let x=0;x<GRID;x++)if(grid[y][x])tot++;
-  pct=Math.round(tot/(GRID*GRID)*100);
-  document.getElementById('reveal-display').textContent=pct+'% found';
+
+  transEl.classList.toggle('visible', !!(near && nearD < 0.02));
+  if (near && nearD < 0.02) transEl.textContent = near.msg;
+
+  foundEl.textContent = foundSet.size + ' / 5';
+  if (foundSet.size === 5) decEl.classList.add('visible');
 }
 
-function startGame(){
-  document.getElementById('intro').classList.add('gone');
-  const scene=document.getElementById('scene');
-  scene.classList.add('active');
-  window.addEventListener('resize',onResize);
+function render() {
+  t++;
+  const c = col(freq);
+  const h = c[0], s = c[1], l = c[2];
 
-  artBuf=document.createElement('canvas');
-  artBuf.width=W;artBuf.height=H;
-  genArt(artBuf.getContext('2d'),W,H);
+  // Trail fade
+  X.fillStyle = `rgba(10,10,15,${0.06 + freq * 0.12})`;
+  X.fillRect(0, 0, W, H);
 
-  grid=[];for(let y=0;y<GRID;y++){grid[y]=[];for(let x=0;x<GRID;x++)grid[y][x]=false;}
-  pct=0;lensR=LENS_START;
-  copyArt();
+  // Ambient bg glow
+  const bg = X.createRadialGradient(W/2, H/2, 0, W/2, H/2, Math.max(W,H)*0.5);
+  bg.addColorStop(0, `hsla(${h},${s}%,${Math.max(1,l*0.25)}%,0.015)`);
+  bg.addColorStop(1, 'rgba(10,10,15,0)');
+  X.fillStyle = bg;
+  X.fillRect(0, 0, W, H);
 
-  fC.style.filter='hue-rotate(180deg)';fC.style.transition='none';
-  tC.style.opacity='1';tC.style.transition='clip-path .04s linear';
-  document.getElementById('lens-ring').style.opacity='1';
+  // Particle motion params
+  const spd = 0.0003 + freq * 0.0025;
+  const amp = 15 + freq * 190;
+  const wn = 1.2 + freq * 5.5;
+  const t2 = t * spd;
 
-  // Start lens at center
-  updateLens(W/2,H/2);
+  for (const p of P) {
+    const pt = t2 * p.sp;
+    p.x = p.bx + amp * Math.sin(wn * p.ph + pt);
+    p.y = p.by + amp * Math.cos(wn * p.ph * 1.3 + pt * 0.7) * (0.4 + freq * 0.6);
 
-  running=true;started=true;
-  startTime=Date.now();
-  timerID=setInterval(tick,80);
-}
+    // Spiral effect near transmissions
+    for (const sg of signals) {
+      const d = Math.abs(freq - sg.f);
+      if (d < 0.04) {
+        const str = (1 - d / 0.04) * 55;
+        const ang = Math.atan2(p.by - H/2, p.bx - W/2) + t * 0.008;
+        p.x += Math.cos(ang) * str * Math.sin(t * 0.004);
+        p.y += Math.sin(ang) * str * Math.sin(t * 0.004);
+      }
+    }
 
-function onResize(){
-  resize();
-  if(artBuf){
-    artBuf.width=W;artBuf.height=H;
-    genArt(artBuf.getContext('2d'),W,H);
-    copyArt();
+    p.x = ((p.x % W) + W) % W;
+    p.y = ((p.y % H) + H) % H;
+
+    const a = 0.25 + Math.sin(pt + p.ph) * 0.2;
+    const sz = Math.max(0.1, p.sz * (0.6 + freq * 0.9));
+    const ph = p.ph * 12;
+
+    // Soft glow
+    X.beginPath();
+    X.arc(p.x, p.y, sz * 3.5, 0, Math.PI * 2);
+    X.fillStyle = `hsla(${h+ph},${s}%,${l}%,${Math.max(0,a*0.06)})`;
+    X.fill();
+
+    // Core
+    X.beginPath();
+    X.arc(p.x, p.y, sz, 0, Math.PI * 2);
+    X.fillStyle = `hsla(${h+ph},${s}%,${Math.min(90,l+18)}%,${Math.max(0,a)})`;
+    X.fill();
   }
+
+  // Connections
+  const cd = freq < 0.12 ? 0 : 30 + Math.sin(freq * Math.PI) * 80;
+  if (cd > 20) {
+    const md2 = cd * cd;
+    X.lineWidth = 0.3;
+    for (let i = 0; i < N; i++) {
+      for (let j = i + 1; j < N; j++) {
+        const dx = P[i].x - P[j].x;
+        if (dx > cd || dx < -cd) continue;
+        const dy = P[i].y - P[j].y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < md2) {
+          const a = (1 - d2 / md2) * 0.07;
+          X.beginPath();
+          X.moveTo(P[i].x, P[i].y);
+          X.lineTo(P[j].x, P[j].y);
+          X.strokeStyle = `hsla(${h},${s}%,${l}%,${a})`;
+          X.stroke();
+        }
+      }
+    }
+  }
+
+  // Transmission center glow
+  for (const sg of signals) {
+    const d = Math.abs(freq - sg.f);
+    if (d < 0.025) {
+      const str = (1 - d / 0.025) * 0.025;
+      const g = X.createRadialGradient(W/2, H/2, 0, W/2, H/2, Math.min(W,H)*0.35);
+      g.addColorStop(0, `rgba(255,255,255,${str})`);
+      g.addColorStop(1, 'rgba(255,255,255,0)');
+      X.fillStyle = g;
+      X.fillRect(0, 0, W, H);
+    }
+  }
+
+  // Vignette
+  const vig = X.createRadialGradient(W/2, H/2, Math.min(W,H)*0.3, W/2, H/2, Math.max(W,H)*0.75);
+  vig.addColorStop(0, 'rgba(10,10,15,0)');
+  vig.addColorStop(1, 'rgba(10,10,15,0.3)');
+  X.fillStyle = vig;
+  X.fillRect(0, 0, W, H);
+
+  requestAnimationFrame(render);
 }
 
-function tick(){
-  if(!running)return;
-  const elapsed=(Date.now()-startTime)/1000;
-  const rem=Math.max(0,DURATION-elapsed);
-  document.getElementById('timer-display').textContent=Math.ceil(rem)+'s';
-  lensR=LENS_START-(LENS_START-LENS_END)*(elapsed/DURATION);
-  if(rem<=0){clearInterval(timerID);endGame();}
-}
-
-function endGame(){
-  running=false;
-
-  // Dramatic reveal: remove hue-rotate
-  fC.style.transition='filter 2s ease';
-  fC.style.filter='hue-rotate(0deg)';
-  tC.style.transition='opacity 1.5s ease';
-  tC.style.opacity='0';
-  const ring=document.getElementById('lens-ring');
-  ring.style.opacity='0';
-  document.getElementById('hud').style.transition='opacity .5s ease';
-  document.getElementById('hud').style.opacity='0';
-
-  setTimeout(()=>{
-    document.getElementById('scene').classList.remove('active');
-    const r=document.getElementById('result');
-    r.classList.add('show');
-    rC.classList.add('visible');
-
-    document.getElementById('r-pct').textContent=pct+'%';
-
-    let desc;
-    if(pct>85) desc='You searched relentlessly. Almost nothing escaped your lens. The truth was always there, hidden beneath a lie of complementary colors. You simply refused to look away.';
-    else if(pct>65) desc='A thorough explorer. You moved with purpose, tracing the canvas with dedication. The hues that fool most people could not hold you for long.';
-    else if(pct>45) desc='You found the truth in fragments, like sunlight through half-closed blinds. Some corners of the canvas remain untouched, but what you saw was real. That is enough for most.';
-    else if(pct>25) desc='Glimpses of reality, scattered across the screen. You saw enough to know something was wrong with the colors. Whether that knowledge is a gift or a burden is unclear.';
-    else desc='Barely a scratch on the surface of the illusion. The false colors remain mostly intact, undisturbed. Perhaps you were content with the lie. Perhaps the lens simply closed too fast.';
-    document.getElementById('r-desc').textContent=desc;
-  },2200);
-}
-
-// Input handlers
-document.addEventListener('mousemove',e=>{if(running)updateLens(e.clientX,e.clientY)});
-document.addEventListener('touchstart',e=>{if(!running)return;e.preventDefault();updateLens(e.touches[0].clientX,e.touches[0].clientY)},{passive:false});
-document.addEventListener('touchmove',e=>{if(!running)return;e.preventDefault();updateLens(e.touches[0].clientX,e.touches[0].clientY)},{passive:false});
-
-document.getElementById('start-btn').addEventListener('click',startGame);
-
-document.getElementById('again-btn').addEventListener('click',()=>{
-  const r=document.getElementById('result');
-  r.classList.remove('show');
-  rC.classList.remove('visible');
-  document.getElementById('hud').style.opacity='1';
-  document.getElementById('intro').classList.remove('gone');
-  document.getElementById('intro').style.opacity='1';
-  started=false;running=false;
-  window.removeEventListener('resize',onResize);
+// Add signal tick marks
+signals.forEach(s => {
+  const tk = document.createElement('div');
+  tk.className = 'tick';
+  tk.style.left = s.f * 100 + '%';
+  tuner.insertBefore(tk, knob);
 });
 
-init();
+// Input — unified pointer events with capture
+tuner.addEventListener('pointerdown', e => {
+  drag = true;
+  knob.classList.add('active');
+  tuner.setPointerCapture(e.pointerId);
+  onMove(e.clientX);
+  e.preventDefault();
+});
+tuner.addEventListener('pointermove', e => { if (drag) onMove(e.clientX); });
+tuner.addEventListener('pointerup', () => { drag = false; knob.classList.remove('active'); });
+tuner.addEventListener('pointercancel', () => { drag = false; knob.classList.remove('active'); });
+
+function onMove(cx) {
+  const r = tuner.getBoundingClientRect();
+  setFreq((cx - r.left) / r.width);
+  if (hintOn) { hintEl.style.opacity = '0'; hintOn = false; }
+}
+
+window.addEventListener('resize', resize);
+resize();
+setFreq(0.5);
+render();
 </script>
 </body>
 </html>
