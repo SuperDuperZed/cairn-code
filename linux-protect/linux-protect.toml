@@ -1,0 +1,51 @@
+# linux-protect v4 — configuration file
+# Copy to /etc/linux-protect/linux-protect.toml
+# IMPORTANT: set permissions to 0600 — daemon will warn if too permissive
+# Hot-reload supported: send SIGHUP to reload rules + allowlist
+
+# ── Trust Mode ──────────────────────────────────────────────────────
+# enforce  = scan non-OS paths, deny on YARA match (default)
+# strict   = enforce + deny-by-default for ALL non-allowlisted binaries (including temp dirs)
+# paranoid = strict + behavioral heuristics + script scanning + memfd detection + exec chain
+# audit    = log-only, never deny (for baselining and compliance)
+trust_mode = "enforce"
+
+# ── Trusted Paths ───────────────────────────────────────────────────
+# Additional path prefixes that bypass scanning (in addition to core OS paths).
+# Use sparingly — each entry is a potential evasion surface.
+# Example: trusted_paths = ["/opt/myapp/", "/usr/local/custom/"]
+trusted_paths = []
+
+# ── Watched Directories (inotify) ────────────────────────────────────
+# Temp directories monitored for suspicious file creation patterns.
+# Files created here are proactively scanned against YARA.
+watch_dirs = ["/tmp", "/dev/shm", "/var/tmp"]
+
+# ── Rules & Allowlist ────────────────────────────────────────────────
+rules_dir = "/etc/linux-protect/rules"
+allowlist = "/etc/linux-protect/allowlist.json"
+
+# ── Runtime ──────────────────────────────────────────────────────────
+pid_file = "/run/linux-protect/linux-protect.pid"
+max_scan_mb = 64
+verbose = false
+
+# ── Behavioral Thresholds ────────────────────────────────────────────
+exec_rate_limit = 8
+temp_file_rate = 20
+
+# ── Fanotify Mounts ─────────────────────────────────────────────────
+# watch_mounts = ["/"]
+
+# ── v4 Features ─────────────────────────────────────────────────────
+# Script argument scanning: when a trusted interpreter (python3, bash, etc.)
+# executes, parse /proc/pid/cmdline and scan the script file against YARA.
+scan_scripts = true
+
+# memfd_create detection: background scanner checks /proc/*/exe for anonymous
+# memory-backed executions every 3s. In paranoid mode, kills memfd processes.
+memfd_detect = true
+
+# Proactive inotify: immediately scan files created in temp directories
+# against YARA (not just rate-track them). Deletes confirmed malware.
+proactive_inotify = true
