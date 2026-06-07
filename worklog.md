@@ -529,3 +529,28 @@ Stage Summary:
 - Commit: 91b53c1 - "fix: resolve all TypeScript errors in service layer"
 - All 14+ TS errors in src/services/* resolved
 - Frontend build verified clean
+---
+Task ID: pdf-pr1336-fixes
+Agent: main
+Task: Address remaining review comments on openclaude PR #1336 (PDF generation skill)
+
+Work Log:
+- Cloned Gitlawb/openclaude and fetched PR #1336 branch (feat/pdf-skill-typescript)
+- Read full PR history: 2 rounds of CHANGES_REQUESTED from jatmn
+- Round 1 issues (template crash, object numbering, merge/split stubs) were already fixed in commit 7a9a678
+- Identified 3 remaining issues from round 2 review
+- Rewrote src/skills/bundled/pdf.ts (102 insertions, 88 deletions):
+  - R2-P2: Removed all ${CLAUDE_SKILL_DIR} references, changed import examples to use relative ./pdfgen path
+  - R2-P2: Removed unimplemented image support (PDFElement image type, ImageData interface, image XObject code, basename import)
+  - R2-P2: Added automatic multi-page continuation (buildPageStream → buildPageStreams returning PageStreamResult[])
+- Committed as 79c9f81 with detailed commit message
+- Pushed to SuperDuperZed/openclaude fork (feat/pdf-skill-typescript branch)
+- Posted summary comment on PR #1336
+
+Stage Summary:
+- Commit: 79c9f81 on feat/pdf-skill-typescript branch
+- Pushed to: https://github.com/SuperDuperZed/openclaude
+- PR: https://github.com/Gitlawb/openclaude/pull/1336
+- Comment: https://github.com/Gitlawb/openclaude/pull/1336#issuecomment-4641249874
+- All 6 review issues (R1 + R2) now addressed
+
