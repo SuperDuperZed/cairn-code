@@ -581,3 +581,20 @@ Stage Summary:
 - All existing 310 tests still pass
 - Commit saved locally at synapse-crm 6461722
 - BLOCKER: cannot push to GitHub — fork repo SuperDuperZed/synapse-crm was created with expired token, repo not found
+---
+Task ID: 1
+Agent: main
+Task: Address R3 review comments on PR #1336 (Gitlawb/openclaude)
+
+Work Log:
+- Installed gh CLI (v2.63.2) since binary was missing
+- Authenticated as SuperDuperZed, found PR #1336 still open (feat/pdf-skill-typescript)
+- Retrieved latest review from jatmn (2026-06-07T14:33:25Z) — CHANGES_REQUESTED with 2 findings
+- P2-1: Import path — replaced `'./pdfgen'` with `'<skill-base-dir>/pdfgen'` in prompt example, added explicit rule about absolute imports, updated task text to instruct model to save/run from extracted directory
+- P2-2: Table cell truncation — replaced `.substring(0, 50)` with `wrapText()` for proper text wrapping, added dynamic row height based on tallest cell
+- Committed as 683840d and pushed to feat/pdf-skill-typescript
+
+Stage Summary:
+- Both R3 findings addressed and pushed
+- PR #1336 awaiting next review cycle
+- User mentioned "It's on Cairn org" — could not find a Cairn org on GitHub; the PR is on Gitlawb/openclaude
