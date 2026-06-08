@@ -762,3 +762,22 @@ Stage Summary:
 - R5-P2 fixed: table rows now split across pages when taller than available space
 - Commit: e2bed30 on SuperDuperZed/openclaude:feat/pdf-skill-typescript
 - PR comment posted: https://github.com/Gitlawb/openclaude/pull/1336#issuecomment-4651350538
+
+---
+Task ID: 2
+Agent: Main Agent
+Task: Address Jatmn's R6 review on PR #1336 (openclaude PDF skill)
+
+Work Log:
+- Fetched latest reviews, found R6 (ID 4451901963) with 2 new P2 findings
+- [P2] wrapText() only splits on whitespace — long URLs/IDs/hashes render off-page
+  - Added post-pass: after word-wrap, hard-split lines exceeding charsPerLine into chunks
+- [P2] escapePdf() calls toWinAnsi() a second time, dropping already-mapped WinAnsi chars
+  - Removed toWinAnsi() from escapePdf(), callers already pass encoded text
+- Build passes, committed as 2ca1a87, pushed to feat/pdf-skill-typescript
+- Posted PR comment (ID 4651670831) addressing both R6 findings
+
+Stage Summary:
+- R6-P2 both fixed: long tokens now wrap, WinAnsi chars preserved in PDF output
+- Commit: 2ca1a87 on SuperDuperZed/openclaude:feat/pdf-skill-typescript
+- PR comment: https://github.com/Gitlawb/openclaude/pull/1336#issuecomment-4651670831
