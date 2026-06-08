@@ -642,3 +642,23 @@ Stage Summary:
 - Game completely transformed from arcade to RPG
 - Pushed as v2.0.0 to SuperDuperZed/ink-job-99
 - Live at https://superduperzed.github.io/ink-job-99/ (updating)
+
+---
+Task ID: 1
+Agent: main
+Task: Fix broken INK JOB '99 title screen
+
+Work Log:
+- User reported game welcome screen broken after RPG upgrade
+- First fix: added missing C.dkBrown and C.yellow to color palette (referenced by letterpress and thermo sprites)
+- User reported still broken after hard refresh hours later
+- Analyzed user's screenshot pixel data: canvas background (navy checkerboard) renders fine, but zero text pixels (green/gold/white) inside canvas area
+- Root cause: every `font='bold 18px monospace'` was missing `ctx.` prefix — 23 bare assignments setting global var instead of ctx.font
+- Canvas defaulted to 10px sans-serif, making all text invisible at 320x240 internal resolution
+- Fixed all 23 instances, rebuilt, pushed
+
+Stage Summary:
+- Commit cae9d4e: "fix: prefix all canvas font assignments with ctx."
+- Commit fe95d2a: "chore: remove debug screenshots"
+- Also fixed from previous session: Commit 4f0aeb2 added missing dkBrown and yellow colors
+- Game now renders text correctly on title screen
