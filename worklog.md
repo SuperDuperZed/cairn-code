@@ -781,3 +781,25 @@ Stage Summary:
 - R6-P2 both fixed: long tokens now wrap, WinAnsi chars preserved in PDF output
 - Commit: 2ca1a87 on SuperDuperZed/openclaude:feat/pdf-skill-typescript
 - PR comment: https://github.com/Gitlawb/openclaude/pull/1336#issuecomment-4651670831
+
+---
+Task ID: 3
+Agent: Main Agent
+Task: Fix ink-job-99 RPG character stuck at game start
+
+Work Log:
+- User reported character walks up and gets stuck after game starts
+- Explored full game codebase: pure TypeScript + Canvas, tile-based grid movement
+- Analyzed map data (30x42 grid) and NPC positions
+- Root cause: Player spawned at tile (17,6) — a grass tile sandwiched between
+  solid wall row at y=7 and NPC Doc Plates at (17,5). Walking north immediately
+  hits the NPC with zero feedback, making it feel stuck
+- Fixed starting position: (17,6) → (11,10) — open road area with 9 passable neighbors
+- Added bump feedback system: bumpTimer state, 1px sprite offset toward blocked
+  tile for 0.12s on collision, giving visual/audio feedback
+- Rebuilt with bun, pushed to SuperDuperZed/ink-job-99:master
+
+Stage Summary:
+- Commit: d6b0843 on SuperDuperZed/ink-job-99:master
+- Player now starts on an open road tile with movement in all directions
+- Wall/NPC collisions now have visual bump feedback
