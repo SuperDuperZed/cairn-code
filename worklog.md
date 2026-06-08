@@ -803,3 +803,29 @@ Stage Summary:
 - Commit: d6b0843 on SuperDuperZed/ink-job-99:master
 - Player now starts on an open road tile with movement in all directions
 - Wall/NPC collisions now have visual bump feedback
+
+---
+Task ID: 4
+Agent: Main Agent
+Task: Debug and fix ink-job-99 input system (3 bugs found via browser testing)
+
+Work Log:
+- Used agent-browser to open game on GitHub Pages and test interactively
+- Bug 1 (touchY=-1): touchX/touchY initialize to -1. The direction helpers
+  checked 'touchY < H*0.33' but -1 < 79.2 is always true, making upHeld()
+  permanently true. Fixed: all 4 direction helpers now require touch >= 0.
+- Bug 2 (flushInput race): Implemented queue-based input (pendingDown/pendingUp)
+  to solve rAF timing, but both keydown and keyup fire between frames, so
+  flushInput added AND removed keys in the same call. Replaced with justDown
+  Set approach: keydown adds to both 'keys' (held) and 'justDown' (pressed),
+  justPressed checks justDown, justDown cleared at end of each frame.
+- Bug 3 (justDown.clear timing): justDown.clear() was at start of frame, which
+  cleared keys dispatched between frames before game logic could read them.
+  Moved to end of frame (after render).
+- Verified via agent-browser: no auto-walk, Enter starts game, ArrowDown/W/right
+  all produce correct movement, WASD works.
+
+Stage Summary:
+- 3 commits pushed: touchY fix (41d8787), justDown rewrite (a352a4c), clear timing (633ed80)
+- All tested via agent-browser with before/after screenshots
+- Character no longer auto-walks, all input methods work correctly
