@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -52,3 +53,27 @@ prompt
 server.log
 # Skills directory
 /skills/
+=======
+# Binary
+cairn-code
+/cairn-code
+
+# Go
+vendor/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Sessions (user data)
+sessions/
+
+# Config (user data)
+.cairn/
+>>>>>>> origin/main
