@@ -1057,3 +1057,42 @@ Stage Summary:
 - Architecture: channel-based goroutine→UI event pipeline with 16ms drain polling
 - Before: user sees "Thinking..." for entire multi-turn agent run (could be 30+ seconds)
 - After: user sees text stream character-by-character, tool calls appear instantly with summaries, spinner shows context
+
+---
+Task ID: 195864
+Agent: main (bi-hourly cairn-code improvement cron, run 2)
+Task: Study Claude Code & OpenClaude, implement next highest-impact improvement
+
+Work Log:
+- Read worklog.md — last sprint implemented real-time streaming (c6ed525) and earlier sprint did Anthropic SSE streaming + cost tracking (788a4b3)
+- Identified next priority: viewport scrolling — without it, long conversations re-render ALL output every 16ms tick via glamour, causing O(n) slowdown and terminal overflow
+- Installed bubbles/viewport package for scrollable content area
+- Implemented full viewport-based scrolling architecture:
+  - Content caching: output lines rendered to string only when dirty (new lines added), not every frame
+  - `cachedContent` string stores pre-rendered output; `contentDirty` flag tracks when re-render is needed
+  - `ensureContent()` renders dirty output and sets it on viewport via SetContent()
+  - `rebuildViewportContent()` appends live streaming text to cached content for active streaming
+  - During streaming, View() calls rebuildViewportContent() only when not user-scrolled-up
+- Viewport auto-scroll behavior:
+  - Auto-scrolls to bottom during streaming and agent completion
+  - Stops auto-scrolling when user scrolls up (mouse wheel or keys)
+  - Shows "↓ Ctrl+L to jump to bottom" hint when user has scrolled up
+  - Resumes auto-scrolling when user scrolls back to bottom
+- Scroll navigation: PgUp/PgDn, mouse wheel (3 lines per tick), Home/End
+- Keyboard shortcuts: Ctrl+L (scroll to bottom), Ctrl+W (delete word), Ctrl+U (clear input)
+- Header (title + provider/model) and footer (spinner + usage + prompt) separated from viewport content
+- Version string passed from main.go and displayed in title bar
+- Mouse enabled via tea.WithMouseCellMotion()
+- Smart spinner: only shows "Thinking..." or "Running X..." when not actively streaming text
+- Refactored /clear to nil the output slice and reset viewport content
+- Refactored all slash commands to call ensureContent() + GotoBottom() after appending output
+- Build: go build ./... — clean
+- Vet: go vet ./... — clean
+- Tests: go test ./... — 24 pass (existing cost package tests)
+
+Stage Summary:
+- Commit: 7c0388c on main (pushed to SuperDuperZed/cairn-code)
+- Before: all output re-rendered through glamour every 16ms tick regardless of viewport
+- After: only new/dirty content rendered; viewport handles visible portion; O(1) per frame
+- Key files changed: internal/ui/repl.go (-1081/+1144), cmd/cairn-code/main.go, go.mod, go.sum
+- All 24 existing tests pass
