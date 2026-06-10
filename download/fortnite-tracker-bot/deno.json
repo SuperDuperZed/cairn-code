@@ -1,0 +1,12 @@
+{
+  "tasks": {
+    "start": "deno run --allow-net --allow-env --allow-read main.ts",
+    "register": "deno run --allow-net --allow-env --allow-read src/register-commands.ts",
+    "dev": "deno run --allow-net --allow-env --allow-read --watch main.ts"
+  },
+  "imports": {
+    "discord.js": "npm:discord.js@14.16.3",
+    "dotenv": "npm:dotenv@16.4.7"
+  },
+  "nodeModulesDir": "auto"
+}
